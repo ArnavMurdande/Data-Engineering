@@ -15,7 +15,7 @@ A structured repository containing interactive exam preparation tools, relationa
 ## 📂 Repository Architecture
 
 ```
-Data-Engineering-/
+Data-Engineering/
 ├── 🚀 MCQ's Practice Website/     # Full-stack Interactive Exam & Practice Web App
 │   ├── src/
 │   │   ├── data/
@@ -68,10 +68,10 @@ Data-Engineering-/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/ArnavMurdande/Data-Engineering-.git
+git clone https://github.com/ArnavMurdande/Data-Engineering.git
 
 # 2. Navigate to the website directory
-cd "Data-Engineering-/MCQ's Practice Website"
+cd "Data-Engineering/MCQ's Practice Website"
 
 # 3. Install dependencies
 npm install
