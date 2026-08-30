@@ -89,7 +89,7 @@ To enable GitHub Pages:
 2. Under the **Code and automation** section in the left sidebar, click **Pages**.
 3. Under **Build and deployment > Source**, select **GitHub Actions**.
 4. Every push to `main` will automatically build and deploy the app to:
-   `https://arnavmurdande.github.io/Data-Engineering-/`
+   `https://arnavmurdande.github.io/Data-Engineering/`
 
 ---
 
