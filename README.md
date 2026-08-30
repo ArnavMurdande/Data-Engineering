@@ -1,6 +1,8 @@
 # ⚡ Data Engineering & SQL Master Hub
 
-[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-success?style=for-the-badge&logo=github)](https://arnavmurdande.github.io/Data-Engineering-/)
+🔗 **Live Website:** [https://arnavmurdande.github.io/Data-Engineering/](https://arnavmurdande.github.io/Data-Engineering/)
+
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-success?style=for-the-badge&logo=github)](https://arnavmurdande.github.io/Data-Engineering/)
 [![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-6-purple?style=for-the-badge&logo=vite)](https://vitejs.dev/)
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com/)
