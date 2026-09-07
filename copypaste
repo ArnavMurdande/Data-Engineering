@@ -1,0 +1,185 @@
+Campus Parking Lot Management System
+ 
+Question Code: Q9201
+Difficulty Level: Easy
+Technology: Python OOP
+Total Marks: 10
+Assessment SOP: Independent test setup, latest-only report, no final score print
+ 
+Assessment Instructions
+Open the Learnlytica assessment tool. Enter your Email address, enter the Question ID, and click Start Assessment.
+Once the assessment starts, open VSCode and implement your solution only in:
+solution.py
+ 
+After completing the implementation:
+1. Click Run Tests.
+2. Review the test results.
+3. Click Validate.
+4. Once satisfied with your attempt, click Submit.
+5. Click End Assessment.
+Sample inputs and expected outputs in this document are illustrative only and are intentionally different from the actual visible and hidden driver test data.
+Problem Statement
+A campus parking office manages vehicle parking slots.
+Each vehicle record is stored using the vehicle number as the key, and the corresponding value is a dictionary containing:
+• Owner
+• Slot
+• Status
+The system should support adding vehicles, updating parking slots, fetching vehicle details, and listing vehicles parked in a particular zone.
+Class Creation
+class ParkingLotSystem:
+ 
+Constructor
+def __init__(self):
+   self.vehicles = {}
+ 
+Operations
+1. Add Vehicle
+Function Prototype
+def add_vehicle(self, vehicle_no: str, owner: str, slot: str) -> dict:
+ 
+Example Input
+system.add_vehicle("KA22MN4501", "Dev", "C-18")
+ 
+Expected Output
+{
+   "KA22MN4501": {
+       "owner": "Dev",
+       "slot": "C-18",
+       "status": "Parked"
+   }
+}
+ 
+Implementation Flow
+• Check whether vehicle_no already exists in self.vehicles.
+• If the vehicle already exists, raise:
+ValueError("Vehicle already exists")
+ 
+• Otherwise, add a nested dictionary containing:
+• owner
+• slot
+• status as "Parked"
+• Return self.vehicles.
+Hidden Test Focus
+Duplicate vehicle numbers must raise only:
+ValueError("Vehicle already exists")
+ 
+2. Update Slot
+Function Prototype
+def update_slot(self, vehicle_no: str, new_slot: str) -> dict:
+ 
+Example Input
+system.update_slot("KA22MN4501", "C-22")
+ 
+Expected Output
+{
+   "KA22MN4501": {
+       "owner": "Dev",
+       "slot": "C-22",
+       "status": "Parked"
+   }
+}
+ 
+Implementation Flow
+• Check whether vehicle_no exists in self.vehicles.
+• If the vehicle does not exist, raise:
+KeyError("Vehicle not found")
+ 
+• Update only the slot value.
+• Do not modify owner or status.
+• Return self.vehicles.
+Hidden Test Focus
+Updating a missing vehicle must raise only:
+KeyError("Vehicle not found")
+ 
+3. Get Vehicle Details
+Function Prototype
+def get_vehicle_details(self, vehicle_no: str) -> dict:
+ 
+Example Input
+system.get_vehicle_details("KA22MN4501")
+ 
+Expected Output
+{
+   "owner": "Dev",
+   "slot": "C-18",
+   "status": "Parked"
+}
+ 
+Implementation Flow
+• Check whether vehicle_no exists in self.vehicles.
+• If the vehicle does not exist, raise:
+KeyError("Vehicle not found")
+ 
+• Return the nested dictionary for the requested vehicle.
+4. Vehicles by Zone
+Function Prototype
+def vehicles_by_zone(self, zone_prefix: str) -> list:
+ 
+Example Input
+system.vehicles_by_zone("C")
+ 
+Expected Output
+["KA22MN4501", "TN10PQ7700"]
+ 
+Implementation Flow
+• Declare an empty list.
+• Iterate through self.vehicles using an explicit loop.
+• Check whether each vehicle's slot starts with zone_prefix using:
+startswith()
+ 
+• Append matching vehicle numbers to the result list.
+• Return the result list. 
+
+
+
+Corporate Cafeteria Meal Order Management
+Q9001
+ 
+Difficulty: Easy
+Marks: 10
+Technology: Python OOPs
+Domain: Corporate Food / Cafeteria Operations
+ 
+Objective
+Implement the class and exact methods below. Use a dictionary stored on the instance to maintain records.
+ 
+Class Name
+CafeteriaOrderSystem
+ 
+ 
+Required Methods
+ 
+Task 1: add_order()
+Prototype:
+def add_order(self, employee_id, name, meal_type, quantity)
+ 
+Add a new meal order with status "Confirmed". Raise ValueError("Order already exists") if duplicate.
+ 
+Task 2: update_quantity()
+Prototype:
+def update_quantity(self, employee_id, new_quantity)
+ 
+Update quantity. Raise KeyError("Order not found") if missing.
+ 
+Task 3: get_order_details()
+Prototype:
+def get_order_details(self, employee_id)
+ 
+Return the order details. Raise KeyError("Order not found") if missing.
+ 
+Task 4: get_bulk_orders()
+Prototype:
+def get_bulk_orders(self, minimum_quantity)
+ 
+Return employee IDs where quantity >= minimum_quantity.
+ 
+Test Design
+• 4 visible test cases
+• 1 hidden test case
+• Total marks: 10 (2 marks per test case)
+ 
+Constraints
+• Use the exact class and method names.
+• Do not use external libraries.
+• Return values exactly as specified.
+• Preserve insertion order when returning filtered ID lists. 
