@@ -28,6 +28,12 @@ Data-Engineering/
 │   ├── vite.config.js
 │   └── tailwind.config.js
 │
+├── 📚 Milestone 1/                 # L&T Milestone 1 Exam Preparation & Testing Suite
+│   ├── Python Practice/           # OOPs, Pandas, NumPy Solutions & Dynamic Test Runner
+│   ├── SQL Practice/              # 9 Relational DB Schemas, DDL/DML, and Query Solutions
+│   ├── Milestone 1 Questions/     # Official Practice Papers, PDFs & Word Documents
+│   └── Milestone 1 Portion/       # Syllabus Breakdown & Exam Roadmap
+│
 ├── 🗄️ Mock DB Setup/              # Production-grade SQL Schema Dumps & Seed Scripts
 │   ├── AdventureWorksDB_Simple.sql
 │   ├── InventoryDB_Simple.sql
@@ -42,6 +48,14 @@ Data-Engineering/
 │
 └── ⚙️ .github/workflows/deploy.yml # Automated CI/CD for GitHub Pages Deployment
 ```
+
+---
+
+## 📚 Milestone 1 Preparation Suite
+The [Milestone 1](./Milestone%201) folder contains comprehensive preparation materials for the L&T Milestone 1 assessment:
+- **Python Practice (OOPs, Pandas, NumPy)**: 17 real-world coding problems with verified solutions and an automated test runner (`test_runner.py`) running 170 dynamic test cases.
+- **SQL Practice (9 Databases & 10 Scenarios)**: Relational schema DDL/DML setup scripts and verified solutions for window functions (`LAG`, `AVG() OVER()`, `ROW_NUMBER`, `RANK`), multi-table joins, subqueries, and `DATEDIFF`.
+- **Question Materials & Syllabus**: Official PDFs, practice docx files, and milestone study guides.
 
 ---
 
