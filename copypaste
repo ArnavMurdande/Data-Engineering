@@ -1,607 +1,286 @@
-# driver.py  – Fitness Tracker OOP Assessment (Master Prompt Style)
+# driver.py
 
 import importlib.util
-import os
 import datetime
-import inspect
-import random
-import string
+import os
+import numpy as np
 
-# ANSI colors for terminal output
-GREEN = "\033[92m"
-RED = "\033[91m"
-YELLOW = "\033[93m"
-RESET = "\033[0m"
-
-ASSESSMENT_NAME = " Fitness Tracker OOP Dict Assessment"
+ASSESSMENT_NAME = "Instagram Reel Trend Engagement Analysis Assessment"
 LOG_FILE = "test_report.log"
 
 
-def _append_to_log(message: str, log_path: str) -> None:
-    """Append a plain (non-colored) message to the log file."""
-    with open(log_path, "a", encoding="utf-8") as f:
+def _log(message: str) -> None:
+    print(message)
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(message + "\n")
 
 
-def _print_and_log(message: str, status: str, log_path: str) -> None:
-    """
-    Print message with color (to terminal) and write a plain version to the log.
-    status: 'pass', 'fail', 'warn', 'info'
-    """
-    if status == "pass":
-        colored = f"{GREEN}{message}{RESET}"
-    elif status == "fail":
-        colored = f"{RED}{message}{RESET}"
-    elif status == "warn":
-        colored = f"{YELLOW}{message}{RESET}"
-    else:
-        colored = message  # info / header
-
-    print(colored)
-    _append_to_log(message, log_path)
+def _short(value):
+    if isinstance(value, np.ndarray):
+        return value.tolist()
+    return value
 
 
-def detect_cheating(func, expected_output, func_name):
-    """
-    AGGRESSIVE anti-cheat detection for individual functions.
-    Catches multiple types of cheating attempts.
-    Returns:
-        None if clean, otherwise a string reason.
-    """
-    try:
-        source = inspect.getsource(func).strip()
-        lines = [line.strip() for line in source.split("\n") if line.strip()]
-
-        # Remove function definition and docstrings to get actual logic
-        logic_lines = []
-        in_docstring = False
-
-        for line in lines:
-            if line.startswith("def ") or line.startswith("async def "):
-                continue
-
-            # Skip docstrings
-            if '"""' in line or "'''" in line:
-                if line.count('"""') == 2 or line.count("'''") == 2:
-                    # Single-line docstring
-                    continue
-                in_docstring = not in_docstring
-                continue
-
-            if in_docstring:
-                continue
-
-            # Skip comments
-            if line.startswith("#"):
-                continue
-
-            logic_lines.append(line)
-
-        # 1. PASS-ONLY DETECTION
-        if len(logic_lines) == 1 and logic_lines[0] == "pass":
-            return "Function contains only 'pass'"
-
-        # 2. EMPTY FUNCTION DETECTION
-        if len(logic_lines) == 0:
-            return "Function is empty"
-
-        # 3. HARDCODED RETURN DETECTION
-        hardcoded_patterns = [
-            "return {",
-            "return [",
-            'return "',
-            "return '",
-            "return 0",
-            "return True",
-            "return False",
-        ]
-
-        for line in logic_lines:
-            for pattern in hardcoded_patterns:
-                if pattern in line:
-                    # Check if it contains exact expected values
-                    if isinstance(expected_output, dict):
-                        expected_str = str(expected_output).replace(" ", "").lower()
-                        line_clean = line.replace(" ", "").lower()
-                        if len(expected_str) > 10 and expected_str in line_clean:
-                            return "Hardcoded expected output detected"
-
-                    # Flag suspicious hardcoded returns
-                    if ("{" in line and "}" in line) or ("[" in line and "]" in line):
-                        if len(line) > 25:
-                            return "Suspicious hardcoded return detected"
-
-        # 4. FUNCTION-SPECIFIC REQUIRED LOGIC PATTERNS
-        required_patterns = {
-            "register_user": ["[", "=", "{", "workouts", "calories", "status"],
-            "log_workout": ["[", "+=", "workouts", "calories"],
-            "calculate_average_calories": ["[", "/", "workouts", "calories"],
-            "generate_progress_report": ["for", "if", "<", ">=", "1000", "5000"],
-        }
-
-        if func_name in required_patterns:
-            missing_patterns = []
-            for pattern in required_patterns[func_name]:
-                if not any(pattern in line for line in logic_lines):
-                    missing_patterns.append(pattern)
-
-            if missing_patterns:
-                return f"Missing required logic patterns: {missing_patterns}"
-
-        # 5. MINIMUM LOGIC DETECTION
-        if (
-            len(logic_lines) < 2
-            and func_name
-            in ["log_workout", "calculate_average_calories", "generate_progress_report"]
-        ):
-            return "Function too simple – likely hardcoded"
-
-        # 6. BASIC RUNTIME TYPE CHECK
-        try:
-            if func_name == "register_user":
-                test_data = {}
-                test_result = func(test_data, "TestUser")
-                if not isinstance(test_result, dict):
-                    return f"Wrong return type: expected dict, got {type(test_result).__name__}"
-
-            elif func_name == "log_workout":
-                test_data = {"TestUser": {"workouts": 0, "calories": 0, "status": "Inactive"}}
-                test_result = func(test_data, "TestUser", 100)
-                if not isinstance(test_result, dict):
-                    return f"Wrong return type: expected dict, got {type(test_result).__name__}"
-
-            elif func_name == "calculate_average_calories":
-                test_data = {"TestUser": {"workouts": 2, "calories": 400, "status": "Active"}}
-                test_result = func(test_data, "TestUser")
-                if not isinstance(test_result, (int, float)):
-                    return f"Wrong return type: expected number, got {type(test_result).__name__}"
-
-            elif func_name == "generate_progress_report":
-                test_data = {"TestUser": {"workouts": 2, "calories": 400, "status": "Active"}}
-                test_result = func(test_data)
-                if not isinstance(test_result, dict):
-                    return f"Wrong return type: expected dict, got {type(test_result).__name__}"
-
-        except Exception as e:
-            return f"Function crashed during type check: {str(e)[:50]}"
-
-        # 7. EXACT MATCH DETECTION AGAINST EXPECTED OUTPUT
-        source_clean = source.replace(" ", "").replace("\n", "").lower()
-        if isinstance(expected_output, dict):
-            expected_values = str(expected_output).replace(" ", "").lower()
-            if len(expected_values) > 15 and expected_values in source_clean:
-                return "Exact expected output found in source code"
-
-        return None  # No cheating detected
-
-    except Exception as e:
-        return f"Anti-cheat inspection failed: {str(e)[:50]}"
+def _failure_reason(expected, got):
+    if got is None:
+        return "Method returned None"
+    return f"Expected {_short(expected)}, got {_short(got)}"
 
 
-def test_student_code(solution_path: str):
-    # Ensure test_report.log is created in the same directory as solution/driver
-    base_dir = os.path.dirname(os.path.abspath(solution_path))
-    report_path = os.path.join(base_dir, LOG_FILE)
+def _arrays_equal(actual, expected):
+    return isinstance(actual, np.ndarray) and np.array_equal(actual, expected)
 
-    # Fresh log
-    if os.path.exists(report_path):
-        os.remove(report_path)
 
-    # Load student module correctly
+def _is_true(value):
+    return bool(value) is True
+
+
+def _is_false(value):
+    return bool(value) is False
+
+
+def _record_failure(failures, func, message):
+    if func not in failures:
+        failures[func] = message
+
+
+def _load_student_module(solution_path: str):
     spec = importlib.util.spec_from_file_location("student_module", solution_path)
+    if spec is None or spec.loader is None:
+        raise ImportError("Invalid solution.py file")
+
     student_module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(student_module)
+    return student_module
 
-    # Header line
-    header = "=== {name} Test Run at {ts} ===".format(
-        name=ASSESSMENT_NAME,
-        ts=datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-    )
-    _print_and_log(header, status="info", log_path=report_path)
 
-    # Check class
-    if not hasattr(student_module, "FitnessTracker"):
-        msg = (
-            "Visible Test Case 1 Failed: Class presence check | "
-            "Reason=FitnessTracker class missing"
-        )
-        _print_and_log(msg, status="fail", log_path=report_path)
+def _check_array_result(failures, func, result, expected):
+    if result is None:
+        _record_failure(failures, func, "Method returned None")
+    elif not isinstance(result, np.ndarray):
+        _record_failure(failures, func, "Return type must be NumPy array")
+    elif not np.array_equal(result, expected):
+        _record_failure(failures, func, "Incorrect output or hardcoded logic")
+
+
+def _check_scalar_result(failures, func, result, expected):
+    if result is None:
+        _record_failure(failures, func, "Method returned None")
+    elif result != expected:
+        _record_failure(failures, func, "Incorrect output or hardcoded logic")
+
+
+def test_student_code(solution_path: str) -> None:
+    if os.path.exists(LOG_FILE):
+        os.remove(LOG_FILE)
+
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    _log(f"=== {ASSESSMENT_NAME} Test Run at {timestamp} ===")
+
+    if not os.path.exists(solution_path):
+        _log(f"ERROR: solution.py not found at {solution_path}")
         return
 
-    tracker = student_module.FitnessTracker()
+    try:
+        student_module = _load_student_module(solution_path)
+    except Exception as e:
+        _log(f"ERROR: Could not load solution.py | {type(e).__name__}: {str(e)}")
+        return
 
-    # Expected signatures (no self)
-    expected_signatures = {
-        "register_user": ["fitness_data", "user_name"],
-        "log_workout": ["fitness_data", "user_name", "calories_burned"],
-        "calculate_average_calories": ["fitness_data", "user_name"],
-        "generate_progress_report": ["fitness_data"],
-    }
+    required_functions = [
+        "create_views_array",
+        "validate_views_array",
+        "compute_view_metrics",
+        "categorize_trend_levels",
+        "longest_growth_streak",
+        "format_view_counts",
+    ]
 
-    signature_issues = {}
+    for func_name in required_functions:
+        if not hasattr(student_module, func_name):
+            _log(f"ERROR: Function {func_name} not found")
+            return
 
-    for method_name, expected_params in expected_signatures.items():
-        if not hasattr(tracker, method_name):
-            signature_issues[method_name] = f"Method {method_name} is missing"
-        else:
-            actual_params = list(
-                inspect.signature(getattr(tracker, method_name)).parameters.keys()
-            )
-            if actual_params != expected_params:
-                signature_issues[method_name] = (
-                    f"Signature mismatch for {method_name}: "
-                    f"expected {expected_params}, got {actual_params}"
-                )
+    randomized_failures = {}
 
-    # Helper: generate random usernames that are not "Alice"/"Bob"
-    def random_username():
-        while True:
-            name = (
-                "".join(random.choice(string.ascii_uppercase) for _ in range(1))
-                + "".join(random.choice(string.ascii_lowercase) for _ in range(5))
-            )
-            if name not in ["Alice", "Bob"]:
-                return name
+    try:
+        result = student_module.create_views_array([9, 18, 27])
+        expected = np.array([9, 18, 27], dtype=np.int64)
 
-    # Prepare random test data
-    test_user1 = random_username()
-    test_user2 = random_username()
-    test_user3 = random_username()
+        if not isinstance(result, np.ndarray):
+            _record_failure(randomized_failures, "create_views_array", "Return type must be NumPy array")
+        elif result.dtype != np.int64:
+            _record_failure(randomized_failures, "create_views_array", "Array dtype must be int64")
+        elif not np.array_equal(result, expected):
+            _record_failure(randomized_failures, "create_views_array", "Incorrect output or hardcoded logic")
+    except Exception as e:
+        randomized_failures["create_views_array"] = f"{type(e).__name__}: {str(e)}"
 
-    calories1 = random.randint(100, 500)
-    calories2 = random.randint(100, 500)
+    try:
+        valid_result = student_module.validate_views_array(np.array([10, 20, 30]))
+        negative_result = student_module.validate_views_array(np.array([4, 8, -2]))
+        empty_result = student_module.validate_views_array(np.array([]))
+        text_result = student_module.validate_views_array(np.array(["1200", "3500"]))
 
-    # ---------------- VISIBLE TEST CASES ----------------
+        if not _is_true(valid_result):
+            _record_failure(randomized_failures, "validate_views_array", "Valid numeric array should return True")
+        elif not _is_false(negative_result):
+            _record_failure(randomized_failures, "validate_views_array", "Negative values should return False")
+        elif not _is_false(empty_result):
+            _record_failure(randomized_failures, "validate_views_array", "Empty array should return False")
+        elif not _is_false(text_result):
+            _record_failure(randomized_failures, "validate_views_array", "Non-numeric array should return False")
+    except Exception as e:
+        randomized_failures["validate_views_array"] = f"{type(e).__name__}: {str(e)}"
 
-    # TC1: register_user
-    tc_index = 1
-    if "register_user" in signature_issues:
-        msg = (
-            f"Visible Test Case {tc_index} Failed: Registering a New Fitness User | "
-            f"Reason={signature_issues['register_user']}"
-        )
-        _print_and_log(msg, status="fail", log_path=report_path)
-    else:
+    try:
+        result = student_module.compute_view_metrics(np.array([111, 222, 333]))
+        expected = (666, 222.0, 333)
+        _check_scalar_result(randomized_failures, "compute_view_metrics", result, expected)
+    except Exception as e:
+        randomized_failures["compute_view_metrics"] = f"{type(e).__name__}: {str(e)}"
+
+    try:
+        result = student_module.categorize_trend_levels(np.array([100, 2999, 3000, 4999, 5000, 9000]))
+        expected = np.array([
+            "Low Trend",
+            "Low Trend",
+            "Moderate Trend",
+            "Moderate Trend",
+            "Viral Trend",
+            "Viral Trend",
+        ])
+        _check_array_result(randomized_failures, "categorize_trend_levels", result, expected)
+    except Exception as e:
+        randomized_failures["categorize_trend_levels"] = f"{type(e).__name__}: {str(e)}"
+
+    try:
+        result = student_module.longest_growth_streak(np.array([10, 20, 30, 15, 18]))
+        expected = 3
+        _check_scalar_result(randomized_failures, "longest_growth_streak", result, expected)
+    except Exception as e:
+        randomized_failures["longest_growth_streak"] = f"{type(e).__name__}: {str(e)}"
+
+    try:
+        result = student_module.format_view_counts(np.array([1234, 567890]))
+        expected = np.array(["1,234", "567,890"])
+        _check_array_result(randomized_failures, "format_view_counts", result, expected)
+    except Exception as e:
+        randomized_failures["format_view_counts"] = f"{type(e).__name__}: {str(e)}"
+
+    test_cases = [
+        (
+            "Visible",
+            "Create Views Array",
+            "create_views_array",
+            ([1200, 3500, 1800, 5200, 7600],),
+            np.array([1200, 3500, 1800, 5200, 7600], dtype=np.int64),
+            "array_int64",
+        ),
+        (
+            "Visible",
+            "Validate Views Array",
+            "validate_views_array",
+            (np.array([1200, 3500, -1800, 5200]),),
+            False,
+            "bool",
+        ),
+        (
+            "Visible",
+            "Compute View Metrics",
+            "compute_view_metrics",
+            (np.array([1200, 3500, 1800, 5200, 7600]),),
+            (19300, 3860.0, 7600),
+            "scalar",
+        ),
+        (
+            "Visible",
+            "Categorize Trend Levels",
+            "categorize_trend_levels",
+            (np.array([1200, 3500, 1800, 5200, 7600]),),
+            np.array(["Low Trend", "Moderate Trend", "Low Trend", "Viral Trend", "Viral Trend"]),
+            "array",
+        ),
+        (
+            "Visible",
+            "Longest Growth Streak",
+            "longest_growth_streak",
+            (np.array([1200, 1800, 2500, 2100, 3300, 5200, 7600]),),
+            4,
+            "scalar",
+        ),
+        (
+            "Hidden",
+            "Format View Counts",
+            "format_view_counts",
+            (np.array([1200, 35000, 1800000]),),
+            np.array(["1,200", "35,000", "1,800,000"]),
+            "array",
+        ),
+        (
+            "Hidden",
+            "Validate Empty and Non-Numeric Arrays",
+            "validate_hidden",
+            (),
+            True,
+            "scalar",
+        ),
+        (
+            "Hidden",
+            "Trend Boundary Values",
+            "categorize_trend_levels",
+            (np.array([2999, 3000, 4999, 5000]),),
+            np.array(["Low Trend", "Moderate Trend", "Moderate Trend", "Viral Trend"]),
+            "array",
+        ),
+    ]
+
+    for i, (section, desc, func, args, expected, check_type) in enumerate(test_cases, start=1):
         try:
-            method = getattr(tracker, "register_user")
-            expected_structure = {
-                test_user1: {"workouts": 0, "calories": 0, "status": "Inactive"}
-            }
-
-            cheat_reason = detect_cheating(method, expected_structure, "register_user")
-            if cheat_reason:
-                msg = (
-                    f"Visible Test Case {tc_index} Failed: Registering a New Fitness User | "
-                    f"Reason={cheat_reason}"
-                )
-                _print_and_log(msg, status="fail", log_path=report_path)
+            if func == "validate_hidden":
+                empty_result = student_module.validate_views_array(np.array([]))
+                text_result = student_module.validate_views_array(np.array(["1200", "3500"]))
+                result = _is_false(empty_result) and _is_false(text_result)
+                mapped_func = "validate_views_array"
             else:
-                # Fresh data
-                data = {}
-                res = tracker.register_user(data, test_user1)
+                result = getattr(student_module, func)(*args)
+                mapped_func = func
 
-                struct_ok = (
-                    isinstance(res, dict)
-                    and test_user1 in res
-                    and isinstance(res[test_user1], dict)
-                    and res[test_user1].get("workouts") == 0
-                    and res[test_user1].get("calories") == 0
-                    and res[test_user1].get("status") == "Inactive"
+            if mapped_func in randomized_failures:
+                _log(
+                    f"{section} Test Case {i} Failed: {desc} | "
+                    f"Root Cause: {randomized_failures[mapped_func]}"
                 )
+                continue
 
-                modifies_input = (
-                    test_user1 in data
-                    and data[test_user1].get("workouts") == 0
-                    and data[test_user1].get("calories") == 0
+            if check_type == "array_int64":
+                passed = (
+                    isinstance(result, np.ndarray)
+                    and np.array_equal(result, expected)
+                    and result.dtype == np.int64
                 )
+            elif check_type == "array":
+                passed = isinstance(result, np.ndarray) and np.array_equal(result, expected)
+            elif check_type == "bool":
+                passed = bool(result) == bool(expected)
+            else:
+                passed = result == expected
 
-                if struct_ok and modifies_input:
-                    # Second check: different username
-                    data2 = {}
-                    res2 = tracker.register_user(data2, test_user2)
-                    if test_user2 in res2 and test_user2 in data2:
-                        msg = (
-                            f"Visible Test Case {tc_index} Passed: "
-                            f"Registering a New Fitness User"
-                        )
-                        _print_and_log(msg, status="pass", log_path=report_path)
-                    else:
-                        msg = (
-                            f"Visible Test Case {tc_index} Failed: "
-                            f"Registering a New Fitness User | "
-                            f"Expected new user '{test_user2}' to be added, "
-                            f"but got {res2}"
-                        )
-                        _print_and_log(msg, status="fail", log_path=report_path)
-                else:
-                    exp = (
-                        f"{{'{test_user1}': {{'workouts': 0, 'calories': 0, "
-                        f"'status': 'Inactive'}}}}"
-                    )
-                    got = str(res)
-                    msg = (
-                        f"Visible Test Case {tc_index} Failed: Registering a New Fitness User | "
-                        f"Expected={exp} | Got={got}"
-                    )
-                    _print_and_log(msg, status="fail", log_path=report_path)
+            if passed:
+                _log(f"{section} Test Case {i} Passed: {desc}")
+            else:
+                _log(
+                    f"{section} Test Case {i} Failed: {desc} | "
+                    f"Root Cause: {_failure_reason(expected, result)}"
+                )
 
         except Exception as e:
-            msg = (
-                f"Visible Test Case {tc_index} Failed: Registering a New Fitness User | "
-                f"Error={str(e)}"
+            _log(
+                f"{section} Test Case {i} Crashed: {desc} | "
+                f"Root Cause: {type(e).__name__}: {str(e)}"
             )
-            _print_and_log(msg, status="fail", log_path=report_path)
-
-    # TC2: log_workout
-    tc_index = 2
-    if "log_workout" in signature_issues:
-        msg = (
-            f"Visible Test Case {tc_index} Failed: Logging a Workout Session | "
-            f"Reason={signature_issues['log_workout']}"
-        )
-        _print_and_log(msg, status="fail", log_path=report_path)
-    else:
-        try:
-            method = getattr(tracker, "log_workout")
-            expected_structure = {test_user1: {"workouts": 1, "calories": calories1}}
-            cheat_reason = detect_cheating(method, expected_structure, "log_workout")
-
-            if cheat_reason:
-                msg = (
-                    f"Visible Test Case {tc_index} Failed: Logging a Workout Session | "
-                    f"Reason={cheat_reason}"
-                )
-                _print_and_log(msg, status="fail", log_path=report_path)
-            else:
-                # Fresh data
-                data = {test_user1: {"workouts": 0, "calories": 0, "status": "Inactive"}}
-                res = tracker.log_workout(data, test_user1, calories1)
-
-                cond_main = (
-                    isinstance(res, dict)
-                    and test_user1 in res
-                    and res[test_user1].get("workouts") == 1
-                    and res[test_user1].get("calories") == calories1
-                )
-
-                if cond_main:
-                    # Second check: different user + calories
-                    data2 = {
-                        test_user2: {
-                            "workouts": 0,
-                            "calories": 0,
-                            "status": "Inactive",
-                        }
-                    }
-                    res2 = tracker.log_workout(data2, test_user2, calories2)
-                    cond_second = (
-                        test_user2 in res2
-                        and res2[test_user2].get("workouts") == 1
-                        and res2[test_user2].get("calories") == calories2
-                    )
-                    if cond_second:
-                        msg = (
-                            f"Visible Test Case {tc_index} Passed: "
-                            f"Logging a Workout Session"
-                        )
-                        _print_and_log(msg, status="pass", log_path=report_path)
-                    else:
-                        msg = (
-                            f"Visible Test Case {tc_index} Failed: Logging a Workout Session | "
-                            f"Reason=Function does not handle different calorie values correctly"
-                        )
-                        _print_and_log(msg, status="fail", log_path=report_path)
-                else:
-                    exp = (
-                        f"workouts=1, calories={calories1} for user '{test_user1}'"
-                    )
-                    got = str(res.get(test_user1, {})) if isinstance(res, dict) else str(
-                        res
-                    )
-                    msg = (
-                        f"Visible Test Case {tc_index} Failed: Logging a Workout Session | "
-                        f"Expected={exp} | Got={got}"
-                    )
-                    _print_and_log(msg, status="fail", log_path=report_path)
-
-        except Exception as e:
-            msg = (
-                f"Visible Test Case {tc_index} Failed: Logging a Workout Session | "
-                f"Error={str(e)}"
-            )
-            _print_and_log(msg, status="fail", log_path=report_path)
-
-    # TC3: calculate_average_calories
-    tc_index = 3
-    if "calculate_average_calories" in signature_issues:
-        msg = (
-            f"Visible Test Case {tc_index} Failed: Calculating Average Calories Burned | "
-            f"Reason={signature_issues['calculate_average_calories']}"
-        )
-        _print_and_log(msg, status="fail", log_path=report_path)
-    else:
-        try:
-            method = getattr(tracker, "calculate_average_calories")
-            workout_count = random.randint(2, 5)
-            total_calories = random.randint(500, 1000)
-            expected_avg = total_calories / workout_count
-
-            cheat_reason = detect_cheating(
-                method, expected_avg, "calculate_average_calories"
-            )
-            if cheat_reason:
-                msg = (
-                    f"Visible Test Case {tc_index} Failed: Calculating Average Calories Burned | "
-                    f"Reason={cheat_reason}"
-                )
-                _print_and_log(msg, status="fail", log_path=report_path)
-            else:
-                data = {
-                    test_user3: {
-                        "workouts": workout_count,
-                        "calories": total_calories,
-                        "status": "Inactive",
-                    }
-                }
-                avg = tracker.calculate_average_calories(data, test_user3)
-
-                main_ok = (
-                    isinstance(avg, (int, float))
-                    and abs(avg - expected_avg) < 0.01
-                )
-
-                if main_ok:
-                    # Second randomized check
-                    workout_count2 = random.randint(2, 5)
-                    total_calories2 = random.randint(500, 1000)
-                    expected_avg2 = total_calories2 / workout_count2
-
-                    data2 = {
-                        test_user2: {
-                            "workouts": workout_count2,
-                            "calories": total_calories2,
-                            "status": "Inactive",
-                        }
-                    }
-                    avg2 = tracker.calculate_average_calories(data2, test_user2)
-
-                    if abs(avg2 - expected_avg2) < 0.01:
-                        msg = (
-                            f"Visible Test Case {tc_index} Passed: "
-                            f"Calculating Average Calories Burned"
-                        )
-                        _print_and_log(msg, status="pass", log_path=report_path)
-                    else:
-                        msg = (
-                            f"Visible Test Case {tc_index} Failed: Calculating Average Calories Burned | "
-                            f"Reason=Incorrect result on randomized inputs"
-                        )
-                        _print_and_log(msg, status="fail", log_path=report_path)
-                else:
-                    exp = f"{expected_avg}"
-                    got = f"{avg}"
-                    msg = (
-                        f"Visible Test Case {tc_index} Failed: Calculating Average Calories Burned | "
-                        f"Expected={exp} | Got={got}"
-                    )
-                    _print_and_log(msg, status="fail", log_path=report_path)
-
-        except Exception as e:
-            msg = (
-                f"Visible Test Case {tc_index} Failed: Calculating Average Calories Burned | "
-                f"Error={str(e)}"
-            )
-            _print_and_log(msg, status="fail", log_path=report_path)
-
-    # ---------------- HIDDEN TEST CASES ----------------
-
-    # HTC1: generate_progress_report classification
-    htc_index = 1
-    if "generate_progress_report" in signature_issues:
-        msg = (
-            f"Hidden Test Case {htc_index} Failed: Generating Progress Reports | "
-            f"Reason={signature_issues['generate_progress_report']}"
-        )
-        _print_and_log(msg, status="fail", log_path=report_path)
-    else:
-        try:
-            method = getattr(tracker, "generate_progress_report")
-            expected_report = {
-                test_user1: "Beginner",
-                test_user2: "Intermediate",
-                test_user3: "Advanced",
-            }
-            cheat_reason = detect_cheating(
-                method, expected_report, "generate_progress_report"
-            )
-
-            if cheat_reason:
-                msg = (
-                    f"Hidden Test Case {htc_index} Failed: Generating Progress Reports | "
-                    f"Reason={cheat_reason}"
-                )
-                _print_and_log(msg, status="fail", log_path=report_path)
-            else:
-                data = {
-                    test_user1: {"workouts": 3, "calories": 800, "status": "Inactive"},
-                    test_user2: {"workouts": 5, "calories": 3000, "status": "Active"},
-                    test_user3: {"workouts": 10, "calories": 6000, "status": "Active"},
-                }
-                report = tracker.generate_progress_report(data)
-
-                cond = (
-                    isinstance(report, dict)
-                    and report.get(test_user1) == "Beginner"
-                    and report.get(test_user2) == "Intermediate"
-                    and report.get(test_user3) == "Advanced"
-                )
-
-                if cond:
-                    msg = (
-                        f"Hidden Test Case {htc_index} Passed: "
-                        f"Generating Progress Reports"
-                    )
-                    _print_and_log(msg, status="pass", log_path=report_path)
-                else:
-                    exp = str(
-                        {
-                            test_user1: "Beginner",
-                            test_user2: "Intermediate",
-                            test_user3: "Advanced",
-                        }
-                    )
-                    got = str(report)
-                    msg = (
-                        f"Hidden Test Case {htc_index} Failed: Generating Progress Reports | "
-                        f"Expected={exp} | Got={got}"
-                    )
-                    _print_and_log(msg, status="fail", log_path=report_path)
-
-        except Exception as e:
-            msg = (
-                f"Hidden Test Case {htc_index} Failed: Generating Progress Reports | "
-                f"Error={str(e)}"
-            )
-            _print_and_log(msg, status="fail", log_path=report_path)
-
-    # HTC2: error handling – log_workout on non-existent user
-    htc_index = 2
-    if "log_workout" in signature_issues:
-        msg = (
-            f"Hidden Test Case {htc_index} Failed: Handling Workout Logging for Non-Existent Users | "
-            f"Reason={signature_issues['log_workout']}"
-        )
-        _print_and_log(msg, status="fail", log_path=report_path)
-    else:
-        try:
-            nonexistent_user = "NonExistentUser_" + "".join(
-                random.choice(string.ascii_lowercase) for _ in range(5)
-            )
-            data = {}
-            # For this assessment we EXPECT an exception if user doesn't exist
-            tracker.log_workout(data, nonexistent_user, 200)
-
-            # If we reached here, no exception -> fail
-            msg = (
-                "Hidden Test Case {idx} Failed: Handling Workout Logging for Non-Existent Users | "
-                "Expected=Exception for non-existent user | Got=No exception"
-            ).format(idx=htc_index)
-            _print_and_log(msg, status="fail", log_path=report_path)
-
-        except Exception:
-            msg = (
-                f"Hidden Test Case {htc_index} Passed: "
-                f"Handling Workout Logging for Non-Existent Users"
-            )
-            _print_and_log(msg, status="pass", log_path=report_path)
 
 
 if __name__ == "__main__":
-    import sys
-
-    if len(sys.argv) > 1:
-        sol_path = sys.argv[1]
-    else:
-        sol_path = os.path.join(os.path.dirname(__file__), "solution.py")
-
-    test_student_code(sol_path)
+    student_solution = os.path.join(os.path.dirname(__file__), "solution.py")
+    test_student_code(student_solution)
