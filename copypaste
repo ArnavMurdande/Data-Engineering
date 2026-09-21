@@ -1,286 +1,48 @@
-# driver.py
+VS Code
+sudo apt update
 
-import importlib.util
-import datetime
-import os
-import numpy as np
+sudo apt install python3 python3-pip python3-venv openjdk-17-jdk -y
 
-ASSESSMENT_NAME = "Instagram Reel Trend Engagement Analysis Assessment"
-LOG_FILE = "test_report.log"
+mkdir pyspark_training
 
+cd pyspark_training
 
-def _log(message: str) -> None:
-    print(message)
-    with open(LOG_FILE, "a", encoding="utf-8") as f:
-        f.write(message + "\n")
+python3 -m venv .venv
 
+source .venv/bin/activate
 
-def _short(value):
-    if isinstance(value, np.ndarray):
-        return value.tolist()
-    return value
+python -m pip install --upgrade pip
 
+pip install pyspark
 
-def _failure_reason(expected, got):
-    if got is None:
-        return "Method returned None"
-    return f"Expected {_short(expected)}, got {_short(got)}"
+python -c "import pyspark; print(pyspark.__version__)"
 
+code .
+Then select:
+Ctrl + Shift + P
+→ Python: Select Interpreter
+→ .venv/bin/python
 
-def _arrays_equal(actual, expected):
-    return isinstance(actual, np.ndarray) and np.array_equal(actual, expected)
+Jupyter Notebook
+sudo apt update
 
+sudo apt install python3 python3-pip python3-venv openjdk-17-jdk -y
 
-def _is_true(value):
-    return bool(value) is True
+mkdir pyspark_jupyter
 
+cd pyspark_jupyter
 
-def _is_false(value):
-    return bool(value) is False
+python3 -m venv .venv
 
+source .venv/bin/activate
 
-def _record_failure(failures, func, message):
-    if func not in failures:
-        failures[func] = message
+python -m pip install --upgrade pip
 
+pip install pyspark notebook ipykernel
 
-def _load_student_module(solution_path: str):
-    spec = importlib.util.spec_from_file_location("student_module", solution_path)
-    if spec is None or spec.loader is None:
-        raise ImportError("Invalid solution.py file")
+python -m ipykernel install \
+    --user \
+    --name pyspark_env \
+    --display-name "Python - PySpark"
 
-    student_module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(student_module)
-    return student_module
-
-
-def _check_array_result(failures, func, result, expected):
-    if result is None:
-        _record_failure(failures, func, "Method returned None")
-    elif not isinstance(result, np.ndarray):
-        _record_failure(failures, func, "Return type must be NumPy array")
-    elif not np.array_equal(result, expected):
-        _record_failure(failures, func, "Incorrect output or hardcoded logic")
-
-
-def _check_scalar_result(failures, func, result, expected):
-    if result is None:
-        _record_failure(failures, func, "Method returned None")
-    elif result != expected:
-        _record_failure(failures, func, "Incorrect output or hardcoded logic")
-
-
-def test_student_code(solution_path: str) -> None:
-    if os.path.exists(LOG_FILE):
-        os.remove(LOG_FILE)
-
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    _log(f"=== {ASSESSMENT_NAME} Test Run at {timestamp} ===")
-
-    if not os.path.exists(solution_path):
-        _log(f"ERROR: solution.py not found at {solution_path}")
-        return
-
-    try:
-        student_module = _load_student_module(solution_path)
-    except Exception as e:
-        _log(f"ERROR: Could not load solution.py | {type(e).__name__}: {str(e)}")
-        return
-
-    required_functions = [
-        "create_views_array",
-        "validate_views_array",
-        "compute_view_metrics",
-        "categorize_trend_levels",
-        "longest_growth_streak",
-        "format_view_counts",
-    ]
-
-    for func_name in required_functions:
-        if not hasattr(student_module, func_name):
-            _log(f"ERROR: Function {func_name} not found")
-            return
-
-    randomized_failures = {}
-
-    try:
-        result = student_module.create_views_array([9, 18, 27])
-        expected = np.array([9, 18, 27], dtype=np.int64)
-
-        if not isinstance(result, np.ndarray):
-            _record_failure(randomized_failures, "create_views_array", "Return type must be NumPy array")
-        elif result.dtype != np.int64:
-            _record_failure(randomized_failures, "create_views_array", "Array dtype must be int64")
-        elif not np.array_equal(result, expected):
-            _record_failure(randomized_failures, "create_views_array", "Incorrect output or hardcoded logic")
-    except Exception as e:
-        randomized_failures["create_views_array"] = f"{type(e).__name__}: {str(e)}"
-
-    try:
-        valid_result = student_module.validate_views_array(np.array([10, 20, 30]))
-        negative_result = student_module.validate_views_array(np.array([4, 8, -2]))
-        empty_result = student_module.validate_views_array(np.array([]))
-        text_result = student_module.validate_views_array(np.array(["1200", "3500"]))
-
-        if not _is_true(valid_result):
-            _record_failure(randomized_failures, "validate_views_array", "Valid numeric array should return True")
-        elif not _is_false(negative_result):
-            _record_failure(randomized_failures, "validate_views_array", "Negative values should return False")
-        elif not _is_false(empty_result):
-            _record_failure(randomized_failures, "validate_views_array", "Empty array should return False")
-        elif not _is_false(text_result):
-            _record_failure(randomized_failures, "validate_views_array", "Non-numeric array should return False")
-    except Exception as e:
-        randomized_failures["validate_views_array"] = f"{type(e).__name__}: {str(e)}"
-
-    try:
-        result = student_module.compute_view_metrics(np.array([111, 222, 333]))
-        expected = (666, 222.0, 333)
-        _check_scalar_result(randomized_failures, "compute_view_metrics", result, expected)
-    except Exception as e:
-        randomized_failures["compute_view_metrics"] = f"{type(e).__name__}: {str(e)}"
-
-    try:
-        result = student_module.categorize_trend_levels(np.array([100, 2999, 3000, 4999, 5000, 9000]))
-        expected = np.array([
-            "Low Trend",
-            "Low Trend",
-            "Moderate Trend",
-            "Moderate Trend",
-            "Viral Trend",
-            "Viral Trend",
-        ])
-        _check_array_result(randomized_failures, "categorize_trend_levels", result, expected)
-    except Exception as e:
-        randomized_failures["categorize_trend_levels"] = f"{type(e).__name__}: {str(e)}"
-
-    try:
-        result = student_module.longest_growth_streak(np.array([10, 20, 30, 15, 18]))
-        expected = 3
-        _check_scalar_result(randomized_failures, "longest_growth_streak", result, expected)
-    except Exception as e:
-        randomized_failures["longest_growth_streak"] = f"{type(e).__name__}: {str(e)}"
-
-    try:
-        result = student_module.format_view_counts(np.array([1234, 567890]))
-        expected = np.array(["1,234", "567,890"])
-        _check_array_result(randomized_failures, "format_view_counts", result, expected)
-    except Exception as e:
-        randomized_failures["format_view_counts"] = f"{type(e).__name__}: {str(e)}"
-
-    test_cases = [
-        (
-            "Visible",
-            "Create Views Array",
-            "create_views_array",
-            ([1200, 3500, 1800, 5200, 7600],),
-            np.array([1200, 3500, 1800, 5200, 7600], dtype=np.int64),
-            "array_int64",
-        ),
-        (
-            "Visible",
-            "Validate Views Array",
-            "validate_views_array",
-            (np.array([1200, 3500, -1800, 5200]),),
-            False,
-            "bool",
-        ),
-        (
-            "Visible",
-            "Compute View Metrics",
-            "compute_view_metrics",
-            (np.array([1200, 3500, 1800, 5200, 7600]),),
-            (19300, 3860.0, 7600),
-            "scalar",
-        ),
-        (
-            "Visible",
-            "Categorize Trend Levels",
-            "categorize_trend_levels",
-            (np.array([1200, 3500, 1800, 5200, 7600]),),
-            np.array(["Low Trend", "Moderate Trend", "Low Trend", "Viral Trend", "Viral Trend"]),
-            "array",
-        ),
-        (
-            "Visible",
-            "Longest Growth Streak",
-            "longest_growth_streak",
-            (np.array([1200, 1800, 2500, 2100, 3300, 5200, 7600]),),
-            4,
-            "scalar",
-        ),
-        (
-            "Hidden",
-            "Format View Counts",
-            "format_view_counts",
-            (np.array([1200, 35000, 1800000]),),
-            np.array(["1,200", "35,000", "1,800,000"]),
-            "array",
-        ),
-        (
-            "Hidden",
-            "Validate Empty and Non-Numeric Arrays",
-            "validate_hidden",
-            (),
-            True,
-            "scalar",
-        ),
-        (
-            "Hidden",
-            "Trend Boundary Values",
-            "categorize_trend_levels",
-            (np.array([2999, 3000, 4999, 5000]),),
-            np.array(["Low Trend", "Moderate Trend", "Moderate Trend", "Viral Trend"]),
-            "array",
-        ),
-    ]
-
-    for i, (section, desc, func, args, expected, check_type) in enumerate(test_cases, start=1):
-        try:
-            if func == "validate_hidden":
-                empty_result = student_module.validate_views_array(np.array([]))
-                text_result = student_module.validate_views_array(np.array(["1200", "3500"]))
-                result = _is_false(empty_result) and _is_false(text_result)
-                mapped_func = "validate_views_array"
-            else:
-                result = getattr(student_module, func)(*args)
-                mapped_func = func
-
-            if mapped_func in randomized_failures:
-                _log(
-                    f"{section} Test Case {i} Failed: {desc} | "
-                    f"Root Cause: {randomized_failures[mapped_func]}"
-                )
-                continue
-
-            if check_type == "array_int64":
-                passed = (
-                    isinstance(result, np.ndarray)
-                    and np.array_equal(result, expected)
-                    and result.dtype == np.int64
-                )
-            elif check_type == "array":
-                passed = isinstance(result, np.ndarray) and np.array_equal(result, expected)
-            elif check_type == "bool":
-                passed = bool(result) == bool(expected)
-            else:
-                passed = result == expected
-
-            if passed:
-                _log(f"{section} Test Case {i} Passed: {desc}")
-            else:
-                _log(
-                    f"{section} Test Case {i} Failed: {desc} | "
-                    f"Root Cause: {_failure_reason(expected, result)}"
-                )
-
-        except Exception as e:
-            _log(
-                f"{section} Test Case {i} Crashed: {desc} | "
-                f"Root Cause: {type(e).__name__}: {str(e)}"
-            )
-
-
-if __name__ == "__main__":
-    student_solution = os.path.join(os.path.dirname(__file__), "solution.py")
-    test_student_code(student_solution)
+jupyter notebook
