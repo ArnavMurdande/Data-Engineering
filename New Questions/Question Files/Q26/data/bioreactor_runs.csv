@@ -1,0 +1,5 @@
+run_id,reactor_id,process_type,start_ts,end_ts,input_mass,output_mass,run_status
+R001,BR01,Fermentation,2026-09-01 08:00:00,2026-09-01 12:00:00,100.0,82.0,COMPLETED
+R002,BR02,Fermentation,2026-09-01 09:00:00,2026-09-01 13:30:00,100.0,82.0,COMPLETED
+R003,BR03,Purification,2026-09-02 08:00:00,2026-09-02 11:00:00,90.0,72.0,COMPLETED
+R004,BR01,Purification,2026-09-02 14:00:00,2026-09-02 13:00:00,80.0,60.0,FAILED
