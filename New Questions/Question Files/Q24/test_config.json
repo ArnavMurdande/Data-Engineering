@@ -1,0 +1,18 @@
+{
+  "assessment_name": "Merchant Settlement Risk Analytics",
+  "domain": "BFSI - Merchant Payments",
+  "difficulty": "Medium",
+  "marks": 20,
+  "duration": "20-25 Minutes",
+  "functions": [
+    "define_settlement_schema",
+    "load_settlement_data",
+    "enrich_settlements",
+    "merchants_without_successful_settlement",
+    "rank_merchants_by_net_amount"
+  ],
+  "test_count": 6,
+  "solution_policy": "trainee stubs only",
+  "import_policy": "any valid PySpark import style; F alias not mandatory",
+  "report_format": "Test Case NN : function_name : PASS / FAIL | Expected = ... | Reason = ..."
+}
