@@ -1,0 +1,158 @@
+Q025
+MEDIUM 2 — Healthcare — Remote Patient Monitoring Alert Analytics
+Difficulty: Medium
+
+Marks: 20
+
+Duration: 20–25 Minutes
+
+Functions: 5
+
+Tests: 6
+
+Datasets
+data/observations.csv
+
+data/patients.csv
+
+Task 1 — Define Observation Schema
+Marks: 3
+
+def define_observation_schema() -> StructType:
+
+
+
+Fields:
+
+observation_id   StringType
+
+patient_id       StringType
+
+reading_ts       StringType
+
+systolic         StringType
+
+heart_rate       StringType
+
+device_status    StringType
+
+Task 2 — Load Monitoring Data
+Marks: 4
+
+def load_monitoring_data(
+
+    spark: SparkSession,
+
+    observations_path: str,
+
+    patients_path: str,
+
+    schema: StructType
+
+) -> Tuple[DataFrame, DataFrame]:
+
+
+
+Convert:
+
+reading_ts  → TimestampType
+
+systolic    → IntegerType
+
+heart_rate  → IntegerType
+
+
+
+Load patients using header + schema inference.
+
+Task 3 — Classify Readings
+Marks: 4
+
+def classify_readings(
+
+    df: DataFrame
+
+) -> DataFrame:
+
+
+
+Create:
+
+alert_level
+
+
+
+Rules:
+
+systolic >= 180 OR heart_rate >= 130 → Critical
+
+systolic >= 140 OR heart_rate >= 100 → Warning
+
+otherwise                            → Normal
+
+
+
+Use conditional Spark expressions.
+
+Concepts
+when, otherwise, lit, compound column conditions
+
+Task 4 — Latest Reading per Patient
+Marks: 4
+
+def latest_reading_per_patient(
+
+    df: DataFrame
+
+) -> DataFrame:
+
+
+
+Create window:
+
+PARTITION BY patient_id
+
+ORDER BY reading_ts DESC
+
+
+
+Apply:
+
+row_number()
+
+
+
+Keep only row number 1.
+
+Concepts
+Window.partitionBy, orderBy, row_number
+
+Task 5 — Care-Team Alert Summary
+Marks: 5
+
+def care_team_alert_summary(
+
+    observations_df: DataFrame,
+
+    patients_df: DataFrame
+
+) -> DataFrame:
+
+
+Inner join on patient_id.
+Keep:
+Critical
+
+Warning
+
+
+
+using isin().
+
+3. Group by care_team.
+
+4. Calculate:
+
+COUNT(observation_id) AS alert_count
+
+AVG(heart_rate)       AS avg_heart_rate
