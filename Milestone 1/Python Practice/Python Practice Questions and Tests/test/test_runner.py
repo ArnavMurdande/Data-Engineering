@@ -1668,6 +1668,318 @@ def suite_numpy_05_cold_storage(m):
 
 
 # ==============================================================================
+# 4. EXTRA QUESTIONS TEST SUITES (10 Test Cases Each)
+# ==============================================================================
+
+def suite_oops_extra_01_library_inventory(cls):
+    tests = []
+
+    def tc1(c):
+        obj = c()
+        assert hasattr(obj, "books") or hasattr(obj, "inv") or hasattr(obj, "inventory"), "Missing dictionary attribute for books"
+        book_dict = getattr(obj, "books", getattr(obj, "inv", getattr(obj, "inventory", None)))
+        assert isinstance(book_dict, dict), "Books container must be a dictionary"
+        assert len(book_dict) == 0, "Books container should initially be empty"
+    tests.append(TestCase(1, "Initial state verification (empty books dictionary)", tc1))
+
+    def tc2(c):
+        obj = c()
+        res = obj.add_book("Book A", 5)
+        stock = obj.get_book_stock("Book A")
+        assert stock == 5, f"Expected 5, got {stock}"
+        assert isinstance(res, dict) and res.get("Book A") == 5, "add_book must return updated dictionary"
+    tests.append(TestCase(2, "add_book creates a new book entry", tc2))
+
+    def tc3(c):
+        obj = c()
+        obj.add_book("Book A", 5)
+        res = obj.add_book("Book A", 3)
+        assert obj.get_book_stock("Book A") == 8, f"Expected 8, got {obj.get_book_stock('Book A')}"
+        assert res.get("Book A") == 8, "add_book must return updated dictionary with accumulated count"
+    tests.append(TestCase(3, "add_book accumulates stock on existing book", tc3))
+
+    def tc4(c):
+        obj = c()
+        obj.add_book("Clean Code", 4)
+        obj.add_book("Design Patterns", 6)
+        obj.add_book("Refactoring", 2)
+        assert obj.get_book_stock("Clean Code") == 4
+        assert obj.get_book_stock("Design Patterns") == 6
+        assert obj.get_book_stock("Refactoring") == 2
+    tests.append(TestCase(4, "add_book manages multiple distinct books independently", tc4))
+
+    def tc5(c):
+        obj = c()
+        obj.add_book("Python Basics", 10)
+        res = obj.update_book_quantity("Python Basics", 25)
+        assert obj.get_book_stock("Python Basics") == 25, f"Expected 25, got {obj.get_book_stock('Python Basics')}"
+        assert isinstance(res, dict) and res.get("Python Basics") == 25, "update_book_quantity must return updated dictionary"
+    tests.append(TestCase(5, "update_book_quantity modifies existing quantity", tc5))
+
+    def tc6(c):
+        obj = c()
+        obj.add_book("Out of Print Book", 10)
+        obj.update_book_quantity("Out of Print Book", 0)
+        assert obj.get_book_stock("Out of Print Book") == 0, "Quantity can be updated to 0"
+    tests.append(TestCase(6, "update_book_quantity handles setting quantity to 0", tc6))
+
+    def tc7(c):
+        obj = c()
+        raised = False
+        try:
+            obj.update_book_quantity("Nonexistent Book", 5)
+        except KeyError as e:
+            raised = True
+            assert "not found" in str(e).lower(), f"Expected 'Not found', got '{e}'"
+        assert raised, "Expected KeyError('Not found') when updating missing book"
+    tests.append(TestCase(7, "update_book_quantity raises KeyError('Not found') for non-existent book", tc7))
+
+    def tc8(c):
+        obj = c()
+        obj.add_book("Algorithms", 12)
+        stock = obj.get_book_stock("Algorithms")
+        assert stock == 12, f"Expected 12, got {stock}"
+    tests.append(TestCase(8, "get_book_stock retrieves exact available quantity", tc8))
+
+    def tc9(c):
+        obj = c()
+        raised = False
+        try:
+            obj.get_book_stock("Missing Book")
+        except KeyError as e:
+            raised = True
+            assert "not found" in str(e).lower(), f"Expected 'Not found', got '{e}'"
+        assert raised, "Expected KeyError('Not found') when fetching missing book"
+    tests.append(TestCase(9, "get_book_stock raises KeyError('Not found') for non-existent book", tc9))
+
+    def tc10(c):
+        obj = c()
+        obj.add_book("Available 1", 5)
+        obj.add_book("Zero Stock", 0)
+        obj.add_book("Available 2", 8)
+        available = obj.get_available_books()
+        assert isinstance(available, list), "get_available_books must return a list"
+        assert sorted(available) == ["Available 1", "Available 2"], f"Expected ['Available 1', 'Available 2'], got {available}"
+        empty_obj = c()
+        assert empty_obj.get_available_books() == [], "Empty inventory must return empty list"
+    tests.append(TestCase(10, "get_available_books returns list of books with stock > 0", tc10))
+
+    return "Library Inventory Management System (Class: LibraryInventorySystem)", tests
+
+
+def suite_pandas_extra_01_delivery_time(cls):
+    tests = []
+
+    def tc1(c):
+        obj = c()
+        data = [[1, "R101", "Zone A", 30], [2, "R102", "Zone B", 45]]
+        df = obj.create_delivery_log_df(data)
+        assert isinstance(df, pd.DataFrame), "Must return a DataFrame"
+        assert list(df.columns) == ["OrderID", "RestaurantCode", "Area", "DeliveryTime"], f"Columns mismatch: {df.columns}"
+        assert len(df) == 2, f"Expected 2 rows, got {len(df)}"
+    tests.append(TestCase(1, "create_delivery_log_df builds DataFrame with correct columns", tc1))
+
+    def tc2(c):
+        obj = c()
+        master = [["R101", "Burger Hub"], ["R102", "Taco Town"]]
+        df = obj.create_restaurant_master_df(master)
+        assert isinstance(df, pd.DataFrame), "Must return a DataFrame"
+        assert list(df.columns) == ["RestaurantCode", "RestaurantName"], f"Columns mismatch: {df.columns}"
+        assert len(df) == 2, f"Expected 2 rows, got {len(df)}"
+    tests.append(TestCase(2, "create_restaurant_master_df builds DataFrame with correct columns", tc2))
+
+    def tc3(c):
+        obj = c()
+        log = [[1, "R1", "North", 25], [2, "R2", "South", 35]]
+        master = [["R1", "Pasta Palace"], ["R2", "Curry Corner"]]
+        df_log = obj.create_delivery_log_df(log)
+        df_master = obj.create_restaurant_master_df(master)
+        merged = obj.merge_restaurant_names(df_log, df_master)
+        assert "RestaurantName" in merged.columns, "Merged df must contain 'RestaurantName'"
+        assert len(merged) == 2, "All delivery log rows must be preserved"
+        names = merged.set_index("RestaurantCode")["RestaurantName"].to_dict()
+        assert names["R1"] == "Pasta Palace" and names["R2"] == "Curry Corner"
+    tests.append(TestCase(3, "merge_restaurant_names joins delivery log with restaurant master", tc3))
+
+    def tc4(c):
+        obj = c()
+        log = [[1, "R1", "North", 25], [2, "R99", "Unknown", 40]]
+        master = [["R1", "Pasta Palace"]]
+        df_log = obj.create_delivery_log_df(log)
+        df_master = obj.create_restaurant_master_df(master)
+        merged = obj.merge_restaurant_names(df_log, df_master)
+        assert len(merged) == 2, "Left join must preserve unmapped orders"
+        unmapped_name = merged.loc[merged["RestaurantCode"] == "R99", "RestaurantName"].iloc[0]
+        assert pd.isna(unmapped_name), "Unmapped restaurant code must have NaN for RestaurantName"
+    tests.append(TestCase(4, "merge_restaurant_names preserves unmapped orders via left join", tc4))
+
+    def tc5(c):
+        obj = c()
+        log = [
+            [1, "R1", "A", 20],
+            [2, "R1", "B", 40],
+            [3, "R2", "A", 30],
+            [4, "R2", "B", 50],
+        ]
+        master = [["R1", "ResA"], ["R2", "ResB"]]
+        df_log = obj.create_delivery_log_df(log)
+        df_master = obj.create_restaurant_master_df(master)
+        merged = obj.merge_restaurant_names(df_log, df_master)
+        avg_df = obj.average_delivery_by_restaurant(merged)
+        avg_dict = avg_df.set_index("RestaurantName")["Average Delivery"].to_dict()
+        assert math.isclose(avg_dict["ResA"], 30.0, rel_tol=1e-3), f"Expected 30.0 for ResA, got {avg_dict.get('ResA')}"
+        assert math.isclose(avg_dict["ResB"], 40.0, rel_tol=1e-3), f"Expected 40.0 for ResB, got {avg_dict.get('ResB')}"
+    tests.append(TestCase(5, "average_delivery_by_restaurant computes exact mean delivery times", tc5))
+
+    def tc6(c):
+        obj = c()
+        log = [[1, "R1", "A", 25]]
+        master = [["R1", "ResA"]]
+        df_log = obj.create_delivery_log_df(log)
+        df_master = obj.create_restaurant_master_df(master)
+        merged = obj.merge_restaurant_names(df_log, df_master)
+        avg_df = obj.average_delivery_by_restaurant(merged)
+        assert "Average Delivery" in avg_df.columns, "Column must be renamed to 'Average Delivery'"
+        assert "RestaurantName" in avg_df.columns, "Index must be reset so 'RestaurantName' is a column"
+    tests.append(TestCase(6, "average_delivery_by_restaurant resets index and renames column", tc6))
+
+    def tc7(c):
+        obj = c()
+        log = [
+            [1, "R1", "A", 15],
+            [2, "R1", "B", 35],
+            [3, "R2", "C", 45],
+            [4, "R2", "D", 20],
+        ]
+        df_log = obj.create_delivery_log_df(log)
+        slow = obj.filter_slow_deliveries(df_log, 30)
+        assert len(slow) == 2, f"Expected 2 slow deliveries, got {len(slow)}"
+        assert set(slow["OrderID"].tolist()) == {2, 3}, "Must contain orders with DeliveryTime > 30"
+    tests.append(TestCase(7, "filter_slow_deliveries filters rows strictly exceeding threshold", tc7))
+
+    def tc8(c):
+        obj = c()
+        log = [[1, "R1", "A", 20], [2, "R2", "B", 25]]
+        df_log = obj.create_delivery_log_df(log)
+        slow = obj.filter_slow_deliveries(df_log, 50)
+        assert isinstance(slow, pd.DataFrame) and len(slow) == 0, "Threshold above all values must return empty DataFrame"
+    tests.append(TestCase(8, "filter_slow_deliveries returns empty DataFrame when none exceed threshold", tc8))
+
+    def tc9(c):
+        obj = c()
+        log = [
+            [1, "R1", "Downtown", 60],
+            [2, "R2", "Downtown", 40],
+            [3, "R1", "Suburbs", 25],
+            [4, "R2", "Suburbs", 35],
+            [5, "R3", "Uptown", 20],
+        ]
+        df_log = obj.create_delivery_log_df(log)
+        slowest = obj.slowest_delivery_area(df_log)
+        assert slowest["Area"].iloc[0] == "Downtown", f"Expected 'Downtown', got {slowest['Area'].iloc[0]}"
+        assert math.isclose(slowest["DeliveryTime"].iloc[0], 50.0, rel_tol=1e-3)
+    tests.append(TestCase(9, "slowest_delivery_area identifies area with highest average delivery time", tc9))
+
+    def tc10(c):
+        obj = c()
+        log = [
+            [1, "R1", "North", 30],
+            [2, "R2", "South", 50],
+        ]
+        df_log = obj.create_delivery_log_df(log)
+        slowest = obj.slowest_delivery_area(df_log)
+        assert isinstance(slowest, pd.DataFrame), "Must return a DataFrame"
+        assert len(slowest) == 1, f"Expected 1 row, got {len(slowest)}"
+        assert slowest.index[0] == 0, "Index must be reset with drop=True starting at 0"
+    tests.append(TestCase(10, "slowest_delivery_area returns single-row DataFrame with reset index", tc10))
+
+    return "Food Delivery Order Analyzer (Class: DeliveryTimeAnalyzer)", tests
+
+
+def suite_numpy_extra_01_movie_rating(cls):
+    tests = []
+
+    def tc1(c):
+        obj = c()
+        arr = obj.create_rating_array([85, 90, 75])
+        assert isinstance(arr, np.ndarray), "Must return a NumPy ndarray"
+        assert np.issubdtype(arr.dtype, np.integer), f"Array must have integer dtype, got {arr.dtype}"
+        assert list(arr) == [85, 90, 75]
+    tests.append(TestCase(1, "create_rating_array creates integer NumPy array from list", tc1))
+
+    def tc2(c):
+        obj = c()
+        arr = np.array([0, 50, 85, 100])
+        assert obj.validate_ratings(arr) is True, "Array with elements in [0, 100] must be valid"
+    tests.append(TestCase(2, "validate_ratings returns True for ratings within [0, 100]", tc2))
+
+    def tc3(c):
+        obj = c()
+        arr_empty = np.array([])
+        assert obj.validate_ratings(arr_empty) is False, "Empty array must be invalid (False)"
+    tests.append(TestCase(3, "validate_ratings returns False for empty array", tc3))
+
+    def tc4(c):
+        obj = c()
+        arr_low = np.array([-1, 50, 80])
+        arr_high = np.array([50, 80, 101])
+        assert obj.validate_ratings(arr_low) is False, "Rating < 0 must be invalid (False)"
+        assert obj.validate_ratings(arr_high) is False, "Rating > 100 must be invalid (False)"
+    tests.append(TestCase(4, "validate_ratings returns False for out-of-bound ratings (<0 or >100)", tc4))
+
+    def tc5(c):
+        obj = c()
+        arr = np.array([80, 90, 75])
+        total, avg, max_val = obj.compute_rating_summary(arr)
+        assert total == 245, f"Expected total 245, got {total}"
+        assert math.isclose(avg, 81.7, abs_tol=0.05), f"Expected avg 81.7, got {avg}"
+        assert max_val == 90, f"Expected max 90, got {max_val}"
+    tests.append(TestCase(5, "compute_rating_summary computes total, rounded average, and maximum", tc5))
+
+    def tc6(c):
+        obj = c()
+        arr = np.array([92])
+        total, avg, max_val = obj.compute_rating_summary(arr)
+        assert total == 92 and math.isclose(avg, 92.0, abs_tol=0.01) and max_val == 92
+    tests.append(TestCase(6, "compute_rating_summary works correctly for single-element array", tc6))
+
+    def tc7(c):
+        obj = c()
+        arr = np.array([80, 85, 90])
+        bonus = obj.apply_bonus(arr)
+        assert math.isclose(bonus[0], 80.0, abs_tol=0.1)
+        assert math.isclose(bonus[1], 85.0, abs_tol=0.1)
+        assert math.isclose(bonus[2], 94.5, abs_tol=0.1), f"Expected 94.5, got {bonus[2]}"
+    tests.append(TestCase(7, "apply_bonus increases ratings > 85 by 5% and leaves <= 85 unchanged", tc7))
+
+    def tc8(c):
+        obj = c()
+        arr = np.array([98, 100])
+        bonus = obj.apply_bonus(arr)
+        assert math.isclose(bonus[0], 100.0, abs_tol=0.01), f"Expected 100.0, got {bonus[0]}"
+        assert math.isclose(bonus[1], 100.0, abs_tol=0.01), f"Expected 100.0, got {bonus[1]}"
+    tests.append(TestCase(8, "apply_bonus clips ratings to maximum of 100.0", tc8))
+
+    def tc9(c):
+        obj = c()
+        arr = np.array([95, 90, 85, 80, 79, 60])
+        cats = list(obj.categorize_movies(arr))
+        expected = ["Excellent", "Excellent", "Good", "Good", "Needs Improvement", "Needs Improvement"]
+        assert cats == expected, f"Expected {expected}, got {cats}"
+    tests.append(TestCase(9, "categorize_movies maps thresholds to 'Excellent', 'Good', 'Needs Improvement'", tc9))
+
+    def tc10(c):
+        obj = c()
+        arr = np.array([95, 84, 73, 55])
+        grades = list(obj.format_ratings_with_grades(arr))
+        expected = ["A", "B", "C", "D"]
+        assert grades == expected, f"Expected {expected}, got {grades}"
+    tests.append(TestCase(10, "format_ratings_with_grades maps ratings to 'A', 'B', 'C', 'D' via loop", tc10))
+
+    return "Movie Rating Analyzer (Class: MovieRatingAnalyzer)", tests
+
+
+# ==============================================================================
 # DISPATCHER & DETECTOR
 # ==============================================================================
 
@@ -1749,6 +2061,19 @@ def detect_and_build_suites(target):
     if hasattr(target, "create_temperature_array") or hasattr(target, "longest_warning_streak"):
         name, tests = suite_numpy_05_cold_storage(target)
         suites.append((name, tests, target))
+
+    # Check for Extra Questions Classes
+    if hasattr(target, "LibraryInventorySystem") and inspect.isclass(target.LibraryInventorySystem):
+        name, tests = suite_oops_extra_01_library_inventory(target.LibraryInventorySystem)
+        suites.append((name, tests, target.LibraryInventorySystem))
+
+    if hasattr(target, "DeliveryTimeAnalyzer") and inspect.isclass(target.DeliveryTimeAnalyzer):
+        name, tests = suite_pandas_extra_01_delivery_time(target.DeliveryTimeAnalyzer)
+        suites.append((name, tests, target.DeliveryTimeAnalyzer))
+
+    if hasattr(target, "MovieRatingAnalyzer") and inspect.isclass(target.MovieRatingAnalyzer):
+        name, tests = suite_numpy_extra_01_movie_rating(target.MovieRatingAnalyzer)
+        suites.append((name, tests, target.MovieRatingAnalyzer))
 
     return suites
 

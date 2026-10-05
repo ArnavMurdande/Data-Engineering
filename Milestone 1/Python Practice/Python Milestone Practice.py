@@ -21,8 +21,59 @@ import pandas as pd
 # WRITE YOUR CODE BELOW THIS LINE
 # ------------------------------------------------------------------------------
 
+import numpy as np
 
+def create_aqi_array(values: list) -> np.ndarray:
+    # aqi_array = np.asarray(values, dtype=np.int64).reshape(-1)
+    # return aqi_array
+    return np.asarray(values, dtype=np.int64).reshape(-1)  # .reshape(row, columns) shapes array into rows and columns and -1 automatically decides it *** #
 
+def validate_aqi_array(arr: np.ndarray) -> bool:
+    if arr.size == 0 or not np.issubdtype(arr.dtype, np.number):
+        return False
+    return bool(np.all((arr >=0) & (arr <= 100)))
+
+def compute_aqi_stats(arr: np.ndarray) -> tuple:
+    mean = round(float(np.mean(arr)),2) 
+    std_dev = round(float(np.std(arr)),2) 
+    max = round(float(np.max(arr)),2) 
+    min = round(float(np.min(arr)),2) 
+
+    return(mean, std_dev, max, min)
+
+def categorize_aqi(arr: np.ndarray) -> np.ndarray:
+    category = [
+        (arr >= 0) & (arr <= 50),
+        (arr >= 51) & (arr <= 100),
+        (arr >= 101) & (arr <= 150),
+        (arr >= 151) & (arr <= 200),
+        (arr >= 201) & (arr <= 300),
+        (arr >= 301) & (arr <=500),
+    ]
+
+    choices = [
+        "Good",
+        "Moderate",
+        "USG",
+        "Unhealthy",
+        "Very Unhealthy",
+        "Hazardous",
+    ]
+
+    return np.select(category, choices, default= "Invalid")
+
+def longest_unhealthy_streak(arr: np.ndarray) -> int:
+    max_streak = 0
+    current_streak = 0
+
+    for val in arr:
+        if val >= 151:
+            current_streak += 1
+            max_streak = max(max_streak, current_streak)
+        else: 
+            current_streak = 0
+
+    return max_streak
 
 
 # ------------------------------------------------------------------------------
