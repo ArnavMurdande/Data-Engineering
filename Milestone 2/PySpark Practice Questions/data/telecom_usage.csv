@@ -1,0 +1,12 @@
+event_id,user_id,plan,city,event_date,data_mb,voice_minutes,sms_count,roaming,device_type,dropped_calls,latency_ms
+E9001,U01,Basic,Metro,2025-03-01,500.0,40,5,N,Android,1,120
+E9002,U02,Plus,Metro,2025-03-01,1200.0,65,20,N,iOS,0,95
+E9003,U01,Basic,Coastal,2025-03-02,300.0,25,2,Y,Android,2,180
+E9004,U03,Pro,Hills,2025-03-02,2500.0,80,40,N,iOS,0,70
+E9005,U04,Plus,Metro,2025-03-03,900.0,55,10,N,Android,1,110
+E9006,U02,Plus,Coastal,2025-03-03,600.0,30,5,Y,iOS,3,210
+E9007,U05,Basic,Hills,2025-03-04,200.0,15,1,N,Android,0,130
+E9008,U03,Pro,Metro,2025-03-04,1800.0,70,25,N,iOS,1,85
+E9009,U04,Plus,Coastal,2025-03-05,1500.0,60,15,N,Android,0,100
+E9010,U05,Basic,Metro,2025-03-05,350.0,20,3,N,Android,2,160
+E9011,U06,Pro,Hills,2025-03-06,3000.0,90,50,N,iOS,0,60

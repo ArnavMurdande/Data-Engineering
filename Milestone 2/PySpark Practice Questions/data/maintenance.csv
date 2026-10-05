@@ -1,0 +1,8 @@
+maintenance_id,aircraft_id,maintenance_date,maintenance_cost,maintenance_status
+M001,AC101,2026-05-01,45000,Completed
+M002,AC101,2026-06-10,30000,Completed
+M003,AC102,2026-05-15,60000,Completed
+M004,AC103,2026-06-01,50000,Completed
+M005,AC103,2026-07-12,25000,Completed
+M006,AC104,2026-07-20,80000,Pending
+M007,AC105,2026-08-05,35000,Completed

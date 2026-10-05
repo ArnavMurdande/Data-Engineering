@@ -1,0 +1,136 @@
+Q019
+EASY 4 — Media — Music Streaming Release Insights
+Difficulty: Easy
+
+Marks: 10
+
+Duration: 10–15 Minutes
+
+Functions: 5
+
+Tests: 6
+
+Dataset
+data/music_tracks.csv
+
+Columns:
+
+track_id
+
+artist_name
+
+genre
+
+release_date
+
+stream_count
+
+status
+
+Task 1 — Load Music Tracks
+Marks: 2
+
+def load_music_tracks(
+
+    spark: SparkSession,
+
+    path: str
+
+) -> DataFrame:
+
+
+
+Convert release_date to DateType.
+
+Task 2 — Fill Missing Genre
+Marks: 2
+
+def fill_missing_genre(
+
+    df: DataFrame
+
+) -> DataFrame:
+
+
+
+Replace:
+
+NULL genre → "Uncategorized"
+
+
+
+using fillna().
+
+Task 3 — Add Release Calendar
+Marks: 2
+
+def add_release_calendar(
+
+    df: DataFrame
+
+) -> DataFrame:
+
+
+
+Add:
+
+release_year
+
+release_month
+
+release_month_start
+
+
+
+using:
+
+year()
+
+month()
+
+date_trunc("month", ...)
+
+Task 4 — Unique Published Artists
+Marks: 2
+
+def unique_published_artists(
+
+    df: DataFrame
+
+) -> List[str]:
+
+
+Filter status == "Published".
+Select artist.
+distinct().
+Sort ascending.
+Collect to Python list.
+Task 5 — Top N Genres by Streams
+Marks: 2
+
+def top_n_genres_by_streams(
+
+    df: DataFrame,
+
+    n: int
+
+) -> DataFrame:
+
+
+Filter Published tracks.
+Group by genre.
+Sum stream_count as total_streams.
+Sort:
+total streams descending
+genre ascending
+Apply limit(n).
+Output:
+
+genre
+
+total_streams
+
+
+
+Concepts
+groupBy, sum, orderBy, limit

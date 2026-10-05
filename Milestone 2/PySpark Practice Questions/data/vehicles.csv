@@ -1,0 +1,7 @@
+vehicle_id,vehicle_type,home_zone,status,last_service_date
+V1,Bike,ZoneA,Active,2025-12-01
+V2,Car,ZoneB,Active,2025-11-15
+V3,Scooter,ZoneA,Inactive,2025-10-20
+V4,Car,ZoneB,Active,2025-12-10
+V5,Van,ZoneC,Active,2025-09-01
+V6,Car,ZoneC,Active,2025-12-05

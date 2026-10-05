@@ -1,0 +1,8 @@
+pyspark>=3.5.0,<=4.2.0
+pytest>=8.0.0
+findspark>=2.0.1
+pandas>=2.0.0
+pyarrow>=14.0.0
+colorama>=0.4.6
+mysql-connector-python>=8.0.0
+SQLAlchemy>=2.0.0

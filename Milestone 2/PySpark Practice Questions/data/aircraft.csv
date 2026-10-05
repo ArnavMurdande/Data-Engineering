@@ -1,0 +1,7 @@
+aircraft_id,aircraft_model,base_airport,service_status
+AC101,A320,Chennai,Active
+AC102,A320,Delhi,Active
+AC103,B737,Mumbai,Active
+AC104,B737,Hyderabad,Grounded
+AC105,A321,Bengaluru,Active
+AC106,A321,Kochi,Active

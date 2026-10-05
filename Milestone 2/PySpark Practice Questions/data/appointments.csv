@@ -1,0 +1,6 @@
+appointment_id,patient_id,doctor,department,scheduled_time,actual_time,wait_reason
+A1001,P01,Dr. Rao,Cardiology,2025-01-01 09:00:00,2025-01-01 09:12:00,Late arrival
+A1002,P02,Dr. Rao,Cardiology,2025-01-01 10:00:00,2025-01-01 10:55:00,Overbooked
+A1003,P03,Dr. Sen,Dermatology,2025-01-01 09:30:00,2025-01-01 09:50:00,System delay
+A1004,P01,Dr. Sen,Dermatology,2025-01-02 11:00:00,2025-01-02 11:05:00,Late arrival
+A1005,P04,Dr. Iyer,Orthopedics,2025-01-03 08:00:00,2025-01-03 09:10:00,Emergency case

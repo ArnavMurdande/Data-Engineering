@@ -1,0 +1,11 @@
+inspection_id,field_id,crop_type,inspection_date,moisture_level,inspector_name
+I001,F101,Rice,2026-06-05,72.5,Meena
+I002,F102,Wheat,2026-06-07,48.0,
+I003,F103,Cotton,2026-07-01,39.5,Ravi
+I004,F104,Rice,2026-07-03,68.5,Anita
+I005,,Wheat,2026-07-05,51.0,Suresh
+I006,F106,Cotton,2026-08-10,,Meena
+I007,F107,Rice,2026-08-15,75.0,
+I008,F108,Wheat,2026-08-20,49.0,Anita
+I009,F109,Cotton,2026-09-02,41.5,Ravi
+I010,F110,Rice,2026-09-10,70.0,Suresh

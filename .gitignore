@@ -39,3 +39,19 @@ SQL Setup/
 
 # Temporary Office Files
 ~$*
+
+# Syllabus & Planner (Do not push)
+Planner/
+**/Planner/
+Syllabus/
+**/Syllabus/
+
+# PySpark Setup Binaries & Local Config
+Milestone 2/PySpark Setup/.venv/
+Milestone 2/PySpark Setup/hadoop/
+Milestone 2/PySpark Setup/jars/
+Milestone 2/PySpark Setup/.env
+Milestone 2/PySpark Setup/pyrightconfig.json
+pyrightconfig.json
+*.tmp
+*.log

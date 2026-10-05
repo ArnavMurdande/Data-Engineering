@@ -1,0 +1,18 @@
+{
+  "assessment_name": "Emergency Triage Wait-Time Insights",
+  "domain": "Healthcare - Emergency Operations",
+  "difficulty": "Easy",
+  "marks": 10,
+  "duration": "10-15 Minutes",
+  "functions": [
+    "load_inline_triage_data",
+    "compute_wait_minutes",
+    "filter_priority_cases",
+    "average_wait_by_department",
+    "list_active_departments"
+  ],
+  "test_count": 6,
+  "solution_policy": "trainee stubs only",
+  "import_policy": "any valid PySpark import style; F alias not mandatory",
+  "report_format": "Test Case NN : function_name : PASS / FAIL | Expected = ... | Reason = ..."
+}

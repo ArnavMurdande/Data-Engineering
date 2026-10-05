@@ -1,0 +1,11 @@
+policy_id,policy_type,region,annual_premium
+P101,Health,South,12000.0
+P102,Motor,West,8500.0
+P103,Health,North,15000.0
+P104,Home,South,10000.0
+P105,Travel,East,5000.0
+P106,Motor,South,9000.0
+P107,Travel,West,5500.0
+P108,Home,North,11000.0
+P109,Health,East,13000.0
+P110,Motor,North,9500.0

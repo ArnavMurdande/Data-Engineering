@@ -1,0 +1,18 @@
+{
+  "assessment_name": "Remote Patient Monitoring Alert Analytics",
+  "domain": "Healthcare - Remote Monitoring",
+  "difficulty": "Medium",
+  "marks": 20,
+  "duration": "20-25 Minutes",
+  "functions": [
+    "define_observation_schema",
+    "load_monitoring_data",
+    "classify_readings",
+    "latest_reading_per_patient",
+    "care_team_alert_summary"
+  ],
+  "test_count": 6,
+  "solution_policy": "trainee stubs only",
+  "import_policy": "any valid PySpark import style; F alias not mandatory",
+  "report_format": "Test Case NN : function_name : PASS / FAIL | Expected = ... | Reason = ..."
+}

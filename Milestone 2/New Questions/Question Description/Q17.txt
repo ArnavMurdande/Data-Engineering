@@ -1,0 +1,182 @@
+Q017
+EASY 2 — Healthcare — Emergency Triage Wait-Time Insights
+Difficulty: Easy
+
+Marks: 10
+
+Duration: 10–15 Minutes
+
+Functions: 5
+
+Tests: 6
+
+Problem Statement
+An emergency department tracks patient arrival times and doctor-start times.
+
+Your task is to calculate waiting duration, identify priority cases, generate department-level wait statistics, and list active departments.
+
+Task 1 — Create Inline Triage Data
+Marks: 2
+
+Function
+def load_inline_triage_data(
+
+    spark: SparkSession
+
+) -> DataFrame:
+
+
+
+Create a DataFrame using spark.createDataFrame() from exactly these rows:
+
+C001 | ER         | 2026-09-01 08:00:00 | 2026-09-01 08:25:00 | High     | ACTIVE
+
+C002 | Trauma     | 2026-09-01 08:10:00 | 2026-09-01 08:05:00 | Critical | ACTIVE
+
+C003 | Pediatrics | 2026-09-01 09:00:00 | 2026-09-01 09:45:00 | Low      | ACTIVE
+
+C004 | ER         | 2026-09-01 09:30:00 | 2026-09-01 10:00:00 | High     | CLOSED
+
+
+
+Columns:
+
+case_id
+
+department
+
+arrival_time
+
+doctor_start_time
+
+priority
+
+status
+
+
+
+Concepts
+createDataFrame
+
+Task 2 — Compute Wait Minutes
+Marks: 2
+
+Function
+def compute_wait_minutes(
+
+    df: DataFrame
+
+) -> DataFrame:
+
+
+
+Requirements
+Calculate:
+
+wait_minutes =
+
+(unix_timestamp(doctor_start_time)
+
+ - unix_timestamp(arrival_time)) / 60
+
+
+
+If calculated wait is negative:
+
+wait_minutes = 0
+
+
+
+Use conditional logic.
+
+Concepts
+unix_timestamp, arithmetic, withColumn, when, otherwise
+
+Task 3 — Filter Priority Cases
+Marks: 2
+
+Function
+def filter_priority_cases(
+
+    df: DataFrame
+
+) -> DataFrame:
+
+
+
+Keep:
+
+priority IN ("Critical", "High")
+
+
+
+and:
+
+wait_minutes IS NOT NULL
+
+
+
+Concepts
+isin, isNotNull, filter
+
+Task 4 — Average Wait by Department
+Marks: 2
+
+Function
+def average_wait_by_department(
+
+    df: DataFrame
+
+) -> DataFrame:
+
+
+
+Group by:
+
+department
+
+
+
+Calculate:
+
+AVG(wait_minutes)
+
+
+
+Alias:
+
+avg_wait_minutes
+
+
+
+Concepts
+groupBy, avg, alias
+
+Task 5 — List Active Departments
+Marks: 2
+
+Function
+def list_active_departments(
+
+    df: DataFrame
+
+) -> List[str]:
+
+
+
+Requirements
+Filter status == "ACTIVE".
+Select department.
+Apply distinct().
+Sort department ascending.
+Convert results to a Python list.
+The assessment accepts a valid collection approach such as:
+
+.rdd.flatMap(...).collect()
+
+
+
+or equivalent PySpark-based extraction.
+
+Concepts
+select, distinct, orderBy, collect, list return
