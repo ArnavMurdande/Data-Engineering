@@ -362,7 +362,7 @@ export default function App() {
                     ? 'bg-gradient-to-r from-indigo-400 via-cyan-300 to-white bg-clip-text text-transparent'
                     : 'text-slate-900'
                 }`}>
-                  SQL & Data Engineering Exam Master
+                  Databricks Milestone 2 Exam Master
                 </h1>
                 <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${
                   darkMode
@@ -373,7 +373,7 @@ export default function App() {
                 </span>
               </div>
               <p className={`text-[11px] ${darkMode ? 'text-slate-400' : 'text-slate-600'} hidden sm:block font-medium`}>
-                SQL • Kimball Dimensional Modeling • SCD Types • Cloud Warehouses • Normalization • Python
+                Apache Spark • Distributed Arch • Spark SQL • Structured Streaming • Java OOP & Streams • Scala Core
               </p>
             </div>
           </div>
@@ -971,7 +971,7 @@ export default function App() {
                       ? 'bg-gradient-to-r from-indigo-300 via-cyan-300 to-white bg-clip-text text-transparent'
                       : 'text-slate-900'
                   }`}>
-                    SQL & Data Warehouse Mock Exam Simulator
+                    Databricks Milestone 2 Mock Exam Simulator
                   </h2>
                   <p className={`text-xs sm:text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'} max-w-lg mx-auto mt-2 leading-relaxed font-medium`}>
                     Test under real-time exam conditions with instant grading, question flagging, jump palette, domain breakdown, and the option to attempt all 200 questions.
@@ -1597,7 +1597,7 @@ export default function App() {
                 <FileText className="w-6 h-6 text-indigo-600" /> High-Yield Blueprint Revision Sheet
               </h2>
               <p className={`text-xs ${darkMode ? 'text-slate-400' : 'text-slate-600'} font-medium`}>
-                Core condensed summary directly mapping to key exam formulas, normalization rules, and architectural design patterns.
+                Core architectural formulas and cheat sheets covering Apache Spark execution, RDD/DataFrames, Structured Streaming, Catalyst optimizer, Java OOP/Streams, and Scala functional patterns.
               </p>
             </div>
 

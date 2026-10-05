@@ -1,4 +1,4 @@
-# 🚀 SQL & Data Engineering Exam Master • 200 High-Yield MCQs
+# 🚀 Databricks Milestone 2 Exam Master • 200 High-Yield MCQs
 
 An ultra-modern, interactive MCQ examination simulator, practice platform, and active recall revision suite built with **React**, **Vite**, and **Tailwind CSS**.
 
@@ -7,7 +7,7 @@ An ultra-modern, interactive MCQ examination simulator, practice platform, and a
 ## 🌟 Key Features
 
 ### 1. 🎯 Practice & Learn Mode
-- **200 High-Yield Questions** categorized across 13 core domains.
+- **200 High-Yield Questions** categorized across 11 core Databricks & Big Data engineering domains.
 - **Enhanced Question Navigator**:
   - Direct jump to any question with real-time visual badges:
     - 🟢 **Emerald**: Correctly answered
@@ -36,7 +36,7 @@ An ultra-modern, interactive MCQ examination simulator, practice platform, and a
 - Shuffle random card mode.
 
 ### 4. 📑 High-Yield Blueprint Revision Sheet
-- Condensed summaries of core architecture formulas, ACID properties, SCD Types, normal forms, and cloud data warehouse design patterns.
+- Condensed summaries of core architecture formulas, HDFS mechanics, Spark cluster deployment, RDD lifecycle, Catalyst Optimizer, and Java/Scala fundamentals.
 
 ### 5. 🎨 Elevated Dark Mode & UI Aesthetics
 - OLED-friendly deep slate background (`#020617`), ambient radial glow accents, glassmorphic card containers, and high-contrast typography.
@@ -48,20 +48,18 @@ An ultra-modern, interactive MCQ examination simulator, practice platform, and a
 
 | Domain / Category | Question Count | Topics Covered |
 |---|---|---|
-| **Handwritten Blueprint** | 15 | Query optimization, SARGability, B-Tree mechanics, Star vs Snowflake |
-| **SQL DDL, DML & Constraints** | 17 | DDL/DML, Constraints, TRUNCATE vs DELETE, Data types, NULL logic |
-| **Joins & Window Functions** | 31 | INNER/LEFT/FULL/CROSS/Anti-Joins, RANK, DENSE_RANK, ROW_NUMBER, LAG, LEAD, Framing |
-| **Subqueries & Views** | 15 | Correlated subqueries, Scalar subqueries, CTEs, Materialized views, Updatable views |
-| **Advanced SQL** | 8 | Recursive CTEs, Hierarchical queries, GROUP BY ROLLUP/CUBE |
-| **TCL & Transactions** | 12 | ACID properties, Isolation levels, Dirty/Phantom reads, Deadlocks, Savepoints |
-| **Data Warehousing & Dimensional Modeling** | 22 | Kimball vs Inmon, Fact types, Measure types, Conformed/Role-playing dimensions, OLAP |
-| **Slowly Changing Dimensions (SCD)** | 12 | SCD Types 0, 1, 2, 3, 4, 6, Surrogate keys, Late arriving facts/dimensions |
-| **Cloud & ETL/ELT** | 15 | Snowflake (Cloning, Time Travel, Micro-partitions), BigQuery, Redshift, Databricks Medallion, dbt, CDC |
-| **OLTP vs OLAP & Normalization** | 10 | Workload traits, 1NF, 2NF, 3NF, BCNF, Denormalization, Row vs Column storage |
-| **Python & Comp Fundamentals** | 23 | Computational knowledge, Memory references, Mutable/Immutable, Slicing, Generators, Big-O |
-| **Indexing & Performance** | 10 | Clustered/Non-clustered, Covering index, Hash join, Bitmap index, Partition pruning |
-| **Database Quality & Admin** | 10 | Profiling, Deduplication, COALESCE, NULLIF, Stored procedures, EXPLAIN plans |
-| **Total** | **200 Questions** | Complete Exam Mastery |
+| **Big Data & Hadoop Architecture** | 15 | 4Vs of Big Data, HDFS NameNode/DataNode mechanics, Block replication, YARN ResourceManager & NodeManager |
+| **Spark Cluster Architecture** | 15 | Driver & Executors, Client vs Cluster deploy modes, Cluster Managers (YARN/K8s/Standalone), Spark UI |
+| **Spark Core & RDDs** | 25 | RDD Lineage, Lazy Transformations vs Eager Actions, Narrow vs Wide dependencies, Shuffle, Storage levels |
+| **Spark SQL & DataFrames** | 25 | DataFrames API, Schemas, StructType/StructField, CSV/Parquet/JSON ingestion, Built-in SQL functions, Aggregations |
+| **Catalyst, Plans & Optimization** | 20 | 4-Phase Catalyst Pipeline, Physical Plans, Cost-Based Optimizer (CBO), Broadcast Hash Joins, Data skew mitigation |
+| **Structured Streaming & Kafka** | 25 | Micro-batch vs Continuous processing, Output Modes (Append/Complete/Update), Watermarking, Checkpoint offsets |
+| **Java Fundamentals & Collections** | 20 | JVM Heap vs Stack, Generational Garbage Collection, ArrayList vs LinkedList, HashMap vs ConcurrentHashMap |
+| **Java OOPs & SOLID Principles** | 20 | Encapsulation, Polymorphism (Overriding vs Overloading), Abstract classes vs Interfaces, 5 SOLID principles |
+| **Java Streams & File I/O** | 15 | Java 8 Streams API (filter, map, flatMap, collect), Try-With-Resources, File I/O, java.time immutability |
+| **Java Concurrency & JDBC** | 10 | Thread lifecycle, synchronized vs ReentrantLock, volatile variables, JDBC Transactions (ACID, rollback, savepoint) |
+| **Scala & Functional Programming** | 10 | Immutability (val vs var), Pattern matching, Case classes, Option/Some/None, Try/Success/Failure, Pure functions |
+| **Total** | **200 Questions** | Complete Milestone 2 Mastery |
 
 ---
 
