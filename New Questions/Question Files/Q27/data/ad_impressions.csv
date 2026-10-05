@@ -1,5 +1,0 @@
-impression_id,campaign_id,user_id,impression_ts,watched_seconds,ad_length_seconds,clicked,spend_amount,delivery_status
-I001,C01,U01,2026-09-01 10:00:00,25,30,Y,2.5,DELIVERED
-I002,C01,U02,2026-09-01 10:05:00,10,30,N,2.5,DELIVERED
-I003,C02,U03,2026-09-01 10:10:00,45,60,Y,3.0,DELIVERED
-I004,C03,U04,2026-09-01 10:20:00,5,20,N,1.0,FAILED

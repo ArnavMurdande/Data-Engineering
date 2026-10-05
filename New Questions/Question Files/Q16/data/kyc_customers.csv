@@ -1,6 +1,0 @@
-customer_id,customer_name,email,city,onboarding_date,risk_score,kyc_status
-C001,Asha Rao,asha@example.com,Mumbai,2026-08-01,82,REVIEW
-C002,Vikram Sen, vikram@bank.in ,Delhi,2026-08-02,45,APPROVED
-C003,Nila Das,bad-email,Chennai,2026-08-03,91,PENDING
-C004,Arun Dev,,Pune,2026-08-04,67,REVIEW
-C005,Mira Shah,mira@example.org,Mumbai,2026-08-05,76,PENDING

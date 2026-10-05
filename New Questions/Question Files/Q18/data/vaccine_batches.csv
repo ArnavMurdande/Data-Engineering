@@ -1,6 +1,0 @@
-batch_id,product_name,manufacture_date,expiry_date,potency_pct,release_status
-B001,Vax-A,2026-01-01,2027-01-01,98.5,RELEASED
-B002,Vax-A,2026-02-01,2027-02-01,96.8,HOLD
-B003,Vax-B,2026-03-15,2027-03-15,99.1,RELEASED
-B004,Vax-C,2026-04-01,2026-10-01,,RELEASED
-B005,,2026-05-01,2027-05-01,97.0,RELEASED
