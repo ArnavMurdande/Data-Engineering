@@ -21,10 +21,11 @@ Data-Engineering/
 ├── 🚀 MCQ's Practice Website/          # Full-stack Interactive Exam & Practice Web Application
 │   ├── src/                            # React 18 Application Source Code
 │   │   ├── data/                       # Curated Technical Learning Content
-│   │   │   ├── questions.js            # 200 High-Yield MCQs with In-Depth Technical Explanations
-│   │   │   ├── categories.js           # 13 Domain Categories (SQL, Warehousing, Modeling, etc.)
-│   │   │   └── cheatsheet.js           # Architecture Cheat Sheets & SQL Formula Summaries
-│   │   ├── App.jsx                     # Core UI with Dark/Light Modes, Exam Simulator & Filters
+│   │   │   ├── questions.js            # 200 High-Yield MCQs with Beginner Concept Intuition & ASCII Blueprints
+│   │   │   ├── categories.js           # 14 Domain Categories & Difficulty Calibration (Easy, Medium, Hard)
+│   │   │   ├── concepts.js             # Concept Explanation & Visualization Hub (Architecture Blueprints)
+│   │   │   └── cheatsheet.js           # 14 Architecture Cheat Sheets & SQL Formula Summaries
+│   │   ├── App.jsx                     # Revamped UI with Concept Hub, Virtual Client Scenarios, Exam Simulator
 │   │   ├── index.css                   # Custom Scrollbars, Glassmorphic & Glow Styles
 │   │   └── main.jsx                    # Application Entry Point
 │   ├── package.json
