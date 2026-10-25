@@ -17,6 +17,7 @@ import {
   Database,
   ChevronRight,
   ChevronLeft,
+  ChevronDown,
   HelpCircle,
   Check,
   X,
@@ -94,6 +95,11 @@ export default function App() {
   useEffect(() => {
     try {
       localStorage.setItem('de_mcq_dark_mode', JSON.stringify(darkMode));
+      if (darkMode) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
     } catch (e) {
       console.error(e);
     }
@@ -467,7 +473,9 @@ export default function App() {
                   ? darkMode
                     ? 'bg-cyan-400 text-black border-cyan-300 shadow-[2px_2px_0px_#FFF]'
                     : 'bg-amber-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]'
-                  : 'border-transparent text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
+                  : darkMode
+                  ? 'border-transparent text-slate-200 hover:text-white hover:bg-slate-800'
+                  : 'border-transparent text-slate-700 hover:text-black hover:bg-amber-100'
               }`}
             >
               <BookOpen className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -481,12 +489,16 @@ export default function App() {
                   ? darkMode
                     ? 'bg-emerald-400 text-black border-emerald-300 shadow-[2px_2px_0px_#FFF]'
                     : 'bg-emerald-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]'
-                  : 'border-transparent text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
+                  : darkMode
+                  ? 'border-transparent text-slate-200 hover:text-white hover:bg-slate-800'
+                  : 'border-transparent text-slate-700 hover:text-black hover:bg-amber-100'
               }`}
             >
               <Layers className="w-3.5 h-3.5 stroke-[2.5]" />
               <span>Concept Hub</span>
-              <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-black text-white font-black">NEW</span>
+              <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-black border ${
+                darkMode ? 'bg-cyan-400 text-black border-cyan-300' : 'bg-black text-white border-black'
+              }`}>NEW</span>
             </button>
 
             <button
@@ -496,7 +508,9 @@ export default function App() {
                   ? darkMode
                     ? 'bg-orange-400 text-black border-orange-300 shadow-[2px_2px_0px_#FFF]'
                     : 'bg-orange-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]'
-                  : 'border-transparent text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
+                  : darkMode
+                  ? 'border-transparent text-slate-200 hover:text-white hover:bg-slate-800'
+                  : 'border-transparent text-slate-700 hover:text-black hover:bg-amber-100'
               }`}
             >
               <Timer className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -510,7 +524,9 @@ export default function App() {
                   ? darkMode
                     ? 'bg-sky-400 text-black border-sky-300 shadow-[2px_2px_0px_#FFF]'
                     : 'bg-sky-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]'
-                  : 'border-transparent text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
+                  : darkMode
+                  ? 'border-transparent text-slate-200 hover:text-white hover:bg-slate-800'
+                  : 'border-transparent text-slate-700 hover:text-black hover:bg-amber-100'
               }`}
             >
               <RotateCcw className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -524,7 +540,9 @@ export default function App() {
                   ? darkMode
                     ? 'bg-yellow-400 text-black border-yellow-300 shadow-[2px_2px_0px_#FFF]'
                     : 'bg-lime-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]'
-                  : 'border-transparent text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
+                  : darkMode
+                  ? 'border-transparent text-slate-200 hover:text-white hover:bg-slate-800'
+                  : 'border-transparent text-slate-700 hover:text-black hover:bg-amber-100'
               }`}
             >
               <FileText className="w-3.5 h-3.5 stroke-[2.5]" />
@@ -909,7 +927,7 @@ export default function App() {
                   </div>
 
                   {/* Question Stem */}
-                  <div className="text-base sm:text-lg font-black leading-relaxed tracking-tight">
+                  <div className={`text-base sm:text-lg font-black leading-relaxed tracking-tight ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                     {currentQ.question}
                   </div>
 
@@ -1034,10 +1052,10 @@ export default function App() {
                       {/* Tab 1: Intuition */}
                       {activeSolutionTab === 'intuition' && (
                         <div className="space-y-2">
-                          <span className="text-xs font-black uppercase text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
-                            <Lightbulb className="w-4 h-4" /> Beginner Mental Model
+                          <span className={`text-xs font-black uppercase flex items-center gap-1.5 ${darkMode ? 'text-amber-400' : 'text-amber-700'}`}>
+                            <Lightbulb className="w-4 h-4 text-amber-500" /> Beginner Mental Model
                           </span>
-                          <p className="text-xs sm:text-sm font-medium leading-relaxed">
+                          <p className={`text-xs sm:text-sm font-semibold leading-relaxed ${darkMode ? 'text-amber-100' : 'text-slate-800'}`}>
                             {currentQ.beginnerConcept}
                           </p>
                         </div>
@@ -1047,12 +1065,14 @@ export default function App() {
                       {activeSolutionTab === 'visual' && (
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-black uppercase text-sky-600 dark:text-sky-400 flex items-center gap-1.5">
+                            <span className={`text-xs font-black uppercase flex items-center gap-1.5 ${darkMode ? 'text-cyan-400' : 'text-sky-700'}`}>
                               <Workflow className="w-4 h-4" /> Execution Architecture & Data Flow
                             </span>
                             <button
                               onClick={() => handleCopyCode(currentQ.visualDiagram, currentQ.id)}
-                              className="text-[11px] px-2.5 py-1 rounded-xl border-2 border-black bg-white dark:bg-slate-800 text-black dark:text-white font-black neo-btn"
+                              className={`text-[11px] px-2.5 py-1 rounded-xl border-2 font-black neo-btn ${
+                                darkMode ? 'border-slate-700 bg-slate-800 text-cyan-300' : 'border-black bg-white text-black'
+                              }`}
                             >
                               {copiedCodeId === currentQ.id ? 'Copied!' : 'Copy Blueprint'}
                             </button>
@@ -1068,10 +1088,10 @@ export default function App() {
                       {/* Tab 3: Technical Explanation */}
                       {activeSolutionTab === 'technical' && (
                         <div className="space-y-2">
-                          <span className="text-xs font-black uppercase text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
-                            <Cpu className="w-4 h-4" /> Deep Technical Rationale
+                          <span className={`text-xs font-black uppercase flex items-center gap-1.5 ${darkMode ? 'text-emerald-400' : 'text-emerald-800'}`}>
+                            <Cpu className="w-4 h-4 text-emerald-500" /> Deep Technical Rationale
                           </span>
-                          <p className="text-xs sm:text-sm font-medium leading-relaxed">
+                          <p className={`text-xs sm:text-sm font-medium leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-800'}`}>
                             {currentQ.explanation}
                           </p>
                         </div>
@@ -1080,10 +1100,10 @@ export default function App() {
                       {/* Tab 4: Client Pro-Tip */}
                       {activeSolutionTab === 'tip' && (
                         <div className="space-y-2">
-                          <span className="text-xs font-black uppercase text-orange-600 dark:text-orange-400 flex items-center gap-1.5">
-                            <Award className="w-4 h-4" /> Client Round Strategy
+                          <span className={`text-xs font-black uppercase flex items-center gap-1.5 ${darkMode ? 'text-orange-400' : 'text-orange-700'}`}>
+                            <Award className="w-4 h-4 text-orange-500" /> Client Round Strategy
                           </span>
-                          <p className="text-xs sm:text-sm font-medium leading-relaxed">
+                          <p className={`text-xs sm:text-sm font-medium leading-relaxed ${darkMode ? 'text-orange-100' : 'text-slate-800'}`}>
                             {currentQ.interviewTip}
                           </p>
                         </div>
@@ -1130,29 +1150,33 @@ export default function App() {
           <div className="space-y-6">
             {/* Banner */}
             <div className={`p-6 sm:p-8 rounded-3xl border-[2.5px] ${
-              darkMode ? 'bg-slate-900 border-slate-700 shadow-[5px_5px_0px_#0284c7]' : 'bg-emerald-100 border-black shadow-[5px_5px_0px_#000000]'
+              darkMode ? 'bg-slate-900 border-slate-700 text-slate-100 shadow-[5px_5px_0px_#0284c7]' : 'bg-emerald-100 border-black text-black shadow-[5px_5px_0px_#000000]'
             }`}>
               <div className="max-w-3xl space-y-2">
                 <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-black text-white border border-black">
                   Core Architecture Blueprints
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-black dark:text-white">
+                <h2 className={`text-2xl sm:text-3xl font-black tracking-tight ${darkMode ? 'text-white' : 'text-black'}`}>
                   Concept Explanation & Visualization Hub
                 </h2>
-                <p className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 leading-relaxed">
+                <p className={`text-xs sm:text-sm font-bold leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-800'}`}>
                   Clear, zero-jargon mental models paired with complete ASCII execution blueprints covering Medallion architecture, Kimball dimensional modeling, SCD Types 1-6, and Delta Lake internals.
                 </p>
               </div>
 
               {/* Search */}
               <div className="mt-5 max-w-md relative">
-                <Search className="w-4 h-4 absolute left-3.5 top-3 text-slate-500" />
+                <Search className="w-4 h-4 absolute left-3.5 top-3 text-slate-400" />
                 <input
                   type="text"
                   placeholder="Search architecture concepts..."
                   value={conceptSearch}
                   onChange={(e) => setConceptSearch(e.target.value)}
-                  className="w-full pl-10 pr-3 py-2.5 text-xs font-bold rounded-2xl border-2 border-black bg-white text-black shadow-[3px_3px_0px_#000] focus:outline-none"
+                  className={`w-full pl-10 pr-3 py-2.5 text-xs font-bold rounded-2xl border-2 transition focus:outline-none ${
+                    darkMode
+                      ? 'bg-slate-950 border-slate-700 text-slate-100 placeholder:text-slate-400 shadow-[3px_3px_0px_#0284c7] focus:border-cyan-400'
+                      : 'border-2 border-black bg-white text-black shadow-[3px_3px_0px_#000] placeholder:text-slate-400'
+                  }`}
                 />
               </div>
             </div>
@@ -1167,11 +1191,11 @@ export default function App() {
                     className={`rounded-3xl border-[2.5px] transition-all overflow-hidden ${
                       isExpanded
                         ? darkMode
-                          ? 'bg-slate-900 border-cyan-400 shadow-[6px_6px_0px_#0284c7]'
-                          : 'bg-white border-black shadow-[6px_6px_0px_#000000]'
+                          ? 'bg-slate-900 border-cyan-400 text-slate-100 shadow-[6px_6px_0px_#0284c7]'
+                          : 'bg-white border-black text-slate-900 shadow-[6px_6px_0px_#000000]'
                         : darkMode
-                        ? 'bg-slate-900/80 border-slate-700 shadow-[3px_3px_0px_#0284c7]'
-                        : 'bg-white border-black shadow-[3px_3px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5'
+                        ? 'bg-slate-900 border-slate-700 text-slate-100 shadow-[3px_3px_0px_#0284c7] hover:border-slate-500'
+                        : 'bg-white border-black text-slate-900 shadow-[3px_3px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5'
                     }`}
                   >
                     <div
@@ -1190,14 +1214,16 @@ export default function App() {
                             {concept.difficulty}
                           </span>
                         </div>
-                        <h3 className="text-base sm:text-xl font-black">{concept.title}</h3>
-                        <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">
+                        <h3 className={`text-base sm:text-xl font-black ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                          {concept.title}
+                        </h3>
+                        <p className={`text-xs font-medium leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
                           {concept.summary}
                         </p>
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0">
-                        <span className="text-xs font-black text-black dark:text-white hidden sm:inline">
+                        <span className={`text-xs font-black hidden sm:inline ${darkMode ? 'text-cyan-300' : 'text-black'}`}>
                           {isExpanded ? 'Collapse' : 'Explore'}
                         </span>
                         <div className="w-8 h-8 rounded-xl bg-amber-300 border-2 border-black flex items-center justify-center text-black">
@@ -1207,14 +1233,16 @@ export default function App() {
                     </div>
 
                     {isExpanded && (
-                      <div className="p-6 pt-0 space-y-6 border-t-2 border-black/10 dark:border-slate-800">
+                      <div className={`p-6 pt-0 space-y-6 border-t-2 ${darkMode ? 'border-slate-800' : 'border-black/10'}`}>
                         {/* 1. Beginner Intuition */}
-                        <div className="p-4 rounded-2xl border-2 border-black bg-amber-100 dark:bg-amber-950/40 text-black dark:text-amber-200 space-y-1.5 shadow-[3px_3px_0px_#000]">
-                          <div className="flex items-center gap-2 font-black text-xs uppercase">
-                            <Lightbulb className="w-4 h-4 text-amber-600" />
+                        <div className={`p-4 rounded-2xl border-2 space-y-1.5 shadow-[3px_3px_0px_#000] ${
+                          darkMode ? 'bg-amber-950/60 border-amber-400 text-amber-100' : 'bg-amber-100 border-black text-black'
+                        }`}>
+                          <div className={`flex items-center gap-2 font-black text-xs uppercase ${darkMode ? 'text-amber-300' : 'text-amber-700'}`}>
+                            <Lightbulb className="w-4 h-4 text-amber-500" />
                             <span>Beginner Mental Model (Plain-English Analogy)</span>
                           </div>
-                          <p className="text-xs sm:text-sm font-medium leading-relaxed">
+                          <p className={`text-xs sm:text-sm font-semibold leading-relaxed ${darkMode ? 'text-amber-100' : 'text-slate-900'}`}>
                             {concept.beginnerAnalogy}
                           </p>
                         </div>
@@ -1222,32 +1250,38 @@ export default function App() {
                         {/* 2. Visual Blueprint */}
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-black uppercase text-sky-600 dark:text-sky-400 flex items-center gap-1.5">
+                            <span className={`text-xs font-black uppercase flex items-center gap-1.5 ${darkMode ? 'text-cyan-400' : 'text-sky-700'}`}>
                               <Workflow className="w-4 h-4" /> Architectural Blueprint & Data Flow
                             </span>
                             <button
                               onClick={() => handleCopyCode(concept.visualDiagram, concept.id)}
-                              className="text-[11px] px-3 py-1 rounded-xl border-2 border-black bg-white dark:bg-slate-800 font-black neo-btn"
+                              className={`text-[11px] px-3 py-1 rounded-xl border-2 font-black neo-btn ${
+                                darkMode ? 'border-slate-700 bg-slate-800 text-cyan-300' : 'border-black bg-white text-black'
+                              }`}
                             >
                               {copiedCodeId === concept.id ? 'Copied!' : 'Copy Blueprint'}
                             </button>
                           </div>
-                          <pre className="p-5 rounded-2xl text-[11px] sm:text-xs font-mono border-2 border-black bg-slate-900 text-cyan-200 overflow-x-auto shadow-[4px_4px_0px_#000]">
+                          <pre className="p-5 rounded-2xl text-[11px] sm:text-xs font-mono border-2 border-black bg-slate-950 text-cyan-200 overflow-x-auto shadow-[4px_4px_0px_#000]">
                             {concept.visualDiagram}
                           </pre>
                         </div>
 
                         {/* 3. Key Rules */}
                         <div className="space-y-2">
-                          <h4 className="text-xs font-black uppercase">Key Rules to Memorize</h4>
+                          <h4 className={`text-xs font-black uppercase ${darkMode ? 'text-slate-200' : 'text-slate-900'}`}>
+                            Key Rules to Memorize
+                          </h4>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             {concept.keyRules.map((rule, idx) => (
                               <div
                                 key={idx}
-                                className="p-3.5 rounded-2xl border-2 border-black bg-slate-50 dark:bg-slate-950 text-xs font-bold flex items-start gap-2 shadow-[2px_2px_0px_#000]"
+                                className={`p-3.5 rounded-2xl border-2 text-xs font-bold flex items-start gap-2 shadow-[2px_2px_0px_#000] ${
+                                  darkMode ? 'border-slate-700 bg-slate-950 text-slate-100' : 'border-black bg-slate-50 text-slate-900'
+                                }`}
                               >
-                                <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                                <span>{rule}</span>
+                                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                                <span className="leading-relaxed">{rule}</span>
                               </div>
                             ))}
                           </div>
@@ -1255,17 +1289,19 @@ export default function App() {
 
                         {/* 4. Interview Trap & Code */}
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                          <div className="p-4 rounded-2xl border-2 border-black bg-rose-100 dark:bg-rose-950/40 text-black dark:text-rose-200 space-y-1.5 shadow-[3px_3px_0px_#000]">
-                            <div className="flex items-center gap-2 font-black text-xs uppercase text-rose-600">
-                              <ShieldAlert className="w-4 h-4" />
+                          <div className={`p-4 rounded-2xl border-2 space-y-1.5 shadow-[3px_3px_0px_#000] ${
+                            darkMode ? 'bg-rose-950/60 border-rose-500 text-rose-100' : 'bg-rose-100 border-black text-black'
+                          }`}>
+                            <div className={`flex items-center gap-2 font-black text-xs uppercase ${darkMode ? 'text-rose-300' : 'text-rose-700'}`}>
+                              <ShieldAlert className="w-4 h-4 text-rose-500" />
                               <span>Client Interview Trap / Anti-Pattern</span>
                             </div>
-                            <p className="text-xs sm:text-sm font-medium leading-relaxed">
+                            <p className={`text-xs sm:text-sm font-semibold leading-relaxed ${darkMode ? 'text-rose-100' : 'text-slate-900'}`}>
                               {concept.interviewGotchas}
                             </p>
                           </div>
 
-                          <div className="p-4 rounded-2xl border-2 border-black bg-slate-900 text-white space-y-2 shadow-[3px_3px_0px_#000]">
+                          <div className={`p-4 rounded-2xl border-2 border-black bg-slate-950 text-white space-y-2 shadow-[3px_3px_0px_#000]`}>
                             <div className="flex items-center justify-between">
                               <span className="text-xs font-black text-slate-400">Implementation Reference</span>
                               <button
@@ -1568,7 +1604,7 @@ export default function App() {
                         </button>
                       </div>
 
-                      <div className="text-base sm:text-lg font-black leading-relaxed">
+                      <div className={`text-base sm:text-lg font-black leading-relaxed ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                         {examQuestions[examCurrentIdx].question}
                       </div>
 
@@ -1582,6 +1618,8 @@ export default function App() {
                               className={`w-full text-left p-4 rounded-2xl border-[2.5px] transition-all flex items-start gap-3.5 neo-btn ${
                                 isSelected
                                   ? 'bg-amber-200 border-black text-black font-black shadow-[4px_4px_0px_#000]'
+                                  : darkMode
+                                  ? 'bg-slate-950 border-slate-700 text-slate-100 hover:border-slate-500 shadow-[3px_3px_0px_#0284c7]'
                                   : 'bg-white border-black text-black shadow-[2.5px_2.5px_0px_#000]'
                               }`}
                             >
@@ -1683,25 +1721,31 @@ export default function App() {
             {/* Flashcard Card */}
             <div
               onClick={() => setIsFlipped(!isFlipped)}
-              className={`min-h-[380px] p-8 rounded-3xl border-[3px] border-black cursor-pointer select-none transition-all duration-200 flex flex-col justify-between ${
+              className={`min-h-[380px] p-8 rounded-3xl border-[3px] cursor-pointer select-none transition-all duration-200 flex flex-col justify-between ${
                 isFlipped
-                  ? 'bg-emerald-100 shadow-[8px_8px_0px_#000000]'
-                  : 'bg-white shadow-[8px_8px_0px_#000000] hover:-translate-x-1 hover:-translate-y-1'
+                  ? darkMode
+                    ? 'bg-emerald-950/80 border-emerald-400 text-emerald-100 shadow-[8px_8px_0px_#10B981]'
+                    : 'bg-emerald-100 border-black text-black shadow-[8px_8px_0px_#000000]'
+                  : darkMode
+                  ? 'bg-slate-900 border-slate-700 text-slate-100 shadow-[8px_8px_0px_#0284c7] hover:border-slate-500'
+                  : 'bg-white border-black text-slate-900 shadow-[8px_8px_0px_#000000] hover:-translate-x-1 hover:-translate-y-1'
               }`}
             >
-              <div className="flex items-center justify-between border-b-2 border-black/10 pb-3">
+              <div className={`flex items-center justify-between border-b-2 pb-3 ${darkMode ? 'border-slate-800' : 'border-black/10'}`}>
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-black px-2.5 py-0.5 rounded-xl bg-amber-300 text-black border border-black shadow-[1.5px_1.5px_0px_#000]">
                     Q{activeFlashcard.num}
                   </span>
-                  <span className="text-xs font-black px-2 py-0.5 rounded-xl bg-slate-100 text-black border border-black">
+                  <span className={`text-xs font-black px-2 py-0.5 rounded-xl border ${
+                    darkMode ? 'bg-slate-800 text-slate-200 border-slate-700' : 'bg-slate-100 text-black border-black'
+                  }`}>
                     {activeFlashcard.category}
                   </span>
                   <span className="text-[10px] font-black px-2 py-0.5 rounded-xl bg-lime-300 text-black border border-black">
                     {activeFlashcard.difficulty}
                   </span>
                 </div>
-                <span className="text-[11px] font-black uppercase text-slate-500">
+                <span className={`text-[11px] font-black uppercase ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
                   {isFlipped ? 'Answer & Mental Model' : 'Question Prompt'}
                 </span>
               </div>
@@ -1710,12 +1754,17 @@ export default function App() {
               <div className="py-6 flex-1 flex flex-col justify-center">
                 {!isFlipped ? (
                   <div className="space-y-4">
-                    <p className="text-lg sm:text-xl font-black leading-relaxed">
+                    <p className={`text-lg sm:text-xl font-black leading-relaxed ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                       {activeFlashcard.question}
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
                       {activeFlashcard.options.map((opt, idx) => (
-                        <div key={idx} className="p-2.5 rounded-xl border-2 border-black bg-slate-50 text-xs font-bold text-black shadow-[2px_2px_0px_#000]">
+                        <div
+                          key={idx}
+                          className={`p-2.5 rounded-xl border-2 text-xs font-bold shadow-[2px_2px_0px_#000] ${
+                            darkMode ? 'border-slate-700 bg-slate-950 text-slate-100' : 'border-black bg-slate-50 text-black'
+                          }`}
+                        >
                           <span className="font-black mr-1.5">{['A', 'B', 'C', 'D'][idx]})</span>
                           {opt}
                         </div>
@@ -1730,17 +1779,17 @@ export default function App() {
                         Answer: Option {['A', 'B', 'C', 'D'][activeFlashcard.correct]} ({activeFlashcard.options[activeFlashcard.correct]})
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm font-bold text-slate-800 leading-relaxed">
+                    <p className={`text-xs sm:text-sm font-bold leading-relaxed ${darkMode ? 'text-amber-200' : 'text-slate-800'}`}>
                       💡 {activeFlashcard.beginnerConcept}
                     </p>
-                    <p className="text-xs font-medium text-slate-700 leading-relaxed">
+                    <p className={`text-xs font-medium leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
                       🎯 {activeFlashcard.explanation}
                     </p>
                   </div>
                 )}
               </div>
 
-              <div className="flex items-center justify-between text-xs font-black text-slate-500 pt-3 border-t-2 border-black/10">
+              <div className={`flex items-center justify-between text-xs font-black pt-3 border-t-2 ${darkMode ? 'border-slate-800 text-slate-400' : 'border-black/10 text-slate-500'}`}>
                 <span>Space / Enter to Flip</span>
                 <span>[← / →] Navigate</span>
               </div>
@@ -1754,7 +1803,9 @@ export default function App() {
                   setIsFlipped(false);
                 }}
                 disabled={flashcardIdx === 0}
-                className="px-5 py-2.5 rounded-2xl border-2 border-black bg-white text-black font-black text-xs neo-btn shadow-[3px_3px_0px_#000]"
+                className={`px-5 py-2.5 rounded-2xl border-2 font-black text-xs neo-btn shadow-[3px_3px_0px_#000] ${
+                  darkMode ? 'border-slate-700 bg-slate-900 text-slate-100' : 'border-black bg-white text-black'
+                }`}
               >
                 <ChevronLeft className="w-4 h-4" /> Previous
               </button>
@@ -1778,10 +1829,10 @@ export default function App() {
         {mode === 'cheatsheet' && (
           <div className="space-y-6">
             <div className={`p-6 sm:p-8 rounded-3xl border-[2.5px] ${
-              darkMode ? 'bg-slate-900 border-slate-700 shadow-[5px_5px_0px_#0284c7]' : 'bg-yellow-100 border-black shadow-[5px_5px_0px_#000]'
+              darkMode ? 'bg-slate-900 border-slate-700 text-slate-100 shadow-[5px_5px_0px_#0284c7]' : 'bg-yellow-100 border-black text-black shadow-[5px_5px_0px_#000]'
             }`}>
-              <h2 className="text-2xl font-black text-black dark:text-white">Pre-Interview Quick Cheatsheet</h2>
-              <p className="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 mt-1">
+              <h2 className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>Pre-Interview Quick Cheatsheet</h2>
+              <p className={`text-xs sm:text-sm font-bold mt-1 ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
                 High-yield formula summaries, ACID properties, join mechanics, and Kimball dimensional modeling rules.
               </p>
             </div>
@@ -1791,14 +1842,14 @@ export default function App() {
                 <div
                   key={idx}
                   className={`p-6 rounded-3xl border-[2.5px] space-y-3 ${
-                    darkMode ? 'bg-slate-900 border-slate-700 shadow-[4px_4px_0px_#0284c7]' : 'bg-white border-black shadow-[4px_4px_0px_#000]'
+                    darkMode ? 'bg-slate-900 border-slate-700 text-slate-100 shadow-[4px_4px_0px_#0284c7]' : 'bg-white border-black text-black shadow-[4px_4px_0px_#000]'
                   }`}
                 >
                   <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-amber-300 text-black border border-black shadow-[1.5px_1.5px_0px_#000] inline-block">
                     {item.tag}
                   </span>
-                  <h3 className="text-base font-black text-black dark:text-white">{item.title}</h3>
-                  <div className="text-xs leading-relaxed font-mono whitespace-pre-line text-slate-700 dark:text-slate-300">
+                  <h3 className={`text-base font-black ${darkMode ? 'text-white' : 'text-black'}`}>{item.title}</h3>
+                  <div className={`text-xs leading-relaxed font-mono whitespace-pre-line ${darkMode ? 'text-slate-200' : 'text-slate-800'}`}>
                     {item.content}
                   </div>
                 </div>
