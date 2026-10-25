@@ -51,16 +51,17 @@
 .scrollbar-thin {
   scrollbar-width: thin;
   scrollbar-color: rgba(100, 116, 139, 0.3) transparent;
+  -webkit-overflow-scrolling: touch;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
   background: transparent;
-  margin: 6px 0;
+  margin: 4px 0;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
@@ -73,7 +74,29 @@
   background: rgba(100, 116, 139, 0.7);
 }
 
+/* Hide scrollbars cleanly on mobile while keeping smooth momentum scroll */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Fast touch response on modern mobile touchscreens (iPhone / Android) */
+button, a, input, select {
+  touch-action: manipulation;
+}
+
+/* iOS Safe Area Padding */
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
 /* 3D Flashcard flip */
 .perspective-1000 {
   perspective: 1000px;
 }
+

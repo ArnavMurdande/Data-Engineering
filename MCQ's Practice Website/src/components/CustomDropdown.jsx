@@ -124,8 +124,8 @@ export default function CustomDropdown({
               : 'bg-white border-black text-slate-900 shadow-[6px_6px_0px_#000000]'
           }`}
         >
-          {/* Inner scroll container with padding and rounded scrollbar */}
-          <div className="max-h-72 overflow-y-auto p-2 scrollbar-thin space-y-1">
+          {/* Inner scroll container with padding and touch momentum scrolling */}
+          <div className="max-h-60 sm:max-h-72 overflow-y-auto p-1.5 sm:p-2 no-scrollbar space-y-1 overscroll-contain">
             {options.map((opt, idx) => {
               const optValue = typeof opt === 'object' && opt !== null ? opt.value : opt;
               const optLabel = typeof opt === 'object' && opt !== null ? opt.label : opt;
@@ -142,7 +142,7 @@ export default function CustomDropdown({
                     onChange(optValue);
                     setIsOpen(false);
                   }}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 text-xs sm:text-sm font-bold rounded-xl transition-all duration-100 ${
+                  className={`w-full min-h-[44px] flex items-center justify-between px-3 sm:px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold rounded-xl transition-all duration-100 ${
                     isSelected
                       ? darkMode
                         ? 'bg-cyan-950/80 text-cyan-300 border-2 border-cyan-400 font-black shadow-[2px_2px_0px_#0284c7]'
@@ -152,7 +152,7 @@ export default function CustomDropdown({
                       : 'hover:bg-amber-100 text-slate-800 hover:text-black border-2 border-transparent hover:border-black'
                   }`}
                 >
-                  <div className="flex items-center gap-2.5 truncate min-w-0">
+                  <div className="flex items-center gap-2 sm:gap-2.5 truncate min-w-0">
                     <div
                       className={`w-5 h-5 rounded-lg flex items-center justify-center shrink-0 border-2 ${
                         isSelected
@@ -164,12 +164,12 @@ export default function CustomDropdown({
                     >
                       {isSelected ? <Check className="w-3.5 h-3.5 stroke-[3]" /> : null}
                     </div>
-                    <span className="truncate font-extrabold">{optLabel}</span>
+                    <span className="truncate font-extrabold text-xs sm:text-sm">{optLabel}</span>
                   </div>
 
                   {optCount !== undefined && (
                     <span
-                      className={`text-[10px] px-2.5 py-0.5 rounded-full font-black ml-2 shrink-0 border-2 ${
+                      className={`text-[10px] px-2 sm:px-2.5 py-0.5 rounded-full font-black ml-2 shrink-0 border-2 ${
                         isSelected
                           ? darkMode
                             ? 'bg-cyan-400/20 text-cyan-200 border-cyan-400/40'

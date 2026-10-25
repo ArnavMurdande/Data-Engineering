@@ -73,6 +73,8 @@ export default function App() {
 
   const [showOnlyBookmarks, setShowOnlyBookmarks] = useState(false);
   const [showOnlyMissed, setShowOnlyMissed] = useState(false);
+  const [showMobilePalette, setShowMobilePalette] = useState(false);
+  const [showExamMobilePalette, setShowExamMobilePalette] = useState(false);
 
   const [darkMode, setDarkMode] = useState(() => {
     try {
@@ -428,47 +430,78 @@ export default function App() {
       {/* =========================================
           NEO-BRUTALIST HEADER NAVBAR
           ========================================= */}
-      <header className={`sticky top-0 z-40 border-b-[3px] backdrop-blur-md px-4 py-3.5 transition-colors ${
+      <header className={`sticky top-0 z-40 border-b-[3px] backdrop-blur-md px-3 sm:px-6 py-2.5 sm:py-3.5 transition-colors ${
         darkMode 
           ? 'bg-[#0F172A]/95 border-slate-700 shadow-[0_4px_0_0_#1E293B]' 
           : 'bg-white border-black shadow-[0_4px_0_0_#000000]'
       }`}>
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          {/* Logo & Neo-Brutalist Title */}
-          <div className="flex items-center gap-3">
-            <div className={`w-11 h-11 rounded-2xl flex items-center justify-center font-black transition-all ${
-              darkMode
-                ? 'bg-amber-400 text-black border-2 border-slate-700 shadow-[3px_3px_0px_#0284c7]'
-                : 'bg-amber-300 text-black border-[2.5px] border-black shadow-[3px_3px_0px_#000000]'
-            }`}>
-              <Database className="w-6 h-6 stroke-[2.5]" />
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+          {/* Top row: Brand & Quick Stats & Theme Switcher */}
+          <div className="flex items-center justify-between w-full md:w-auto">
+            {/* Logo & Neo-Brutalist Title */}
+            <div className="flex items-center gap-2.5">
+              <div className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center font-black transition-all ${
+                darkMode
+                  ? 'bg-amber-400 text-black border-2 border-slate-700 shadow-[2.5px_2.5px_0px_#0284c7]'
+                  : 'bg-amber-300 text-black border-[2.5px] border-black shadow-[2.5px_2.5px_0px_#000000]'
+              }`}>
+                <Database className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5]" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h1 className="text-sm sm:text-xl font-black tracking-tight leading-none">
+                    SQL & Databricks Master
+                  </h1>
+                  <span className={`text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border-2 ${
+                    darkMode
+                      ? 'bg-cyan-400 text-black border-slate-700 shadow-[1.5px_1.5px_0px_#0284c7]'
+                      : 'bg-yellow-300 text-black border-black shadow-[1.5px_1.5px_0px_#000000]'
+                  }`}>
+                    200 MCQs
+                  </span>
+                </div>
+                <p className={`text-[11px] font-bold ${darkMode ? 'text-slate-400' : 'text-slate-600'} hidden sm:block mt-0.5`}>
+                  SQL Mastery • Query Optimization • Medallion Lakehouse • Kimball Modeling • SCD Types 1-6
+                </p>
+              </div>
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-base sm:text-xl font-black tracking-tight">
-                  SQL & Databricks Master
-                </h1>
-                <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full border-2 ${
-                  darkMode
-                    ? 'bg-cyan-400 text-black border-slate-700 shadow-[2px_2px_0px_#0284c7]'
-                    : 'bg-yellow-300 text-black border-black shadow-[2px_2px_0px_#000000]'
-                }`}>
-                  200 MCQs
+
+            {/* Right Controls: Stats & Dark Mode */}
+            <div className="flex items-center gap-2">
+              <div className={`flex items-center gap-1.5 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl sm:rounded-2xl border-2 text-[11px] sm:text-xs font-black ${
+                darkMode
+                  ? 'bg-slate-900 border-slate-700 text-amber-300 shadow-[2px_2px_0px_#0284c7]'
+                  : 'bg-amber-100 border-black text-black shadow-[2px_2px_0px_#000000]'
+              }`}>
+                <Flame className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-500 fill-current" />
+                <span>
+                  <span className="sm:hidden">{totalCorrect}/{totalAnswered} ({overallAccuracy}%)</span>
+                  <span className="hidden sm:inline">{totalCorrect}/{totalAnswered} Correct ({overallAccuracy}%)</span>
                 </span>
               </div>
-              <p className={`text-[11px] font-bold ${darkMode ? 'text-slate-400' : 'text-slate-600'} hidden sm:block`}>
-                SQL Mastery • Query Optimization • Medallion Lakehouse • Kimball Modeling • SCD Types 1-6
-              </p>
+
+              <button
+                onClick={() => setDarkMode(!darkMode)}
+                className={`p-2 sm:p-2.5 rounded-xl sm:rounded-2xl border-2 font-black transition-all neo-btn ${
+                  darkMode
+                    ? 'bg-slate-900 border-slate-700 text-amber-400 shadow-[2.5px_2.5px_0px_#eab308]'
+                    : 'bg-white border-black text-black shadow-[2.5px_2.5px_0px_#000000] hover:bg-amber-100'
+                }`}
+                title="Toggle Dark / Light Mode"
+                aria-label="Toggle Theme"
+              >
+                {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              </button>
             </div>
           </div>
 
-          {/* Navigation Mode Tabs with Neo-Brutalist Pill Switches */}
-          <div className={`flex items-center p-1.5 rounded-2xl gap-1.5 overflow-x-auto max-w-full border-2 ${
-            darkMode ? 'bg-slate-900 border-slate-700 shadow-[2px_2px_0px_#0284c7]' : 'bg-slate-100 border-black shadow-[3px_3px_0px_#000000]'
+          {/* Navigation Mode Tabs with Neo-Brutalist Pill Switches (Touch scrollable, hidden scrollbars) */}
+          <div className={`flex items-center p-1 sm:p-1.5 rounded-xl sm:rounded-2xl gap-1 sm:gap-1.5 overflow-x-auto no-scrollbar max-w-full border-2 overscroll-contain ${
+            darkMode ? 'bg-slate-900 border-slate-700 shadow-[2px_2px_0px_#0284c7]' : 'bg-slate-100 border-black shadow-[2.5px_2.5px_0px_#000000]'
           }`}>
             <button
               onClick={() => setMode('practice')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
+              className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
                 mode === 'practice'
                   ? darkMode
                     ? 'bg-cyan-400 text-black border-cyan-300 shadow-[2px_2px_0px_#FFF]'
@@ -479,12 +512,12 @@ export default function App() {
               }`}
             >
               <BookOpen className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>Practice & Learn</span>
+              <span><span className="sm:hidden">Practice</span><span className="hidden sm:inline">Practice & Learn</span></span>
             </button>
 
             <button
               onClick={() => setMode('concepts')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
+              className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
                 mode === 'concepts'
                   ? darkMode
                     ? 'bg-emerald-400 text-black border-emerald-300 shadow-[2px_2px_0px_#FFF]'
@@ -495,15 +528,15 @@ export default function App() {
               }`}
             >
               <Layers className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>Concept Hub</span>
-              <span className={`text-[9px] px-1.5 py-0.5 rounded-full font-black border ${
+              <span><span className="sm:hidden">Concepts</span><span className="hidden sm:inline">Concept Hub</span></span>
+              <span className={`text-[9px] px-1.5 py-0.2 rounded-full font-black border ${
                 darkMode ? 'bg-cyan-400 text-black border-cyan-300' : 'bg-black text-white border-black'
               }`}>NEW</span>
             </button>
 
             <button
               onClick={() => setMode('exam')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
+              className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
                 mode === 'exam'
                   ? darkMode
                     ? 'bg-orange-400 text-black border-orange-300 shadow-[2px_2px_0px_#FFF]'
@@ -514,12 +547,12 @@ export default function App() {
               }`}
             >
               <Timer className="w-3.5 h-3.5 stroke-[2.5]" />
-              <span>Exam Simulator</span>
+              <span><span className="sm:hidden">Exam</span><span className="hidden sm:inline">Exam Simulator</span></span>
             </button>
 
             <button
               onClick={() => setMode('flashcards')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
+              className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
                 mode === 'flashcards'
                   ? darkMode
                     ? 'bg-sky-400 text-black border-sky-300 shadow-[2px_2px_0px_#FFF]'
@@ -535,7 +568,7 @@ export default function App() {
 
             <button
               onClick={() => setMode('cheatsheet')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
+              className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
                 mode === 'cheatsheet'
                   ? darkMode
                     ? 'bg-yellow-400 text-black border-yellow-300 shadow-[2px_2px_0px_#FFF]'
@@ -547,32 +580,6 @@ export default function App() {
             >
               <FileText className="w-3.5 h-3.5 stroke-[2.5]" />
               <span>Cheatsheet</span>
-            </button>
-          </div>
-
-          {/* Right Header Stats & Mode Toggle */}
-          <div className="flex items-center gap-2.5">
-            <div className={`hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-2xl border-2 text-xs font-black ${
-              darkMode
-                ? 'bg-slate-900 border-slate-700 text-amber-300 shadow-[2px_2px_0px_#0284c7]'
-                : 'bg-amber-100 border-black text-black shadow-[2px_2px_0px_#000000]'
-            }`}>
-              <Flame className="w-4 h-4 text-orange-500 fill-current" />
-              <span>
-                {totalCorrect}/{totalAnswered} Correct ({overallAccuracy}%)
-              </span>
-            </div>
-
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`p-2.5 rounded-2xl border-2 font-black transition-all neo-btn ${
-                darkMode
-                  ? 'bg-slate-900 border-slate-700 text-amber-400 shadow-[3px_3px_0px_#eab308]'
-                  : 'bg-white border-black text-black shadow-[3px_3px_0px_#000000] hover:bg-amber-100'
-              }`}
-              title="Toggle Dark / Light Mode"
-            >
-              {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
           </div>
         </div>
@@ -587,9 +594,43 @@ export default function App() {
             MODE 1: PRACTICE & LEARN MODE
             ========================================= */}
         {mode === 'practice' && (
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            {/* Left Sidebar: Filters & Question Palette */}
-            <div className="lg:col-span-1 space-y-5">
+          <div className="space-y-4 lg:space-y-0">
+            {/* Mobile-only Quick Status & Palette Toggle Bar */}
+            <div className={`lg:hidden p-3.5 rounded-2xl border-2 flex items-center justify-between gap-2.5 transition-all mb-4 ${
+              darkMode
+                ? 'bg-slate-900 border-slate-700 text-slate-100 shadow-[3px_3px_0px_#0284c7]'
+                : 'bg-white border-black text-slate-900 shadow-[3px_3px_0px_#000000]'
+            }`}>
+              <div className="flex items-center gap-2 truncate">
+                <span className={`text-xs font-black px-2.5 py-0.5 rounded-xl border-2 shrink-0 ${
+                  darkMode ? 'bg-cyan-400 text-black border-slate-700' : 'bg-yellow-300 text-black border-black shadow-[1.5px_1.5px_0px_#000]'
+                }`}>
+                  Q{currentQ ? currentQ.num : 1}/200
+                </span>
+                <span className="text-xs font-black truncate">
+                  {currentQ?.category || "Practice"}
+                </span>
+              </div>
+
+              <button
+                onClick={() => setShowMobilePalette(!showMobilePalette)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black border-2 shrink-0 transition-all neo-btn ${
+                  showMobilePalette
+                    ? 'bg-amber-300 text-black border-black shadow-[2px_2px_0px_#000]'
+                    : darkMode
+                    ? 'bg-slate-950 border-slate-700 text-cyan-300 hover:text-white'
+                    : 'bg-amber-100 border-black text-black shadow-[2px_2px_0px_#000]'
+                }`}
+              >
+                <ListFilter className="w-3.5 h-3.5" />
+                <span>{showMobilePalette ? 'Close' : 'Palette (200)'}</span>
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${showMobilePalette ? 'rotate-180' : ''}`} />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+              {/* Left Sidebar: Filters & Question Palette (Permanent on laptop lg:block, toggled on mobile) */}
+              <div className={`${showMobilePalette ? 'block' : 'hidden lg:block'} lg:col-span-1 space-y-5 order-2 lg:order-1`}>
               {/* Filter Card */}
               <div className={`p-5 rounded-3xl border-[2.5px] space-y-4 ${
                 darkMode ? 'bg-slate-900 border-slate-700 shadow-[4px_4px_0px_#0284c7]' : 'bg-white border-black shadow-[4px_4px_0px_#000000]'
@@ -805,6 +846,7 @@ export default function App() {
                         key={q.id}
                         onClick={() => {
                           setCurrentIndex(idx);
+                          setShowMobilePalette(false);
                           questionCardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }}
                         className={`h-9 rounded-xl text-xs font-black flex items-center justify-center relative transition-all neo-btn ${btnClass}`}
@@ -825,7 +867,7 @@ export default function App() {
             </div>
 
             {/* Active Question Main Card */}
-            <div className="lg:col-span-3 space-y-4" ref={questionCardRef}>
+            <div className="lg:col-span-3 space-y-4 order-1 lg:order-2" ref={questionCardRef}>
               {filteredQuestions.length === 0 ? (
                 <div className={`p-12 text-center rounded-3xl border-[2.5px] space-y-4 ${
                   darkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-black shadow-[4px_4px_0px_#000]'
@@ -1000,35 +1042,35 @@ export default function App() {
                         </div>
 
                         {/* Tabs */}
-                        <div className="flex items-center gap-1.5 p-1 rounded-2xl border-2 border-black bg-white dark:bg-slate-900 dark:border-slate-700">
+                        <div className="grid grid-cols-2 sm:flex items-center gap-1.5 p-1 rounded-2xl border-2 border-black bg-white dark:bg-slate-900 dark:border-slate-700">
                           <button
                             onClick={() => setActiveSolutionTab('intuition')}
-                            className={`px-3 py-1 text-xs font-black rounded-xl transition ${
-                              activeSolutionTab === 'intuition' ? 'bg-amber-300 text-black border border-black' : 'text-slate-600 dark:text-slate-400'
+                            className={`px-3 py-1.5 text-xs font-black rounded-xl transition ${
+                              activeSolutionTab === 'intuition' ? 'bg-amber-300 text-black border border-black shadow-[1.5px_1.5px_0px_#000]' : 'text-slate-600 dark:text-slate-400'
                             }`}
                           >
                             💡 Intuition
                           </button>
                           <button
                             onClick={() => setActiveSolutionTab('visual')}
-                            className={`px-3 py-1 text-xs font-black rounded-xl transition ${
-                              activeSolutionTab === 'visual' ? 'bg-sky-300 text-black border border-black' : 'text-slate-600 dark:text-slate-400'
+                            className={`px-3 py-1.5 text-xs font-black rounded-xl transition ${
+                              activeSolutionTab === 'visual' ? 'bg-sky-300 text-black border border-black shadow-[1.5px_1.5px_0px_#000]' : 'text-slate-600 dark:text-slate-400'
                             }`}
                           >
                             📐 Blueprint
                           </button>
                           <button
                             onClick={() => setActiveSolutionTab('technical')}
-                            className={`px-3 py-1 text-xs font-black rounded-xl transition ${
-                              activeSolutionTab === 'technical' ? 'bg-emerald-300 text-black border border-black' : 'text-slate-600 dark:text-slate-400'
+                            className={`px-3 py-1.5 text-xs font-black rounded-xl transition ${
+                              activeSolutionTab === 'technical' ? 'bg-emerald-300 text-black border border-black shadow-[1.5px_1.5px_0px_#000]' : 'text-slate-600 dark:text-slate-400'
                             }`}
                           >
                             🎯 Technical
                           </button>
                           <button
                             onClick={() => setActiveSolutionTab('tip')}
-                            className={`px-3 py-1 text-xs font-black rounded-xl transition ${
-                              activeSolutionTab === 'tip' ? 'bg-orange-300 text-black border border-black' : 'text-slate-600 dark:text-slate-400'
+                            className={`px-3 py-1.5 text-xs font-black rounded-xl transition ${
+                              activeSolutionTab === 'tip' ? 'bg-orange-300 text-black border border-black shadow-[1.5px_1.5px_0px_#000]' : 'text-slate-600 dark:text-slate-400'
                             }`}
                           >
                             💼 Client Tip
@@ -1071,17 +1113,20 @@ export default function App() {
                             <button
                               onClick={() => handleCopyCode(currentQ.visualDiagram, currentQ.id)}
                               className={`text-[11px] px-2.5 py-1 rounded-xl border-2 font-black neo-btn ${
-                                darkMode ? 'border-slate-700 bg-slate-800 text-cyan-300' : 'border-black bg-white text-black'
+                                darkMode ? 'border-slate-700 bg-slate-800 text-cyan-300' : 'border-black bg-white text-black shadow-[1.5px_1.5px_0px_#000]'
                               }`}
                             >
                               {copiedCodeId === currentQ.id ? 'Copied!' : 'Copy Blueprint'}
                             </button>
                           </div>
-                          <pre className={`p-4 rounded-2xl text-[11px] sm:text-xs font-mono border-2 overflow-x-auto leading-relaxed ${
+                          <pre className={`p-4 rounded-2xl text-[10.5px] sm:text-xs font-mono border-2 overflow-x-auto no-scrollbar touch-pan-x leading-relaxed ${
                             darkMode ? 'bg-black border-slate-700 text-cyan-300' : 'bg-slate-900 border-black text-cyan-200 shadow-[3px_3px_0px_#000]'
                           }`}>
                             {currentQ.visualDiagram}
                           </pre>
+                          <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 block sm:hidden">
+                            👉 Swipe diagram horizontally to explore full architecture
+                          </span>
                         </div>
                       )}
 
@@ -1112,35 +1157,72 @@ export default function App() {
                   )}
 
                   {/* Navigation Bar */}
-                  <div className="flex items-center justify-between pt-4 border-t-2 border-black/10 dark:border-slate-800">
-                    <button
-                      onClick={handlePrev}
-                      disabled={currentIndex === 0}
-                      className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-black border-2 transition-all neo-btn ${
-                        currentIndex === 0
-                          ? 'opacity-40 cursor-not-allowed bg-slate-200 border-slate-400'
-                          : 'bg-white border-black text-black shadow-[3px_3px_0px_#000]'
-                      }`}
-                    >
-                      <ChevronLeft className="w-4 h-4" /> Previous
-                    </button>
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t-2 border-black/10 dark:border-slate-800">
+                    <div className="grid grid-cols-2 gap-3 w-full sm:w-auto">
+                      <button
+                        onClick={handlePrev}
+                        disabled={currentIndex === 0}
+                        className={`flex items-center justify-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-black border-2 transition-all select-none ${
+                          currentIndex === 0
+                            ? darkMode
+                              ? 'bg-slate-900 border-slate-800 text-slate-500 cursor-not-allowed opacity-50 shadow-none'
+                              : 'bg-slate-100 border-slate-300 text-slate-400 cursor-not-allowed opacity-50 shadow-none'
+                            : darkMode
+                            ? 'bg-slate-800 border-slate-700 text-slate-100 shadow-[2.5px_2.5px_0px_#0284c7] hover:bg-slate-700 hover:border-slate-500 neo-btn'
+                            : 'bg-white border-black text-black shadow-[3px_3px_0px_#000000] hover:bg-amber-50 neo-btn'
+                        }`}
+                        title={currentIndex === 0 ? "You are on the first question" : "Previous Question (Arrow Left)"}
+                      >
+                        <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
+                        <span>Previous</span>
+                      </button>
 
-                    <span className="text-xs font-bold text-slate-500 hidden sm:inline">
+                      <button
+                        onClick={handleNext}
+                        disabled={currentIndex === filteredQuestions.length - 1}
+                        className={`flex items-center justify-center gap-2 px-6 py-2.5 rounded-2xl text-xs font-black border-2 transition-all select-none ${
+                          currentIndex === filteredQuestions.length - 1
+                            ? darkMode
+                              ? 'bg-slate-900 border-slate-800 text-slate-500 cursor-not-allowed opacity-50 shadow-none'
+                              : 'bg-slate-100 border-slate-300 text-slate-400 cursor-not-allowed opacity-50 shadow-none'
+                            : darkMode
+                            ? 'bg-amber-400 text-black border-slate-700 shadow-[3px_3px_0px_#FFF] neo-btn hover:bg-amber-300'
+                            : 'bg-amber-300 text-black border-black shadow-[3px_3px_0px_#000000] neo-btn hover:bg-amber-400'
+                        }`}
+                        title="Next Question (Arrow Right)"
+                      >
+                        <span>Next</span>
+                        <ChevronRight className="w-4 h-4 stroke-[2.5]" />
+                      </button>
+                    </div>
+
+                    <span className="text-xs font-bold text-slate-500 dark:text-slate-400 hidden lg:inline">
                       Shortcuts: [1-4] Select • [←/→] Navigate • [S] Star • [E] Solution
                     </span>
-
-                    <button
-                      onClick={handleNext}
-                      disabled={currentIndex === filteredQuestions.length - 1}
-                      className="flex items-center gap-2 px-6 py-2.5 rounded-2xl text-xs font-black bg-amber-300 text-black border-2 border-black shadow-[3px_3px_0px_#000] neo-btn"
-                    >
-                      Next <ChevronRight className="w-4 h-4" />
-                    </button>
                   </div>
+
+                  {/* Mobile Quick Link to open palette if collapsed */}
+                  {!showMobilePalette && (
+                    <div className="lg:hidden pt-2 text-center">
+                      <button
+                        onClick={() => {
+                          setShowMobilePalette(true);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className={`text-xs font-black px-4 py-2.5 rounded-2xl border-2 transition-all neo-btn inline-flex items-center gap-2 ${
+                          darkMode ? 'bg-slate-900 border-slate-700 text-cyan-300 shadow-[2px_2px_0px_#0284c7]' : 'bg-slate-100 border-black text-black shadow-[2px_2px_0px_#000]'
+                        }`}
+                      >
+                        <ListFilter className="w-3.5 h-3.5" />
+                        <span>Open 200 Questions Palette & Filters</span>
+                      </button>
+                    </div>
+                  )}
                 </div>
               ) : null}
             </div>
           </div>
+        </div>
         )}
 
         {/* =========================================
@@ -1517,9 +1599,9 @@ export default function App() {
             ) : (
               /* Active Exam Screen */
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                <div className="lg:col-span-1 space-y-4">
+                <div className="lg:col-span-1 space-y-4 order-2 lg:order-1">
                   <div className={`p-5 rounded-3xl border-[2.5px] text-center space-y-3 ${
-                    darkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-black shadow-[4px_4px_0px_#000]'
+                    darkMode ? 'bg-slate-900 border-slate-700 shadow-[4px_4px_0px_#0284c7]' : 'bg-white border-black shadow-[4px_4px_0px_#000]'
                   }`}>
                     <div className="flex items-center justify-center gap-2">
                       <Clock className="w-5 h-5 text-amber-500" />
@@ -1540,9 +1622,9 @@ export default function App() {
 
                   {/* Palette */}
                   <div className={`p-4 rounded-3xl border-[2.5px] space-y-3 ${
-                    darkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-black shadow-[4px_4px_0px_#000]'
+                    darkMode ? 'bg-slate-900 border-slate-700 shadow-[4px_4px_0px_#0284c7]' : 'bg-white border-black shadow-[4px_4px_0px_#000]'
                   }`}>
-                    <div className="flex items-center justify-between pb-1 border-b border-black/10">
+                    <div className="flex items-center justify-between pb-1 border-b border-black/10 dark:border-slate-800">
                       <span className="text-xs font-black">Exam Navigator</span>
                       <span className="text-xs font-black">
                         {Object.keys(examAnswers).length} / {examQuestions.length}
@@ -1577,12 +1659,33 @@ export default function App() {
                 </div>
 
                 {/* Question */}
-                <div className="lg:col-span-3 space-y-4">
+                <div className="lg:col-span-3 space-y-4 order-1 lg:order-2">
+                  {/* Mobile Compact Timer Bar on top of question */}
+                  <div className={`lg:hidden p-3.5 rounded-2xl border-2 flex items-center justify-between gap-3 ${
+                    darkMode ? 'bg-slate-900 border-slate-700 text-slate-100 shadow-[3px_3px_0px_#0284c7]' : 'bg-white border-black text-black shadow-[3px_3px_0px_#000]'
+                  }`}>
+                    <div className="flex items-center gap-2">
+                      <Clock className="w-4 h-4 text-amber-500" />
+                      <span className="text-base font-black font-mono">
+                        {formatTime(examTimeLeft)}
+                      </span>
+                    </div>
+                    <span className="text-xs font-black">
+                      {Object.keys(examAnswers).length} / {examQuestions.length} answered
+                    </span>
+                    <button
+                      onClick={() => setShowSubmitModal(true)}
+                      className="px-3 py-1 rounded-xl bg-rose-400 text-black font-black text-xs border border-black shadow-[1.5px_1.5px_0px_#000] neo-btn"
+                    >
+                      Submit
+                    </button>
+                  </div>
+
                   {examQuestions[examCurrentIdx] && (
                     <div className={`p-6 sm:p-8 rounded-3xl border-[2.5px] space-y-6 ${
                       darkMode ? 'bg-slate-900 border-slate-700 shadow-[5px_5px_0px_#0284c7]' : 'bg-white border-black shadow-[5px_5px_0px_#000]'
                     }`}>
-                      <div className="flex items-center justify-between border-b-2 border-black/10 pb-4">
+                      <div className="flex items-center justify-between border-b-2 border-black/10 dark:border-slate-800 pb-4">
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-black px-3 py-1 rounded-xl bg-amber-300 text-black border-2 border-black shadow-[2px_2px_0px_#000]">
                             Question {examCurrentIdx + 1} of {examQuestions.length}
@@ -1636,20 +1739,34 @@ export default function App() {
                         })}
                       </div>
 
-                      <div className="flex items-center justify-between pt-4 border-t-2 border-black/10">
+                      <div className="flex items-center justify-between pt-4 border-t-2 border-black/10 dark:border-slate-800">
                         <button
                           onClick={() => setExamCurrentIdx((prev) => Math.max(0, prev - 1))}
                           disabled={examCurrentIdx === 0}
-                          className="px-5 py-2.5 rounded-2xl text-xs font-black border-2 border-black bg-white text-black shadow-[2px_2px_0px_#000] neo-btn"
+                          className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-black border-2 transition-all select-none ${
+                            examCurrentIdx === 0
+                              ? darkMode
+                                ? 'bg-slate-900 border-slate-800 text-slate-500 cursor-not-allowed opacity-50 shadow-none'
+                                : 'bg-slate-100 border-slate-300 text-slate-400 cursor-not-allowed opacity-50 shadow-none'
+                              : darkMode
+                              ? 'bg-slate-800 border-slate-700 text-slate-100 shadow-[2.5px_2.5px_0px_#0284c7] hover:bg-slate-700 neo-btn'
+                              : 'bg-white border-black text-black shadow-[2.5px_2.5px_0px_#000] hover:bg-amber-50 neo-btn'
+                          }`}
                         >
-                          <ChevronLeft className="w-4 h-4" /> Previous
+                          <ChevronLeft className="w-4 h-4 stroke-[2.5]" /> Previous
                         </button>
                         <button
                           onClick={() => setExamCurrentIdx((prev) => Math.min(examQuestions.length - 1, prev + 1))}
                           disabled={examCurrentIdx === examQuestions.length - 1}
-                          className="px-6 py-2.5 rounded-2xl text-xs font-black bg-amber-300 text-black border-2 border-black shadow-[3px_3px_0px_#000] neo-btn"
+                          className={`flex items-center gap-2 px-6 py-2.5 rounded-2xl text-xs font-black border-2 transition-all select-none ${
+                            examCurrentIdx === examQuestions.length - 1
+                              ? darkMode
+                                ? 'bg-slate-900 border-slate-800 text-slate-500 cursor-not-allowed opacity-50 shadow-none'
+                                : 'bg-slate-100 border-slate-300 text-slate-400 cursor-not-allowed opacity-50 shadow-none'
+                              : 'bg-amber-300 text-black border-2 border-black shadow-[3px_3px_0px_#000] neo-btn hover:bg-amber-400'
+                          }`}
                         >
-                          Next <ChevronRight className="w-4 h-4" />
+                          Next <ChevronRight className="w-4 h-4 stroke-[2.5]" />
                         </button>
                       </div>
                     </div>
@@ -1796,18 +1913,24 @@ export default function App() {
             </div>
 
             {/* Navigation */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between gap-3">
               <button
                 onClick={() => {
                   setFlashcardIdx((prev) => Math.max(0, prev - 1));
                   setIsFlipped(false);
                 }}
                 disabled={flashcardIdx === 0}
-                className={`px-5 py-2.5 rounded-2xl border-2 font-black text-xs neo-btn shadow-[3px_3px_0px_#000] ${
-                  darkMode ? 'border-slate-700 bg-slate-900 text-slate-100' : 'border-black bg-white text-black'
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl border-2 font-black text-xs transition-all select-none ${
+                  flashcardIdx === 0
+                    ? darkMode
+                      ? 'bg-slate-900 border-slate-800 text-slate-500 cursor-not-allowed opacity-50 shadow-none'
+                      : 'bg-slate-100 border-slate-300 text-slate-400 cursor-not-allowed opacity-50 shadow-none'
+                    : darkMode
+                    ? 'border-slate-700 bg-slate-800 text-slate-100 shadow-[2.5px_2.5px_0px_#0284c7] hover:bg-slate-700 neo-btn'
+                    : 'border-black bg-white text-black shadow-[3px_3px_0px_#000] hover:bg-amber-50 neo-btn'
                 }`}
               >
-                <ChevronLeft className="w-4 h-4" /> Previous
+                <ChevronLeft className="w-4 h-4 stroke-[2.5]" /> Previous
               </button>
               <button
                 onClick={() => {
@@ -1815,9 +1938,15 @@ export default function App() {
                   setIsFlipped(false);
                 }}
                 disabled={flashcardIdx === QUESTION_BANK.length - 1}
-                className="px-6 py-2.5 rounded-2xl bg-amber-300 text-black border-2 border-black font-black text-xs neo-btn shadow-[3px_3px_0px_#000]"
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-2xl border-2 font-black text-xs transition-all select-none ${
+                  flashcardIdx === QUESTION_BANK.length - 1
+                    ? darkMode
+                      ? 'bg-slate-900 border-slate-800 text-slate-500 cursor-not-allowed opacity-50 shadow-none'
+                      : 'bg-slate-100 border-slate-300 text-slate-400 cursor-not-allowed opacity-50 shadow-none'
+                    : 'bg-amber-300 text-black border-black shadow-[3px_3px_0px_#000] neo-btn hover:bg-amber-400'
+                }`}
               >
-                Next <ChevronRight className="w-4 h-4" />
+                Next <ChevronRight className="w-4 h-4 stroke-[2.5]" />
               </button>
             </div>
           </div>
