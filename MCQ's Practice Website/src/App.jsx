@@ -522,7 +522,7 @@ export default function App() {
               {/* Tab 1: Practice & Learn */}
               <button
                 onClick={() => setMode('practice')}
-                className={`flex items-center justify-center gap-1.5 py-1.5 sm:py-2 px-1 sm:px-3 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-black transition-all border-2 select-none neo-btn ${
+                className={`flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 py-1.5 sm:py-2 px-1 sm:px-3 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black transition-all border-2 select-none neo-btn ${
                   mode === 'practice'
                     ? darkMode
                       ? 'bg-cyan-400 text-black border-cyan-300 shadow-[2px_2px_0px_#FFF]'
@@ -534,15 +534,15 @@ export default function App() {
               >
                 <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5] shrink-0" />
                 <span className="truncate">
-                  <span className="md:hidden">Practice</span>
-                  <span className="hidden md:inline">Practice & Learn</span>
+                  <span className="sm:hidden">Practice</span>
+                  <span className="hidden sm:inline">Practice & Learn</span>
                 </span>
               </button>
 
               {/* Tab 2: Concept Hub */}
               <button
                 onClick={() => setMode('concepts')}
-                className={`flex items-center justify-center gap-1.5 py-1.5 sm:py-2 px-1 sm:px-3 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-black transition-all border-2 select-none neo-btn ${
+                className={`flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 py-1.5 sm:py-2 px-1 sm:px-3 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black transition-all border-2 select-none neo-btn ${
                   mode === 'concepts'
                     ? darkMode
                       ? 'bg-emerald-400 text-black border-emerald-300 shadow-[2px_2px_0px_#FFF]'
@@ -554,8 +554,8 @@ export default function App() {
               >
                 <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5] shrink-0" />
                 <span className="truncate">
-                  <span className="md:hidden">Concepts</span>
-                  <span className="hidden md:inline">Concept Hub</span>
+                  <span className="sm:hidden">Concepts</span>
+                  <span className="hidden sm:inline">Concept Hub</span>
                 </span>
                 <span className={`hidden sm:inline-block text-[9px] px-1.5 py-0.2 rounded-full font-black border shrink-0 ${
                   darkMode ? 'bg-cyan-400 text-black border-cyan-300' : 'bg-black text-white border-black'
@@ -565,7 +565,7 @@ export default function App() {
               {/* Tab 3: Exam Simulator */}
               <button
                 onClick={() => setMode('exam')}
-                className={`flex items-center justify-center gap-1.5 py-1.5 sm:py-2 px-1 sm:px-3 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-black transition-all border-2 select-none neo-btn ${
+                className={`flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 py-1.5 sm:py-2 px-1 sm:px-3 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black transition-all border-2 select-none neo-btn ${
                   mode === 'exam'
                     ? darkMode
                       ? 'bg-orange-400 text-black border-orange-300 shadow-[2px_2px_0px_#FFF]'
@@ -577,15 +577,15 @@ export default function App() {
               >
                 <Timer className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5] shrink-0" />
                 <span className="truncate">
-                  <span className="md:hidden">Exam</span>
-                  <span className="hidden md:inline">Exam Simulator</span>
+                  <span className="sm:hidden">Exam</span>
+                  <span className="hidden sm:inline">Exam Simulator</span>
                 </span>
               </button>
 
               {/* Tab 4: Flashcards */}
               <button
                 onClick={() => setMode('flashcards')}
-                className={`flex items-center justify-center gap-1.5 py-1.5 sm:py-2 px-1 sm:px-3 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-black transition-all border-2 select-none neo-btn ${
+                className={`flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 py-1.5 sm:py-2 px-1 sm:px-3 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black transition-all border-2 select-none neo-btn ${
                   mode === 'flashcards'
                     ? darkMode
                       ? 'bg-sky-400 text-black border-sky-300 shadow-[2px_2px_0px_#FFF]'
@@ -605,7 +605,7 @@ export default function App() {
               {/* Tab 5: Cheatsheet */}
               <button
                 onClick={() => setMode('cheatsheet')}
-                className={`flex items-center justify-center gap-1.5 py-1.5 sm:py-2 px-1 sm:px-3 rounded-lg sm:rounded-xl text-[11px] sm:text-xs font-black transition-all border-2 select-none neo-btn ${
+                className={`flex flex-col sm:flex-row items-center justify-center gap-0.5 sm:gap-1.5 py-1.5 sm:py-2 px-1 sm:px-3 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-black transition-all border-2 select-none neo-btn ${
                   mode === 'cheatsheet'
                     ? darkMode
                       ? 'bg-yellow-400 text-black border-yellow-300 shadow-[2px_2px_0px_#FFF]'
