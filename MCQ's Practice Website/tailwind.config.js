@@ -8,7 +8,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+        display: ['"Space Grotesk"', '"Plus Jakarta Sans"', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
       },
       keyframes: {
         fadeIn: {
@@ -17,7 +19,7 @@ export default {
         }
       },
       animation: {
-        fadeIn: 'fadeIn 0.2s ease-out forwards',
+        fadeIn: 'fadeIn 0.15s ease-out forwards',
       }
     },
   },

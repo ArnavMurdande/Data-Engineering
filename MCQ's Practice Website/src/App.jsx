@@ -35,18 +35,21 @@ import {
   Share2,
   CheckSquare,
   Square,
-  ChevronDown,
   Copy,
   Lightbulb,
   Workflow,
   ShieldAlert,
-  Compass
+  Compass,
+  SlidersHorizontal,
+  Terminal,
+  Gauge
 } from 'lucide-react';
 
 import { QUESTION_BANK } from './data/questions.js';
 import { CATEGORIES, DIFFICULTIES } from './data/categories.js';
 import { CHEAT_SHEET_ITEMS } from './data/cheatsheet.js';
 import { CONCEPTS_DATA } from './data/concepts.js';
+import CustomDropdown from './components/CustomDropdown.jsx';
 
 export default function App() {
   // Navigation & UI state
@@ -73,9 +76,9 @@ export default function App() {
   const [darkMode, setDarkMode] = useState(() => {
     try {
       const saved = localStorage.getItem('de_mcq_dark_mode');
-      return saved !== null ? JSON.parse(saved) : true;
+      return saved !== null ? JSON.parse(saved) : false; // Default to vibrant Neo-Brutalist Light Mode
     } catch {
-      return true;
+      return false;
     }
   });
 
@@ -126,9 +129,6 @@ export default function App() {
   const [conceptDomainFilter, setConceptDomainFilter] = useState("All Domains");
   const [expandedConceptId, setExpandedConceptId] = useState("concept-medallion");
 
-  // Custom Category Dropdown state
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef(null);
   const questionCardRef = useRef(null);
 
   // Category counts
@@ -140,15 +140,20 @@ export default function App() {
     return counts;
   }, []);
 
-  // Close dropdown on click outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsDropdownOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+  // Formatted dropdown options
+  const categoryDropdownOptions = useMemo(() => {
+    return CATEGORIES.map((cat) => ({
+      value: cat,
+      label: cat,
+      count: categoryCountMap[cat] || 0
+    }));
+  }, [categoryCountMap]);
+
+  const difficultyDropdownOptions = useMemo(() => {
+    return DIFFICULTIES.map((diff) => ({
+      value: diff,
+      label: diff
+    }));
   }, []);
 
   // Filtering for Practice Mode
@@ -358,11 +363,9 @@ export default function App() {
     };
 
     examQuestions.forEach((q) => {
-      // Category stats
       if (!catStats[q.category]) catStats[q.category] = { total: 0, correct: 0 };
       catStats[q.category].total += 1;
 
-      // Difficulty stats
       if (!diffStats[q.difficulty]) diffStats[q.difficulty] = { total: 0, correct: 0 };
       diffStats[q.difficulty].total += 1;
 
@@ -413,140 +416,141 @@ export default function App() {
   const activeFlashcard = QUESTION_BANK[flashcardIdx] || QUESTION_BANK[0];
 
   return (
-    <div className={`min-h-screen font-sans ${darkMode ? 'bg-slate-950 text-slate-100' : 'bg-slate-50/80 text-slate-900'} transition-colors duration-200`}>
-      {/* HEADER NAVBAR */}
-      <header className={`sticky top-0 z-40 border-b backdrop-blur-md ${darkMode ? 'bg-slate-950/90 border-slate-800/80 shadow-slate-950/50' : 'bg-white/95 border-slate-200 shadow-sm'} px-4 py-3`}>
+    <div className={`min-h-screen font-sans ${
+      darkMode ? 'bg-[#0B0F17] text-slate-100' : 'bg-[#F9F7F2] text-slate-900'
+    } transition-colors duration-150`}>
+      {/* =========================================
+          NEO-BRUTALIST HEADER NAVBAR
+          ========================================= */}
+      <header className={`sticky top-0 z-40 border-b-[3px] backdrop-blur-md px-4 py-3.5 transition-colors ${
+        darkMode 
+          ? 'bg-[#0F172A]/95 border-slate-700 shadow-[0_4px_0_0_#1E293B]' 
+          : 'bg-white border-black shadow-[0_4px_0_0_#000000]'
+      }`}>
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          {/* Logo & Title */}
+          {/* Logo & Neo-Brutalist Title */}
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-indigo-600 via-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-indigo-500/25 shrink-0">
-              <Database className="w-5 h-5" />
+            <div className={`w-11 h-11 rounded-2xl flex items-center justify-center font-black transition-all ${
+              darkMode
+                ? 'bg-amber-400 text-black border-2 border-slate-700 shadow-[3px_3px_0px_#0284c7]'
+                : 'bg-amber-300 text-black border-[2.5px] border-black shadow-[3px_3px_0px_#000000]'
+            }`}>
+              <Database className="w-6 h-6 stroke-[2.5]" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h1 className={`text-base sm:text-lg font-black tracking-tight ${
-                  darkMode
-                    ? 'bg-gradient-to-r from-indigo-400 via-cyan-300 to-white bg-clip-text text-transparent'
-                    : 'text-slate-900'
-                }`}>
-                  SQL, DWH & Databricks Master
+                <h1 className="text-base sm:text-xl font-black tracking-tight">
+                  SQL & Databricks Master
                 </h1>
-                <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                <span className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-0.5 rounded-full border-2 ${
                   darkMode
-                    ? 'bg-cyan-500/20 border border-cyan-500/30 text-cyan-300'
-                    : 'bg-indigo-100 border border-indigo-200 text-indigo-800 font-bold'
+                    ? 'bg-cyan-400 text-black border-slate-700 shadow-[2px_2px_0px_#0284c7]'
+                    : 'bg-yellow-300 text-black border-black shadow-[2px_2px_0px_#000000]'
                 }`}>
-                  200 Client MCQs
+                  200 MCQs
                 </span>
               </div>
-              <p className={`text-[11px] ${darkMode ? 'text-slate-400' : 'text-slate-600'} hidden sm:block font-medium`}>
-                SQL Fundamentals • Advanced Optimization • Medallion Lakehouse • Kimball Modeling • SCD Types 1-6 • Unity Catalog
+              <p className={`text-[11px] font-bold ${darkMode ? 'text-slate-400' : 'text-slate-600'} hidden sm:block`}>
+                SQL Mastery • Query Optimization • Medallion Lakehouse • Kimball Modeling • SCD Types 1-6
               </p>
             </div>
           </div>
 
-          {/* Navigation Mode Tabs */}
-          <div className={`flex items-center p-1 rounded-2xl gap-1 overflow-x-auto max-w-full ${darkMode ? 'bg-slate-900 border border-slate-800' : 'bg-slate-100 border border-slate-300/80 shadow-inner'}`}>
+          {/* Navigation Mode Tabs with Neo-Brutalist Pill Switches */}
+          <div className={`flex items-center p-1.5 rounded-2xl gap-1.5 overflow-x-auto max-w-full border-2 ${
+            darkMode ? 'bg-slate-900 border-slate-700 shadow-[2px_2px_0px_#0284c7]' : 'bg-slate-100 border-black shadow-[3px_3px_0px_#000000]'
+          }`}>
             <button
               onClick={() => setMode('practice')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
                 mode === 'practice'
                   ? darkMode
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                    : 'bg-white text-indigo-700 shadow-sm border border-slate-200'
-                  : darkMode
-                  ? 'text-slate-400 hover:text-slate-200'
-                  : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-cyan-400 text-black border-cyan-300 shadow-[2px_2px_0px_#FFF]'
+                    : 'bg-amber-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]'
+                  : 'border-transparent text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
               }`}
             >
-              <BookOpen className="w-3.5 h-3.5" />
+              <BookOpen className="w-3.5 h-3.5 stroke-[2.5]" />
               <span>Practice & Learn</span>
             </button>
 
             <button
               onClick={() => setMode('concepts')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
                 mode === 'concepts'
                   ? darkMode
-                    ? 'bg-cyan-600 text-white shadow-md shadow-cyan-600/30'
-                    : 'bg-white text-cyan-700 shadow-sm border border-slate-200'
-                  : darkMode
-                  ? 'text-slate-400 hover:text-slate-200'
-                  : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-emerald-400 text-black border-emerald-300 shadow-[2px_2px_0px_#FFF]'
+                    : 'bg-emerald-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]'
+                  : 'border-transparent text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
               }`}
             >
-              <Layers className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Concepts & Visuals</span>
-              <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/30 font-black">NEW</span>
+              <Layers className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>Concept Hub</span>
+              <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-black text-white font-black">NEW</span>
             </button>
 
             <button
               onClick={() => setMode('exam')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
                 mode === 'exam'
                   ? darkMode
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                    : 'bg-white text-indigo-700 shadow-sm border border-slate-200'
-                  : darkMode
-                  ? 'text-slate-400 hover:text-slate-200'
-                  : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-orange-400 text-black border-orange-300 shadow-[2px_2px_0px_#FFF]'
+                    : 'bg-orange-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]'
+                  : 'border-transparent text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
               }`}
             >
-              <Timer className="w-3.5 h-3.5" />
+              <Timer className="w-3.5 h-3.5 stroke-[2.5]" />
               <span>Exam Simulator</span>
             </button>
 
             <button
               onClick={() => setMode('flashcards')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
                 mode === 'flashcards'
                   ? darkMode
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                    : 'bg-white text-indigo-700 shadow-sm border border-slate-200'
-                  : darkMode
-                  ? 'text-slate-400 hover:text-slate-200'
-                  : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-sky-400 text-black border-sky-300 shadow-[2px_2px_0px_#FFF]'
+                    : 'bg-sky-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]'
+                  : 'border-transparent text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
               }`}
             >
-              <RotateCcw className="w-3.5 h-3.5" />
+              <RotateCcw className="w-3.5 h-3.5 stroke-[2.5]" />
               <span>Flashcards</span>
             </button>
 
             <button
               onClick={() => setMode('cheatsheet')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition whitespace-nowrap ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black transition-all whitespace-nowrap border-2 ${
                 mode === 'cheatsheet'
                   ? darkMode
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                    : 'bg-white text-indigo-700 shadow-sm border border-slate-200'
-                  : darkMode
-                  ? 'text-slate-400 hover:text-slate-200'
-                  : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-yellow-400 text-black border-yellow-300 shadow-[2px_2px_0px_#FFF]'
+                    : 'bg-lime-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]'
+                  : 'border-transparent text-slate-500 hover:text-black dark:text-slate-400 dark:hover:text-white'
               }`}
             >
-              <FileText className="w-3.5 h-3.5" />
+              <FileText className="w-3.5 h-3.5 stroke-[2.5]" />
               <span>Cheatsheet</span>
             </button>
           </div>
 
-          {/* Right Header Stats & Controls */}
-          <div className="flex items-center gap-2">
-            <div className={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl border text-xs font-bold ${
+          {/* Right Header Stats & Mode Toggle */}
+          <div className="flex items-center gap-2.5">
+            <div className={`hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-2xl border-2 text-xs font-black ${
               darkMode
-                ? 'bg-slate-900 border-slate-800 text-slate-300'
-                : 'bg-indigo-50 border-indigo-200 text-indigo-900 shadow-sm'
+                ? 'bg-slate-900 border-slate-700 text-amber-300 shadow-[2px_2px_0px_#0284c7]'
+                : 'bg-amber-100 border-black text-black shadow-[2px_2px_0px_#000000]'
             }`}>
-              <Flame className="w-4 h-4 text-amber-500" />
+              <Flame className="w-4 h-4 text-orange-500 fill-current" />
               <span>
-                Accuracy: {totalCorrect}/{totalAnswered} ({overallAccuracy}%)
+                {totalCorrect}/{totalAnswered} Correct ({overallAccuracy}%)
               </span>
             </div>
+
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className={`p-2 rounded-xl border transition ${
+              className={`p-2.5 rounded-2xl border-2 font-black transition-all neo-btn ${
                 darkMode
-                  ? 'bg-slate-900 border-slate-800 text-amber-400 hover:bg-slate-800 shadow-sm'
-                  : 'bg-white border-slate-300 text-indigo-600 hover:bg-slate-50 shadow-sm'
+                  ? 'bg-slate-900 border-slate-700 text-amber-400 shadow-[3px_3px_0px_#eab308]'
+                  : 'bg-white border-black text-black shadow-[3px_3px_0px_#000000] hover:bg-amber-100'
               }`}
               title="Toggle Dark / Light Mode"
             >
@@ -556,33 +560,38 @@ export default function App() {
         </div>
       </header>
 
-      {/* MAIN CONTENT AREA */}
-      <main className="max-w-7xl mx-auto p-4 sm:p-6">
+      {/* =========================================
+          MAIN CONTAINER
+          ========================================= */}
+      <main className="max-w-7xl mx-auto p-4 sm:p-6 space-y-6">
+
         {/* =========================================
             MODE 1: PRACTICE & LEARN MODE
             ========================================= */}
         {mode === 'practice' && (
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            {/* Sidebar Controls & Question Palette */}
-            <div className="lg:col-span-1 space-y-4">
-              {/* Filter Panel */}
-              <div className={`p-4 rounded-3xl border ${darkMode ? 'bg-slate-900/90 border-slate-800' : 'bg-white border-slate-200 shadow-sm'} space-y-3`}>
-                <div className="flex items-center justify-between">
-                  <h3 className={`text-xs font-black uppercase tracking-wider flex items-center gap-2 ${darkMode ? 'text-indigo-400' : 'text-indigo-700'}`}>
-                    <Filter className="w-4 h-4" /> Filters & Search
+            {/* Left Sidebar: Filters & Question Palette */}
+            <div className="lg:col-span-1 space-y-5">
+              {/* Filter Card */}
+              <div className={`p-5 rounded-3xl border-[2.5px] space-y-4 ${
+                darkMode ? 'bg-slate-900 border-slate-700 shadow-[4px_4px_0px_#0284c7]' : 'bg-white border-black shadow-[4px_4px_0px_#000000]'
+              }`}>
+                <div className="flex items-center justify-between pb-2 border-b-2 border-black/10 dark:border-slate-800">
+                  <h3 className="text-xs font-black uppercase tracking-wider flex items-center gap-2">
+                    <Filter className="w-4 h-4 text-amber-500" /> Filters & Navigation
                   </h3>
-                  <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full border ${
+                  <span className={`text-[11px] font-black px-2.5 py-0.5 rounded-full border-2 ${
                     darkMode
-                      ? 'bg-indigo-500/20 text-indigo-300 border-indigo-500/30'
-                      : 'bg-indigo-50 text-indigo-800 border-indigo-200'
+                      ? 'bg-cyan-950 text-cyan-300 border-cyan-400'
+                      : 'bg-yellow-300 text-black border-black shadow-[1.5px_1.5px_0px_#000]'
                   }`}>
-                    {filteredQuestions.length} / {QUESTION_BANK.length}
+                    {filteredQuestions.length} / 200
                   </span>
                 </div>
 
                 {/* Search Box */}
                 <div className="relative">
-                  <Search className={`w-4 h-4 absolute left-3 top-2.5 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`} />
+                  <Search className="w-4 h-4 absolute left-3.5 top-3 text-slate-400" />
                   <input
                     type="text"
                     placeholder="Search keywords, topics..."
@@ -591,105 +600,58 @@ export default function App() {
                       setSearchQuery(e.target.value);
                       setCurrentIndex(0);
                     }}
-                    className={`w-full pl-9 pr-3 py-2 text-xs rounded-xl border transition focus:outline-none focus:ring-2 focus:ring-indigo-500 ${
+                    className={`w-full pl-10 pr-3 py-2.5 text-xs font-bold rounded-2xl border-2 transition focus:outline-none ${
                       darkMode
-                        ? 'bg-slate-950 border-slate-800 text-slate-100 placeholder-slate-500'
-                        : 'bg-slate-50 border-slate-300 text-slate-900 placeholder-slate-400'
+                        ? 'bg-slate-950 border-slate-700 text-slate-100 focus:border-cyan-400 shadow-[2px_2px_0px_#0284c7]'
+                        : 'bg-white border-black text-black placeholder:text-slate-400 focus:border-black focus:ring-2 focus:ring-amber-300 shadow-[2.5px_2.5px_0px_#000]'
                     }`}
                   />
                 </div>
 
-                {/* Custom Category Dropdown */}
-                <div className="relative" ref={dropdownRef}>
-                  <button
-                    type="button"
-                    onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                    className={`w-full flex items-center justify-between p-2.5 text-xs font-semibold rounded-2xl border transition-all duration-200 ${
-                      isDropdownOpen
-                        ? darkMode
-                          ? 'bg-slate-900 border-indigo-500 ring-2 ring-indigo-500/30 text-indigo-300 shadow-md'
-                          : 'bg-white border-indigo-500 ring-2 ring-indigo-500/20 text-indigo-700 shadow-sm'
-                        : darkMode
-                        ? 'bg-slate-950 border-slate-800 text-slate-200 hover:border-slate-700 hover:bg-slate-900'
-                        : 'bg-slate-50 border-slate-300 text-slate-800 hover:bg-white hover:border-slate-400 shadow-sm'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2 truncate">
-                      <Layers className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
-                      <span className="truncate">{selectedCategory}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5 shrink-0 ml-2">
-                      <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
-                        darkMode ? 'bg-slate-800 text-slate-300' : 'bg-slate-200 text-slate-800'
-                      }`}>
-                        {categoryCountMap[selectedCategory] || 0}
-                      </span>
-                      <ChevronDown className={`w-4 h-4 ${darkMode ? 'text-slate-400' : 'text-slate-600'} transition-transform duration-200 ${
-                        isDropdownOpen ? 'transform rotate-180 text-indigo-500' : ''
-                      }`} />
-                    </div>
-                  </button>
+                {/* Rounded Custom Category Dropdown */}
+                <CustomDropdown
+                  label="Filter by Domain:"
+                  value={selectedCategory}
+                  options={categoryDropdownOptions}
+                  onChange={(val) => {
+                    setSelectedCategory(val);
+                    setCurrentIndex(0);
+                  }}
+                  icon={Layers}
+                  darkMode={darkMode}
+                  accentColor="yellow"
+                />
 
-                  {/* Dropdown Menu */}
-                  {isDropdownOpen && (
-                    <div className={`absolute left-0 right-0 z-50 mt-1.5 p-1.5 rounded-2xl border shadow-2xl backdrop-blur-xl max-h-72 overflow-y-auto scrollbar-thin ${
-                      darkMode ? 'bg-slate-900/95 border-slate-800 shadow-slate-950/80' : 'bg-white/95 border-slate-200 shadow-xl'
-                    }`}>
-                      {CATEGORIES.map((cat) => {
-                        const isSelected = selectedCategory === cat;
-                        const count = categoryCountMap[cat] || 0;
-                        return (
-                          <button
-                            key={cat}
-                            type="button"
-                            onClick={() => {
-                              setSelectedCategory(cat);
-                              setCurrentIndex(0);
-                              setIsDropdownOpen(false);
-                            }}
-                            className={`w-full flex items-center justify-between px-3 py-2 text-xs font-medium rounded-xl transition-all duration-150 mb-0.5 ${
-                              isSelected
-                                ? darkMode
-                                  ? 'bg-indigo-600/20 text-indigo-300 font-bold border border-indigo-500/30'
-                                  : 'bg-indigo-50 text-indigo-800 font-bold border border-indigo-200'
-                                : darkMode
-                                ? 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
-                                : 'text-slate-700 hover:bg-slate-100 hover:text-slate-950'
-                            }`}
-                          >
-                            <div className="flex items-center gap-2 truncate">
-                              {isSelected ? <Check className="w-3.5 h-3.5 text-indigo-500 shrink-0" /> : <span className="w-3.5 shrink-0" />}
-                              <span className="truncate">{cat}</span>
-                            </div>
-                            <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ml-2 shrink-0 ${
-                              isSelected
-                                ? darkMode ? 'bg-indigo-500/30 text-indigo-200' : 'bg-indigo-200 text-indigo-900'
-                                : darkMode ? 'bg-slate-950 text-slate-400' : 'bg-slate-100 text-slate-600'
-                            }`}>
-                              {count}
-                            </span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  )}
-                </div>
+                {/* Rounded Custom Difficulty Dropdown */}
+                <CustomDropdown
+                  label="Filter by Difficulty:"
+                  value={selectedDifficulty}
+                  options={difficultyDropdownOptions}
+                  onChange={(val) => {
+                    setSelectedDifficulty(val);
+                    setCurrentIndex(0);
+                  }}
+                  icon={Gauge}
+                  darkMode={darkMode}
+                  accentColor="emerald"
+                />
 
-                {/* Difficulty Filter Pills */}
+                {/* Difficulty Quick Select Pills */}
                 <div>
-                  <label className={`text-[11px] font-bold block mb-1.5 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                    Difficulty Level:
-                  </label>
-                  <div className="grid grid-cols-4 gap-1">
+                  <div className="grid grid-cols-4 gap-1.5 pt-1">
                     {DIFFICULTIES.map((diff) => {
                       const isSelected = selectedDifficulty === diff;
                       let activeStyle = darkMode
-                        ? 'bg-indigo-600 text-white font-bold'
-                        : 'bg-indigo-600 text-white font-bold shadow-sm';
-                      
-                      if (diff === "Easy" && isSelected) activeStyle = 'bg-emerald-600 text-white font-bold';
-                      if (diff === "Medium" && isSelected) activeStyle = 'bg-amber-600 text-white font-bold';
-                      if (diff === "Hard" && isSelected) activeStyle = 'bg-rose-600 text-white font-bold';
+                        ? 'bg-cyan-400 text-black border-slate-700 shadow-[2px_2px_0px_#FFF]'
+                        : 'bg-amber-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]';
+
+                      if (diff === 'Easy' && isSelected) {
+                        activeStyle = darkMode ? 'bg-emerald-400 text-black border-slate-700' : 'bg-emerald-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]';
+                      } else if (diff === 'Medium' && isSelected) {
+                        activeStyle = darkMode ? 'bg-amber-400 text-black border-slate-700' : 'bg-yellow-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]';
+                      } else if (diff === 'Hard' && isSelected) {
+                        activeStyle = darkMode ? 'bg-rose-400 text-black border-slate-700' : 'bg-rose-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]';
+                      }
 
                       return (
                         <button
@@ -698,12 +660,12 @@ export default function App() {
                             setSelectedDifficulty(diff);
                             setCurrentIndex(0);
                           }}
-                          className={`py-1.5 text-[10px] rounded-xl font-bold transition text-center border ${
+                          className={`py-1.5 text-[10px] rounded-xl font-black transition-all text-center border-2 neo-btn ${
                             isSelected
-                              ? `${activeStyle} border-transparent`
+                              ? activeStyle
                               : darkMode
-                              ? 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800'
-                              : 'bg-slate-50 border-slate-300 text-slate-700 hover:bg-slate-100'
+                              ? 'bg-slate-950 border-slate-700 text-slate-400 hover:text-white hover:bg-slate-800'
+                              : 'bg-white border-black text-slate-700 hover:bg-amber-50 shadow-[1.5px_1.5px_0px_#000]'
                           }`}
                         >
                           {diff.replace("All Difficulties", "All")}
@@ -719,39 +681,41 @@ export default function App() {
                     setShowOnlyScenarios(!showOnlyScenarios);
                     setCurrentIndex(0);
                   }}
-                  className={`w-full py-2 px-3 rounded-2xl text-xs font-bold flex items-center justify-between border transition ${
+                  className={`w-full py-2.5 px-3 rounded-2xl text-xs font-black flex items-center justify-between border-2 transition-all neo-btn ${
                     showOnlyScenarios
-                      ? 'bg-purple-600 text-white border-purple-500 shadow-md shadow-purple-600/30'
+                      ? darkMode
+                        ? 'bg-amber-400 text-black border-amber-300 shadow-[3px_3px_0px_#FFF]'
+                        : 'bg-amber-300 text-black border-black shadow-[3px_3px_0px_#000000]'
                       : darkMode
-                      ? 'bg-slate-950 border-slate-800 text-purple-400 hover:bg-slate-800'
-                      : 'bg-purple-50 border-purple-200 text-purple-800 hover:bg-purple-100'
+                      ? 'bg-slate-950 border-slate-700 text-slate-300 hover:bg-slate-800'
+                      : 'bg-white border-black text-slate-900 hover:bg-amber-50 shadow-[2px_2px_0px_#000]'
                   }`}
                 >
                   <span className="flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-                    <span>Virtual Client Scenarios Only</span>
+                    <Sparkles className="w-3.5 h-3.5 text-amber-600 fill-current" />
+                    <span>Client Virtual Scenarios</span>
                   </span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-500/20 font-black">
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-black text-white font-black">
                     20
                   </span>
                 </button>
 
-                {/* Bookmarks & Missed Toggles */}
-                <div className="grid grid-cols-2 gap-2 pt-1 border-t border-slate-800/40">
+                {/* Starred & Missed Buttons */}
+                <div className="grid grid-cols-2 gap-2 pt-2 border-t border-black/10 dark:border-slate-800">
                   <button
                     onClick={() => {
                       setShowOnlyBookmarks(!showOnlyBookmarks);
                       setCurrentIndex(0);
                     }}
-                    className={`py-2 px-3 rounded-2xl text-xs font-bold flex items-center justify-center gap-1.5 border transition ${
+                    className={`py-2 px-2.5 rounded-2xl text-xs font-black flex items-center justify-center gap-1.5 border-2 transition-all neo-btn ${
                       showOnlyBookmarks
-                        ? 'bg-amber-500 text-white border-amber-400 shadow-md'
+                        ? 'bg-amber-300 text-black border-black shadow-[2px_2px_0px_#000]'
                         : darkMode
-                        ? 'bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-800'
-                        : 'bg-slate-50 border-slate-300 text-slate-700 hover:bg-slate-100'
+                        ? 'bg-slate-950 border-slate-700 text-slate-300 hover:bg-slate-800'
+                        : 'bg-white border-black text-slate-800 hover:bg-amber-50 shadow-[2px_2px_0px_#000]'
                     }`}
                   >
-                    <Bookmark className={`w-3.5 h-3.5 ${showOnlyBookmarks ? 'fill-current' : ''}`} />
+                    <Bookmark className={`w-3.5 h-3.5 ${showOnlyBookmarks ? 'fill-current text-black' : ''}`} />
                     <span>Starred ({bookmarkedIds.size})</span>
                   </button>
 
@@ -760,39 +724,41 @@ export default function App() {
                       setShowOnlyMissed(!showOnlyMissed);
                       setCurrentIndex(0);
                     }}
-                    className={`py-2 px-3 rounded-2xl text-xs font-bold flex items-center justify-center gap-1.5 border transition ${
+                    className={`py-2 px-2.5 rounded-2xl text-xs font-black flex items-center justify-center gap-1.5 border-2 transition-all neo-btn ${
                       showOnlyMissed
-                        ? 'bg-rose-600 text-white border-rose-500 shadow-md'
+                        ? 'bg-rose-300 text-black border-black shadow-[2px_2px_0px_#000]'
                         : darkMode
-                        ? 'bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-800'
-                        : 'bg-slate-50 border-slate-300 text-slate-700 hover:bg-slate-100'
+                        ? 'bg-slate-950 border-slate-700 text-slate-300 hover:bg-slate-800'
+                        : 'bg-white border-black text-slate-800 hover:bg-rose-50 shadow-[2px_2px_0px_#000]'
                     }`}
                   >
-                    <XCircle className="w-3.5 h-3.5" />
+                    <XCircle className="w-3.5 h-3.5 text-rose-500" />
                     <span>Missed ({totalIncorrect})</span>
                   </button>
                 </div>
               </div>
 
               {/* Question Navigator Grid */}
-              <div className={`p-4 rounded-3xl border ${darkMode ? 'bg-slate-900/90 border-slate-800' : 'bg-white border-slate-200 shadow-sm'} space-y-3`}>
-                <div className="flex items-center justify-between">
-                  <h4 className={`text-xs font-black uppercase tracking-wider ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
+              <div className={`p-5 rounded-3xl border-[2.5px] space-y-3 ${
+                darkMode ? 'bg-slate-900 border-slate-700 shadow-[4px_4px_0px_#0284c7]' : 'bg-white border-black shadow-[4px_4px_0px_#000000]'
+              }`}>
+                <div className="flex items-center justify-between pb-1 border-b border-black/10 dark:border-slate-800">
+                  <h4 className="text-xs font-black uppercase tracking-wider">
                     Question Palette
                   </h4>
-                  <span className={`text-[11px] font-bold ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                    Jump to Q#
+                  <span className="text-[10px] font-bold text-slate-400">
+                    200 Questions
                   </span>
                 </div>
 
-                {/* Legend */}
-                <div className="flex flex-wrap items-center gap-2 text-[10px] font-bold text-slate-400 pb-1">
-                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> Correct</span>
-                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-rose-500 inline-block"></span> Missed</span>
-                  <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> Star</span>
+                {/* Status Legend */}
+                <div className="flex flex-wrap items-center gap-2 text-[10px] font-black text-slate-500 pb-1">
+                  <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-md bg-emerald-400 border border-black inline-block"></span> Pass</span>
+                  <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-md bg-rose-400 border border-black inline-block"></span> Miss</span>
+                  <span className="flex items-center gap-1"><span className="w-2.5 h-2.5 rounded-md bg-amber-300 border border-black inline-block"></span> Star</span>
                 </div>
 
-                {/* Grid Palette */}
+                {/* Grid */}
                 <div className="max-h-72 overflow-y-auto p-1 pr-2 grid grid-cols-5 gap-1.5 scrollbar-thin">
                   {filteredQuestions.map((q, idx) => {
                     const isAnswered = userAnswers[q.id] !== undefined;
@@ -800,20 +766,20 @@ export default function App() {
                     const isCurrent = idx === currentIndex;
                     const isStarred = bookmarkedIds.has(q.id);
 
-                    let bgClass = darkMode
-                      ? 'bg-slate-950 text-slate-400 border border-slate-800 hover:border-slate-700 hover:text-slate-200'
-                      : 'bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 shadow-sm';
+                    let btnClass = darkMode
+                      ? 'bg-slate-950 text-slate-400 border-2 border-slate-800 hover:border-slate-600'
+                      : 'bg-white text-slate-800 border-2 border-black hover:bg-amber-100 shadow-[2px_2px_0px_#000]';
 
                     if (isAnswered) {
-                      bgClass = isCorrect
-                        ? 'bg-emerald-600 text-white font-bold border border-emerald-500 shadow-sm'
-                        : 'bg-rose-600 text-white font-bold border border-rose-500 shadow-sm';
+                      btnClass = isCorrect
+                        ? 'bg-emerald-400 text-black font-black border-2 border-black shadow-[2px_2px_0px_#000]'
+                        : 'bg-rose-400 text-black font-black border-2 border-black shadow-[2px_2px_0px_#000]';
                     }
 
                     if (isCurrent) {
-                      bgClass = darkMode
-                        ? 'border-2 border-cyan-400 bg-cyan-950/90 text-cyan-200 font-black shadow-md shadow-cyan-500/30'
-                        : 'border-2 border-indigo-600 bg-indigo-50 text-indigo-900 font-black shadow-md';
+                      btnClass = darkMode
+                        ? 'bg-cyan-400 text-black font-black border-2 border-white shadow-[3px_3px_0px_#FFF]'
+                        : 'bg-amber-300 text-black font-black border-[2.5px] border-black shadow-[3px_3px_0px_#000] ring-2 ring-black';
                     }
 
                     return (
@@ -823,16 +789,15 @@ export default function App() {
                           setCurrentIndex(idx);
                           questionCardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         }}
-                        className={`h-9 rounded-xl text-xs font-semibold flex items-center justify-center relative transition-all duration-150 ${bgClass}`}
+                        className={`h-9 rounded-xl text-xs font-black flex items-center justify-center relative transition-all neo-btn ${btnClass}`}
                         title={`Q${q.num} [${q.difficulty}]: ${q.topic}`}
                       >
                         {q.num}
                         {isStarred && (
-                          <span className={`absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-400 rounded-full border ${darkMode ? 'border-slate-950' : 'border-white'} shadow-sm`} />
+                          <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-400 border border-black rounded-full" />
                         )}
-                        {/* Difficulty dot */}
                         <span className={`absolute bottom-0.5 right-1 w-1.5 h-1.5 rounded-full ${
-                          q.difficulty === 'Easy' ? 'bg-emerald-400/80' : q.difficulty === 'Hard' ? 'bg-rose-400/80' : 'bg-amber-400/80'
+                          q.difficulty === 'Easy' ? 'bg-emerald-500' : q.difficulty === 'Hard' ? 'bg-rose-500' : 'bg-amber-500'
                         }`} />
                       </button>
                     );
@@ -844,11 +809,13 @@ export default function App() {
             {/* Active Question Main Card */}
             <div className="lg:col-span-3 space-y-4" ref={questionCardRef}>
               {filteredQuestions.length === 0 ? (
-                <div className={`p-12 text-center rounded-3xl border ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-sm'}`}>
-                  <AlertCircle className="w-12 h-12 text-amber-500 mx-auto mb-3 opacity-90" />
-                  <h3 className="text-lg font-bold">No Questions Match Active Filter</h3>
-                  <p className={`text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'} mt-1`}>
-                    Try resetting search keywords or clearing difficulty and scenario filters.
+                <div className={`p-12 text-center rounded-3xl border-[2.5px] space-y-4 ${
+                  darkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-black shadow-[4px_4px_0px_#000]'
+                }`}>
+                  <AlertCircle className="w-12 h-12 text-amber-500 mx-auto" />
+                  <h3 className="text-xl font-black">No Questions Match Active Filter</h3>
+                  <p className="text-xs text-slate-500 max-w-md mx-auto">
+                    Try clearing difficulty or scenario filters to explore all 200 questions.
                   </p>
                   <button
                     onClick={() => {
@@ -859,72 +826,67 @@ export default function App() {
                       setShowOnlyBookmarks(false);
                       setShowOnlyMissed(false);
                     }}
-                    className="mt-4 px-5 py-2.5 bg-indigo-600 text-white rounded-2xl text-xs font-bold hover:bg-indigo-700 shadow-md"
+                    className="px-6 py-2.5 rounded-2xl bg-amber-300 text-black font-black border-2 border-black shadow-[3px_3px_0px_#000] neo-btn"
                   >
                     Reset All Filters
                   </button>
                 </div>
               ) : currentQ ? (
-                <div className={`p-6 sm:p-8 rounded-3xl border ${darkMode ? 'bg-slate-900/95 border-slate-800 shadow-2xl shadow-slate-950/50' : 'bg-white border-slate-200 shadow-lg'} space-y-6`}>
-                  {/* Question Header & Badges */}
-                  <div className={`flex flex-wrap items-center justify-between gap-2 pb-4 border-b ${darkMode ? 'border-slate-800/80' : 'border-slate-200'}`}>
+                <div className={`p-6 sm:p-8 rounded-3xl border-[2.5px] space-y-6 ${
+                  darkMode
+                    ? 'bg-slate-900 border-slate-700 shadow-[5px_5px_0px_#0284c7]'
+                    : 'bg-white border-black shadow-[5px_5px_0px_#000000]'
+                }`}>
+                  {/* Badges & Header Bar */}
+                  <div className="flex flex-wrap items-center justify-between gap-2.5 pb-4 border-b-2 border-black/10 dark:border-slate-800">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className={`px-3 py-1 rounded-full text-xs font-black ${
-                        darkMode
-                          ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/30'
-                          : 'bg-indigo-100 text-indigo-800 border border-indigo-200 font-bold'
+                      <span className={`px-3 py-1 rounded-xl text-xs font-black border-2 ${
+                        darkMode ? 'bg-cyan-400 text-black border-slate-700' : 'bg-yellow-300 text-black border-black shadow-[2px_2px_0px_#000]'
                       }`}>
                         Question {currentQ.num} of 200
                       </span>
 
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                        darkMode ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-700 border border-slate-200'
+                      <span className={`px-3 py-1 rounded-xl text-xs font-black border-2 ${
+                        darkMode ? 'bg-slate-800 text-slate-200 border-slate-700' : 'bg-slate-100 text-black border-black shadow-[1.5px_1.5px_0px_#000]'
                       }`}>
                         {currentQ.category}
                       </span>
 
                       {/* Difficulty Badge */}
-                      <span className={`px-2.5 py-0.5 rounded-full text-xs font-black border ${
+                      <span className={`px-2.5 py-1 rounded-xl text-xs font-black border-2 ${
                         currentQ.difficulty === 'Easy'
-                          ? darkMode ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' : 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                          ? 'bg-emerald-300 text-black border-black shadow-[2px_2px_0px_#000]'
                           : currentQ.difficulty === 'Hard'
-                          ? darkMode ? 'bg-rose-500/20 text-rose-300 border-rose-500/30' : 'bg-rose-50 text-rose-800 border-rose-200'
-                          : darkMode ? 'bg-amber-500/20 text-amber-300 border-amber-500/30' : 'bg-amber-50 text-amber-800 border-amber-200'
+                          ? 'bg-rose-300 text-black border-black shadow-[2px_2px_0px_#000]'
+                          : 'bg-amber-300 text-black border-black shadow-[2px_2px_0px_#000]'
                       }`}>
                         {currentQ.difficulty}
                       </span>
 
                       {/* Scenario Badge */}
                       {currentQ.isScenario && (
-                        <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border flex items-center gap-1 ${
-                          darkMode ? 'bg-purple-500/20 text-purple-300 border-purple-500/30' : 'bg-purple-100 text-purple-900 border-purple-200'
-                        }`}>
-                          <Sparkles className="w-3 h-3 text-purple-400" />
+                        <span className="px-2.5 py-1 rounded-xl text-xs font-black border-2 bg-amber-300 text-black border-black shadow-[2px_2px_0px_#000] flex items-center gap-1">
+                          <Sparkles className="w-3.5 h-3.5 text-amber-700 fill-current" />
                           <span>{currentQ.scenarioTitle || "Client Scenario"}</span>
                         </span>
                       )}
-
-                      <span className={`hidden sm:inline-block px-3 py-0.5 rounded-full text-xs font-medium ${
-                        darkMode ? 'text-slate-400' : 'text-slate-500'
-                      }`}>
-                        • {currentQ.topic}
-                      </span>
                     </div>
 
                     <div className="flex items-center gap-2">
                       <button
                         onClick={() => toggleBookmark(currentQ.id)}
-                        className={`p-2 rounded-xl border transition ${
+                        className={`p-2.5 rounded-xl border-2 font-black transition-all neo-btn ${
                           bookmarkedIds.has(currentQ.id)
-                            ? 'bg-amber-500/20 border-amber-500/40 text-amber-500'
+                            ? 'bg-amber-300 text-black border-black shadow-[2.5px_2.5px_0px_#000]'
                             : darkMode
-                            ? 'border-slate-800 text-slate-400 hover:text-slate-200'
-                            : 'border-slate-300 bg-white text-slate-600 hover:bg-slate-50'
+                            ? 'bg-slate-950 border-slate-700 text-slate-400'
+                            : 'bg-white border-black text-black shadow-[2px_2px_0px_#000]'
                         }`}
-                        title="Bookmark / Star Question"
+                        title="Bookmark / Star"
                       >
                         <Bookmark className={`w-4 h-4 ${bookmarkedIds.has(currentQ.id) ? 'fill-current' : ''}`} />
                       </button>
+
                       <button
                         onClick={() =>
                           setShowExplanation((prev) => ({
@@ -932,74 +894,72 @@ export default function App() {
                             [currentQ.id]: !prev[currentQ.id]
                           }))
                         }
-                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition ${
-                          darkMode
-                            ? 'bg-slate-800 border-slate-700 hover:bg-slate-700 text-slate-200'
-                            : 'bg-slate-100 border-slate-300 hover:bg-slate-200 text-slate-800 shadow-sm'
+                        className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-black border-2 transition-all neo-btn ${
+                          showExplanation[currentQ.id]
+                            ? 'bg-black text-white border-black shadow-[2px_2px_0px_#000]'
+                            : darkMode
+                            ? 'bg-slate-800 border-slate-700 text-slate-200'
+                            : 'bg-amber-200 border-black text-black shadow-[2px_2px_0px_#000]'
                         }`}
                       >
-                        <HelpCircle className="w-3.5 h-3.5 text-indigo-500" />
+                        <HelpCircle className="w-3.5 h-3.5" />
                         <span>{showExplanation[currentQ.id] ? 'Hide Solution' : 'Reveal Solution'}</span>
                       </button>
                     </div>
                   </div>
 
                   {/* Question Stem */}
-                  <div className={`text-base sm:text-lg font-bold leading-relaxed ${darkMode ? 'text-slate-100' : 'text-slate-900'}`}>
+                  <div className="text-base sm:text-lg font-black leading-relaxed tracking-tight">
                     {currentQ.question}
                   </div>
 
-                  {/* Answer Options */}
+                  {/* Options List with Tactile Cards */}
                   <div className="space-y-3">
                     {currentQ.options.map((option, idx) => {
                       const isSelected = userAnswers[currentQ.id] === idx;
                       const hasAnswered = userAnswers[currentQ.id] !== undefined;
                       const isCorrect = idx === currentQ.correct;
 
-                      let buttonStyle = darkMode
-                        ? 'border-slate-800 bg-slate-950/60 hover:bg-slate-800/80 hover:border-slate-700 text-slate-200'
-                        : 'border-slate-300 bg-white hover:bg-indigo-50/40 hover:border-indigo-400 text-slate-800 shadow-sm';
+                      let optClass = darkMode
+                        ? 'border-2 border-slate-700 bg-slate-950/80 text-slate-200 hover:border-slate-500 shadow-[3px_3px_0px_#0284c7]'
+                        : 'border-[2.5px] border-black bg-white text-black hover:bg-amber-50 shadow-[3px_3px_0px_#000000]';
 
                       if (hasAnswered) {
                         if (isCorrect) {
-                          buttonStyle = darkMode
-                            ? 'border-emerald-500 bg-emerald-950/40 text-emerald-200 font-semibold ring-1 ring-emerald-500'
-                            : 'border-emerald-600 bg-emerald-50 text-emerald-950 font-bold ring-2 ring-emerald-500/30 shadow-sm';
+                          optClass = darkMode
+                            ? 'border-2 border-emerald-400 bg-emerald-950/80 text-emerald-200 shadow-[4px_4px_0px_#10B981]'
+                            : 'border-[2.5px] border-black bg-emerald-300 text-black font-black shadow-[4px_4px_0px_#000]';
                         } else if (isSelected && !isCorrect) {
-                          buttonStyle = darkMode
-                            ? 'border-rose-500 bg-rose-950/40 text-rose-200 font-semibold ring-1 ring-rose-500'
-                            : 'border-rose-600 bg-rose-50 text-rose-950 font-bold ring-2 ring-rose-500/30 shadow-sm';
+                          optClass = darkMode
+                            ? 'border-2 border-rose-400 bg-rose-950/80 text-rose-200 shadow-[4px_4px_0px_#F43F5E]'
+                            : 'border-[2.5px] border-black bg-rose-300 text-black font-black shadow-[4px_4px_0px_#000]';
                         }
                       }
-
-                      const optionLetters = ['A', 'B', 'C', 'D'];
 
                       return (
                         <button
                           key={idx}
                           onClick={() => handleSelectOption(currentQ.id, idx)}
-                          className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 flex items-start gap-3.5 ${buttonStyle}`}
+                          className={`w-full text-left p-4 rounded-2xl transition-all duration-150 flex items-start gap-3.5 neo-btn ${optClass}`}
                         >
-                          <div
-                            className={`w-7 h-7 rounded-xl flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
-                              hasAnswered && isCorrect
-                                ? 'bg-emerald-600 text-white shadow-md'
-                                : hasAnswered && isSelected && !isCorrect
-                                ? 'bg-rose-600 text-white shadow-md'
-                                : darkMode
-                                ? 'bg-slate-800 text-slate-300'
-                                : 'bg-slate-100 text-slate-700 border border-slate-300'
-                            }`}
-                          >
+                          <div className={`w-8 h-8 rounded-xl flex items-center justify-center text-xs font-black shrink-0 mt-0.5 border-2 ${
+                            hasAnswered && isCorrect
+                              ? 'bg-black text-white border-black'
+                              : hasAnswered && isSelected && !isCorrect
+                              ? 'bg-black text-white border-black'
+                              : darkMode
+                              ? 'bg-slate-800 border-slate-600 text-white'
+                              : 'bg-yellow-300 border-black text-black'
+                          }`}>
                             {hasAnswered && isCorrect ? (
-                              <Check className="w-4 h-4" />
+                              <Check className="w-4 h-4 stroke-[3]" />
                             ) : hasAnswered && isSelected && !isCorrect ? (
-                              <X className="w-4 h-4" />
+                              <X className="w-4 h-4 stroke-[3]" />
                             ) : (
-                              optionLetters[idx]
+                              ['A', 'B', 'C', 'D'][idx]
                             )}
                           </div>
-                          <div className="flex-1 text-sm sm:text-base leading-snug pt-0.5">
+                          <div className="flex-1 text-sm sm:text-base font-extrabold leading-snug pt-1">
                             {option}
                           </div>
                         </button>
@@ -1007,61 +967,50 @@ export default function App() {
                     })}
                   </div>
 
-                  {/* ENRICHED MULTI-SECTION SOLUTION & VISUALIZATION BANNER */}
+                  {/* Multi-Tab Solution & Architecture Blueprint */}
                   {(showExplanation[currentQ.id] || userAnswers[currentQ.id] !== undefined) && (
-                    <div className={`p-5 rounded-3xl border space-y-4 animate-fadeIn ${
-                      darkMode
-                        ? 'bg-gradient-to-br from-indigo-950/40 via-slate-900 to-cyan-950/30 border-indigo-800/60 text-slate-300'
-                        : 'bg-gradient-to-br from-indigo-50/90 via-blue-50/70 to-cyan-50/50 border-indigo-200 text-slate-800 shadow-md'
+                    <div className={`p-6 rounded-3xl border-[2.5px] space-y-4 ${
+                      darkMode ? 'bg-slate-950 border-slate-700 shadow-[5px_5px_0px_#0284c7]' : 'bg-[#FFFBEB] border-black shadow-[5px_5px_0px_#000000]'
                     }`}>
-                      {/* Solution Header & Tab Navigation */}
-                      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-indigo-500/20 pb-3">
+                      {/* Solution Tabs */}
+                      <div className="flex flex-wrap items-center justify-between gap-3 pb-3 border-b-2 border-black/10 dark:border-slate-800">
                         <div className="flex items-center gap-2">
-                          <Sparkles className="w-4 h-4 text-cyan-400" />
-                          <span className="text-xs font-black uppercase tracking-wider text-indigo-400">
-                            Comprehensive Solution & Visualization
+                          <span className="w-3 h-3 rounded-full bg-amber-400 border border-black inline-block" />
+                          <span className="text-xs font-black uppercase tracking-wider">
+                            Comprehensive Solution & Visuals
                           </span>
                         </div>
-                        {/* Tab Switcher */}
-                        <div className={`flex items-center p-0.5 rounded-xl gap-1 text-[11px] font-bold ${
-                          darkMode ? 'bg-slate-950/80 border border-slate-800' : 'bg-white border border-slate-300 shadow-sm'
-                        }`}>
+
+                        {/* Tabs */}
+                        <div className="flex items-center gap-1.5 p-1 rounded-2xl border-2 border-black bg-white dark:bg-slate-900 dark:border-slate-700">
                           <button
                             onClick={() => setActiveSolutionTab('intuition')}
-                            className={`px-2.5 py-1 rounded-lg transition ${
-                              activeSolutionTab === 'intuition'
-                                ? 'bg-indigo-600 text-white'
-                                : darkMode ? 'text-slate-400 hover:text-slate-200' : 'text-slate-600 hover:text-slate-900'
+                            className={`px-3 py-1 text-xs font-black rounded-xl transition ${
+                              activeSolutionTab === 'intuition' ? 'bg-amber-300 text-black border border-black' : 'text-slate-600 dark:text-slate-400'
                             }`}
                           >
                             💡 Intuition
                           </button>
                           <button
                             onClick={() => setActiveSolutionTab('visual')}
-                            className={`px-2.5 py-1 rounded-lg transition ${
-                              activeSolutionTab === 'visual'
-                                ? 'bg-cyan-600 text-white'
-                                : darkMode ? 'text-slate-400 hover:text-slate-200' : 'text-slate-600 hover:text-slate-900'
+                            className={`px-3 py-1 text-xs font-black rounded-xl transition ${
+                              activeSolutionTab === 'visual' ? 'bg-sky-300 text-black border border-black' : 'text-slate-600 dark:text-slate-400'
                             }`}
                           >
-                            📐 Architecture Flow
+                            📐 Blueprint
                           </button>
                           <button
                             onClick={() => setActiveSolutionTab('technical')}
-                            className={`px-2.5 py-1 rounded-lg transition ${
-                              activeSolutionTab === 'technical'
-                                ? 'bg-indigo-600 text-white'
-                                : darkMode ? 'text-slate-400 hover:text-slate-200' : 'text-slate-600 hover:text-slate-900'
+                            className={`px-3 py-1 text-xs font-black rounded-xl transition ${
+                              activeSolutionTab === 'technical' ? 'bg-emerald-300 text-black border border-black' : 'text-slate-600 dark:text-slate-400'
                             }`}
                           >
                             🎯 Technical
                           </button>
                           <button
                             onClick={() => setActiveSolutionTab('tip')}
-                            className={`px-2.5 py-1 rounded-lg transition ${
-                              activeSolutionTab === 'tip'
-                                ? 'bg-amber-600 text-white'
-                                : darkMode ? 'text-slate-400 hover:text-slate-200' : 'text-slate-600 hover:text-slate-900'
+                            className={`px-3 py-1 text-xs font-black rounded-xl transition ${
+                              activeSolutionTab === 'tip' ? 'bg-orange-300 text-black border border-black' : 'text-slate-600 dark:text-slate-400'
                             }`}
                           >
                             💼 Client Tip
@@ -1069,87 +1018,72 @@ export default function App() {
                         </div>
                       </div>
 
-                      {/* Correct Answer Banner */}
-                      <div className={`p-3 rounded-2xl flex items-center justify-between border ${
-                        darkMode ? 'bg-emerald-950/40 border-emerald-500/30 text-emerald-200' : 'bg-emerald-50 border-emerald-200 text-emerald-900'
+                      {/* Correct Answer Header */}
+                      <div className={`p-3.5 rounded-2xl border-2 flex items-center justify-between ${
+                        darkMode ? 'bg-emerald-950/60 border-emerald-400 text-emerald-200' : 'bg-emerald-300 border-black text-black font-black shadow-[2px_2px_0px_#000]'
                       }`}>
-                        <div className="flex items-center gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                          <span className="text-xs sm:text-sm font-bold">
-                            Correct Answer: Option {['A', 'B', 'C', 'D'][currentQ.correct]}
-                          </span>
+                        <div className="flex items-center gap-2 font-black text-sm">
+                          <CheckCircle2 className="w-5 h-5 shrink-0 stroke-[2.5]" />
+                          <span>Correct Answer: Option {['A', 'B', 'C', 'D'][currentQ.correct]}</span>
                         </div>
-                        <span className="text-xs font-semibold truncate max-w-[250px] sm:max-w-md hidden sm:inline">
+                        <span className="text-xs font-bold truncate max-w-sm hidden sm:inline">
                           "{currentQ.options[currentQ.correct]}"
                         </span>
                       </div>
 
-                      {/* Tab 1: Beginner Intuition */}
+                      {/* Tab 1: Intuition */}
                       {activeSolutionTab === 'intuition' && (
-                        <div className="space-y-2 animate-fadeIn">
-                          <div className="flex items-center gap-2 text-xs font-bold text-amber-400">
-                            <Lightbulb className="w-4 h-4 text-amber-400" />
-                            <span>Beginner Mental Model (Intuition Without Jargon)</span>
-                          </div>
-                          <p className={`text-xs sm:text-sm leading-relaxed ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
+                        <div className="space-y-2">
+                          <span className="text-xs font-black uppercase text-amber-600 dark:text-amber-400 flex items-center gap-1.5">
+                            <Lightbulb className="w-4 h-4" /> Beginner Mental Model
+                          </span>
+                          <p className="text-xs sm:text-sm font-medium leading-relaxed">
                             {currentQ.beginnerConcept}
                           </p>
                         </div>
                       )}
 
-                      {/* Tab 2: Visual Diagram & Architecture Flow */}
+                      {/* Tab 2: Visual Diagram */}
                       {activeSolutionTab === 'visual' && (
-                        <div className="space-y-2 animate-fadeIn">
+                        <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold text-cyan-400 flex items-center gap-1.5">
-                              <Workflow className="w-4 h-4 text-cyan-400" />
-                              <span>Architectural Diagram & Data Flow</span>
+                            <span className="text-xs font-black uppercase text-sky-600 dark:text-sky-400 flex items-center gap-1.5">
+                              <Workflow className="w-4 h-4" /> Execution Architecture & Data Flow
                             </span>
                             <button
                               onClick={() => handleCopyCode(currentQ.visualDiagram, currentQ.id)}
-                              className={`text-[11px] px-2 py-1 rounded-lg border flex items-center gap-1 ${
-                                copiedCodeId === currentQ.id
-                                  ? 'bg-emerald-600 text-white border-emerald-500'
-                                  : darkMode
-                                  ? 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
-                                  : 'bg-white border-slate-300 text-slate-700 hover:bg-slate-100'
-                              }`}
+                              className="text-[11px] px-2.5 py-1 rounded-xl border-2 border-black bg-white dark:bg-slate-800 text-black dark:text-white font-black neo-btn"
                             >
-                              <Copy className="w-3 h-3" />
-                              <span>{copiedCodeId === currentQ.id ? 'Copied!' : 'Copy Diagram'}</span>
+                              {copiedCodeId === currentQ.id ? 'Copied!' : 'Copy Blueprint'}
                             </button>
                           </div>
-                          <pre className={`p-4 rounded-2xl text-[11px] sm:text-xs font-mono leading-snug overflow-x-auto border ${
-                            darkMode
-                              ? 'bg-slate-950 border-slate-800 text-cyan-300'
-                              : 'bg-slate-900 border-slate-700 text-cyan-200'
+                          <pre className={`p-4 rounded-2xl text-[11px] sm:text-xs font-mono border-2 overflow-x-auto leading-relaxed ${
+                            darkMode ? 'bg-black border-slate-700 text-cyan-300' : 'bg-slate-900 border-black text-cyan-200 shadow-[3px_3px_0px_#000]'
                           }`}>
                             {currentQ.visualDiagram}
                           </pre>
                         </div>
                       )}
 
-                      {/* Tab 3: Technical Breakdown */}
+                      {/* Tab 3: Technical Explanation */}
                       {activeSolutionTab === 'technical' && (
-                        <div className="space-y-2 animate-fadeIn">
-                          <div className="flex items-center gap-2 text-xs font-bold text-indigo-400">
-                            <Cpu className="w-4 h-4 text-indigo-400" />
-                            <span>Deep Engineering Explanation & Options Analysis</span>
-                          </div>
-                          <p className={`text-xs sm:text-sm leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
+                        <div className="space-y-2">
+                          <span className="text-xs font-black uppercase text-emerald-700 dark:text-emerald-400 flex items-center gap-1.5">
+                            <Cpu className="w-4 h-4" /> Deep Technical Rationale
+                          </span>
+                          <p className="text-xs sm:text-sm font-medium leading-relaxed">
                             {currentQ.explanation}
                           </p>
                         </div>
                       )}
 
-                      {/* Tab 4: Client Interview Pro-Tip */}
+                      {/* Tab 4: Client Pro-Tip */}
                       {activeSolutionTab === 'tip' && (
-                        <div className="space-y-2 animate-fadeIn">
-                          <div className="flex items-center gap-2 text-xs font-bold text-amber-400">
-                            <Award className="w-4 h-4 text-amber-400" />
-                            <span>Client / Big-4 Technical Interview Strategy</span>
-                          </div>
-                          <p className={`text-xs sm:text-sm leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
+                        <div className="space-y-2">
+                          <span className="text-xs font-black uppercase text-orange-600 dark:text-orange-400 flex items-center gap-1.5">
+                            <Award className="w-4 h-4" /> Client Round Strategy
+                          </span>
+                          <p className="text-xs sm:text-sm font-medium leading-relaxed">
                             {currentQ.interviewTip}
                           </p>
                         </div>
@@ -1157,34 +1091,28 @@ export default function App() {
                     </div>
                   )}
 
-                  {/* Navigation Buttons */}
-                  <div className={`flex items-center justify-between pt-4 border-t ${darkMode ? 'border-slate-800' : 'border-slate-200'}`}>
+                  {/* Navigation Bar */}
+                  <div className="flex items-center justify-between pt-4 border-t-2 border-black/10 dark:border-slate-800">
                     <button
                       onClick={handlePrev}
                       disabled={currentIndex === 0}
-                      className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold border transition ${
+                      className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-black border-2 transition-all neo-btn ${
                         currentIndex === 0
-                          ? darkMode
-                            ? 'opacity-30 cursor-not-allowed border-slate-800 text-slate-600'
-                            : 'opacity-40 cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400'
-                          : darkMode
-                          ? 'border-slate-700 hover:bg-slate-800 text-slate-200'
-                          : 'border-slate-300 bg-white hover:bg-slate-100 text-slate-800 shadow-sm'
+                          ? 'opacity-40 cursor-not-allowed bg-slate-200 border-slate-400'
+                          : 'bg-white border-black text-black shadow-[3px_3px_0px_#000]'
                       }`}
                     >
                       <ChevronLeft className="w-4 h-4" /> Previous
                     </button>
 
-                    <span className={`text-xs font-medium ${darkMode ? 'text-slate-500' : 'text-slate-500'} hidden sm:inline`}>
-                      Shortcuts: [1-4] / [A-D] Select • [←/→] Navigate • [S] Star • [E] Solution
+                    <span className="text-xs font-bold text-slate-500 hidden sm:inline">
+                      Shortcuts: [1-4] Select • [←/→] Navigate • [S] Star • [E] Solution
                     </span>
 
                     <button
                       onClick={handleNext}
                       disabled={currentIndex === filteredQuestions.length - 1}
-                      className={`flex items-center gap-2 px-6 py-2.5 rounded-2xl text-xs sm:text-sm font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg shadow-indigo-600/30 transition ${
-                        currentIndex === filteredQuestions.length - 1 ? 'opacity-40 cursor-not-allowed' : ''
-                      }`}
+                      className="flex items-center gap-2 px-6 py-2.5 rounded-2xl text-xs font-black bg-amber-300 text-black border-2 border-black shadow-[3px_3px_0px_#000] neo-btn"
                     >
                       Next <ChevronRight className="w-4 h-4" />
                     </button>
@@ -1196,169 +1124,127 @@ export default function App() {
         )}
 
         {/* =========================================
-            MODE 2: CONCEPT & VISUALIZATION HUB (BRAND NEW!)
+            MODE 2: CONCEPT & VISUALIZATION HUB
             ========================================= */}
         {mode === 'concepts' && (
           <div className="space-y-6">
-            {/* Concept Hub Intro Banner */}
-            <div className={`p-6 sm:p-8 rounded-3xl border ${
-              darkMode
-                ? 'bg-gradient-to-r from-indigo-950/60 via-slate-900 to-cyan-950/40 border-slate-800'
-                : 'bg-gradient-to-r from-indigo-50 via-white to-cyan-50 border-slate-200 shadow-sm'
+            {/* Banner */}
+            <div className={`p-6 sm:p-8 rounded-3xl border-[2.5px] ${
+              darkMode ? 'bg-slate-900 border-slate-700 shadow-[5px_5px_0px_#0284c7]' : 'bg-emerald-100 border-black shadow-[5px_5px_0px_#000000]'
             }`}>
               <div className="max-w-3xl space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-400/30">
-                    Architectural Blueprints & Mental Models
-                  </span>
-                </div>
-                <h2 className="text-xl sm:text-2xl font-black tracking-tight">
+                <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-black text-white border border-black">
+                  Core Architecture Blueprints
+                </span>
+                <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-black dark:text-white">
                   Concept Explanation & Visualization Hub
                 </h2>
-                <p className={`text-xs sm:text-sm ${darkMode ? 'text-slate-300' : 'text-slate-600'} leading-relaxed`}>
-                  Master every core architecture from scratch. Even complete beginners can grasp Databricks, Delta Lake, Spark distributed memory, and Kimball dimensional modeling through intuitive analogies and ASCII execution blueprints.
+                <p className="text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 leading-relaxed">
+                  Clear, zero-jargon mental models paired with complete ASCII execution blueprints covering Medallion architecture, Kimball dimensional modeling, SCD Types 1-6, and Delta Lake internals.
                 </p>
               </div>
 
-              {/* Search & Domain Filter Bar */}
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                <div className="relative flex-1 min-w-[240px]">
-                  <Search className={`w-4 h-4 absolute left-3 top-3 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`} />
-                  <input
-                    type="text"
-                    placeholder="Search concepts, architectures, SQL rules..."
-                    value={conceptSearch}
-                    onChange={(e) => setConceptSearch(e.target.value)}
-                    className={`w-full pl-9 pr-3 py-2.5 text-xs rounded-2xl border transition focus:outline-none focus:ring-2 focus:ring-cyan-500 ${
-                      darkMode
-                        ? 'bg-slate-950 border-slate-800 text-slate-100 placeholder-slate-500'
-                        : 'bg-white border-slate-300 text-slate-900 placeholder-slate-400'
-                    }`}
-                  />
-                </div>
+              {/* Search */}
+              <div className="mt-5 max-w-md relative">
+                <Search className="w-4 h-4 absolute left-3.5 top-3 text-slate-500" />
+                <input
+                  type="text"
+                  placeholder="Search architecture concepts..."
+                  value={conceptSearch}
+                  onChange={(e) => setConceptSearch(e.target.value)}
+                  className="w-full pl-10 pr-3 py-2.5 text-xs font-bold rounded-2xl border-2 border-black bg-white text-black shadow-[3px_3px_0px_#000] focus:outline-none"
+                />
               </div>
             </div>
 
-            {/* Concepts List Grid */}
+            {/* Concepts List */}
             <div className="grid grid-cols-1 gap-6">
               {filteredConcepts.map((concept) => {
                 const isExpanded = expandedConceptId === concept.id;
                 return (
                   <div
                     key={concept.id}
-                    className={`rounded-3xl border transition-all duration-200 overflow-hidden ${
+                    className={`rounded-3xl border-[2.5px] transition-all overflow-hidden ${
                       isExpanded
                         ? darkMode
-                          ? 'bg-slate-900/95 border-cyan-500/50 shadow-2xl shadow-cyan-950/30'
-                          : 'bg-white border-cyan-400 shadow-xl'
+                          ? 'bg-slate-900 border-cyan-400 shadow-[6px_6px_0px_#0284c7]'
+                          : 'bg-white border-black shadow-[6px_6px_0px_#000000]'
                         : darkMode
-                        ? 'bg-slate-900/60 border-slate-800 hover:border-slate-700'
-                        : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'
+                        ? 'bg-slate-900/80 border-slate-700 shadow-[3px_3px_0px_#0284c7]'
+                        : 'bg-white border-black shadow-[3px_3px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5'
                     }`}
                   >
-                    {/* Header bar */}
                     <div
                       onClick={() => setExpandedConceptId(isExpanded ? null : concept.id)}
                       className="p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer select-none"
                     >
                       <div className="space-y-1.5 flex-1">
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider ${
-                            darkMode ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' : 'bg-cyan-100 text-cyan-800 border border-cyan-200'
-                          }`}>
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase bg-amber-300 text-black border border-black shadow-[1.5px_1.5px_0px_#000]">
                             {concept.badge}
                           </span>
-                          <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
-                            darkMode ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-700'
-                          }`}>
+                          <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-black border border-black">
                             {concept.domain}
                           </span>
-                          <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
-                            concept.difficulty === 'Easy'
-                              ? 'bg-emerald-500/20 text-emerald-400'
-                              : concept.difficulty === 'Hard'
-                              ? 'bg-rose-500/20 text-rose-400'
-                              : 'bg-amber-500/20 text-amber-400'
-                          }`}>
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-lime-300 text-black border border-black">
                             {concept.difficulty}
                           </span>
                         </div>
-                        <h3 className="text-base sm:text-lg font-black tracking-tight">
-                          {concept.title}
-                        </h3>
-                        <p className={`text-xs ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        <h3 className="text-base sm:text-xl font-black">{concept.title}</h3>
+                        <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">
                           {concept.summary}
                         </p>
                       </div>
 
                       <div className="flex items-center gap-2 shrink-0">
-                        <span className="text-xs font-bold text-cyan-400 hidden sm:inline">
-                          {isExpanded ? 'Collapse' : 'Explore Architecture'}
+                        <span className="text-xs font-black text-black dark:text-white hidden sm:inline">
+                          {isExpanded ? 'Collapse' : 'Explore'}
                         </span>
-                        <ChevronDown className={`w-5 h-5 text-cyan-400 transition-transform duration-200 ${
-                          isExpanded ? 'transform rotate-180' : ''
-                        }`} />
+                        <div className="w-8 h-8 rounded-xl bg-amber-300 border-2 border-black flex items-center justify-center text-black">
+                          <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
+                        </div>
                       </div>
                     </div>
 
-                    {/* Expanded Detail Panel */}
                     {isExpanded && (
-                      <div className={`p-5 sm:p-6 pt-0 space-y-6 border-t ${darkMode ? 'border-slate-800/80' : 'border-slate-100'}`}>
-                        {/* 1. Beginner Intuition Box */}
-                        <div className={`p-4 rounded-2xl border space-y-1.5 ${
-                          darkMode ? 'bg-amber-950/20 border-amber-500/30 text-amber-200' : 'bg-amber-50 border-amber-200 text-amber-900'
-                        }`}>
-                          <div className="flex items-center gap-2 font-bold text-xs uppercase tracking-wider text-amber-500">
-                            <Lightbulb className="w-4 h-4" />
+                      <div className="p-6 pt-0 space-y-6 border-t-2 border-black/10 dark:border-slate-800">
+                        {/* 1. Beginner Intuition */}
+                        <div className="p-4 rounded-2xl border-2 border-black bg-amber-100 dark:bg-amber-950/40 text-black dark:text-amber-200 space-y-1.5 shadow-[3px_3px_0px_#000]">
+                          <div className="flex items-center gap-2 font-black text-xs uppercase">
+                            <Lightbulb className="w-4 h-4 text-amber-600" />
                             <span>Beginner Mental Model (Plain-English Analogy)</span>
                           </div>
-                          <p className="text-xs sm:text-sm leading-relaxed font-normal">
+                          <p className="text-xs sm:text-sm font-medium leading-relaxed">
                             {concept.beginnerAnalogy}
                           </p>
                         </div>
 
-                        {/* 2. Visual ASCII Architecture Diagram */}
+                        {/* 2. Visual Blueprint */}
                         <div className="space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-black uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
-                              <Workflow className="w-4 h-4 text-cyan-400" />
-                              <span>Architectural Data Flow & Schema Layout</span>
+                            <span className="text-xs font-black uppercase text-sky-600 dark:text-sky-400 flex items-center gap-1.5">
+                              <Workflow className="w-4 h-4" /> Architectural Blueprint & Data Flow
                             </span>
                             <button
                               onClick={() => handleCopyCode(concept.visualDiagram, concept.id)}
-                              className={`text-[11px] px-2.5 py-1 rounded-xl border flex items-center gap-1.5 font-bold transition ${
-                                copiedCodeId === concept.id
-                                  ? 'bg-emerald-600 text-white border-emerald-500'
-                                  : darkMode
-                                  ? 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'
-                                  : 'bg-white border-slate-300 text-slate-700 hover:bg-slate-100'
-                              }`}
+                              className="text-[11px] px-3 py-1 rounded-xl border-2 border-black bg-white dark:bg-slate-800 font-black neo-btn"
                             >
-                              <Copy className="w-3.5 h-3.5" />
-                              <span>{copiedCodeId === concept.id ? 'Copied!' : 'Copy Blueprint'}</span>
+                              {copiedCodeId === concept.id ? 'Copied!' : 'Copy Blueprint'}
                             </button>
                           </div>
-                          <pre className={`p-5 rounded-2xl text-[11px] sm:text-xs font-mono leading-relaxed overflow-x-auto border ${
-                            darkMode
-                              ? 'bg-slate-950 border-slate-800 text-cyan-300 shadow-inner'
-                              : 'bg-slate-900 border-slate-700 text-cyan-200'
-                          }`}>
+                          <pre className="p-5 rounded-2xl text-[11px] sm:text-xs font-mono border-2 border-black bg-slate-900 text-cyan-200 overflow-x-auto shadow-[4px_4px_0px_#000]">
                             {concept.visualDiagram}
                           </pre>
                         </div>
 
-                        {/* 3. Core Architectural Rules */}
+                        {/* 3. Key Rules */}
                         <div className="space-y-2">
-                          <h4 className="text-xs font-black uppercase tracking-wider text-indigo-400">
-                            Key Architectural Rules to Memorize
-                          </h4>
+                          <h4 className="text-xs font-black uppercase">Key Rules to Memorize</h4>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                             {concept.keyRules.map((rule, idx) => (
                               <div
                                 key={idx}
-                                className={`p-3 rounded-2xl border text-xs leading-snug flex items-start gap-2 ${
-                                  darkMode ? 'bg-slate-950/60 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-700'
-                                }`}
+                                className="p-3.5 rounded-2xl border-2 border-black bg-slate-50 dark:bg-slate-950 text-xs font-bold flex items-start gap-2 shadow-[2px_2px_0px_#000]"
                               >
                                 <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
                                 <span>{rule}</span>
@@ -1367,37 +1253,29 @@ export default function App() {
                           </div>
                         </div>
 
-                        {/* 4. Client Interview Trap & Code Example */}
+                        {/* 4. Interview Trap & Code */}
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                          {/* Interview Trap */}
-                          <div className={`p-4 rounded-2xl border space-y-1.5 ${
-                            darkMode ? 'bg-rose-950/20 border-rose-500/30 text-rose-200' : 'bg-rose-50 border-rose-200 text-rose-900'
-                          }`}>
-                            <div className="flex items-center gap-2 font-bold text-xs uppercase tracking-wider text-rose-400">
-                              <ShieldAlert className="w-4 h-4 text-rose-500" />
-                              <span>Client Interview Trap / Anti-Pattern Alert</span>
+                          <div className="p-4 rounded-2xl border-2 border-black bg-rose-100 dark:bg-rose-950/40 text-black dark:text-rose-200 space-y-1.5 shadow-[3px_3px_0px_#000]">
+                            <div className="flex items-center gap-2 font-black text-xs uppercase text-rose-600">
+                              <ShieldAlert className="w-4 h-4" />
+                              <span>Client Interview Trap / Anti-Pattern</span>
                             </div>
-                            <p className="text-xs sm:text-sm leading-relaxed">
+                            <p className="text-xs sm:text-sm font-medium leading-relaxed">
                               {concept.interviewGotchas}
                             </p>
                           </div>
 
-                          {/* Reference Code Snippet */}
-                          <div className={`p-4 rounded-2xl border space-y-1.5 ${
-                            darkMode ? 'bg-slate-950 border-slate-800' : 'bg-slate-900 text-slate-100 border-slate-700'
-                          }`}>
+                          <div className="p-4 rounded-2xl border-2 border-black bg-slate-900 text-white space-y-2 shadow-[3px_3px_0px_#000]">
                             <div className="flex items-center justify-between">
-                              <span className="text-xs font-bold text-slate-400">
-                                Implementation Reference
-                              </span>
+                              <span className="text-xs font-black text-slate-400">Implementation Reference</span>
                               <button
                                 onClick={() => handleCopyCode(concept.codeExample, `code-${concept.id}`)}
-                                className="text-[10px] text-cyan-400 hover:text-cyan-300 font-bold"
+                                className="text-[10px] font-black text-cyan-400 hover:text-cyan-300"
                               >
                                 {copiedCodeId === `code-${concept.id}` ? 'Copied' : 'Copy SQL'}
                               </button>
                             </div>
-                            <pre className="text-[11px] font-mono leading-relaxed overflow-x-auto text-cyan-300">
+                            <pre className="text-[11px] font-mono text-cyan-300 overflow-x-auto leading-relaxed">
                               {concept.codeExample}
                             </pre>
                           </div>
@@ -1417,98 +1295,88 @@ export default function App() {
         {mode === 'exam' && (
           <div>
             {!examStarted ? (
-              /* Exam Config Screen */
-              <div className={`max-w-2xl mx-auto p-6 sm:p-10 rounded-3xl border text-center space-y-6 ${
-                darkMode ? 'bg-slate-900 border-slate-800 shadow-2xl' : 'bg-white border-slate-200 shadow-xl'
+              /* Exam Config Screen with Custom Rounded Dropdowns */
+              <div className={`max-w-2xl mx-auto p-6 sm:p-10 rounded-3xl border-[2.5px] text-center space-y-6 ${
+                darkMode ? 'bg-slate-900 border-slate-700 shadow-[6px_6px_0px_#0284c7]' : 'bg-white border-black shadow-[6px_6px_0px_#000000]'
               }`}>
-                <div className="w-16 h-16 rounded-3xl bg-indigo-600/20 text-indigo-500 border border-indigo-500/30 flex items-center justify-center mx-auto shadow-lg">
-                  <Timer className="w-8 h-8" />
+                <div className="w-16 h-16 rounded-2xl bg-amber-300 border-2 border-black flex items-center justify-center mx-auto shadow-[3px_3px_0px_#000]">
+                  <Timer className="w-8 h-8 text-black stroke-[2.5]" />
                 </div>
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-black">
-                    Databricks & SQL Client Mock Exam Simulator
+                  <h2 className="text-2xl font-black">
+                    Databricks & SQL Client Mock Exam
                   </h2>
-                  <p className={`text-xs sm:text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'} mt-1`}>
-                    Timed certification-style exam with randomized questions, flagged review, and category breakdown.
+                  <p className="text-xs text-slate-500 font-bold mt-1">
+                    Timed exam simulation with randomized questions, flagged review, and difficulty analytics.
                   </p>
                 </div>
 
-                {/* Filters for Exam */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
-                  <div>
-                    <label className={`text-xs font-bold block mb-1 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                      Filter by Domain:
-                    </label>
-                    <select
-                      value={examCategoryFilter}
-                      onChange={(e) => setExamCategoryFilter(e.target.value)}
-                      className={`w-full p-2.5 text-xs rounded-xl border ${
-                        darkMode ? 'bg-slate-950 border-slate-800 text-slate-200' : 'bg-slate-50 border-slate-300 text-slate-800'
-                      }`}
-                    >
-                      {CATEGORIES.map((cat) => (
-                        <option key={cat} value={cat}>{cat}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className={`text-xs font-bold block mb-1 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
-                      Filter by Difficulty:
-                    </label>
-                    <select
-                      value={examDifficultyFilter}
-                      onChange={(e) => setExamDifficultyFilter(e.target.value)}
-                      className={`w-full p-2.5 text-xs rounded-xl border ${
-                        darkMode ? 'bg-slate-950 border-slate-800 text-slate-200' : 'bg-slate-50 border-slate-300 text-slate-800'
-                      }`}
-                    >
-                      {DIFFICULTIES.map((d) => (
-                        <option key={d} value={d}>{d}</option>
-                      ))}
-                    </select>
-                  </div>
+                {/* Custom Rounded Dropdowns for Exam Configuration (No more ugly rectangular select!) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
+                  <CustomDropdown
+                    label="Filter by Domain:"
+                    value={examCategoryFilter}
+                    options={categoryDropdownOptions}
+                    onChange={(val) => setExamCategoryFilter(val)}
+                    icon={Layers}
+                    darkMode={darkMode}
+                    accentColor="yellow"
+                  />
+
+                  <CustomDropdown
+                    label="Filter by Difficulty:"
+                    value={examDifficultyFilter}
+                    options={difficultyDropdownOptions}
+                    onChange={(val) => setExamDifficultyFilter(val)}
+                    icon={Gauge}
+                    darkMode={darkMode}
+                    accentColor="emerald"
+                  />
                 </div>
 
-                {/* Select Question Count */}
-                <div className="space-y-3">
-                  <span className={`text-xs font-bold block ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                {/* Tactile Question Count Selection */}
+                <div className="space-y-3 pt-2">
+                  <span className="text-xs font-black uppercase tracking-wider block">
                     Choose Number of Questions:
                   </span>
-                  <div className="grid grid-cols-5 gap-2">
-                    {[10, 25, 50, 100, 200].map((cnt) => (
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                    {[
+                      { count: 10, time: '10 Mins', color: 'bg-amber-300' },
+                      { count: 25, time: '25 Mins', color: 'bg-emerald-300' },
+                      { count: 50, time: '50 Mins', color: 'bg-sky-300' },
+                      { count: 100, time: '100 Mins', color: 'bg-orange-300' },
+                      { count: 200, time: '200 Mins', color: 'bg-yellow-300' }
+                    ].map((item) => (
                       <button
-                        key={cnt}
-                        onClick={() => startExam(cnt)}
-                        className="py-3 px-2 rounded-2xl text-xs font-black border transition bg-indigo-600 hover:bg-indigo-500 text-white shadow-md shadow-indigo-600/25 flex flex-col items-center justify-center gap-1"
+                        key={item.count}
+                        onClick={() => startExam(item.count)}
+                        className={`py-4 px-3 rounded-2xl text-xs font-black border-[2.5px] border-black ${item.color} text-black shadow-[4px_4px_0px_#000000] hover:shadow-[5px_5px_0px_#000000] hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-1 active:translate-y-1 active:shadow-[1px_1px_0px_#000] neo-btn flex flex-col items-center justify-center gap-1 cursor-pointer`}
                       >
-                        <span className="text-base">{cnt}</span>
-                        <span className="text-[10px] font-medium opacity-80">{cnt} Mins</span>
+                        <span className="text-xl sm:text-2xl font-black font-heading leading-none">{item.count}</span>
+                        <span className="text-[11px] font-extrabold uppercase tracking-wide opacity-90">{item.time}</span>
                       </button>
                     ))}
                   </div>
                 </div>
               </div>
             ) : examFinished ? (
-              /* Exam Finished Score Report */
+              /* Score Report */
               <div className="max-w-4xl mx-auto space-y-6">
-                <div className={`p-8 rounded-3xl border text-center space-y-4 ${
-                  darkMode ? 'bg-slate-900 border-slate-800 shadow-2xl' : 'bg-white border-slate-200 shadow-xl'
+                <div className={`p-8 rounded-3xl border-[2.5px] text-center space-y-4 ${
+                  darkMode ? 'bg-slate-900 border-slate-700 shadow-[6px_6px_0px_#0284c7]' : 'bg-white border-black shadow-[6px_6px_0px_#000]'
                 }`}>
-                  <div className={`w-20 h-20 rounded-3xl mx-auto flex items-center justify-center text-3xl font-black ${
-                    examScore.percentage >= 70
-                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 shadow-emerald-500/20'
-                      : 'bg-rose-500/20 text-rose-400 border border-rose-500/40 shadow-rose-500/20'
+                  <div className={`w-24 h-24 rounded-3xl mx-auto flex items-center justify-center text-3xl font-black border-[3px] border-black shadow-[4px_4px_0px_#000] ${
+                    examScore.percentage >= 70 ? 'bg-emerald-300 text-black' : 'bg-rose-300 text-black'
                   }`}>
                     {examScore.percentage}%
                   </div>
-                  <div>
-                    <h2 className="text-2xl font-black">
-                      {examScore.percentage >= 70 ? '🎉 Congratulations! You Passed!' : '📚 Needs Review - Keep Practicing!'}
-                    </h2>
-                    <p className={`text-xs sm:text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'} mt-1`}>
-                      You answered {examScore.correct} out of {examScore.total} questions correctly. Passing score threshold is 70%.
-                    </p>
-                  </div>
+
+                  <h2 className="text-2xl font-black">
+                    {examScore.percentage >= 70 ? '🎉 Passed! Client Ready!' : '📚 Review Needed - Keep Practicing!'}
+                  </h2>
+                  <p className="text-xs font-bold text-slate-500">
+                    Answered {examScore.correct} of {examScore.total} questions correctly. Passing threshold is 70%.
+                  </p>
 
                   {/* Difficulty Breakdown */}
                   <div className="grid grid-cols-3 gap-3 max-w-lg mx-auto pt-2">
@@ -1516,18 +1384,10 @@ export default function App() {
                       const stat = examScore.difficultyStats[diff] || { total: 0, correct: 0 };
                       const pct = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0;
                       return (
-                        <div key={diff} className={`p-3 rounded-2xl border text-center ${
-                          darkMode ? 'bg-slate-950 border-slate-800' : 'bg-slate-50 border-slate-200'
-                        }`}>
-                          <span className="text-[10px] font-bold uppercase tracking-wider block text-slate-400">
-                            {diff}
-                          </span>
-                          <span className="text-lg font-black block mt-0.5">
-                            {stat.correct}/{stat.total}
-                          </span>
-                          <span className={`text-[10px] font-bold ${pct >= 70 ? 'text-emerald-400' : 'text-amber-400'}`}>
-                            {pct}%
-                          </span>
+                        <div key={diff} className="p-3 rounded-2xl border-2 border-black bg-slate-50 dark:bg-slate-950 text-center shadow-[2px_2px_0px_#000]">
+                          <span className="text-[10px] font-black uppercase text-slate-400 block">{diff}</span>
+                          <span className="text-lg font-black block">{stat.correct}/{stat.total}</span>
+                          <span className="text-[10px] font-black text-amber-500">{pct}%</span>
                         </div>
                       );
                     })}
@@ -1536,41 +1396,37 @@ export default function App() {
                   <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
                     <button
                       onClick={() => setExamStarted(false)}
-                      className="px-6 py-2.5 rounded-2xl bg-indigo-600 text-white font-bold text-xs hover:bg-indigo-500 shadow-md"
+                      className="px-6 py-2.5 rounded-2xl bg-amber-300 text-black font-black border-2 border-black shadow-[3px_3px_0px_#000] neo-btn"
                     >
                       Start New Exam
                     </button>
                     <button
                       onClick={() => setMode('practice')}
-                      className={`px-6 py-2.5 rounded-2xl border text-xs font-bold ${
-                        darkMode ? 'border-slate-700 bg-slate-800 hover:bg-slate-700' : 'border-slate-300 bg-white hover:bg-slate-50'
-                      }`}
+                      className="px-6 py-2.5 rounded-2xl bg-white text-black font-black border-2 border-black shadow-[3px_3px_0px_#000] neo-btn"
                     >
                       Return to Practice
                     </button>
                   </div>
                 </div>
 
-                {/* Question Review Section */}
-                <div className={`p-6 sm:p-8 rounded-3xl border space-y-4 ${
-                  darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-sm'
+                {/* Review Answers */}
+                <div className={`p-6 sm:p-8 rounded-3xl border-[2.5px] space-y-4 ${
+                  darkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-black shadow-[4px_4px_0px_#000]'
                 }`}>
-                  <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 pb-3">
+                  <div className="flex flex-wrap items-center justify-between gap-3 border-b-2 border-black/10 dark:border-slate-800 pb-3">
                     <h3 className="text-base font-black flex items-center gap-2">
-                      <Award className="w-4 h-4 text-indigo-400" />
+                      <Award className="w-5 h-5 text-amber-500" />
                       <span>Exam Answers Review</span>
                     </h3>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
                       {['all', 'incorrect', 'flagged'].map((rf) => (
                         <button
                           key={rf}
                           onClick={() => setExamReviewFilter(rf)}
-                          className={`px-3 py-1 rounded-xl text-xs font-bold border capitalize transition ${
+                          className={`px-3 py-1 rounded-xl text-xs font-black border-2 capitalize neo-btn ${
                             examReviewFilter === rf
-                              ? 'bg-indigo-600 text-white border-indigo-500'
-                              : darkMode
-                              ? 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200'
-                              : 'bg-slate-100 border-slate-300 text-slate-700'
+                              ? 'bg-amber-300 text-black border-black shadow-[2px_2px_0px_#000]'
+                              : 'bg-white dark:bg-slate-950 border-black text-slate-700 dark:text-slate-300'
                           }`}
                         >
                           {rf}
@@ -1586,34 +1442,34 @@ export default function App() {
                       return (
                         <div
                           key={q.id}
-                          className={`p-5 rounded-2xl border space-y-3 ${
+                          className={`p-5 rounded-2xl border-2 space-y-3 ${
                             isCorrect
-                              ? darkMode ? 'bg-emerald-950/20 border-emerald-500/30' : 'bg-emerald-50/60 border-emerald-200'
-                              : darkMode ? 'bg-rose-950/20 border-rose-500/30' : 'bg-rose-50/60 border-rose-200'
+                              ? 'bg-emerald-50 dark:bg-emerald-950/40 border-black shadow-[3px_3px_0px_#000]'
+                              : 'bg-rose-50 dark:bg-rose-950/40 border-black shadow-[3px_3px_0px_#000]'
                           }`}
                         >
                           <div className="flex items-center justify-between gap-2">
                             <span className="text-xs font-black">
                               Q{idx + 1}. {q.category} • [{q.difficulty}]
                             </span>
-                            <span className={`text-xs font-black px-2.5 py-0.5 rounded-full ${
-                              isCorrect ? 'bg-emerald-500/20 text-emerald-400' : 'bg-rose-500/20 text-rose-400'
+                            <span className={`text-xs font-black px-2.5 py-0.5 rounded-full border border-black ${
+                              isCorrect ? 'bg-emerald-300 text-black' : 'bg-rose-300 text-black'
                             }`}>
                               {isCorrect ? 'Correct' : userAns !== undefined ? 'Incorrect' : 'Unanswered'}
                             </span>
                           </div>
-                          <p className="text-sm font-bold leading-relaxed">{q.question}</p>
-                          <div className="text-xs space-y-1">
-                            <p className="text-emerald-400 font-bold">
+                          <p className="text-sm font-black leading-relaxed">{q.question}</p>
+                          <div className="text-xs space-y-1 font-bold">
+                            <p className="text-emerald-700 dark:text-emerald-300">
                               ✓ Correct: {['A', 'B', 'C', 'D'][q.correct]} - {q.options[q.correct]}
                             </p>
                             {userAns !== undefined && !isCorrect && (
-                              <p className="text-rose-400 font-bold">
+                              <p className="text-rose-700 dark:text-rose-300">
                                 ✗ Your Answer: {['A', 'B', 'C', 'D'][userAns]} - {q.options[userAns]}
                               </p>
                             )}
                           </div>
-                          <p className={`text-xs leading-relaxed pt-2 border-t ${darkMode ? 'border-slate-800 text-slate-300' : 'border-slate-200 text-slate-700'}`}>
+                          <p className="text-xs font-medium leading-relaxed pt-2 border-t border-black/10 dark:border-slate-800">
                             💡 {q.explanation}
                           </p>
                         </div>
@@ -1625,36 +1481,33 @@ export default function App() {
             ) : (
               /* Active Exam Screen */
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-                {/* Active Exam Sidebar */}
                 <div className="lg:col-span-1 space-y-4">
-                  <div className={`p-5 rounded-3xl border text-center space-y-3 ${
-                    darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-sm'
+                  <div className={`p-5 rounded-3xl border-[2.5px] text-center space-y-3 ${
+                    darkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-black shadow-[4px_4px_0px_#000]'
                   }`}>
                     <div className="flex items-center justify-center gap-2">
-                      <Clock className="w-5 h-5 text-indigo-400" />
-                      <span className={`text-2xl font-black font-mono ${
-                        examTimeLeft < 300 ? 'text-rose-400 animate-pulse' : ''
-                      }`}>
+                      <Clock className="w-5 h-5 text-amber-500" />
+                      <span className="text-2xl font-black font-mono">
                         {formatTime(examTimeLeft)}
                       </span>
                     </div>
-                    <span className="text-[11px] font-bold text-slate-400 block">
+                    <span className="text-[11px] font-black text-slate-400 block uppercase">
                       Time Remaining
                     </span>
                     <button
                       onClick={() => setShowSubmitModal(true)}
-                      className="w-full py-2.5 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-bold text-xs shadow-md shadow-rose-600/30"
+                      className="w-full py-2.5 rounded-2xl bg-rose-400 text-black font-black text-xs border-2 border-black shadow-[3px_3px_0px_#000] neo-btn"
                     >
                       End & Submit Exam
                     </button>
                   </div>
 
-                  {/* Exam Question Navigator */}
-                  <div className={`p-4 rounded-3xl border space-y-3 ${
-                    darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-sm'
+                  {/* Palette */}
+                  <div className={`p-4 rounded-3xl border-[2.5px] space-y-3 ${
+                    darkMode ? 'bg-slate-900 border-slate-700' : 'bg-white border-black shadow-[4px_4px_0px_#000]'
                   }`}>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-400">Exam Navigator</span>
+                    <div className="flex items-center justify-between pb-1 border-b border-black/10">
+                      <span className="text-xs font-black">Exam Navigator</span>
                       <span className="text-xs font-black">
                         {Object.keys(examAnswers).length} / {examQuestions.length}
                       </span>
@@ -1668,19 +1521,17 @@ export default function App() {
                           <button
                             key={q.id}
                             onClick={() => setExamCurrentIdx(idx)}
-                            className={`h-8 rounded-xl text-xs font-bold relative transition ${
+                            className={`h-8 rounded-xl text-xs font-black relative border-2 neo-btn ${
                               isCurrent
-                                ? 'border-2 border-cyan-400 bg-cyan-950 text-cyan-200 shadow-md'
+                                ? 'bg-amber-300 text-black border-black ring-2 ring-black shadow-[2px_2px_0px_#000]'
                                 : isAnswered
-                                ? 'bg-indigo-600 text-white'
-                                : darkMode
-                                ? 'bg-slate-950 border border-slate-800 text-slate-400'
-                                : 'bg-slate-100 border border-slate-300 text-slate-700'
+                                ? 'bg-emerald-300 text-black border-black shadow-[1.5px_1.5px_0px_#000]'
+                                : 'bg-white text-slate-800 border-black'
                             }`}
                           >
                             {idx + 1}
                             {isFlagged && (
-                              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-amber-400 rounded-full" />
+                              <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-orange-400 border border-black rounded-full" />
                             )}
                           </button>
                         );
@@ -1689,37 +1540,35 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Active Exam Question Card */}
+                {/* Question */}
                 <div className="lg:col-span-3 space-y-4">
                   {examQuestions[examCurrentIdx] && (
-                    <div className={`p-6 sm:p-8 rounded-3xl border space-y-6 ${
-                      darkMode ? 'bg-slate-900 border-slate-800 shadow-xl' : 'bg-white border-slate-200 shadow-lg'
+                    <div className={`p-6 sm:p-8 rounded-3xl border-[2.5px] space-y-6 ${
+                      darkMode ? 'bg-slate-900 border-slate-700 shadow-[5px_5px_0px_#0284c7]' : 'bg-white border-black shadow-[5px_5px_0px_#000]'
                     }`}>
-                      <div className="flex items-center justify-between border-b border-slate-800/80 pb-4">
+                      <div className="flex items-center justify-between border-b-2 border-black/10 pb-4">
                         <div className="flex items-center gap-2">
-                          <span className="text-xs font-black px-3 py-1 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                          <span className="text-xs font-black px-3 py-1 rounded-xl bg-amber-300 text-black border-2 border-black shadow-[2px_2px_0px_#000]">
                             Question {examCurrentIdx + 1} of {examQuestions.length}
                           </span>
-                          <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-800 text-slate-300">
+                          <span className="text-xs font-black px-2.5 py-1 rounded-xl bg-slate-100 text-black border-2 border-black">
                             {examQuestions[examCurrentIdx].category}
                           </span>
                         </div>
                         <button
                           onClick={() => toggleReviewMark(examQuestions[examCurrentIdx].id)}
-                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition ${
+                          className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black border-2 neo-btn ${
                             markedForReview.has(examQuestions[examCurrentIdx].id)
-                              ? 'bg-amber-500/20 border-amber-500/40 text-amber-400'
-                              : darkMode
-                              ? 'bg-slate-950 border-slate-800 text-slate-400'
-                              : 'bg-slate-100 border-slate-300 text-slate-700'
+                              ? 'bg-orange-300 text-black border-black shadow-[2px_2px_0px_#000]'
+                              : 'bg-white text-black border-black'
                           }`}
                         >
                           <Flag className="w-3.5 h-3.5" />
-                          <span>{markedForReview.has(examQuestions[examCurrentIdx].id) ? 'Flagged' : 'Flag for Review'}</span>
+                          <span>{markedForReview.has(examQuestions[examCurrentIdx].id) ? 'Flagged' : 'Flag'}</span>
                         </button>
                       </div>
 
-                      <div className="text-base sm:text-lg font-bold leading-relaxed">
+                      <div className="text-base sm:text-lg font-black leading-relaxed">
                         {examQuestions[examCurrentIdx].question}
                       </div>
 
@@ -1730,22 +1579,18 @@ export default function App() {
                             <button
                               key={optIdx}
                               onClick={() => handleExamSelect(examQuestions[examCurrentIdx].id, optIdx)}
-                              className={`w-full text-left p-4 rounded-2xl border transition-all flex items-start gap-3.5 ${
+                              className={`w-full text-left p-4 rounded-2xl border-[2.5px] transition-all flex items-start gap-3.5 neo-btn ${
                                 isSelected
-                                  ? darkMode
-                                    ? 'border-indigo-500 bg-indigo-950/40 text-indigo-200 ring-2 ring-indigo-500/30'
-                                    : 'border-indigo-600 bg-indigo-50 text-indigo-900 ring-2 ring-indigo-500/20 font-bold'
-                                  : darkMode
-                                  ? 'border-slate-800 bg-slate-950/60 hover:bg-slate-800/80 text-slate-200'
-                                  : 'border-slate-300 bg-white hover:bg-slate-50 text-slate-800'
+                                  ? 'bg-amber-200 border-black text-black font-black shadow-[4px_4px_0px_#000]'
+                                  : 'bg-white border-black text-black shadow-[2.5px_2.5px_0px_#000]'
                               }`}
                             >
-                              <div className={`w-7 h-7 rounded-xl flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
-                                isSelected ? 'bg-indigo-600 text-white' : darkMode ? 'bg-slate-800 text-slate-300' : 'bg-slate-100 text-slate-700'
+                              <div className={`w-7 h-7 rounded-xl flex items-center justify-center text-xs font-black shrink-0 border-2 border-black ${
+                                isSelected ? 'bg-black text-white' : 'bg-yellow-300 text-black'
                               }`}>
                                 {['A', 'B', 'C', 'D'][optIdx]}
                               </div>
-                              <div className="flex-1 text-sm sm:text-base leading-snug pt-0.5">
+                              <div className="flex-1 text-sm sm:text-base font-extrabold leading-snug pt-0.5">
                                 {opt}
                               </div>
                             </button>
@@ -1753,20 +1598,18 @@ export default function App() {
                         })}
                       </div>
 
-                      <div className="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                      <div className="flex items-center justify-between pt-4 border-t-2 border-black/10">
                         <button
                           onClick={() => setExamCurrentIdx((prev) => Math.max(0, prev - 1))}
                           disabled={examCurrentIdx === 0}
-                          className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-xs font-bold border ${
-                            examCurrentIdx === 0 ? 'opacity-30 cursor-not-allowed' : ''
-                          }`}
+                          className="px-5 py-2.5 rounded-2xl text-xs font-black border-2 border-black bg-white text-black shadow-[2px_2px_0px_#000] neo-btn"
                         >
                           <ChevronLeft className="w-4 h-4" /> Previous
                         </button>
                         <button
                           onClick={() => setExamCurrentIdx((prev) => Math.min(examQuestions.length - 1, prev + 1))}
                           disabled={examCurrentIdx === examQuestions.length - 1}
-                          className="flex items-center gap-2 px-6 py-2.5 rounded-2xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-md"
+                          className="px-6 py-2.5 rounded-2xl text-xs font-black bg-amber-300 text-black border-2 border-black shadow-[3px_3px_0px_#000] neo-btn"
                         >
                           Next <ChevronRight className="w-4 h-4" />
                         </button>
@@ -1779,15 +1622,13 @@ export default function App() {
 
             {/* Submit Confirmation Modal */}
             {showSubmitModal && (
-              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fadeIn">
-                <div className={`max-w-md w-full p-6 sm:p-8 rounded-3xl border space-y-4 ${
-                  darkMode ? 'bg-slate-900 border-slate-800 text-white' : 'bg-white border-slate-200 text-slate-900'
-                }`}>
-                  <h3 className="text-lg font-black">Submit Exam?</h3>
-                  <p className={`text-xs ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
+                <div className="max-w-md w-full p-6 sm:p-8 rounded-3xl border-[3px] border-black bg-white text-black shadow-[8px_8px_0px_#000000] space-y-4">
+                  <h3 className="text-xl font-black">Submit Exam?</h3>
+                  <p className="text-xs font-bold text-slate-700">
                     You have answered {Object.keys(examAnswers).length} out of {examQuestions.length} questions.
                     {examQuestions.length - Object.keys(examAnswers).length > 0 && (
-                      <span className="block mt-1 text-amber-400 font-bold">
+                      <span className="block mt-2 p-2 rounded-xl bg-amber-100 border-2 border-black text-black font-black">
                         ⚠️ You still have {examQuestions.length - Object.keys(examAnswers).length} unanswered questions!
                       </span>
                     )}
@@ -1795,16 +1636,16 @@ export default function App() {
                   <div className="flex items-center justify-end gap-3 pt-3">
                     <button
                       onClick={() => setShowSubmitModal(false)}
-                      className="px-4 py-2 rounded-xl text-xs font-bold border border-slate-700"
+                      className="px-4 py-2 rounded-xl text-xs font-black border-2 border-black bg-white text-black neo-btn"
                     >
-                      Cancel & Return
+                      Cancel
                     </button>
                     <button
                       onClick={() => {
                         setShowSubmitModal(false);
                         setExamFinished(true);
                       }}
-                      className="px-5 py-2 rounded-xl bg-rose-600 text-white text-xs font-bold hover:bg-rose-500"
+                      className="px-5 py-2 rounded-xl bg-rose-400 text-black border-2 border-black font-black shadow-[3px_3px_0px_#000] neo-btn"
                     >
                       Confirm Submit
                     </button>
@@ -1822,8 +1663,8 @@ export default function App() {
           <div className="max-w-3xl mx-auto space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-lg font-black">Interactive Flashcards</h2>
-                <p className={`text-xs ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                <h2 className="text-xl font-black">Interactive 3D Flashcards</h2>
+                <p className="text-xs text-slate-500 font-bold">
                   Card {flashcardIdx + 1} of {QUESTION_BANK.length} • Press Space or Click to Flip
                 </p>
               </div>
@@ -1832,11 +1673,9 @@ export default function App() {
                   setFlashcardIdx(Math.floor(Math.random() * QUESTION_BANK.length));
                   setIsFlipped(false);
                 }}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-bold ${
-                  darkMode ? 'bg-slate-900 border-slate-800 hover:bg-slate-800' : 'bg-white border-slate-300 hover:bg-slate-50'
-                }`}
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-2xl border-2 border-black bg-white text-black font-black shadow-[3px_3px_0px_#000] neo-btn text-xs"
               >
-                <Shuffle className="w-3.5 h-3.5 text-indigo-400" />
+                <Shuffle className="w-4 h-4" />
                 <span>Shuffle</span>
               </button>
             </div>
@@ -1844,76 +1683,70 @@ export default function App() {
             {/* Flashcard Card */}
             <div
               onClick={() => setIsFlipped(!isFlipped)}
-              className={`min-h-[380px] p-8 rounded-3xl border cursor-pointer select-none transition-all duration-300 flex flex-col justify-between ${
+              className={`min-h-[380px] p-8 rounded-3xl border-[3px] border-black cursor-pointer select-none transition-all duration-200 flex flex-col justify-between ${
                 isFlipped
-                  ? darkMode
-                    ? 'bg-gradient-to-br from-indigo-950/70 via-slate-900 to-cyan-950/40 border-cyan-500/50 shadow-2xl'
-                    : 'bg-gradient-to-br from-indigo-50 via-white to-cyan-50 border-cyan-400 shadow-xl'
-                  : darkMode
-                  ? 'bg-slate-900/95 border-slate-800 hover:border-slate-700 shadow-xl'
-                  : 'bg-white border-slate-200 hover:border-slate-300 shadow-lg'
+                  ? 'bg-emerald-100 shadow-[8px_8px_0px_#000000]'
+                  : 'bg-white shadow-[8px_8px_0px_#000000] hover:-translate-x-1 hover:-translate-y-1'
               }`}
             >
-              <div className="flex items-center justify-between border-b border-slate-800/80 pb-3">
+              <div className="flex items-center justify-between border-b-2 border-black/10 pb-3">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-black px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+                  <span className="text-xs font-black px-2.5 py-0.5 rounded-xl bg-amber-300 text-black border border-black shadow-[1.5px_1.5px_0px_#000]">
                     Q{activeFlashcard.num}
                   </span>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300">
+                  <span className="text-xs font-black px-2 py-0.5 rounded-xl bg-slate-100 text-black border border-black">
                     {activeFlashcard.category}
                   </span>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400">
+                  <span className="text-[10px] font-black px-2 py-0.5 rounded-xl bg-lime-300 text-black border border-black">
                     {activeFlashcard.difficulty}
                   </span>
                 </div>
-                <span className="text-[11px] font-bold text-slate-400">
-                  {isFlipped ? 'Answer & Explanation' : 'Question Prompt'}
+                <span className="text-[11px] font-black uppercase text-slate-500">
+                  {isFlipped ? 'Answer & Mental Model' : 'Question Prompt'}
                 </span>
               </div>
 
-              {/* Main Face Content */}
+              {/* Main Content */}
               <div className="py-6 flex-1 flex flex-col justify-center">
                 {!isFlipped ? (
                   <div className="space-y-4">
-                    <p className="text-lg sm:text-xl font-bold leading-relaxed">
+                    <p className="text-lg sm:text-xl font-black leading-relaxed">
                       {activeFlashcard.question}
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2">
                       {activeFlashcard.options.map((opt, idx) => (
-                        <div key={idx} className={`p-2.5 rounded-xl border text-xs ${
-                          darkMode ? 'bg-slate-950/60 border-slate-800 text-slate-300' : 'bg-slate-50 border-slate-200 text-slate-700'
-                        }`}>
-                          <span className="font-bold mr-1.5">{['A', 'B', 'C', 'D'][idx]})</span>
+                        <div key={idx} className="p-2.5 rounded-xl border-2 border-black bg-slate-50 text-xs font-bold text-black shadow-[2px_2px_0px_#000]">
+                          <span className="font-black mr-1.5">{['A', 'B', 'C', 'D'][idx]})</span>
                           {opt}
                         </div>
                       ))}
                     </div>
                   </div>
                 ) : (
-                  <div className="space-y-4 animate-fadeIn">
-                    <div className="p-3 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-sm font-bold flex items-center gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                  <div className="space-y-4">
+                    <div className="p-3.5 rounded-2xl bg-black text-white border-2 border-black text-sm font-black flex items-center gap-2 shadow-[3px_3px_0px_#000]">
+                      <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
                       <span>
-                        Correct Answer: Option {['A', 'B', 'C', 'D'][activeFlashcard.correct]} ({activeFlashcard.options[activeFlashcard.correct]})
+                        Answer: Option {['A', 'B', 'C', 'D'][activeFlashcard.correct]} ({activeFlashcard.options[activeFlashcard.correct]})
                       </span>
                     </div>
-                    <p className="text-xs sm:text-sm leading-relaxed text-slate-300 font-medium">
+                    <p className="text-xs sm:text-sm font-bold text-slate-800 leading-relaxed">
                       💡 {activeFlashcard.beginnerConcept}
                     </p>
-                    <p className="text-xs leading-relaxed text-slate-400">
+                    <p className="text-xs font-medium text-slate-700 leading-relaxed">
                       🎯 {activeFlashcard.explanation}
                     </p>
                   </div>
                 )}
               </div>
 
-              <div className="flex items-center justify-between text-xs text-slate-500 pt-3 border-t border-slate-800/80">
-                <span>Click to Flip Card (or press Space)</span>
-                <span>Use [← / →] to navigate</span>
+              <div className="flex items-center justify-between text-xs font-black text-slate-500 pt-3 border-t-2 border-black/10">
+                <span>Space / Enter to Flip</span>
+                <span>[← / →] Navigate</span>
               </div>
             </div>
 
-            {/* Navigation buttons */}
+            {/* Navigation */}
             <div className="flex items-center justify-between">
               <button
                 onClick={() => {
@@ -1921,9 +1754,9 @@ export default function App() {
                   setIsFlipped(false);
                 }}
                 disabled={flashcardIdx === 0}
-                className="px-5 py-2.5 rounded-2xl border text-xs font-bold flex items-center gap-2"
+                className="px-5 py-2.5 rounded-2xl border-2 border-black bg-white text-black font-black text-xs neo-btn shadow-[3px_3px_0px_#000]"
               >
-                <ChevronLeft className="w-4 h-4" /> Previous Card
+                <ChevronLeft className="w-4 h-4" /> Previous
               </button>
               <button
                 onClick={() => {
@@ -1931,9 +1764,9 @@ export default function App() {
                   setIsFlipped(false);
                 }}
                 disabled={flashcardIdx === QUESTION_BANK.length - 1}
-                className="px-6 py-2.5 rounded-2xl bg-indigo-600 text-white font-bold text-xs flex items-center gap-2"
+                className="px-6 py-2.5 rounded-2xl bg-amber-300 text-black border-2 border-black font-black text-xs neo-btn shadow-[3px_3px_0px_#000]"
               >
-                Next Card <ChevronRight className="w-4 h-4" />
+                Next <ChevronRight className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -1944,11 +1777,11 @@ export default function App() {
             ========================================= */}
         {mode === 'cheatsheet' && (
           <div className="space-y-6">
-            <div className={`p-6 sm:p-8 rounded-3xl border ${
-              darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200 shadow-sm'
+            <div className={`p-6 sm:p-8 rounded-3xl border-[2.5px] ${
+              darkMode ? 'bg-slate-900 border-slate-700 shadow-[5px_5px_0px_#0284c7]' : 'bg-yellow-100 border-black shadow-[5px_5px_0px_#000]'
             }`}>
-              <h2 className="text-xl font-black">Pre-Interview Quick Cheatsheet</h2>
-              <p className={`text-xs sm:text-sm ${darkMode ? 'text-slate-400' : 'text-slate-600'} mt-1`}>
+              <h2 className="text-2xl font-black text-black dark:text-white">Pre-Interview Quick Cheatsheet</h2>
+              <p className="text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 mt-1">
                 High-yield formula summaries, ACID properties, join mechanics, and Kimball dimensional modeling rules.
               </p>
             </div>
@@ -1957,19 +1790,15 @@ export default function App() {
               {CHEAT_SHEET_ITEMS.map((item, idx) => (
                 <div
                   key={idx}
-                  className={`p-6 rounded-3xl border space-y-3 ${
-                    darkMode ? 'bg-slate-900/80 border-slate-800' : 'bg-white border-slate-200 shadow-sm'
+                  className={`p-6 rounded-3xl border-[2.5px] space-y-3 ${
+                    darkMode ? 'bg-slate-900 border-slate-700 shadow-[4px_4px_0px_#0284c7]' : 'bg-white border-black shadow-[4px_4px_0px_#000]'
                   }`}
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                      {item.tag}
-                    </span>
-                  </div>
-                  <h3 className="text-base font-bold text-slate-100">{item.title}</h3>
-                  <div className={`text-xs leading-relaxed whitespace-pre-line ${
-                    darkMode ? 'text-slate-300 font-mono' : 'text-slate-700'
-                  }`}>
+                  <span className="text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full bg-amber-300 text-black border border-black shadow-[1.5px_1.5px_0px_#000] inline-block">
+                    {item.tag}
+                  </span>
+                  <h3 className="text-base font-black text-black dark:text-white">{item.title}</h3>
+                  <div className="text-xs leading-relaxed font-mono whitespace-pre-line text-slate-700 dark:text-slate-300">
                     {item.content}
                   </div>
                 </div>
@@ -1977,15 +1806,18 @@ export default function App() {
             </div>
           </div>
         )}
+
       </main>
 
       {/* FOOTER */}
-      <footer className={`mt-16 border-t ${darkMode ? 'bg-slate-950 border-slate-800/80 text-slate-500' : 'bg-white border-slate-200 text-slate-600'} py-8 px-4 text-center text-xs space-y-2`}>
-        <p className="font-bold">
+      <footer className={`mt-16 border-t-[3px] py-8 px-4 text-center text-xs font-bold space-y-1.5 ${
+        darkMode ? 'bg-[#0F172A] border-slate-700 text-slate-400' : 'bg-white border-black text-slate-800'
+      }`}>
+        <p className="font-black text-sm">
           SQL, Data Warehousing & Databricks Master Practice Hub • 200 Questions Bank
         </p>
         <p className="text-[11px] opacity-80">
-          Covering 14 Core Domains • Calibrated Easy/Medium/Hard • Virtual Client Scenarios • Medallion & Kimball Architectures
+          Soft Neo-Brutalist Architecture • 14 Core Domains • Virtual Client Scenarios • Medallion & Kimball Blueprints
         </p>
       </footer>
     </div>
