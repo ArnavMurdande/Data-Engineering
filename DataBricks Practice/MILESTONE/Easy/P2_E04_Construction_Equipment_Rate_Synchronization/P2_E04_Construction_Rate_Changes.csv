@@ -1,0 +1,4 @@
+asset_id,asset_type,depot,daily_rate,is_available,rate_date
+CE402,COMPACTOR,DEPOT_A,750.00,true,2026-10-19
+CE404,EXCAVATOR,DEPOT_B,1100.00,true,2026-10-19
+CE406,GENERATOR,DEPOT_C,600.00,true,2026-10-19

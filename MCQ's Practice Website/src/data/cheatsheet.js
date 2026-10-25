@@ -1,62 +1,76 @@
+// =========================================================================
+// QUICK INTERVIEW CHEATSHEET - 14 CORE DOMAINS
+// =========================================================================
+
 export const CHEAT_SHEET_ITEMS = [
   {
-    "title": "1. Big Data 4Vs & HDFS Distributed Architecture",
-    "tag": "Big Data & Hadoop Architecture",
-    "content": "• 4Vs: Volume (scale), Velocity (speed of generation), Variety (structured, semi-structured, unstructured), Veracity (data quality & trustworthiness).\n• HDFS NameNode: Holds filesystem metadata, namespace tree, and block-to-DataNode mapping purely in RAM (backed by EditLog & FsImage).\n• HDFS DataNodes: Store physical 128MB binary blocks on local disk; send 3-second heartbeats and periodic block reports to NameNode.\n• Resilience: Default replication factor = 3 (Rack-aware placement). NameNode automatically detects dead DataNodes and re-replicates blocks."
+    title: "1. SQL Fundamentals & ACID Transactions",
+    tag: "SQL Fundamentals & RDBMS",
+    content: "• Atomicity: All SQL operations in transaction commit successfully or roll back completely ('all-or-nothing').\n• Consistency: Database transitions strictly from one valid state to another, satisfying all constraints & foreign keys.\n• Isolation: Concurrent transactions execute without mutual interference (Levels: Read Uncommitted, Read Committed, Repeatable Read, Serializable).\n• Durability: Committed data is guaranteed to survive power outages or server crashes via write-ahead logging (WAL)."
   },
   {
-    "title": "2. Hadoop YARN Cluster Resource Negotiation",
-    "tag": "Big Data & Hadoop Architecture",
-    "content": "• ResourceManager (RM): Central cluster-wide resource arbiter; schedules CPU cores and memory containers across worker nodes.\n• NodeManager (NM): Per-worker-node agent monitoring container resource utilization (CPU, memory, disk).\n• ApplicationMaster (AM): Dynamic per-application coordinator running inside a worker container; negotiates resource containers from RM and assigns tasks to NMs."
+    title: "2. SQL Logical Execution Order",
+    tag: "SQL Fundamentals & RDBMS",
+    content: "• Execution Sequence: 1. FROM & JOIN -> 2. WHERE -> 3. GROUP BY -> 4. HAVING -> 5. SELECT -> 6. DISTINCT -> 7. ORDER BY -> 8. LIMIT.\n• Crucial Rule: Column aliases defined in SELECT cannot be referenced in WHERE or GROUP BY because SELECT evaluates later.\n• WHERE vs HAVING: WHERE filters individual raw rows before grouping; HAVING filters aggregated groups after GROUP BY."
   },
   {
-    "title": "3. Apache Spark Architecture & Cluster Deployment Modes",
-    "tag": "Spark Cluster Architecture",
-    "content": "• Driver Program: Control process running SparkSession/SparkContext; translates user code into execution DAGs, breaks DAGs into stages, and schedules tasks.\n• Executors: Dedicated worker JVM processes executing task bytecodes and managing partitioned storage (RAM/Disk cache).\n• Cluster Mode (`--deploy-mode cluster`): Driver runs inside an ApplicationMaster container on a cluster worker node (production best practice).\n• Client Mode (`--deploy-mode client`): Driver runs on the edge/client submission machine; closing terminal or network drop kills entire application."
+    title: "3. Advanced SQL & Performance Optimization",
+    tag: "Advanced SQL & Performance",
+    content: "• SELECT * Anti-Pattern: Defeats Column Pruning in columnar engines (Parquet/Delta), forcing massive unnecessary disk I/O and network transfer.\n• SARGable Predicates: Avoid wrapping indexed columns in functions (e.g. use `order_date >= '2024-01-01'` instead of `YEAR(order_date) = 2024`).\n• UNION vs UNION ALL: UNION performs an expensive sort/hash deduplication; UNION ALL appends with zero computational overhead.\n• Photon Engine: Databricks' native C++ vectorized execution engine that accelerates SQL queries using modern CPU SIMD registers."
   },
   {
-    "title": "4. Spark Core: RDD Transformations, Actions & Lineage",
-    "tag": "Spark Core & RDDs",
-    "content": "• Transformations (Lazy): Do not compute immediately; build a logical lineage graph (DAG). Examples: map(), filter(), flatMap(), groupByKey(), reduceByKey().\n• Actions (Eager): Trigger immediate DAG execution and return results or write to storage. Examples: collect(), count(), take(), saveAsTextFile().\n• Narrow Dependencies: Each parent partition is consumed by at most one child partition (map, filter). No data shuffle required; pipelined in-memory.\n• Wide Dependencies: Multiple child partitions depend on data across parent partitions (groupByKey, join, distinct). Requires expensive network shuffle across cluster nodes."
+    title: "4. Keys, Joins & Distributed Strategies",
+    tag: "Keys, Joins & Subqueries",
+    content: "• Join Key Duplication: 5 duplicate keys in Table A x 4 duplicate keys in Table B generates a 20-row Cartesian product on that key!\n• Broadcast Hash Join (BHJ): Driver broadcasts small lookup table (< 10MB default) to all executors; completely eliminates network shuffle.\n• Sort Merge Join (SMJ): Standard join for large tables; shuffles both tables by join key and performs local sort before merging.\n• Anti-Join (`NOT EXISTS` vs `NOT IN`): `NOT EXISTS` is NULL-safe; `NOT IN` returns 0 rows if subquery contains even a single NULL value."
   },
   {
-    "title": "5. RDD & DataFrame Persistence Storage Levels",
-    "tag": "Spark Core & RDDs",
-    "content": "• MEMORY_ONLY (Default RDD): Deserialized Java objects in JVM memory. If partitions exceed RAM, uncomputed partitions are re-evaluated on demand.\n• MEMORY_AND_DISK: Deserialized in RAM; overflows spill gracefully to local executor disk.\n• MEMORY_ONLY_SER / MEMORY_AND_DISK_SER: Serialized byte arrays; significantly smaller memory footprint at the expense of higher CPU deserialization overhead.\n• DataFrame default: `MEMORY_AND_DISK_DESER` in modern Spark.\n• Freeing memory: Explicitly invoke `.unpersist()` to evict cached blocks from BlockManager."
+    title: "5. Window Functions & Analytics",
+    tag: "Window Functions & Analytics",
+    content: "• ROW_NUMBER(): Strictly unique sequential integer for every row (1, 2, 3, 4).\n• RANK(): Equal values receive the same rank, and subsequent ranks are skipped (1, 1, 3, 4).\n• DENSE_RANK(): Equal values receive the same rank, and no ranks are skipped (1, 1, 2, 3).\n• Frame Default: ORDER BY without a frame defaults to `RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`.\n• QUALIFY Clause: Filters window function outputs directly without nesting extra subqueries (supported in Databricks and Snowflake)."
   },
   {
-    "title": "6. Spark SQL, Catalyst Optimizer & Execution Plans",
-    "tag": "Catalyst, Plans & Optimization",
-    "content": "• 4-Phase Optimization Pipeline:\n  1. Unresolved Logical Plan (AST built from SQL/DataFrame syntax)\n  2. Analysis (Resolves table/column names against Catalog/Metastore)\n  3. Logical Optimization (Rule-based: Predicate Pushdown, Projection Pruning, Constant Folding)\n  4. Physical Planning & Cost-Based Optimizer (CBO) (Selects physical join algorithms and generates efficient Java bytecode via Project Tungsten Whole-Stage CodeGen).\n• Explain Plan: `.explain(true)` reveals Parsed, Analyzed, Optimized Logical, and Physical execution plans."
+    title: "6. Medallion Lakehouse Architecture",
+    tag: "Data Warehousing Concepts",
+    content: "• Bronze (Raw Landing): Append-only raw ingestion preserving source schema and metadata (_file_name, _ingest_time). No data ever deleted.\n• Silver (Conformed & Cleansed): Cleaned, normalized, validated with DLT Expectations, deduplicated, and enriched with SCD Type 2 tracking.\n• Gold (Consumption Marts): Kimball Star Schemas and business KPI views optimized with Liquid Clustering and Photon Serverless SQL."
   },
   {
-    "title": "7. Distributed Join Strategies & Skew Mitigation",
-    "tag": "Catalyst, Plans & Optimization",
-    "content": "• Broadcast Hash Join (BHJ): Driver broadcasts small lookup table (< 10MB default `spark.sql.autoBroadcastJoinThreshold`) to all executors; eliminates shuffle.\n• Sort Merge Join (SMJ): Default join for large tables; shuffles both tables by join key and performs local sort before merging.\n• Shuffle Hash Join: Shuffles both tables; builds hash table for smaller partition in executor RAM.\n• Data Skew Handling: Salting join keys with random integer suffixes (`key_0` to `key_n`) distributes concentrated keys across multiple executor partitions uniformly."
+    title: "7. OLTP vs. OLAP Systems",
+    tag: "OLTP vs OLAP Systems",
+    content: "• OLTP (Row-Oriented): Optimized for fast, high-concurrency single-row writes (INSERT/UPDATE) with B-Tree indexes in 3NF.\n• OLAP (Columnar): Optimized for heavy analytical aggregation scans over billions of rows using Parquet/Delta compression and data skipping.\n• Normalization: OLTP normalizes to eliminate write anomalies; OLAP denormalizes into Star Schemas for fast read performance."
   },
   {
-    "title": "8. Spark Structured Streaming & Kafka Integration",
-    "tag": "Structured Streaming & Kafka",
-    "content": "• Processing Paradigm: Treats real-time stream as an infinitely growing append-only table (Micro-batch default or Continuous low-latency processing).\n• Output Modes:\n  - Append: Only new rows added to result table since last trigger are emitted (stateless or watermarked aggregations).\n  - Complete: Entire updated result table written to sink on every trigger (mandatory for non-watermarked aggregations).\n  - Update: Only rows updated since last trigger emitted.\n• Watermarking (`withWatermark(\"timestamp\", \"10 minutes\")`): Specifies latency threshold for late-arriving event data; allows engine to drop expired state from memory.\n• Checkpointing: Mandatory directory logging write-ahead log (WAL) and state store offsets for end-to-end exactly-once fault recovery."
+    title: "8. Modern ETL vs. ELT Architecture",
+    tag: "ETL vs ELT Architectures",
+    content: "• Legacy ETL: Computes transformations outside the warehouse on dedicated ETL hardware before loading clean data.\n• Modern ELT: Loads raw data directly into the cloud lakehouse first, then transforms in-place using distributed elastic compute (Databricks/Spark).\n• Delta Live Tables (DLT): Declarative framework automating pipeline infrastructure, quality testing, and dependency DAG orchestration."
   },
   {
-    "title": "9. Java Virtual Machine (JVM) Memory & Collections",
-    "tag": "Java Fundamentals & Collections",
-    "content": "• JVM Heap: Shared memory for instantiated objects and instance variables; managed by Garbage Collector (Generational: Eden, Survivor S0/S1, Tenured/Old Gen).\n• JVM Stack: Thread-private memory allocating stack frames for method calls, local primitive variables, and object references.\n• List Collections: `ArrayList` (contiguous array, O(1) random access, O(n) middle insertions) vs `LinkedList` (doubly-linked nodes, O(1) insertion/deletion with iterator, O(n) access).\n• Map Collections: `HashMap` (unsorted, O(1) average lookup, allows one null key, not thread-safe) vs `ConcurrentHashMap` (lock-striping segment/bucket CAS locks, high concurrent throughput, rejects null keys/values)."
+    title: "9. Ralph Kimball Dimensional Modeling",
+    tag: "Dimensional Modeling & Kimball",
+    content: "• 4-Step Design Process: 1. Choose Business Process -> 2. Declare Atomic Grain -> 3. Identify Dimensions -> 4. Identify Numeric Facts.\n• Fact Table Types: Transaction (instantaneous point in time), Periodic Snapshot (regular balance intervals), Accumulating Snapshot (multi-step process).\n• Fact Types: Additive (sums across all dimensions), Semi-Additive (balances cannot sum across time), Non-Additive (unit prices, ratios).\n• Surrogate Keys: Synthetic system-generated integer primary keys isolating the warehouse from operational key recycling."
   },
   {
-    "title": "10. Java Object-Oriented Programming (OOP) & SOLID Principles",
-    "tag": "Java OOPs & SOLID Principles",
-    "content": "• 4 OOP Pillars: Encapsulation (data hiding via private fields/getters), Inheritance (`extends`), Polymorphism (method overriding `@Override` dynamic dispatch vs overloading static compile-time), Abstraction (`interface` & `abstract class`).\n• SOLID Principles:\n  - S: Single Responsibility (Class has only one reason to change)\n  - O: Open/Closed (Open for extension, closed for modification via interfaces)\n  - L: Liskov Substitution (Subtypes must be substitutable for base types without breaking program correctness)\n  - I: Interface Segregation (Clients shouldn't depend on interfaces they do not use)\n  - D: Dependency Inversion (Depend on abstractions, not concrete implementations)."
+    title: "10. Star vs. Snowflake Schema",
+    tag: "Star vs Snowflake Schema",
+    content: "• Star Schema: Central fact table joined to flat, denormalized dimensions. Fewer joins, faster BI responses, simpler user navigation.\n• Snowflake Schema: Dimensions normalized into sub-dimension hierarchies (e.g. Product -> Category -> Department). Saves tiny disk space but degrades join speed.\n• Cloud Verdict: Star Schema is the gold standard for Databricks Lakehouses because columnar compression mitigates text redundancy effortlessly."
   },
   {
-    "title": "11. Java Functional Streams API & File I/O",
-    "tag": "Java Streams & File I/O",
-    "content": "• Streams Lifecycle: Stream Source -> Intermediate Operations (Lazy: `filter`, `map`, `flatMap`, `sorted`, `distinct`) -> Terminal Operation (Eager: `collect(toList())`, `reduce`, `count`, `forEach`).\n• AutoCloseable & Try-With-Resources: `try (BufferedReader br = new BufferedReader(...)) { ... }` guarantees automatic stream closing, preventing OS file descriptor leaks.\n• Immutability in Modern Java: `java.time.LocalDate` / `Instant` are thread-safe and immutable (unlike legacy `java.util.Date`)."
+    title: "11. Slowly Changing Dimensions (SCD)",
+    tag: "Slowly Changing Dimensions (SCD)",
+    content: "• SCD Type 1: Overwrites existing attribute values with no historical tracking. Use only for typo corrections.\n• SCD Type 2: Appends a new row with new surrogate key, effective_date, end_date, and is_current = TRUE. Industry standard for regulatory auditing.\n• SCD Type 3: Adds a 'previous_value' column to the existing row. Tracks only the immediate last state.\n• Delta Lake MERGE: Implements atomic SCD Type 2 upserts by expiring active rows and inserting incoming versions in one transaction."
   },
   {
-    "title": "12. Scala Functional Programming Essentials",
-    "tag": "Scala & Functional Programming",
-    "content": "• Immutability: Prefer `val` (immutable reference) over `var` (mutable variable); default `List`, `Vector`, `Map` in standard library are immutable.\n• Pattern Matching: Type-safe switch on steroids with value extraction and pattern guards: `val res = x match { case i if i > 0 => \"pos\" ; case _ => \"zero/neg\" }`.\n• Monadic Error Handling:\n  - `Option[T]`: Models optionality via `Some(value)` or `None` (eliminates `NullPointerException`).\n  - `Try[T]`: Captures computations that may throw exceptions via `Success(v)` or `Failure(e)`.\n  - `Either[L, R]`: `Right(value)` represents success by convention; `Left(error)` holds error context.\n• Pure Functions: Deterministic output strictly based on input arguments with zero external side effects (no mutation, no I/O)."
+    title: "12. Data Quality & Unity Catalog Governance",
+    tag: "Data Quality & Governance",
+    content: "• 6 DQ Dimensions: Accuracy, Completeness, Consistency, Timeliness, Validity, Uniqueness.\n• DLT Expectations: `CONSTRAINT valid_val EXPECT (val > 0) ON VIOLATION DROP ROW` (Options: Warn, Drop, Fail).\n• 3-Level Namespace: `catalog.schema.table` centralized access control across all workspaces.\n• Row-Level Security: Attach SQL UDFs using `WITH ROW FILTER` to filter rows dynamically by user group.\n• Column Masking: Obfuscate sensitive PII using `WITH MASK` functions."
+  },
+  {
+    title: "13. Virtual Client Scenario Diagnoses",
+    tag: "Client Scenario Questions",
+    content: "• Tiny Files Problem: Millisecond per-file metadata listing overhead kills performance. Solve with `OPTIMIZE table_name` and Auto-compaction.\n• Data Skew in Joins: Single hot key bottlenecks one worker executor while others sit idle. Solve with Join Key Salting.\n• Memory Spill to Disk: Caused by accidental Cartesian cross-joins or oversized non-broadcast hash joins. Solve by auditing join keys and using BHJ.\n• Late-Arriving Events: Streaming queries accumulate unbound state. Solve by declaring a Watermark (`withWatermark('event_time', '2 hours')`)."
+  },
+  {
+    title: "14. Databricks vs. Snowflake & Advanced Standards",
+    tag: "Databricks vs Snowflake & FAQs",
+    content: "• Architecture Difference: Databricks is built on open Lakehouse formats (Delta Lake, Apache Spark) decoupling storage on standard cloud buckets; Snowflake uses proprietary micro-partitions.\n• Liquid Clustering: Replaces legacy Hive partitioning and Z-ORDER. Dynamically clusters data on read/write patterns without rewriting full tables.\n• Auto Loader: Incrementally ingests millions of files from cloud storage with automatic schema inference and evolution.\n• Zero-Copy Cloning: `CREATE TABLE clone SHALLOW CLONE source` creates instant dev/test copies referencing metadata with zero file duplication."
   }
 ];

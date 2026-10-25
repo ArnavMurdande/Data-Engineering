@@ -1,0 +1,3 @@
+stock_id,farm_id,species,fingerlings,water_temp_c,stock_date,feed_grade
+AQ304,FARM_B,TILAPIA,60,27.5,2026-10-19,GRADE_A
+AQ305,FARM_C,CARP,40,26.5,2026-10-19,GRADE_B

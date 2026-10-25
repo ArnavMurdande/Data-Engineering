@@ -1,0 +1,5 @@
+session_id,site_id,connector_type,charge_amount,session_status,session_date
+EV701,EV_A,AC,100.00,COMPLETE,2026-10-18
+EV702,EV_A,DC,200.00,COMPLETE,2026-10-18
+EV703,EV_B,DC,150.00,COMPLETE,2026-10-18
+EV704,EV_B,AC,50.00,VOID,2026-10-18

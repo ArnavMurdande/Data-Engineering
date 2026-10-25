@@ -1,0 +1,9 @@
+donor_id,donor_name,phone_number,city,donor_tier,is_active,joined_date
+DN201,Maya Roy,9900001001,Kochi,REGULAR,true,2026-09-18
+DN202,Dev Nair,9900001002,Jaipur,PATRON,true,2026-09-18
+DN203,Ina Rao,,Surat,REGULAR,true,2026-09-18
+DN204,Kabir Sen,9900001004,Kochi,PATRON,true,2026-09-18
+DN205,Leela Das,9900001005,Surat,REGULAR,true,2026-09-18
+DN206,Nikhil Bose,9900001006,Jaipur,PATRON,true,2026-09-18
+DN207,Ria Shah,,Kochi,REGULAR,true,2026-09-18
+DN208,Zoya Ali,9900001008,Surat,PATRON,true,2026-09-18

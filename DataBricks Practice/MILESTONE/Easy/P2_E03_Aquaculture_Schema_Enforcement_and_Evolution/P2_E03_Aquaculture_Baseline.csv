@@ -1,0 +1,4 @@
+stock_id,farm_id,species,fingerlings,water_temp_c,stock_date
+AQ301,FARM_A,TILAPIA,120,27.0,2026-10-18
+AQ302,FARM_A,CARP,80,26.0,2026-10-18
+AQ303,FARM_B,CATFISH,100,28.0,2026-10-18
