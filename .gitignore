@@ -79,6 +79,8 @@ Databricks/Assignments/
 **/Assignments/
 **/Capstone_Prep/
 **/Presentation_and_Speaker_Notes/
+**/_autoloader_state/
+**/checkpoint/
 *.zip
 *.pptx
 *.odt
