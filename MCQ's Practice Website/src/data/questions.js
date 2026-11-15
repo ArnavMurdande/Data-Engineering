@@ -1486,15 +1486,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": null,
     "question": "In the FAQ \"Can window functions replace subqueries?\", why is replacing a correlated subquery or self-join with a Window Function usually much faster in Databricks?",
     "options": [
-      "Window functions do not use CPU",
-      "A window function typically requires only a single table scan plus a sort/shuffle per partition spec, whereas self-joins or correlated subqueries often cause multiple table scans and heavy shuffle joins",
-      "Window functions automatically delete old data",
-      "Subqueries are not supported in Databricks"
+      "Window functions execute in the cloud client browser, offloading all computation from the Spark cluster",
+      "A window function typically requires only a single table scan plus a sort/shuffle per partition specification, whereas self-joins or correlated subqueries often trigger multiple redundant table scans and expensive shuffle hash joins",
+      "Window functions bypass execution engine cost-based optimization and execute immediately on raw Parquet files",
+      "Correlated subqueries are deprecated in ANSI SQL and produce non-deterministic results in distributed systems"
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "Consolidating multiple pass aggregations or self-joins (like finding top-N per group or previous transaction timestamp) into a single OVER (PARTITION BY ...) scan drastically cuts I/O.",
+    "explanation": "A window function computes values across partitions in a single execution pass (or single shuffle), whereas self-joins and correlated subqueries frequently force Spark to scan the same underlying table multiple times and perform heavy network shuffle joins.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
   {
@@ -2242,15 +2242,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": null,
     "question": "Addressing the PDF FAQ: \"Why is ELT preferred in cloud-native architectures?\"",
     "options": [
-      "Cloud storage is extremely cheap and elastic MPP compute engines (Spark/Photon/Snowflake) can transform massive datasets in parallel far faster than legacy middle-tier ETL servers, while preserving raw data in Bronze for auditability and replay",
-      "ELT requires zero electricity",
-      "Legacy ETL tools are faster at petabyte scale",
-      "Cloud platforms cannot run Python"
+      "Cloud object storage is highly cost-effective and elastic MPP engines (Spark/Photon/Snowflake) transform massive datasets in parallel far faster than legacy middle-tier ETL servers, while preserving immutable raw data in Bronze for auditing and replay",
+      "Legacy ETL server hardware cannot connect to modern cloud virtual networks due to fundamental IP protocol mismatches",
+      "Cloud-native architectures prohibit running transformations inside the storage layer due to strict SOC-2 compliance rules",
+      "Transforming data prior to ingestion reduces cloud network egress fees by more than 90% across all enterprise workloads"
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "ELT removes the middle-tier ETL hardware bottleneck, lowers ingestion latency (dump raw first, transform later), and keeps raw history accessible for new use cases.",
+    "explanation": "Cloud ELT leverages elastic MPP compute (Photon, Spark) to transform data in place at cloud scale, avoiding the throughput bottlenecks of dedicated ETL middle-tier servers while keeping raw Bronze history immutable.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
   {
@@ -2935,15 +2935,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": null,
     "question": "In what rare scenario might a partial Snowflake Schema (or \"Outrigger Dimension\") still be appropriate?",
     "options": [
-      "For every single dimension attribute",
-      "When a sub-dimension is massive, shared across multiple distinct dimensions, or updated on a completely different schedule/grain (e.g., a large external demographic county profile outrigger attached to dim_customer and dim_store)",
-      "When the dimension has only 10 rows",
-      "When you want to slow down Power BI dashboards"
+      "When the dimension has fewer than 100 total rows and can be cached in the Spark driver memory indefinitely",
+      "When every single query against the fact table requires all nested attributes from the sub-dimension",
+      "When a secondary dimension is massive, shared across multiple distinct dimensions, or updated on a completely different cadence/grain (such as a large external demographic census profile shared by dim_customer and dim_store)",
+      "When the primary key of the fact table is a composite key containing more than ten distinct foreign keys"
     ],
-    "correct": 1,
+    "correct": 2,
     "beginnerConcept": "Think of a bicycle wheel: the center hub is your Fact table (recording every sale), and the spokes lead outward to Dimension tables (Customer, Store, Product). This simple structure makes reports extremely fast.",
     "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502  dim_customer  \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  dim_product \u2502\u2500\u2500\u2500[ FACT_SALES ]\u2500\u2500\u2500\u2502   dim_date   \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518        \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502   dim_store    \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
-    "explanation": "Kimball permits sparing use of Outrigger dimensions when a secondary entity is large and independently maintained, though a pure Star Schema remains the default target.",
+    "explanation": "Outrigger dimensions (partial snowflakes) prevent massive data duplication when a high-cardinality reference dataset (like census or geospatial polygons) is referenced across multiple dimensions or refreshed independently.",
     "interviewTip": "Interview Tip: When asked 'Star vs Snowflake', state that Star Schema is the gold standard for cloud analytical engines because columnar storage compresses denormalized data with zero disk penalty while avoiding multi-table join latency."
   },
   {
@@ -3796,15 +3796,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Virtual Client Scenario: Retail Tiny Files Explosion",
     "question": "Client Scenario: A retail client says their daily Databricks job takes 4 hours to write and reading from the resulting Silver table takes 45 minutes. You inspect the storage path and find 2.5 million tiny 15 KB Parquet files. What is this issue called, and what is your immediate remediation plan?",
     "options": [
-      "Data Skew; fix by dropping the table",
-      "The \"Small File Problem\" (caused by over-partitioning or uncompacted high-frequency micro-batches); fix by running OPTIMIZE to compact small files into target ~128MB\u20131GB files, enabling Auto-Compaction / Optimized Writes, and replacing high-cardinality PARTITION BY with Liquid Clustering (CLUSTER BY)",
-      "Network outage; fix by changing cloud providers",
-      "Missing primary key; fix by converting to CSV"
+      "Shuffle Spill to Disk; resolve by allocating higher memory worker nodes (e.g. Memory Optimized instances) and increasing spark.sql.shuffle.partitions from 200 to 2000",
+      "Driver Node OOM; resolve by decreasing broadcast join thresholds and collecting small batches to the driver node using coalesce(1) before writing to cloud storage",
+      "The \"Small File Problem\"; resolve by running OPTIMIZE with Liquid Clustering (CLUSTER BY), enabling Auto-Compaction and Optimized Writes, and consolidating micro-batch writes into ~128MB–1GB target files",
+      "Data Skew on partition keys; resolve by introducing synthetic salt columns across the partition keys and executing manual REPARTITION operations before each append commit"
     ],
-    "correct": 1,
+    "correct": 2,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "Cloud object stores have high per-file HTTP metadata listing and open overhead. Millions of tiny files cripple read performance; OPTIMIZE and Liquid Clustering resolve this permanently.",
+    "explanation": "Cloud object stores suffer high per-file HTTP listing and open overhead. Millions of tiny 15 KB files cripple read performance. Running OPTIMIZE and enabling Auto-Compaction / Liquid Clustering consolidates files into efficient 128MB–1GB Parquet blocks.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
   {
@@ -3817,15 +3817,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Virtual Client Scenario: Financial Late-Arriving Event Streams",
     "question": "Client Scenario: During a UAT sign-off, a Finance Director notices that total revenue in the Gold Fact table is $12.4M, whereas the Silver Order Lines table shows $10.0M for the same month. What is the most likely root cause, and how do you diagnose it?",
     "options": [
-      "The cloud provider added random numbers",
-      "A Join Fan-Out (1-to-Many duplicate keys) occurred when joining the Silver Order Lines to a Dimension table (such as an SCD Type 2 dimension joined without is_current = TRUE or an un-deduplicated dimension natural key). Diagnose by comparing COUNT(*) before and after each join or checking COUNT(key) > 1 on all joined dimension keys",
-      "SUM() is broken in SQL",
-      "The BI tool rounded the numbers up by 24%"
+      "A Join Fan-Out (1-to-many duplicate match) between Silver Order Lines and an SCD Type 2 dimension lacking an `is_current = TRUE` filter or having duplicate natural keys; diagnose by validating COUNT(*) and checking key uniqueness before and after the join",
+      "Late-arriving transaction events bypassed the watermark boundary during ingestion; diagnose by inspecting the streaming drop metric numRowsDroppedByWatermark in the structured streaming query progress",
+      "Floating-point precision rounding differences caused by casting DOUBLE columns to DECIMAL; diagnose by inspecting the Delta transaction log schema history and executing checksum aggregations",
+      "Out-of-order CDC micro-batches in Bronze overwrote updated revenue amounts with historical states; diagnose by comparing the source database binlog LSN offsets against Silver target ingestion timestamps"
     ],
-    "correct": 1,
+    "correct": 0,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "Whenever a Gold table inflates metrics compared to Silver, 99% of the time a dimension join key was not unique, causing row multiplication.",
+    "explanation": "Whenever Gold metrics inflate compared to Silver, a join fan-out is almost always the cause: joining a transaction line against an SCD Type 2 dimension without filtering on `is_current = TRUE` or without deduplicating keys produces duplicate rows for every matching historical version.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
   {
@@ -3838,15 +3838,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Virtual Client Scenario: Healthcare Cartesian Memory Crash",
     "question": "Client Scenario: An accidental DELETE FROM prod.gold.fact_sales WHERE 1=1 was executed 20 minutes ago by a script with elevated privileges, wiping out 500 million rows. How do you recover the production table in under 60 seconds in Databricks?",
     "options": [
-      "Restore from last month's tape backup and rerun 30 days of ETL",
-      "Run DESCRIBE HISTORY prod.gold.fact_sales to identify the version right before the accidental DELETE (e.g., version 142), and execute RESTORE TABLE prod.gold.fact_sales TO VERSION AS OF 142",
-      "Recreate the table manually by typing INSERT statements",
-      "Recovery is impossible"
+      "Initiate an automated point-in-time snapshot restore from cloud object storage lifecycle cold tier, triggering an asynchronous cluster restart to re-index all underlying Parquet files",
+      "Execute VACUUM prod.gold.fact_sales RETAIN 0 HOURS to invalidate all tombstoned files and force the Delta transaction manager to roll back uncommitted deletion manifests immediately",
+      "Query the Unity Catalog audit logs in system.access.audit, export the deleted row records as JSON to an external volume, and run a parallel multi-threaded COPY INTO script to re-insert them",
+      "Run `DESCRIBE HISTORY prod.gold.fact_sales` to identify the version commit directly preceding the accidental DELETE, and execute `RESTORE TABLE prod.gold.fact_sales TO VERSION AS OF <prior_version>`"
     ],
-    "correct": 1,
+    "correct": 3,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
-    "explanation": "Delta Lake's RESTORE TABLE ... TO VERSION AS OF <n> atomically resets the table state to the prior version in seconds by updating the transaction log metadata.",
+    "explanation": "Delta Lake's `RESTORE TABLE ... TO VERSION AS OF <n>` instantaneously points the table's state back to the pre-deletion transaction log commit, recovering all 500 million rows in seconds without physically moving or re-copying Parquet data files.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
   {
@@ -3859,15 +3859,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Virtual Client Scenario: E-Commerce Customer Profile Upsert",
     "question": "Client Scenario: A streaming CDC pipeline ingests order status updates from Kafka into Databricks. Due to network retries in microservices, an 'ORDER_SHIPPED' event (timestamp 10:05) arrives in the stream before the 'ORDER_CREATED' event (timestamp 10:01). If your pipeline uses a naive overwrite based on processing arrival time, what bug occurs, and how do you fix it?",
     "options": [
-      "No bug occurs",
-      "The older 'ORDER_CREATED' event overwrites the newer 'ORDER_SHIPPED' state (Out-of-Order Event Bug); fix by deduplicating and applying changes based on the source event timestamp / log sequence number (SEQUENCE BY) in APPLY CHANGES INTO or adding a condition WHEN MATCHED AND source.event_ts > target.event_ts THEN UPDATE in MERGE",
-      "The Kafka cluster deletes itself",
-      "Both events are dropped"
+      "A schema evolution exception terminates the streaming job; resolve by enabling mergeSchema and re-submitting the Structured Streaming writeStream query with a new checkpoint directory",
+      "The older 'ORDER_CREATED' event overwrites the newer 'ORDER_SHIPPED' state (Out-of-Order Event Bug); resolve by utilizing `APPLY CHANGES INTO` with `SEQUENCE BY event_timestamp` or conditional MERGE with `WHEN MATCHED AND source.event_ts > target.event_ts THEN UPDATE`",
+      "The Spark driver encounters a memory deadlock due to uncommitted offset tracking; resolve by configuring RocksDB state store provider and reducing maxOffsetsPerTrigger to throttle Kafka batch throughput",
+      "Watermark expiration drops both records as unparseable late arrivals; resolve by expanding the watermark window to 24 hours and executing a stateful mapGroupsWithState function to buffer unsequenced payloads"
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "Distributed streams never guarantee event-time order equals arrival-time order; state updates must always guard on source.event_timestamp > target.event_timestamp.",
+    "explanation": "In distributed streaming, network retries and multi-partition topics mean arrival order rarely equals event occurrence order. Using `SEQUENCE BY` or checking `source.event_ts > target.event_ts` ensures that stale, late-arriving events never overwrite fresher target state.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
   {
@@ -3880,15 +3880,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Virtual Client Scenario: Banking Audit Trail & Compliance",
     "question": "Client Scenario: A client's Spark job joins fact_clicks (5 billion rows) with dim_campaigns (80 million rows) on campaign_id. The job hangs at 199/200 tasks completed for 2 hours. You query fact_clicks and discover 65% of rows have campaign_id = NULL or 'organic_default'. How do you optimize this join?",
     "options": [
-      "Increase the cluster size to 500 nodes and wait",
-      "Ensure Adaptive Query Execution (spark.sql.adaptive.skewJoin.enabled = true) is active, separate/filter out the NULL / 'organic_default' rows before the join (since NULL never matches in an inner join, or can be defaulted without shuffling) and UNION ALL them back afterward, or apply key salting",
-      "Convert the join to a CROSS JOIN",
-      "Remove the ON clause"
+      "Force a Broadcast Hash Join by passing broadcast(dim_campaigns) in the query and increasing spark.sql.autoBroadcastJoinThreshold to 500MB to bypass worker node sorting entirely",
+      "Increase spark.sql.shuffle.partitions from 200 to 4000 so the skewed keys are distributed randomly across executor cores without requiring any query or schema alterations",
+      "Enable Adaptive Query Execution skew join (`spark.sql.adaptive.skewJoin.enabled = true`), isolate the NULL / default keys prior to joining, or salt the skewed campaign_id values with an integer range to distribute rows across multiple shuffle partitions",
+      "Convert the underlying Delta tables to Apache Iceberg format and execute an eager Z-ORDER index on campaign_id across all 5 billion rows prior to triggering the merge join"
     ],
-    "correct": 1,
+    "correct": 2,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "Filtering out NULL or known default skew keys before the shuffle join eliminates 65% of the shuffle data volume immediately and prevents the single executor straggler bottleneck.",
+    "explanation": "Severe data skew (65% of rows having NULL or default keys) sends the majority of records to a single partition/executor task. Filtering out NULLs before an inner join, salting skewed keys, and enabling AQE skew join splits massive partitions into smaller sub-partitions.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
   {
@@ -3901,15 +3901,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Virtual Client Scenario: Telecom Call Key Skew Bottleneck",
     "question": "Client Scenario: A client wants to migrate a legacy on-premise SQL Server Data Warehouse with 1,500 stored procedures to Databricks Lakehouse. What is the recommended consulting architecture and migration approach?",
     "options": [
-      "Copy and paste all 1,500 T-SQL cursors and while-loops directly without changes and run them on a single driver node",
-      "Categorize workloads by complexity and business criticality; use automated transpilation (like Databricks Lakebridge) alongside refactoring imperative row-by-row cursors into set-based declarative SQL / Lakeflow Declarative Pipelines (DLT) / Databricks SQL Scripting across a Medallion Architecture with reconciliation testing",
-      "Rewrite all 1,500 stored procedures into C++",
-      "Delete all historical data and start empty"
+      "Categorize workloads by complexity and criticality; refactor imperative row-by-row cursors and loops into declarative set-based SQL, Lakeflow Declarative Pipelines (DLT), and Databricks SQL scripts, validated through automated parallel reconciliation testing",
+      "Deploy an on-premise SQL Server emulator container directly on the Databricks driver node to execute legacy T-SQL procedures natively without requiring any refactoring of procedural logic",
+      "Wrap all 1,500 stored procedures inside Python UDFs executing single-threaded JDBC queries against the legacy database, streaming raw cursor result sets into Databricks file volumes",
+      "Convert all stored procedures into monolithic PySpark RDD mapPartitions scripts that simulate procedural transaction locks using Redis distributed caches across the cluster nodes"
     ],
-    "correct": 1,
+    "correct": 0,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "Legacy RDBMS stored procedures often use row-by-row cursors (WHILE @@FETCH_STATUS = 0), which are an anti-pattern on distributed MPP engines; converting cursors to set-based window functions/merges unlocks massive parallel scalability.",
+    "explanation": "Legacy RDBMS stored procedures frequently rely on procedural row-by-row cursors, which are an anti-pattern on distributed MPP engines. Refactoring cursors into declarative set-based SQL window functions and Lakeflow pipelines unlocks distributed parallelism and massive cost savings.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
   {
@@ -3922,15 +3922,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Virtual Client Scenario: IoT Sensor Pipeline Micro-Batch Lag",
     "question": "Client Scenario: The CFO complains that the company's monthly Databricks cloud bill has doubled over the past quarter. How do you conduct a FinOps audit and reduce costs by 40% without hurting SLAs?",
     "options": [
-      "Delete half of the production tables",
-      "Query system.billing.usage and system.query.history to identify top DBU consumers; migrate interactive/always-on All-Purpose clusters running scheduled jobs to automated Job Clusters / Serverless Jobs, enable Photon and Auto-Termination, right-size cluster types, enforce cluster policies, and optimize unpruned full-table scan queries",
-      "Block all users from logging in on Fridays",
-      "Turn off backups"
+      "Downgrade all production cluster worker nodes to single-core spot instances and terminate all overnight disaster recovery replication jobs across secondary cloud regions",
+      "Enforce a global 10-minute timeout on all interactive SQL Warehouses and restrict all business analysts from executing queries containing more than two table joins",
+      "Convert all Gold tables into static CSV files stored on local disks and replace automated continuous streaming pipelines with manual once-per-week batch uploads",
+      "Analyze `system.billing.usage` and `system.query.history` to identify top DBU consumers; migrate scheduled ETL from interactive clusters to Job/Serverless Compute, enforce auto-termination, right-size node types, enable Photon, and eliminate unoptimized full table scans"
     ],
-    "correct": 1,
+    "correct": 3,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "Running scheduled ETL jobs on All-Purpose clusters (instead of Job Compute) and leaving clusters idle without auto-termination are the #1 drivers of unnecessary cloud spend.",
+    "explanation": "Running scheduled batch ETL on interactive All-Purpose clusters (instead of automated Job clusters or Serverless) and leaving clusters running without auto-termination are the primary drivers of cloud spend. System tables provide precise attribution for targeted optimization.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
   {
@@ -3943,15 +3943,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Virtual Client Scenario: Multi-Region Enterprise Governance",
     "question": "Client Scenario: A global healthcare client requires that US analysts see all patient records with full names, EU analysts see only EU records with masked names, and Marketing analysts see aggregated counts only\u2014all from the same single source of truth without duplicating tables. What architecture do you implement?",
     "options": [
-      "Build 3 separate Databricks workspaces and copy the data 3 times",
-      "Implement a single Delta table in Unity Catalog governed with a ROW FILTER function (checking user group region attributes for US vs. EU) and a COLUMN MASK function on patient_name, alongside a governed Gold Materialized View / Metric View for Marketing",
-      "Export data to password-protected Excel sheets",
-      "Give everyone ALL PRIVILEGES and rely on an honor system"
+      "Deploy three separate Databricks workspaces in different cloud availability zones, running daily cron jobs that truncate and reload customized subsets of patient tables",
+      "Define a single Delta table governed by Unity Catalog with dynamic Row Filter UDFs (evaluating analyst user group and region) and Column Mask UDFs on patient_name, supplemented by governed aggregated views or Metric Views for Marketing",
+      "Grant broad SELECT privileges on the underlying Bronze cloud storage bucket and rely on client-side Power BI visual filters and tenant connection strings to enforce record segregation",
+      "Create hard-coded materialized views for each geography with static WHERE clauses, revoking all write permissions on the base table and scheduling individual refresh pipelines"
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "        [ UNITY CATALOG METASTORE ]\n                     \u2502\n         \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n         \u25bc                       \u25bc\n  catalog_prod              catalog_dev\n         \u2502\n    schema_finance\n         \u2502\n   \u250c\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n   \u25bc                      \u25bc\ntable_transactions     view_masked_pii\n(Row Filter UDF)       (Column Mask UDF)",
-    "explanation": "Unity Catalog's fine-grained Row Filters and Column Masks enforce zero-copy regional sovereignty and PII masking dynamically per query principal.",
+    "explanation": "Unity Catalog's fine-grained Row Filters and Column Masks enforce regulatory data sovereignty and PII protection dynamically at runtime across all users and tools without table duplication.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
   {
@@ -3964,15 +3964,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Virtual Client Scenario: Executive BI Dashboard Latency",
     "question": "Client Scenario: A client's executive Power BI dashboard takes 25 seconds to load every time a user changes a date slicer because it runs DirectQuery over a 10-billion-row Silver table with 6 complex joins. How do you bring dashboard response time under 2 seconds?",
     "options": [
-      "Tell the CEO to wait 25 seconds",
-      "Build a pre-aggregated Gold Star Schema / Materialized View tailored to the dashboard's grain, cluster the Gold Fact table by the date and primary slicer keys (CLUSTER BY), enable Serverless SQL Warehouse with Photon and Disk Caching, or leverage Power BI Direct Lake / Dual mode",
-      "Remove all filters from the dashboard",
-      "Convert the Silver table into JSON files"
+      "Switch the Power BI connection mode to manual CSV export and schedule an hourly background script to refresh local cache files on the client laptop",
+      "Increase the size of the Classic SQL Warehouse cluster from Small to 4X-Large while maintaining DirectQuery execution over the normalized Silver joins",
+      "Architect a pre-aggregated Gold Star Schema / Materialized View matching dashboard granularity, cluster the Gold Fact table by date and slicer keys using Liquid Clustering (CLUSTER BY), and serve queries via Serverless SQL Warehouses with Photon disk caching",
+      "Replace the 6 joins with a single monolithic nested JSON column in Silver and instruct analysts to write client-side DAX functions to unpack arrays on demand"
     ],
-    "correct": 1,
+    "correct": 2,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "Serving BI dashboards directly off raw/normalized multi-billion-row Silver tables violates Medallion best practices; curated Gold Star Schemas + Materialized Views + Photon caching deliver sub-second BI interactivity.",
+    "explanation": "DirectQuery over uncurated Silver tables causes expensive multi-table joins on every slicer interaction. Modeling data into a Gold Star Schema with Liquid Clustering and querying via Serverless SQL Warehouses with Photon caching brings latency under 2 seconds.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
   {
@@ -3985,15 +3985,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Virtual Client Scenario: Pipeline Data Quality Quarantine",
     "question": "Client Scenario: Upstream source teams frequently rename columns or change data types without warning, breaking the client's downstream Silver and Gold jobs at 3:00 AM. What architectural governance pattern do you introduce?",
     "options": [
-      "Fire the upstream software engineers",
-      "Implement Data Contracts between producers and consumers, use Auto Loader with _rescued_data in Bronze to absorb unexpected schema drift gracefully without failing ingestion, and enforce explicit schema validation / DLT Expectations at the Bronze-to-Silver boundary with automated alerting",
-      "Turn off all pipeline schedules",
-      "Cast every column in the entire warehouse to STRING"
+      "Establish Data Contracts between upstream producers and the data team, configure Auto Loader with `_rescued_data` in Bronze to capture schema drift without job failure, and enforce schema validation with DLT Expectations at the Silver boundary with automated alerts",
+      "Configure `spark.sql.streaming.schemaInference = true` across all pipelines, allowing Databricks to automatically alter downstream Gold production schemas and drop missing columns on the fly",
+      "Disable all data type validation by casting every incoming column to STRING in Bronze and Silver, delegating data type parsing and null handling entirely to downstream BI reporting queries",
+      "Introduce a strict blocking gateway that aborts incoming source API connections immediately upon discovering any undocumented schema attribute, rolling back all current day ingestion batches"
     ],
-    "correct": 1,
+    "correct": 0,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "Combining organizational Data Contracts with technical resilience (_rescued_data in Bronze + strict Expectations at Silver) decouples ingestion reliability from downstream schema integrity.",
+    "explanation": "Data Contracts establish organizational ownership, while Auto Loader's `_rescued_data` ensures raw data is never dropped during unexpected schema evolution. DLT Expectations at Silver quarantine bad records before corrupting business analytics.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
   {
@@ -4006,15 +4006,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Industry Comparison: Databricks vs Snowflake Execution",
     "question": "PDF FAQ: \"How do Databricks and Snowflake differ in SQL execution and core architecture?\"",
     "options": [
-      "Databricks is an OLTP database; Snowflake is a web browser",
-      "Databricks is built on an Open Lakehouse Architecture (storing data in open Parquet/Delta/Iceberg formats in the customer's own cloud storage, executed via Spark and the native C++ Photon engine across SQL, Python, Streaming, and AI/ML); Snowflake originated as a cloud-native MPP Data Warehouse using proprietary micro-partitions in managed storage (while expanding Iceberg support) with T-shirt-sized virtual warehouses",
-      "Databricks does not support SQL; Snowflake does not support joins",
-      "Both store data exclusively on local floppy disks"
+      "Databricks relies exclusively on row-oriented in-memory caching for relational queries, whereas Snowflake compiles SQL statements directly into native JVM bytecode executed across Hadoop clusters",
+      "Snowflake provides an open-source multi-engine compute framework decoupled from storage, while Databricks mandates that all customer data be stored in proprietary compressed binary micro-partitions",
+      "Databricks supports only batch SQL workloads through Hive Metastore, while Snowflake is architected specifically for real-time distributed streaming and low-latency feature stores",
+      "Databricks is an Open Lakehouse built on open Parquet/Delta/Iceberg formats in customer storage with unified Spark/Photon engines for SQL, Streaming, and AI/ML; Snowflake is a cloud data warehouse using proprietary micro-partitions (with growing Iceberg support) and T-shirt sized virtual warehouses"
     ],
-    "correct": 1,
+    "correct": 3,
     "beginnerConcept": "In a Snowflake schema, the dimension tables have their own sub-tables (like Product pointing to Sub-Category, which points to Category). While it saves a tiny bit of disk space, joining so many tables slows down queries.",
     "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502  dim_customer  \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  dim_product \u2502\u2500\u2500\u2500[ FACT_SALES ]\u2500\u2500\u2500\u2502   dim_date   \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518        \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502   dim_store    \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
-    "explanation": "In client interviews, highlight how both decouple storage and compute and use vectorized execution, while Databricks differentiates on open storage formats (Delta/Iceberg via UniForm), unified Data + AI/ML/Streaming on one platform, and fine-grained workload tuning.",
+    "explanation": "Databricks champions the Open Lakehouse standard (storing open Parquet/Delta/Iceberg in customer-owned cloud storage with unified processing across SQL, streaming, and ML via Photon), whereas Snowflake originated as a managed cloud data warehouse using proprietary storage micro-partitions.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
   {
@@ -4027,15 +4027,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Lakehouse Standards: Delta Lake vs Iceberg Storage",
     "question": "What is Delta Lake UniForm (Universal Format) in Databricks?",
     "options": [
-      "A dress code for consultants",
-      "A feature that automatically generates Apache Iceberg and Apache Hudi metadata alongside Delta Lake transaction logs over a single shared copy of Parquet data files, allowing Iceberg readers (like Snowflake or BigQuery) and Delta readers to query the exact same data without duplication",
-      "A tool that converts SQL into HTML",
-      "A legacy compression algorithm"
+      "A unified SQL syntax layer that converts proprietary Snowflake or BigQuery dialect queries into standard ANSI SQL before executing them on Databricks clusters",
+      "A feature that automatically generates Apache Iceberg and Apache Hudi metadata alongside Delta Lake transaction logs for the same Parquet data files, enabling Iceberg and Hudi readers to query tables without data duplication",
+      "An automatic data encryption protocol that applies standardized AES-256 formatting to all columns before writing Parquet blocks to cloud storage buckets",
+      "A data pipeline orchestration engine that automatically schedules Lakeflow pipelines across multiple cloud providers based on real-time spot pricing"
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "UniForm eliminates the format wars between Delta Lake and Apache Iceberg by writing lightweight metadata for both formats over one single physical set of Parquet files.",
+    "explanation": "Delta Lake UniForm (Universal Format) generates Apache Iceberg and Apache Hudi metadata in parallel with Delta Lake logs over a single set of Parquet files, ending format silos without data duplication.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
   {
@@ -4048,15 +4048,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Performance Engineering: Liquid Clustering vs Z-ORDER",
     "question": "PDF FAQ: \"What are the most common SQL performance anti-patterns in enterprise platforms?\" \u2014 Which of the following combines FOUR major SQL anti-patterns in a single query?",
     "options": [
-      "Using SELECT col1, col2, SARGable date ranges, UNION ALL, and EXISTS",
-      "Using SELECT *, wrapping partition columns in functions in WHERE (YEAR(dt) = 2026), using UNION instead of UNION ALL when duplicates are impossible, and using NOT IN on nullable subqueries",
-      "Using QUALIFY, CLUSTER BY, Broadcast Joins, and CTEs",
-      "Using GROUP BY and INNER JOIN"
+      "Selecting explicit column projections, using SARGable date range filters, combining independent result sets with UNION ALL, and filtering subqueries using EXISTS",
+      "Applying QUALIFY with DENSE_RANK() window functions, enabling Broadcast Hash Joins on small lookup dimensions, creating Common Table Expressions, and specifying CLUSTER BY",
+      "Using `SELECT *`, wrapping partition columns in non-SARGable functions (`WHERE YEAR(order_date) = 2026`), using `UNION` instead of `UNION ALL` when sets are disjoint, and using `NOT IN` on subqueries with nullable columns",
+      "Utilizing parameterized SQL queries, applying Z-ORDER on high-cardinality join keys, enforcing primary key constraints via Unity Catalog, and leveraging Delta Liquid Clustering"
     ],
-    "correct": 1,
+    "correct": 2,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "This summarizes the top four SQL anti-patterns tested in technical rounds: SELECT * (no column pruning), non-SARGable predicates (no partition/data skipping), unnecessary UNION (redundant sort/dedup), and NOT IN with NULLs.",
+    "explanation": "These four anti-patterns cripple performance: SELECT * prevents column pruning; non-SARGable functions prevent partition and file data skipping; UNION forces expensive sorting to deduplicate; NOT IN with NULLs causes full table evaluations.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
   {
@@ -4069,15 +4069,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Ingestion Architecture: Auto Loader vs COPY INTO",
     "question": "PDF FAQ: \"How do Large Language Models (LLMs) and AI assistants (like Databricks Assistant / AI/BI Genie) assist in SQL optimization and analytics?\"",
     "options": [
-      "LLMs physically replace cloud hard drives",
-      "By leveraging Unity Catalog metadata (table schemas, column comments, PK/FK relationships, lineage, and query history) to translate natural language into accurate SQL, rewrite non-SARGable or correlated queries into set-based window functions, and explain physical execution bottlenecks",
-      "LLMs execute SQL without needing a database or compute warehouse",
-      "LLMs only work if tables have no column names"
+      "By leveraging Unity Catalog metadata (table schemas, column descriptions, primary/foreign key relationships, and query history) to accurately convert natural language into optimized SQL, rewrite inefficient joins into window functions, and diagnose physical execution bottlenecks",
+      "By replacing the physical distributed compute cluster with neural networks that approximate aggregate calculation results directly from training data without scanning underlying storage files",
+      "By automatically converting all existing Delta tables into vector embeddings and substituting traditional relational JOIN operations with approximate nearest neighbor (ANN) vector searches",
+      "By intercepting incoming user SQL queries at the JDBC driver layer and executing them in a single-threaded Python runtime running an embedded quantized model instance"
     ],
-    "correct": 1,
+    "correct": 0,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "LLMs in enterprise data platforms rely heavily on rich Unity Catalog metadata and column/table descriptions; well-documented schemas and Star Schemas dramatically improve Text-to-SQL accuracy in AI/BI Genie.",
+    "explanation": "Enterprise text-to-SQL and AI optimization depend entirely on rich catalog governance metadata: table schemas, column descriptions, foreign keys, and query execution history empower LLMs to generate high-performance, context-aware SQL.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
   {
@@ -4090,15 +4090,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Query Optimization: Non-SARGable Function Predicates",
     "question": "What are Databricks AI Functions (such as ai_query(), ai_analyze_sentiment(), ai_extract(), ai_summarize()) in Databricks SQL?",
     "options": [
-      "Functions that change the color of SQL text",
-      "Built-in SQL functions that allow analysts and data engineers to invoke Foundation Models or custom Model Serving endpoints directly inside standard SQL queries for batch/streaming entity extraction, classification, translation, and summarization",
-      "Functions that delete rows randomly",
-      "Functions used only for calculating square roots"
+      "Client-side browser extensions that automatically format, lint, and color-code complex SQL syntax in the Databricks notebook editor",
+      "Administrative stored procedures that monitor cluster health, terminate idle user queries, and automatically scale warehouse T-shirt sizes based on memory pressure",
+      "Automated regression testing algorithms that compare output datasets between development and production catalogs to identify unexpected row count discrepancies",
+      "Built-in SQL functions that allow data engineers and analysts to invoke Foundation Models or hosted Model Serving endpoints directly within SQL queries for batch and streaming sentiment analysis, entity extraction, summarization, and translation"
     ],
-    "correct": 1,
+    "correct": 3,
     "beginnerConcept": "Think of looking up a phone book. If you search for 'Smith', you flip directly to S. But if asked to find 'names where length is 5', you must read every single page from start to finish. Applying a function prevents direct index lookups.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "AI Functions bring GenAI directly into ELT pipelines and SQL queries (e.g., SELECT review_id, ai_analyze_sentiment(review_text) FROM customer_reviews).",
+    "explanation": "Databricks AI Functions (ai_query, ai_analyze_sentiment, ai_extract, ai_summarize) bring generative AI natively into SQL and streaming ELT without requiring external Python microservices.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
   {
@@ -4111,15 +4111,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "AI & Modern Data: LLM SQL Generation & Semantic Indexing",
     "question": "Big-4 Classic SQL Coding Question: How do you write a query to find the Nth Highest Salary (e.g., 3rd highest distinct salary) in each department without losing ties?",
     "options": [
-      "SELECT dept_id, salary FROM employees ORDER BY salary DESC LIMIT 3",
-      "SELECT dept_id, salary FROM (SELECT dept_id, salary, DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rnk FROM employees) WHERE rnk = 3 (or using QUALIFY DENSE_RANK() OVER (...) = 3)",
-      "SELECT dept_id, MAX(salary) FROM employees GROUP BY dept_id",
-      "SELECT dept_id, salary FROM employees WHERE ROW_NUMBER() = 3"
+      "`SELECT dept_id, salary FROM employees ORDER BY salary DESC LIMIT 3;` — using standard order and limit clauses to capture the top records across departments",
+      "`SELECT dept_id, salary FROM (SELECT dept_id, salary, DENSE_RANK() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS rnk FROM employees) WHERE rnk = 3;` (or using `QUALIFY DENSE_RANK() OVER (...) = 3`)",
+      "`SELECT dept_id, MAX(salary) FROM employees WHERE salary < (SELECT MAX(salary) FROM employees) GROUP BY dept_id;` — applying nested aggregate subqueries",
+      "`SELECT dept_id, salary FROM employees WHERE ROW_NUMBER() OVER (PARTITION BY dept_id ORDER BY salary DESC) = 3;` — utilizing row numbering to select position 3"
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "DENSE_RANK() handles duplicate salary ties properly so the 3rd distinct highest salary value is never skipped (unlike RANK() or ROW_NUMBER()).",
+    "explanation": "DENSE_RANK() assigns the same rank to identical salaries without skipping numbers (1, 2, 2, 3), guaranteeing that the 3rd highest distinct salary is correctly identified, whereas RANK() would skip to 4 and ROW_NUMBER() arbitrarily picks one tie.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
   {
@@ -4132,15 +4132,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Big-4 Consultant Favorite: Conformed vs Outrigger Dimensions",
     "question": "Big-4 Classic SQL Coding Question: How do you solve the \"Gaps and Islands\" problem (e.g., finding consecutive daily login streaks for each user)?",
     "options": [
-      "Using CROSS JOIN",
-      "By subtracting ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY login_date) (in days) from login_date (DATE_SUB(login_date, ROW_NUMBER() OVER (...)) AS streak_group); consecutive dates yield the exact same constant streak_group date, which you can then GROUP BY to find MIN(login_date), MAX(login_date), and COUNT(*)",
-      "Using TRUNCATE TABLE",
-      "Using NULLIF"
+      "By performing an exhaustive CROSS JOIN of the user logins table with a generated calendar table and counting matching non-null login timestamps",
+      "By utilizing recursive CTEs with iterative self-joins that increment a counter until a missing calendar date is encountered for each user record",
+      "By subtracting `ROW_NUMBER() OVER (PARTITION BY user_id ORDER BY login_date)` days from `login_date` (`DATE_SUB(login_date, ROW_NUMBER() OVER (...))`), creating a constant group date for contiguous streaks that can be grouped to find MIN, MAX, and COUNT",
+      "By applying `LEAD(login_date, 1) OVER (PARTITION BY user_id ORDER BY login_date)` and filtering where the lead date minus the current date is greater than zero"
     ],
-    "correct": 1,
+    "correct": 2,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "The difference between an incrementing sequential date and an incrementing ROW_NUMBER() remains constant for contiguous dates and jumps whenever a gap occurs\u2014the classic analytical SQL trick for streak detection.",
+    "explanation": "Subtracting an incrementing sequence (ROW_NUMBER) from contiguous dates yields an identical constant anchor date (`login_date - N days`) for consecutive days, grouping contiguous streaks into islands.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
   {
@@ -4153,15 +4153,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "DevOps & Testing: Zero-Copy Cloning in Delta Lake",
     "question": "Big-4 Classic SQL Coding Question: How do you transform rows into columns (PIVOT) and columns into rows (UNPIVOT) in SQL?",
     "options": [
-      "Using GRANT and REVOKE",
-      "Using conditional aggregation (SUM(CASE WHEN quarter = 'Q1' THEN sales ELSE 0 END) AS Q1_sales) or the native PIVOT clause to turn row values into columns, and UNPIVOT (or STACK()) to turn wide columns into normalized rows",
-      "Using DROP and CREATE",
-      "Using DELETE"
+      "Transform rows to columns using conditional aggregation (`SUM(CASE WHEN quarter = 'Q1' THEN sales ELSE 0 END)`) or the native `PIVOT` clause; transform columns to rows using the `UNPIVOT` clause or the `STACK()` function",
+      "Transform rows to columns by executing dynamic `CROSS JOIN` operations against scalar lookup tables; transform columns to rows by serializing records into comma-delimited strings",
+      "Transform rows to columns using windowed `LEAD()` and `LAG()` functions across partitioned quarters; transform columns to rows using `GROUP BY ROLLUP` on all numeric dimensions",
+      "Transform rows to columns by exporting records to external JSON structures and re-importing via `from_json`; transform columns to rows using recursive CTE string splitting"
     ],
-    "correct": 1,
+    "correct": 0,
     "beginnerConcept": "Old ETL was like cooking vegetables in a factory before shipping them to a store. Modern ELT dumps the fresh raw produce directly into a high-powered kitchen (the cloud data warehouse) and cooks on demand.",
     "visualDiagram": "table_directory/\n\u251c\u2500\u2500 _delta_log/\n\u2502   \u251c\u2500\u2500 000000.json  (Transaction 0: Table created)\n\u2502   \u251c\u2500\u2500 000001.json  (Transaction 1: Ingestion commit)\n\u2502   \u2514\u2500\u2500 000002.json  (Transaction 2: Compaction / Delete)\n\u251c\u2500\u2500 part-0000-active.parquet\n\u2514\u2500\u2500 part-0001-tombstone.parquet  (Cleaned by VACUUM)",
-    "explanation": "Both conditional aggregation (SUM(CASE WHEN ...)) and native PIVOT / UNPIVOT are frequently tested in live SQL coding screens.",
+    "explanation": "Conditional aggregation with `CASE WHEN` or the ANSI `PIVOT` operator reshapes normalized row values into columns, while `UNPIVOT` or `STACK()` normalizes wide columns back into rows.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
   {
@@ -4174,15 +4174,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Distributed Concurrency: Optimistic Concurrency Control",
     "question": "Big-4 Client Round Architecture Question: When presenting a technical comparison between two data concepts to a C-level client stakeholder (as emphasized on every page of your PDF), what is the ideal structured framework to follow?",
     "options": [
-      "Dive straight into 20 minutes of low-level C++ memory pointer syntax",
-      "1. Concise Business-Aligned One-Line Definition 2. Architectural Comparison across Performance, Scalability, and Governance 3. Concrete Client Business Impact & Cost/ROI Justification",
-      "Say \"It depends\" and stop talking",
-      "Read documentation word-for-word"
+      "Present a complete 30-minute line-by-line code walk-through focusing on low-level memory allocation, thread synchronization, and internal kernel data structures",
+      "Provide an open-ended narrative describing developer preferences without committing to specific cost metrics, architectural trade-offs, or implementation timelines",
+      "Focus exclusively on vendor benchmark marketing slides, highlighting peak query throughput claims while bypassing security, governance, and integration complexities",
+      "1. Crisp Business-Aligned One-Line Definition 2. Objective Architectural Trade-Off Analysis (Performance, Scalability, Governance, Operational Overhead) 3. Concrete Enterprise Business Impact & Total Cost of Ownership (TCO/ROI) Justification"
     ],
-    "correct": 1,
+    "correct": 3,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "This mirrors the exact rubric inside your uploaded PDF: always anchor technical explanations in a crisp business definition followed by Performance, Scalability, and Governance trade-offs.",
+    "explanation": "Consulting and executive leadership rounds prioritize structured communication: start with an executive summary definition, evaluate technical trade-offs across architectural pillars, and conclude with measurable ROI and business outcomes.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
   {
@@ -4195,15 +4195,15 @@ export const QUESTION_BANK = [
     "scenarioTitle": "Capstone Architecture: Modern End-to-End Databricks Lakehouse",
     "question": "Comprehensive Capstone Question: In an end-to-end enterprise Databricks Lakehouse architecture, which combination represents the current industry gold standard across Ingestion, Transformation, Modeling, Optimization, and Governance?",
     "options": [
-      "Manual CSV uploads Unpartitioned JSON tables 3NF OLTP reporting SELECT * queries Hive Metastore with shared admin credentials",
-      "Auto Loader / Lakeflow Connect (Bronze Ingestion) Lakeflow Declarative Pipelines (DLT) with Expectations (Silver Conformed/SCD2) Kimball Star Schema & Metric Views (Gold BI Consumption) Liquid Clustering + Photon Serverless SQL (Performance) Unity Catalog with RLS/CLM, Lineage & System Tables (Governance)",
-      "Copying data across 10 separate databases daily via FTP",
-      "Storing all company data in a single unindexed text file"
+      "Manual SFTP CSV landing -> Multi-node Python multiprocessing scripts -> 3NF normalized tables -> Static B-Tree index creation -> Hive Metastore with shared workspace credentials",
+      "Auto Loader / Lakeflow Connect (Bronze Ingestion) -> Lakeflow Declarative Pipelines with Expectations (Silver Conformed/SCD2) -> Kimball Star Schema & Metric Views (Gold BI) -> Liquid Clustering & Photon Serverless SQL (Performance) -> Unity Catalog with RLS/CLM & Lineage (Governance)",
+      "Kafka direct consumer scripts -> Stored procedures with cursor loops -> Flat denormalized single-table marts -> Daily partition drop and recreate -> IAM role assumptions per query session",
+      "Custom JDBC polling daemons -> PySpark RDD mapPartitions transformations -> Snowflake external staging tables -> Z-ORDER on 15 concurrent columns -> Discretionary Access Control via file system permissions"
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
     "visualDiagram": "[ Raw Sources: APIs, DBs, IoT ]\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  BRONZE (Raw)     \u2502 \u2500\u2500> Append-only, Raw Ingestion (Auto Loader)\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  SILVER (Cleaned) \u2502 \u2500\u2500> Conformed, Deduplicated, SCD2, Enriched\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  GOLD (Business)  \u2502 \u2500\u2500> Star Schema, Aggregated Marts, BI PowerBI\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
-    "explanation": "Option B synthesizes all 14 domains of your interview preparation guide into the reference modern Databricks Lakehouse architecture expected in Senior Consultant and Architect interviews.",
+    "explanation": "This end-to-end architecture represents modern enterprise best practices: declarative ingestion via Auto Loader, resilient data quality with Lakeflow Pipelines/Expectations, Kimball modeling for BI, Liquid Clustering with Photon for sub-second queries, and centralized Unity Catalog governance.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
   {

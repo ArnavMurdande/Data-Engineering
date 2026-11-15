@@ -7,8 +7,11 @@ A comprehensive, production-grade repository and interactive learning platform c
 ## 🌟 Quick Links & Highlights
 
 - 🚀 **Interactive MCQ & Concept Hub Web Application:** `MCQ's Practice Website/` (340+ MCQs, 23 categories, ASCII diagrams, cheatsheets, and exam simulator)
+  - **Live Web App (CrackHeadKraken):** [https://crackheadkraken.github.io/Data-Engineering/](https://crackheadkraken.github.io/Data-Engineering/)
+  - **Live Web App (ArnavMurdande):** [https://arnavmurdande.github.io/Data-Engineering/](https://arnavmurdande.github.io/Data-Engineering/)
 - 🏥 **Healthcare Lakehouse:** `Project/MediFlow Hospital Operations Lakehouse/` (Production Medallion architecture on Azure Databricks with Unity Catalog)
-- 💬 **Communications & Notes:** `Communications/` (Repository for project correspondence and notes)
+- 💬 **Communications & Notes:** `Communications/`
+  - 🌐 [English Proficiency & CEFR Certification Tests Directory](./Communications/English_Certification_Tests.md)
 
 ---
 
@@ -67,6 +70,7 @@ Databricks/
 │   └── Notes & Internals/              # Spark internals architecture, Hive exercises, Big Data Spark notes
 │
 ├── 💬 Communications/                 # Project correspondence, client notes, and meeting memos
+│   ├── English_Certification_Tests.md # Accredited Free CEFR English Tests (EF SET, Lenguia, Testizer, British Council)
 │   └── README.md
 │
 └── 📄 LICENSE                          # MIT License
