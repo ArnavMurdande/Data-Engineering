@@ -70,6 +70,8 @@ Databricks/
 │   └── Notes & Internals/              # Spark internals architecture, Hive exercises, Big Data Spark notes
 │
 ├── 💬 Communications/                 # Project correspondence, client notes, and meeting memos
+│   ├── Around India in 7 Days_ Team Presentation Blueprint.pdf # Team presentation blueprint & speaker scripts
+│   ├── CEFR C2 Mastery Guide_ Articles, Agreement, and Fluid Syntax.pdf # CEFR C2 English mastery handbook
 │   ├── English_Certification_Tests.md # Accredited Free CEFR English Tests (EF SET, Lenguia, Testizer, British Council)
 │   └── README.md
 │

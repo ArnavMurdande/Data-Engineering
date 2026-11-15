@@ -88,3 +88,10 @@ Databricks/Assignments/
 # Local Setup Scripts
 SQL Setup/
 **/SQL Setup/
+
+# Video Media Files
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
