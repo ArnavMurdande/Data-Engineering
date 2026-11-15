@@ -72,5 +72,35 @@ export const CHEAT_SHEET_ITEMS = [
     title: "14. Databricks vs. Snowflake & Advanced Standards",
     tag: "Databricks vs Snowflake & FAQs",
     content: "• Architecture Difference: Databricks is built on open Lakehouse formats (Delta Lake, Apache Spark) decoupling storage on standard cloud buckets; Snowflake uses proprietary micro-partitions.\n• Liquid Clustering: Replaces legacy Hive partitioning and Z-ORDER. Dynamically clusters data on read/write patterns without rewriting full tables.\n• Auto Loader: Incrementally ingests millions of files from cloud storage with automatic schema inference and evolution.\n• Zero-Copy Cloning: `CREATE TABLE clone SHALLOW CLONE source` creates instant dev/test copies referencing metadata with zero file duplication."
+  },
+  {
+    title: "15. Python & Pandas for Data Engineering",
+    tag: "Python & Pandas for Data Engineering",
+    content: "• NumPy Contiguity: NumPy operates on contiguous blocks of C memory with CPU SIMD vectorization, executing operations 10x-100x faster than standard Python loops.\n• .loc vs .iloc: .loc is label-based (inclusive of both end bounds); .iloc is 0-based integer position-based (excludes stop boundary).\n• Groupby Transform: `df.groupby('dept')['salary'].transform('mean')` preserves original DataFrame shape for zero-join feature engineering.\n• Memory Optimization: Downcast numeric types (`float64` -> `float32`, `int64` -> `int32`), convert low-cardinality strings to `category`, and use generator expressions for chunked streaming."
+  },
+  {
+    title: "16. Apache Spark Architecture & Optimization",
+    tag: "PySpark & Spark Architecture",
+    content: "• Driver & Executors: Driver maintains SparkSession, constructs DAG, schedules tasks; Executors run tasks in JVM worker threads and cache data.\n• Catalyst & Tungsten: Catalyst applies logical optimizations (predicate pushdown, projection pruning, join reordering); Tungsten generates native whole-stage Java bytecode directly in off-heap memory.\n• Shuffle Partitions: Default `spark.sql.shuffle.partitions = 200`. Tune based on data volume (aim for ~100MB-200MB per shuffle partition).\n• Join Optimizations: Use Broadcast Hash Join (`broadcast()`) when one table is < 10MB to eliminate expensive network shuffles."
+  },
+  {
+    title: "17. Scala Basics & Functional Programming",
+    tag: "Scala Basics & Functional Programming",
+    content: "• Immutability: `val` declares immutable references; `var` declares mutable variables. In distributed pipelines, prefer immutable data structures to eliminate concurrency hazards.\n• Case Classes: Lightweight immutable record types with automatic `equals`, `hashCode`, `toString`, and pattern matching support—ideal for defining Spark schemas and domain models.\n• Higher-Order Functions: `map`, `flatMap`, `filter`, and `foldLeft` process collections without side-effects, forming the functional foundation of Spark RDDs and DataFrames."
+  },
+  {
+    title: "18. Java Fundamentals, OOPs & Multithreading",
+    tag: "Java Fundamentals & Core Collections",
+    content: "• JVM Memory Model: Stack frames store local variables and method call states; Heap allocates objects managed by Garbage Collection (G1GC/ZGC).\n• JDK vs JRE: JDK contains development tools including compiler (`javac`); JRE provides the runtime environment (`java`) and libraries to execute bytecode.\n• Interfaces vs Abstract Classes: Interfaces define contractual capabilities across unrelated classes (multiple implementation allowed); abstract classes provide partial implementation with state.\n• Concurrency: Prefer `ConcurrentHashMap` and `AtomicInteger` over synchronized blocks for high-throughput thread-safe shared state."
+  },
+  {
+    title: "19. Hadoop, HDFS & Hive Ecosystem",
+    tag: "Hadoop, HDFS & Hive Ecosystem",
+    content: "• HDFS High Availability: Active NameNode handles client RPCs; Standby NameNode maintains synchronized metadata via Quorum Journal Manager (QJM) and ZooKeeper Failover Controller (ZKFC).\n• Block Placement Policy: First replica on local node, second replica on a remote rack, third replica on the same remote rack—balancing write bandwidth with rack-level fault tolerance.\n• Hive Managed vs External: Dropping a Managed table deletes both metadata and raw data files; dropping an External table deletes metadata only, protecting raw lake storage.\n• Partitioning vs Bucketing: Partitioning creates physical directory paths (for low-cardinality queries); Bucketing creates fixed hash-based files (for high-cardinality joins and sampling)."
+  },
+  {
+    title: "20. Spark Structured Streaming & Fault Tolerance",
+    tag: "Spark Streaming & Fault Tolerance",
+    content: "• Micro-Batch vs Continuous Processing: Micro-batch processes incoming records in sub-second discrete batches; continuous processing achieves sub-millisecond latencies with at-least-once guarantees.\n• Checkpointing: Stores read offsets and state store snapshots in fault-tolerant storage (ADLS/S3) enabling exact recovery upon job restart.\n• Watermarking: Defines threshold for late data (`withWatermark('timestamp', '10 minutes')`), allowing the stateful engine to safely evict expired aggregation state.\n• Output Modes: Append (only newly finalized rows written), Complete (entire updated aggregation table rewritten), Update (only rows modified since last trigger emitted)."
   }
 ];

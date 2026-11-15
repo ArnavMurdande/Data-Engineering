@@ -1,5 +1,6 @@
 export const CATEGORIES = [
   "All Topics",
+  "Databricks vs Snowflake & FAQs",
   "SQL Fundamentals & RDBMS",
   "Advanced SQL & Performance",
   "Keys, Joins & Subqueries",
@@ -13,7 +14,14 @@ export const CATEGORIES = [
   "Slowly Changing Dimensions (SCD)",
   "Data Quality & Governance",
   "Client Scenario Questions",
-  "Databricks vs Snowflake & FAQs"
+  "Python & Pandas for Data Engineering",
+  "PySpark & Spark Architecture",
+  "Scala Basics & Functional Programming",
+  "Scala RDDs, DataFrames & Transformations",
+  "Java Fundamentals & Core Collections",
+  "Java OOPs & Multithreading",
+  "Hadoop, HDFS & Hive Ecosystem",
+  "Spark Streaming & Fault Tolerance"
 ];
 
 export const DIFFICULTIES = [

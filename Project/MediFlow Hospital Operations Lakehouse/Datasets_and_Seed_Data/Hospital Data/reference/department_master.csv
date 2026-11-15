@@ -1,0 +1,193 @@
+department_id,department_name,specialty,hospital_site,floor,service_level,active_flag,head_clinician_id,capacity_beds,region
+DEPART0800001,Emergency,Emergency Medicine,Chennai General Hospital,7,EMERGENCY,N,HEAD_CL080000001,8,Tamil Nadu
+DEPART0800002,Cardiology,Cardiology,Bengaluru City Medical Centre,8,INPATIENT,N,HEAD_CL080000002,3,Karnataka
+DEPART0800003,Neurology,Neurology,Hyderabad Regional Hospital,7,INPATIENT,Y,HEAD_CL080000003,6,Telangana
+DEPART0800004,Orthopedics,Orthopedic Surgery,Mumbai Central Hospital,1,INPATIENT,N,HEAD_CL080000004,7,Maharashtra
+DEPART0800005,Intensive Care,Critical Care,Kolkata Medical Centre,6,INPATIENT,N,HEAD_CL080000005,3,West Bengal
+DEPART0800006,General Medicine,Internal Medicine,Delhi City Hospital,3,INPATIENT,N,HEAD_CL080000006,4,Delhi
+DEPART0800007,Pediatrics,Pediatrics,Chennai General Hospital,5,INPATIENT,Y,HEAD_CL080000007,2,Tamil Nadu
+DEPART0800008,Oncology,Medical Oncology,Bengaluru City Medical Centre,3,INPATIENT,N,HEAD_CL080000008,4,Karnataka
+DEPART0800009,Emergency,Emergency Medicine,Hyderabad Regional Hospital,5,EMERGENCY,Y,HEAD_CL080000009,1,Telangana
+DEPART0800010,Cardiology,Cardiology,Mumbai Central Hospital,5,INPATIENT,Y,HEAD_CL080000010,3,Maharashtra
+DEPART0800011,Neurology,Neurology,Kolkata Medical Centre,5,INPATIENT,N,HEAD_CL080000011,4,West Bengal
+DEPART0800012,Orthopedics,Orthopedic Surgery,Delhi City Hospital,5,INPATIENT,Y,HEAD_CL080000012,5,Delhi
+DEPART0800013,Intensive Care,Critical Care,Chennai General Hospital,2,INPATIENT,N,HEAD_CL080000013,2,Tamil Nadu
+DEPART0800014,General Medicine,Internal Medicine,Bengaluru City Medical Centre,6,INPATIENT,Y,HEAD_CL080000014,7,Karnataka
+DEPART0800015,Pediatrics,Pediatrics,Hyderabad Regional Hospital,4,INPATIENT,Y,HEAD_CL080000015,1,Telangana
+DEPART0800016,Oncology,Medical Oncology,Mumbai Central Hospital,2,INPATIENT,Y,HEAD_CL080000016,1,Maharashtra
+DEPART0800017,Emergency,Emergency Medicine,Kolkata Medical Centre,6,EMERGENCY,Y,HEAD_CL080000017,1,West Bengal
+DEPART0800018,Cardiology,Cardiology,Delhi City Hospital,5,INPATIENT,Y,HEAD_CL080000018,8,Delhi
+DEPART0800019,Neurology,Neurology,Chennai General Hospital,5,INPATIENT,N,HEAD_CL080000019,7,Tamil Nadu
+DEPART0800020,Orthopedics,Orthopedic Surgery,Bengaluru City Medical Centre,1,INPATIENT,Y,HEAD_CL080000020,6,Karnataka
+DEPART0800021,Intensive Care,Critical Care,Hyderabad Regional Hospital,8,INPATIENT,Y,HEAD_CL080000021,9,Telangana
+DEPART0800022,General Medicine,Internal Medicine,Mumbai Central Hospital,3,INPATIENT,N,HEAD_CL080000022,2,Maharashtra
+DEPART0800023,Pediatrics,Pediatrics,Kolkata Medical Centre,6,INPATIENT,Y,HEAD_CL080000023,2,West Bengal
+DEPART0800024,Oncology,Medical Oncology,Delhi City Hospital,9,INPATIENT,N,HEAD_CL080000024,1,Delhi
+DEPART0800025,Emergency,Emergency Medicine,Chennai General Hospital,1,EMERGENCY,N,HEAD_CL080000025,5,Tamil Nadu
+DEPART0800026,Cardiology,Cardiology,Bengaluru City Medical Centre,4,INPATIENT,N,HEAD_CL080000026,1,Karnataka
+DEPART0800027,Neurology,Neurology,Hyderabad Regional Hospital,7,INPATIENT,N,HEAD_CL080000027,2,Telangana
+DEPART0800028,Orthopedics,Orthopedic Surgery,Mumbai Central Hospital,3,INPATIENT,N,HEAD_CL080000028,1,Maharashtra
+DEPART0800029,Intensive Care,Critical Care,Kolkata Medical Centre,4,INPATIENT,N,HEAD_CL080000029,3,West Bengal
+DEPART0800030,General Medicine,Internal Medicine,Delhi City Hospital,9,INPATIENT,N,HEAD_CL080000030,2,Delhi
+DEPART0800031,Pediatrics,Pediatrics,Chennai General Hospital,1,INPATIENT,Y,HEAD_CL080000031,1,Tamil Nadu
+DEPART0800032,Oncology,Medical Oncology,Bengaluru City Medical Centre,1,INPATIENT,N,HEAD_CL080000032,7,Karnataka
+DEPART0800033,Emergency,Emergency Medicine,Hyderabad Regional Hospital,9,EMERGENCY,Y,HEAD_CL080000033,5,Telangana
+DEPART0800034,Cardiology,Cardiology,Mumbai Central Hospital,2,INPATIENT,Y,HEAD_CL080000034,1,Maharashtra
+DEPART0800035,Neurology,Neurology,Kolkata Medical Centre,3,INPATIENT,Y,HEAD_CL080000035,5,West Bengal
+DEPART0800036,Orthopedics,Orthopedic Surgery,Delhi City Hospital,7,INPATIENT,N,HEAD_CL080000036,4,Delhi
+DEPART0800037,Intensive Care,Critical Care,Chennai General Hospital,9,INPATIENT,Y,HEAD_CL080000037,3,Tamil Nadu
+DEPART0800038,General Medicine,Internal Medicine,Bengaluru City Medical Centre,6,INPATIENT,N,HEAD_CL080000038,1,Karnataka
+DEPART0800039,Pediatrics,Pediatrics,Hyderabad Regional Hospital,1,INPATIENT,N,HEAD_CL080000039,8,Telangana
+DEPART0800040,Oncology,Medical Oncology,Mumbai Central Hospital,3,INPATIENT,Y,HEAD_CL080000040,1,Maharashtra
+DEPART0800041,Emergency,Emergency Medicine,Kolkata Medical Centre,7,EMERGENCY,Y,HEAD_CL080000041,6,West Bengal
+DEPART0800042,Cardiology,Cardiology,Delhi City Hospital,6,INPATIENT,Y,HEAD_CL080000042,4,Delhi
+DEPART0800043,Neurology,Neurology,Chennai General Hospital,2,INPATIENT,N,HEAD_CL080000043,7,Tamil Nadu
+DEPART0800044,Orthopedics,Orthopedic Surgery,Bengaluru City Medical Centre,1,INPATIENT,Y,HEAD_CL080000044,6,Karnataka
+DEPART0800045,Intensive Care,Critical Care,Hyderabad Regional Hospital,5,INPATIENT,Y,HEAD_CL080000045,6,Telangana
+DEPART0800046,General Medicine,Internal Medicine,Mumbai Central Hospital,8,INPATIENT,Y,HEAD_CL080000046,5,Maharashtra
+DEPART0800047,Pediatrics,Pediatrics,Kolkata Medical Centre,9,INPATIENT,N,HEAD_CL080000047,5,West Bengal
+DEPART0800048,Oncology,Medical Oncology,Delhi City Hospital,1,INPATIENT,Y,HEAD_CL080000048,5,Delhi
+DEPART0800049,Emergency,Emergency Medicine,Chennai General Hospital,8,EMERGENCY,Y,HEAD_CL080000049,9,Tamil Nadu
+DEPART0800050,Cardiology,Cardiology,Bengaluru City Medical Centre,2,INPATIENT,N,HEAD_CL080000050,1,Karnataka
+DEPART0800051,Neurology,Neurology,Hyderabad Regional Hospital,4,INPATIENT,N,HEAD_CL080000051,7,Telangana
+DEPART0800052,Orthopedics,Orthopedic Surgery,Mumbai Central Hospital,3,INPATIENT,N,HEAD_CL080000052,9,Maharashtra
+DEPART0800053,Intensive Care,Critical Care,Kolkata Medical Centre,2,INPATIENT,N,HEAD_CL080000053,6,West Bengal
+DEPART0800054,General Medicine,Internal Medicine,Delhi City Hospital,2,INPATIENT,Y,HEAD_CL080000054,5,Delhi
+DEPART0800055,Pediatrics,Pediatrics,Chennai General Hospital,4,INPATIENT,Y,HEAD_CL080000055,4,Tamil Nadu
+DEPART0800056,Oncology,Medical Oncology,Bengaluru City Medical Centre,6,INPATIENT,N,HEAD_CL080000056,1,Karnataka
+DEPART0800057,Emergency,Emergency Medicine,Hyderabad Regional Hospital,4,EMERGENCY,Y,HEAD_CL080000057,5,Telangana
+DEPART0800058,Cardiology,Cardiology,Mumbai Central Hospital,1,INPATIENT,Y,HEAD_CL080000058,1,Maharashtra
+DEPART0800059,Neurology,Neurology,Kolkata Medical Centre,4,INPATIENT,Y,HEAD_CL080000059,5,West Bengal
+DEPART0800060,Orthopedics,Orthopedic Surgery,Delhi City Hospital,1,INPATIENT,Y,HEAD_CL080000060,5,Delhi
+DEPART0800061,Intensive Care,Critical Care,Chennai General Hospital,5,INPATIENT,Y,HEAD_CL080000061,4,Tamil Nadu
+DEPART0800062,General Medicine,Internal Medicine,Bengaluru City Medical Centre,7,INPATIENT,Y,HEAD_CL080000062,6,Karnataka
+DEPART0800063,Pediatrics,Pediatrics,Hyderabad Regional Hospital,7,INPATIENT,N,HEAD_CL080000063,2,Telangana
+DEPART0800064,Oncology,Medical Oncology,Mumbai Central Hospital,9,INPATIENT,N,HEAD_CL080000064,7,Maharashtra
+DEPART0800065,Emergency,Emergency Medicine,Kolkata Medical Centre,5,EMERGENCY,Y,HEAD_CL080000065,5,West Bengal
+DEPART0800066,Cardiology,Cardiology,Delhi City Hospital,2,INPATIENT,N,HEAD_CL080000066,5,Delhi
+DEPART0800067,Neurology,Neurology,Chennai General Hospital,8,INPATIENT,Y,HEAD_CL080000067,2,Tamil Nadu
+DEPART0800068,Orthopedics,Orthopedic Surgery,Bengaluru City Medical Centre,2,INPATIENT,Y,HEAD_CL080000068,9,Karnataka
+DEPART0800069,Intensive Care,Critical Care,Hyderabad Regional Hospital,1,INPATIENT,N,HEAD_CL080000069,1,Telangana
+DEPART0800070,General Medicine,Internal Medicine,Mumbai Central Hospital,8,INPATIENT,Y,HEAD_CL080000070,9,Maharashtra
+DEPART0800071,Pediatrics,Pediatrics,Kolkata Medical Centre,6,INPATIENT,N,HEAD_CL080000071,9,West Bengal
+DEPART0800072,Oncology,Medical Oncology,Delhi City Hospital,7,INPATIENT,Y,HEAD_CL080000072,9,Delhi
+DEPART0800073,Emergency,Emergency Medicine,Chennai General Hospital,4,EMERGENCY,Y,HEAD_CL080000073,6,Tamil Nadu
+DEPART0800074,Cardiology,Cardiology,Bengaluru City Medical Centre,2,INPATIENT,N,HEAD_CL080000074,4,Karnataka
+DEPART0800075,Neurology,Neurology,Hyderabad Regional Hospital,7,INPATIENT,N,HEAD_CL080000075,8,Telangana
+DEPART0800076,Orthopedics,Orthopedic Surgery,Mumbai Central Hospital,5,INPATIENT,N,HEAD_CL080000076,8,Maharashtra
+DEPART0800077,Intensive Care,Critical Care,Kolkata Medical Centre,6,INPATIENT,Y,HEAD_CL080000077,7,West Bengal
+DEPART0800078,General Medicine,Internal Medicine,Delhi City Hospital,4,INPATIENT,Y,HEAD_CL080000078,8,Delhi
+DEPART0800079,Pediatrics,Pediatrics,Chennai General Hospital,6,INPATIENT,Y,HEAD_CL080000079,4,Tamil Nadu
+DEPART0800080,Oncology,Medical Oncology,Bengaluru City Medical Centre,3,INPATIENT,Y,HEAD_CL080000080,6,Karnataka
+DEPART0800081,Emergency,Emergency Medicine,Hyderabad Regional Hospital,4,EMERGENCY,Y,HEAD_CL080000081,7,Telangana
+DEPART0800082,Cardiology,Cardiology,Mumbai Central Hospital,2,INPATIENT,N,HEAD_CL080000082,5,Maharashtra
+DEPART0800083,Neurology,Neurology,Kolkata Medical Centre,6,INPATIENT,Y,HEAD_CL080000083,4,West Bengal
+DEPART0800084,Orthopedics,Orthopedic Surgery,Delhi City Hospital,8,INPATIENT,Y,HEAD_CL080000084,7,Delhi
+DEPART0800085,Intensive Care,Critical Care,Chennai General Hospital,1,INPATIENT,Y,HEAD_CL080000085,4,Tamil Nadu
+DEPART0800086,General Medicine,Internal Medicine,Bengaluru City Medical Centre,1,INPATIENT,Y,HEAD_CL080000086,5,Karnataka
+DEPART0800087,Pediatrics,Pediatrics,Hyderabad Regional Hospital,7,INPATIENT,Y,HEAD_CL080000087,3,Telangana
+DEPART0800088,Oncology,Medical Oncology,Mumbai Central Hospital,4,INPATIENT,N,HEAD_CL080000088,3,Maharashtra
+DEPART0800089,Emergency,Emergency Medicine,Kolkata Medical Centre,4,EMERGENCY,N,HEAD_CL080000089,7,West Bengal
+DEPART0800090,Cardiology,Cardiology,Delhi City Hospital,7,INPATIENT,N,HEAD_CL080000090,8,Delhi
+DEPART0800091,Neurology,Neurology,Chennai General Hospital,6,INPATIENT,N,HEAD_CL080000091,8,Tamil Nadu
+DEPART0800092,Orthopedics,Orthopedic Surgery,Bengaluru City Medical Centre,9,INPATIENT,N,HEAD_CL080000092,2,Karnataka
+DEPART0800093,Intensive Care,Critical Care,Hyderabad Regional Hospital,1,INPATIENT,N,HEAD_CL080000093,7,Telangana
+DEPART0800094,General Medicine,Internal Medicine,Mumbai Central Hospital,1,INPATIENT,Y,HEAD_CL080000094,4,Maharashtra
+DEPART0800095,Pediatrics,Pediatrics,Kolkata Medical Centre,4,INPATIENT,N,HEAD_CL080000095,5,West Bengal
+DEPART0800096,Oncology,Medical Oncology,Delhi City Hospital,3,INPATIENT,N,HEAD_CL080000096,9,Delhi
+DEPART0800097,Emergency,Emergency Medicine,Chennai General Hospital,8,EMERGENCY,N,HEAD_CL080000097,8,Tamil Nadu
+DEPART0800098,Cardiology,Cardiology,Bengaluru City Medical Centre,2,INPATIENT,N,HEAD_CL080000098,9,Karnataka
+DEPART0800099,Neurology,Neurology,Hyderabad Regional Hospital,1,INPATIENT,N,HEAD_CL080000099,1,Telangana
+DEPART0800100,Orthopedics,Orthopedic Surgery,Mumbai Central Hospital,2,INPATIENT,Y,HEAD_CL080000100,2,Maharashtra
+DEPART0800101,Intensive Care,Critical Care,Kolkata Medical Centre,6,INPATIENT,Y,HEAD_CL080000101,6,West Bengal
+DEPART0800102,General Medicine,Internal Medicine,Delhi City Hospital,7,INPATIENT,N,HEAD_CL080000102,3,Delhi
+DEPART0800103,Pediatrics,Pediatrics,Chennai General Hospital,2,INPATIENT,N,HEAD_CL080000103,5,Tamil Nadu
+DEPART0800104,Oncology,Medical Oncology,Bengaluru City Medical Centre,6,INPATIENT,Y,HEAD_CL080000104,9,Karnataka
+DEPART0800105,Emergency,Emergency Medicine,Hyderabad Regional Hospital,4,EMERGENCY,N,HEAD_CL080000105,8,Telangana
+DEPART0800106,Cardiology,Cardiology,Mumbai Central Hospital,5,INPATIENT,N,HEAD_CL080000106,2,Maharashtra
+DEPART0800107,Neurology,Neurology,Kolkata Medical Centre,2,INPATIENT,Y,HEAD_CL080000107,4,West Bengal
+DEPART0800108,Orthopedics,Orthopedic Surgery,Delhi City Hospital,4,INPATIENT,N,HEAD_CL080000108,5,Delhi
+DEPART0800109,Intensive Care,Critical Care,Chennai General Hospital,7,INPATIENT,Y,HEAD_CL080000109,2,Tamil Nadu
+DEPART0800110,General Medicine,Internal Medicine,Bengaluru City Medical Centre,3,INPATIENT,N,HEAD_CL080000110,8,Karnataka
+DEPART0800111,Pediatrics,Pediatrics,Hyderabad Regional Hospital,4,INPATIENT,N,HEAD_CL080000111,9,Telangana
+DEPART0800112,Oncology,Medical Oncology,Mumbai Central Hospital,7,INPATIENT,N,HEAD_CL080000112,6,Maharashtra
+DEPART0800113,Emergency,Emergency Medicine,Kolkata Medical Centre,8,EMERGENCY,Y,HEAD_CL080000113,2,West Bengal
+DEPART0800114,Cardiology,Cardiology,Delhi City Hospital,8,INPATIENT,N,HEAD_CL080000114,6,Delhi
+DEPART0800115,Neurology,Neurology,Chennai General Hospital,3,INPATIENT,Y,HEAD_CL080000115,5,Tamil Nadu
+DEPART0800116,Orthopedics,Orthopedic Surgery,Bengaluru City Medical Centre,4,INPATIENT,N,HEAD_CL080000116,7,Karnataka
+DEPART0800117,Intensive Care,Critical Care,Hyderabad Regional Hospital,2,INPATIENT,Y,HEAD_CL080000117,6,Telangana
+DEPART0800118,General Medicine,Internal Medicine,Mumbai Central Hospital,1,INPATIENT,N,HEAD_CL080000118,6,Maharashtra
+DEPART0800119,Pediatrics,Pediatrics,Kolkata Medical Centre,5,INPATIENT,Y,HEAD_CL080000119,7,West Bengal
+DEPART0800120,Oncology,Medical Oncology,Delhi City Hospital,8,INPATIENT,N,HEAD_CL080000120,1,Delhi
+DEPART0800121,Emergency,Emergency Medicine,Chennai General Hospital,9,EMERGENCY,Y,HEAD_CL080000121,1,Tamil Nadu
+DEPART0800122,Cardiology,Cardiology,Bengaluru City Medical Centre,8,INPATIENT,Y,HEAD_CL080000122,1,Karnataka
+DEPART0800123,Neurology,Neurology,Hyderabad Regional Hospital,1,INPATIENT,N,HEAD_CL080000123,5,Telangana
+DEPART0800124,Orthopedics,Orthopedic Surgery,Mumbai Central Hospital,2,INPATIENT,N,HEAD_CL080000124,1,Maharashtra
+DEPART0800125,Intensive Care,Critical Care,Kolkata Medical Centre,3,INPATIENT,N,HEAD_CL080000125,3,West Bengal
+DEPART0800126,General Medicine,Internal Medicine,Delhi City Hospital,7,INPATIENT,Y,HEAD_CL080000126,3,Delhi
+DEPART0800127,Pediatrics,Pediatrics,Chennai General Hospital,5,INPATIENT,N,HEAD_CL080000127,5,Tamil Nadu
+DEPART0800128,Oncology,Medical Oncology,Bengaluru City Medical Centre,2,INPATIENT,N,HEAD_CL080000128,9,Karnataka
+DEPART0800129,Emergency,Emergency Medicine,Hyderabad Regional Hospital,5,EMERGENCY,Y,HEAD_CL080000129,1,Telangana
+DEPART0800130,Cardiology,Cardiology,Mumbai Central Hospital,4,INPATIENT,Y,HEAD_CL080000130,5,Maharashtra
+DEPART0800131,Neurology,Neurology,Kolkata Medical Centre,5,INPATIENT,N,HEAD_CL080000131,9,West Bengal
+DEPART0800132,Orthopedics,Orthopedic Surgery,Delhi City Hospital,2,INPATIENT,N,HEAD_CL080000132,3,Delhi
+DEPART0800133,Intensive Care,Critical Care,Chennai General Hospital,9,INPATIENT,Y,HEAD_CL080000133,1,Tamil Nadu
+DEPART0800134,General Medicine,Internal Medicine,Bengaluru City Medical Centre,7,INPATIENT,N,HEAD_CL080000134,2,Karnataka
+DEPART0800135,Pediatrics,Pediatrics,Hyderabad Regional Hospital,4,INPATIENT,N,HEAD_CL080000135,5,Telangana
+DEPART0800136,Oncology,Medical Oncology,Mumbai Central Hospital,5,INPATIENT,N,HEAD_CL080000136,8,Maharashtra
+DEPART0800137,Emergency,Emergency Medicine,Kolkata Medical Centre,1,EMERGENCY,N,HEAD_CL080000137,1,West Bengal
+DEPART0800138,Cardiology,Cardiology,Delhi City Hospital,2,INPATIENT,Y,HEAD_CL080000138,9,Delhi
+DEPART0800139,Neurology,Neurology,Chennai General Hospital,5,INPATIENT,N,HEAD_CL080000139,4,Tamil Nadu
+DEPART0800140,Orthopedics,Orthopedic Surgery,Bengaluru City Medical Centre,2,INPATIENT,N,HEAD_CL080000140,6,Karnataka
+DEPART0800141,Intensive Care,Critical Care,Hyderabad Regional Hospital,8,INPATIENT,Y,HEAD_CL080000141,5,Telangana
+DEPART0800142,General Medicine,Internal Medicine,Mumbai Central Hospital,9,INPATIENT,Y,HEAD_CL080000142,3,Maharashtra
+DEPART0800143,Pediatrics,Pediatrics,Kolkata Medical Centre,3,INPATIENT,Y,HEAD_CL080000143,8,West Bengal
+DEPART0800144,Oncology,Medical Oncology,Delhi City Hospital,2,INPATIENT,Y,HEAD_CL080000144,6,Delhi
+DEPART0800145,Emergency,Emergency Medicine,Chennai General Hospital,5,EMERGENCY,Y,HEAD_CL080000145,1,Tamil Nadu
+DEPART0800146,Cardiology,Cardiology,Bengaluru City Medical Centre,7,INPATIENT,N,HEAD_CL080000146,5,Karnataka
+DEPART0800147,Neurology,Neurology,Hyderabad Regional Hospital,6,INPATIENT,Y,HEAD_CL080000147,2,Telangana
+DEPART0800148,Orthopedics,Orthopedic Surgery,Mumbai Central Hospital,1,INPATIENT,Y,HEAD_CL080000148,2,Maharashtra
+DEPART0800149,Intensive Care,Critical Care,Kolkata Medical Centre,2,INPATIENT,N,HEAD_CL080000149,4,West Bengal
+DEPART0800150,General Medicine,Internal Medicine,Delhi City Hospital,3,INPATIENT,N,HEAD_CL080000150,3,Delhi
+DEPART0800151,Pediatrics,Pediatrics,Chennai General Hospital,8,INPATIENT,N,HEAD_CL080000151,6,Tamil Nadu
+DEPART0800152,Oncology,Medical Oncology,Bengaluru City Medical Centre,6,INPATIENT,N,HEAD_CL080000152,9,Karnataka
+DEPART0800153,Emergency,Emergency Medicine,Hyderabad Regional Hospital,4,EMERGENCY,N,HEAD_CL080000153,3,Telangana
+DEPART0800154,Cardiology,Cardiology,Mumbai Central Hospital,9,INPATIENT,N,HEAD_CL080000154,5,Maharashtra
+DEPART0800155,Neurology,Neurology,Kolkata Medical Centre,3,INPATIENT,N,HEAD_CL080000155,5,West Bengal
+DEPART0800156,Orthopedics,Orthopedic Surgery,Delhi City Hospital,5,INPATIENT,N,HEAD_CL080000156,9,Delhi
+DEPART0800157,Intensive Care,Critical Care,Chennai General Hospital,5,INPATIENT,Y,HEAD_CL080000157,7,Tamil Nadu
+DEPART0800158,General Medicine,Internal Medicine,Bengaluru City Medical Centre,3,INPATIENT,N,HEAD_CL080000158,9,Karnataka
+DEPART0800159,Pediatrics,Pediatrics,Hyderabad Regional Hospital,5,INPATIENT,Y,HEAD_CL080000159,9,Telangana
+DEPART0800160,Oncology,Medical Oncology,Mumbai Central Hospital,2,INPATIENT,Y,HEAD_CL080000160,7,Maharashtra
+DEPART0800161,Emergency,Emergency Medicine,Kolkata Medical Centre,2,EMERGENCY,Y,HEAD_CL080000161,3,West Bengal
+DEPART0800162,Cardiology,Cardiology,Delhi City Hospital,9,INPATIENT,Y,HEAD_CL080000162,3,Delhi
+DEPART0800163,Neurology,Neurology,Chennai General Hospital,8,INPATIENT,N,HEAD_CL080000163,5,Tamil Nadu
+DEPART0800164,Orthopedics,Orthopedic Surgery,Bengaluru City Medical Centre,7,INPATIENT,Y,HEAD_CL080000164,8,Karnataka
+DEPART0800165,Intensive Care,Critical Care,Hyderabad Regional Hospital,2,INPATIENT,Y,HEAD_CL080000165,1,Telangana
+DEPART0800166,General Medicine,Internal Medicine,Mumbai Central Hospital,8,INPATIENT,N,HEAD_CL080000166,8,Maharashtra
+DEPART0800167,Pediatrics,Pediatrics,Kolkata Medical Centre,3,INPATIENT,N,HEAD_CL080000167,6,West Bengal
+DEPART0800168,Oncology,Medical Oncology,Delhi City Hospital,2,INPATIENT,N,HEAD_CL080000168,1,Delhi
+DEPART0800169,Emergency,Emergency Medicine,Chennai General Hospital,9,EMERGENCY,Y,HEAD_CL080000169,6,Tamil Nadu
+DEPART0800170,Cardiology,Cardiology,Bengaluru City Medical Centre,6,INPATIENT,N,HEAD_CL080000170,6,Karnataka
+DEPART0800171,Neurology,Neurology,Hyderabad Regional Hospital,7,INPATIENT,N,HEAD_CL080000171,4,Telangana
+DEPART0800172,Orthopedics,Orthopedic Surgery,Mumbai Central Hospital,7,INPATIENT,Y,HEAD_CL080000172,9,Maharashtra
+DEPART0800173,Intensive Care,Critical Care,Kolkata Medical Centre,4,INPATIENT,Y,HEAD_CL080000173,5,West Bengal
+DEPART0800174,General Medicine,Internal Medicine,Delhi City Hospital,5,INPATIENT,Y,HEAD_CL080000174,1,Delhi
+DEPART0800175,Pediatrics,Pediatrics,Chennai General Hospital,5,INPATIENT,Y,HEAD_CL080000175,4,Tamil Nadu
+DEPART0800176,Oncology,Medical Oncology,Bengaluru City Medical Centre,4,INPATIENT,N,HEAD_CL080000176,3,Karnataka
+DEPART0800177,Emergency,Emergency Medicine,Hyderabad Regional Hospital,5,EMERGENCY,Y,HEAD_CL080000177,7,Telangana
+DEPART0800178,Cardiology,Cardiology,Mumbai Central Hospital,3,INPATIENT,N,HEAD_CL080000178,1,Maharashtra
+DEPART0800179,Neurology,Neurology,Kolkata Medical Centre,5,INPATIENT,Y,HEAD_CL080000179,4,West Bengal
+DEPART0800180,Orthopedics,Orthopedic Surgery,Delhi City Hospital,1,INPATIENT,N,HEAD_CL080000180,6,Delhi
+DEPART0800181,Intensive Care,Critical Care,Chennai General Hospital,1,INPATIENT,N,HEAD_CL080000181,3,Tamil Nadu
+DEPART0800182,General Medicine,Internal Medicine,Bengaluru City Medical Centre,3,INPATIENT,Y,HEAD_CL080000182,9,Karnataka
+DEPART0800183,Pediatrics,Pediatrics,Hyderabad Regional Hospital,7,INPATIENT,N,HEAD_CL080000183,1,Telangana
+DEPART0800184,Oncology,Medical Oncology,Mumbai Central Hospital,3,INPATIENT,N,HEAD_CL080000184,3,Maharashtra
+DEPART0800185,Emergency,Emergency Medicine,Kolkata Medical Centre,7,EMERGENCY,N,HEAD_CL080000185,3,West Bengal
+DEPART0800186,Cardiology,Cardiology,Delhi City Hospital,8,INPATIENT,N,HEAD_CL080000186,4,Delhi
+DEPART0800187,Neurology,Neurology,Chennai General Hospital,8,INPATIENT,N,HEAD_CL080000187,3,Tamil Nadu
+DEPART0800188,Orthopedics,Orthopedic Surgery,Bengaluru City Medical Centre,6,INPATIENT,N,HEAD_CL080000188,1,Karnataka
+DEPART0800189,Intensive Care,Critical Care,Hyderabad Regional Hospital,7,INPATIENT,Y,HEAD_CL080000189,3,Telangana
+DEPART0800190,General Medicine,Internal Medicine,Mumbai Central Hospital,7,INPATIENT,N,HEAD_CL080000190,1,Maharashtra
+DEPART0800191,Pediatrics,Pediatrics,Kolkata Medical Centre,9,INPATIENT,Y,HEAD_CL080000191,1,West Bengal
+DEPART0800192,Oncology,Medical Oncology,Delhi City Hospital,7,INPATIENT,N,HEAD_CL080000192,3,Delhi

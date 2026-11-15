@@ -1,0 +1,26 @@
+flowchart TD
+    %% Silver Layer Data Quality Engine & Quarantine Logic
+    B["Raw Record from Bronze Table"] --> PREP["Prepare Record:<br/>1. Trim whitespace on string columns<br/>2. Retain _raw_record JSON snapshot"]
+    PREP --> CAST["Apply Strict Data Type Casting:<br/>• ISO string to Timestamp<br/>• Integer floor and capacity<br/>• Date effective_date"]
+
+    CAST --> C_CAST{"Type cast succeeded?"}
+    C_CAST -->|No: Rule DQ002| REJ["Quarantine to silver_rejected_records<br/>• Record rule_id (DQ002)<br/>• Failure reason<br/>• Preserve raw_record and source_file"]
+
+    C_CAST -->|Yes| C_REQ{"Passes Rule DQ001?<br/>Mandatory fields non-null and non-empty?"}
+    C_REQ -->|No: Rule DQ001| REJ
+
+    C_REQ -->|Yes| C_CAT{"Passes Rule DQ003?<br/>Categorical code in allowed clinical domain?<br/>e.g. triage in P1, P2, P3, P4"}
+    C_CAT -->|No: Rule DQ003<br/>24 UNKNOWN_CODE records| REJ
+
+    C_CAT -->|Yes| C_NUM{"Passes Rule DQ004?<br/>Non-negative floor, capacity at least 1?"}
+    C_NUM -->|No: Rule DQ004| REJ
+
+    C_NUM -->|Yes| C_TIME{"Passes Rule DQ005?<br/>Chronology valid?<br/>discharge after admission, result after order"}
+    C_TIME -->|No: Rule DQ005| REJ
+
+    C_TIME -->|Yes| DEDUP{"Is record an exact duplicate?<br/>Business-record comparison across all columns"}
+    DEDUP -->|Yes: Exact Duplicate| DUP_AUDIT["Audit to silver_duplicate_audit<br/>• 47 duplicate records isolated<br/>• Kept copy selected by latest ingestion"]
+
+    DEDUP -->|No: Unique Record| CLEAN["Write to Curated Silver Delta Tables<br/>• silver_patient_encounters: 12,305 rows<br/>• silver_lab_test_events: 758 rows<br/>• silver_bed_transfer_events: 392 rows<br/>• silver master tables: 183 / 192 / 201"]
+
+    CLEAN --> REF_CHECK["Rules DQ007 and DQ008 Consistency Check:<br/>• Foreign key orphan validation<br/>• Event inside parent encounter lifecycle<br/>Note: Flagged as WARN, reported for review, not deleted"]

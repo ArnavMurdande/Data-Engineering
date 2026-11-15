@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediFlow Lakehouse - Architecture & Diagram Viewer</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --surface-color: #1e293b;
+            --border-color: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --primary-hover: #0ea5e9;
+            --accent: #10b981;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 24px;
+        }
+        header {
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        header h1 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+        header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        .tab-btn {
+            background: var(--surface-color);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        .tab-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: #000;
+            font-weight: 600;
+            border-color: var(--primary);
+        }
+        .diagram-card {
+            display: none;
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .diagram-card.active {
+            display: block;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .card-header h2 {
+            font-size: 20px;
+            color: var(--text-main);
+        }
+        .card-header .badge {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--primary);
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+        .diagram-container {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 24px;
+            overflow-x: auto;
+            min-height: 450px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .pipeline-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .description {
+            margin-top: 16px;
+            padding: 14px;
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--text-muted);
+            border-left: 3px solid var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MediFlow Lakehouse Architecture & Diagram Suite</h1>
+        <p>Interactive Visual Guide for Client Presentations, HLD, LLD, and Operational Workflows</p>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="showTab('tab-hld')">1. HLD Architecture</button>
+        <button class="tab-btn" onclick="showTab('tab-lld')">2. LLD & Star Schema ERD</button>
+        <button class="tab-btn" onclick="showTab('tab-flow')">3. Complete Lakehouse Flow</button>
+        <button class="tab-btn" onclick="showTab('tab-dq')">4. Silver Data Quality</button>
+        <button class="tab-btn" onclick="showTab('tab-dag')">5. Lakeflow Job DAG</button>
+        <button class="tab-btn" onclick="showTab('tab-ml')">6. MLOps & MLflow</button>
+        <button class="tab-btn" onclick="showTab('tab-img')">7. Actual Pipeline Screenshots</button>
+        <button class="tab-btn" onclick="showTab('tab-dash')">8. Actual AI/BI Dashboard (DashBoard.pdf)</button>
+    </div>
+
+    <!-- 1. HLD -->
+    <div id="tab-hld" class="diagram-card active">
+        <div class="card-header">
+            <h2>High-Level Design (HLD) Architecture</h2>
+            <span class="badge">System Architecture</span>
+        </div>
+        <div class="diagram-container">
+            <pre class="mermaid">
+flowchart TB
+    subgraph Sources["1. Ingestion Sources (Azure)"]
+        direction TB
+        ASQL["Azure SQL Database<br/>• dbo.patient_master (183)<br/>• dbo.department_master (192)<br/>• dbo.bed_master (201)"]
+        ADLS["ADLS Gen2 Volume (ext_capstone8_vol)<br/>• patient_encounters/*.csv (12,376)<br/>• lab_test_events*.csv (758)<br/>• bed_transfer_events*.csv (392)"]
+    end
+
+    subgraph Security["Security & Access Boundary"]
+        SECRETS["Databricks Secret Scope<br/>(azure-sql-scope)"]
+        VOLUMES["Unity Catalog Volume<br/>(ext_capstone8_vol)"]
+    end
+
+    subgraph Platform["2. Databricks Lakehouse Engine (capstone_8hospital)"]
+        direction TB
+        subgraph Bronze["Bronze (Raw & Append-Only)"]
+            B_PAT["bronze_patients (183)"]
+            B_DEP["bronze_departments (192)"]
+            B_BED["bronze_beds (201)"]
+            B_ENC["bronze_patient_encounters (12,376)"]
+            B_LAB["bronze_lab_test_events (758)"]
+            B_TRF["bronze_bed_transfer_events (392)"]
+        end
+
+        subgraph Silver["Silver (Curated & Audited)"]
+            DQ["Data Quality Engine (DQ001-DQ008)"]
+            S_REJ[("silver_rejected_records (24)")]
+            S_DUP[("silver_duplicate_audit (47)")]
+            S_CLEAN["Curated Tables (12,305 Encounters)"]
+        end
+
+        subgraph Gold["Gold (Star Schema & Mart)"]
+            G_DIMS["Dimensions (patient, department, bed, date)"]
+            G_FACTS["Facts (encounters, labs, transfers)"]
+            G_MART[("mart_department_daily (5,688 rows)")]
+            G_VIEWS["8 Presentation Views (vw_*)"]
+        end
+    end
+
+    subgraph Consumption["3. Analytics & Consumption"]
+        DASH["AI/BI Dashboard (7 Pages)"]
+        GENIE["Databricks Genie Space"]
+        ML_RISK["Long-Stay Risk Pilot (@champion)"]
+    end
+
+    ASQL --> SECRETS --> Bronze
+    ADLS --> VOLUMES --> Bronze
+    Bronze --> DQ
+    DQ -->|Fails DQ003| S_REJ
+    DQ -->|Duplicates| S_DUP
+    DQ -->|Passes Clean| S_CLEAN
+    S_CLEAN --> Gold
+    Gold --> Consumption
+            </pre>
+        </div>
+        <div class="description">
+            <strong>HLD Architecture Summary:</strong> Captures hybrid ingestion from Azure SQL (JDBC with Secret Scopes) and ADLS Gen2 (Auto Loader via Unity Catalog Volumes), moving through Medallion tiers into executive AI/BI Dashboards, Genie, and MLflow models.
+        </div>
+    </div>
+
+    <!-- 2. LLD & ERD -->
+    <div id="tab-lld" class="diagram-card">
+        <div class="card-header">
+            <h2>Low-Level Design (LLD) - Gold Star Schema ERD</h2>
+            <span class="badge">Entity Relationship Diagram</span>
+        </div>
+        <div class="diagram-container">
+            <pre class="mermaid">
+erDiagram
+    dim_patient {
+        STRING patient_key PK "SHA-256 of patient_id"
+        STRING age_band
+        STRING sex
+        STRING city
+        STRING insurance_type
+        STRING patient_status
+        STRING primary_language
+    }
+    dim_department {
+        LONG department_key PK "xxhash64(department_id)"
+        STRING department_id
+        STRING department_name
+        STRING specialty
+        STRING hospital_site
+        INT floor
+        INT capacity_beds
+        STRING region
+    }
+    dim_bed {
+        LONG bed_key PK "xxhash64(bed_id)"
+        STRING bed_id
+        STRING ward
+        STRING bed_type
+        STRING isolation_capable
+        STRING bed_status
+    }
+    dim_date {
+        INT date_key PK "yyyyMMdd"
+        DATE full_date
+        INT year
+        INT month
+        STRING day_of_week
+    }
+    fact_patient_encounter {
+        STRING encounter_key PK
+        STRING patient_key FK
+        LONG department_key FK
+        LONG bed_key FK
+        INT admission_date_key FK
+        DOUBLE length_of_stay_hours "Measure"
+    }
+    fact_lab_test_event {
+        STRING lab_event_key PK
+        STRING encounter_key FK
+        STRING patient_key FK
+        LONG department_key FK
+        DOUBLE lab_turnaround_minutes "Measure"
+    }
+    fact_bed_transfer_event {
+        STRING transfer_key PK
+        STRING encounter_key FK
+        STRING patient_key FK
+        LONG to_bed_key FK
+        DOUBLE recording_delay_minutes "Measure"
+    }
+    mart_department_daily {
+        INT date_key PK,FK
+        LONG department_key PK,FK
+        LONG encounters_admitted
+        DOUBLE avg_length_of_stay_hours
+        LONG lab_orders
+        LONG bed_transfers
+    }
+
+    dim_patient ||--o{ fact_patient_encounter : "has"
+    dim_department ||--o{ fact_patient_encounter : "admits to"
+    dim_bed ||--o{ fact_patient_encounter : "assigns"
+    dim_date ||--o{ fact_patient_encounter : "dates"
+    fact_patient_encounter ||--o{ fact_lab_test_event : "orders"
+    fact_patient_encounter ||--o{ fact_bed_transfer_event : "transfers"
+    dim_date ||--o{ mart_department_daily : "aggregates"
+    dim_department ||--o{ mart_department_daily : "summarizes"
+            </pre>
+        </div>
+        <div class="description">
+            <strong>LLD & ERD Summary:</strong> Illustrates the Kimball Star Schema in `gold_schema`. Raw PII is completely eliminated in favor of cryptographic SHA-256 keys, and dimensions link to facts via deterministic surrogate hash keys (`xxhash64`).
+        </div>
+    </div>
+
+    <!-- 3. Complete Lakehouse Flow -->
+    <div id="tab-flow" class="diagram-card">
+        <div class="card-header">
+            <h2>Complete Lakehouse Flowchart</h2>
+            <span class="badge">End-to-End Pipeline</span>
+        </div>
+        <div class="diagram-container">
+            <pre class="mermaid">
+flowchart TD
+  subgraph Ingestion["1. Hybrid Ingestion Zone"]
+    SQL[("Azure SQL Database<br/>Masters: patients, departments, beds")]
+    ADLS[("ADLS Gen2 Volume<br/>Batches: encounters, labs, transfers")]
+  end
+
+  subgraph Bronze["2. Bronze Layer (Raw)"]
+    B_ALL["Raw Delta Tables (14,102 total rows)<br/>Lineage Audit: _source_file, _ingested_at"]
+  end
+
+  subgraph Silver["3. Silver Layer (Curated)"]
+    DQ{"Data Quality Engine<br/>DQ001-DQ008"}
+    S_REJ[("silver_rejected_records (24)")]
+    S_DUP[("silver_duplicate_audit (47)")]
+    S_CLEAN["Curated Tables (12,305 Encounters)"]
+  end
+
+  subgraph Gold["4. Gold Layer (Modeling)"]
+    STAR["Star Schema: 4 Dims + 3 Facts"]
+    MART[("mart_department_daily (5,688 rows)<br/>Incremental Delta MERGE (<=>)")]
+  end
+
+  subgraph Analytics["5. Analytics & ML"]
+    DASH["AI/BI Dashboard (7 Pages)"]
+    GENIE["Databricks Genie Space"]
+    ML["Long-Stay Risk Pilot (@champion)"]
+  end
+
+  SQL & ADLS --> Bronze --> DQ
+  DQ -->|Fails DQ003| S_REJ
+  DQ -->|Duplicates| S_DUP
+  DQ -->|Clean| S_CLEAN
+  S_CLEAN --> STAR --> MART
+  STAR & MART --> DASH & GENIE & ML
+            </pre>
+        </div>
+        <div class="description">
+            <strong>End-to-End Pipeline Summary:</strong> Traces the unbroken data flow from raw external storage into Bronze, through quality gates into Silver, into dimensional modeling in Gold, and out to operational stakeholders.
+        </div>
+    </div>
+
+    <!-- 4. Silver DQ -->
+    <div id="tab-dq" class="diagram-card">
+        <div class="card-header">
+            <h2>Silver Layer Data Quality & Quarantine Logic</h2>
+            <span class="badge">Quality Architecture</span>
+        </div>
+        <div class="diagram-container">
+            <pre class="mermaid">
+flowchart TD
+    B["Raw Record from Bronze Table"] --> PREP["Prepare Record:<br/>1. Trim whitespace on string columns<br/>2. Retain _raw_record JSON snapshot"]
+    PREP --> CAST["Apply Strict Data Type Casting:<br/>• ISO string to Timestamp<br/>• Integer floor and capacity<br/>• Date effective_date"]
+
+    CAST --> C_CAST{"Type cast succeeded?"}
+    C_CAST -->|No: Rule DQ002| REJ["Quarantine to silver_rejected_records<br/>• Record rule_id DQ002<br/>• Failure reason<br/>• Preserve raw_record and source_file"]
+
+    C_CAST -->|Yes| C_REQ{"Passes Rule DQ001?<br/>Mandatory fields non-null and non-empty?"}
+    C_REQ -->|No: Rule DQ001| REJ
+
+    C_REQ -->|Yes| C_CAT{"Passes Rule DQ003?<br/>Categorical code in allowed clinical domain?<br/>e.g. triage in P1, P2, P3, P4"}
+    C_CAT -->|No: Rule DQ003<br/>24 UNKNOWN_CODE records| REJ
+
+    C_CAT -->|Yes| C_NUM{"Passes Rule DQ004?<br/>Non-negative floor, capacity at least 1?"}
+    C_NUM -->|No: Rule DQ004| REJ
+
+    C_NUM -->|Yes| C_TIME{"Passes Rule DQ005?<br/>Chronology valid?<br/>discharge after admission, result after order"}
+    C_TIME -->|No: Rule DQ005| REJ
+
+    C_TIME -->|Yes| DEDUP{"Is record an exact duplicate?<br/>Business-record comparison across all columns"}
+    DEDUP -->|Yes: Exact Duplicate| DUP_AUDIT["Audit to silver_duplicate_audit<br/>• 47 duplicate records isolated<br/>• Kept copy selected by latest ingestion"]
+
+    DEDUP -->|No: Unique Record| CLEAN["Write to Curated Silver Delta Tables<br/>• silver_patient_encounters: 12,305 rows<br/>• silver_lab_test_events: 758 rows<br/>• silver_bed_transfer_events: 392 rows<br/>• silver master tables: 183 / 192 / 201"]
+
+    CLEAN --> REF_CHECK["Rules DQ007 and DQ008 Consistency Check:<br/>• Foreign key orphan validation<br/>• Event inside parent encounter lifecycle<br/>Note: Flagged as WARN, reported for review, not deleted"]
+            </pre>
+        </div>
+        <div class="description">
+            <strong>Silver DQ Logic:</strong> Shows the deterministic quarantine and deduplication rules ensuring zero silent data loss. Reconciles 12,376 Bronze encounters = 12,305 Silver encounters + 24 rejected + 47 duplicates.
+        </div>
+    </div>
+
+    <!-- 5. Job DAG -->
+    <div id="tab-dag" class="diagram-card">
+        <div class="card-header">
+            <h2>Databricks Lakeflow Job DAG (cap8_PIPE)</h2>
+            <span class="badge">Orchestration & SLAs</span>
+        </div>
+        <div class="diagram-container">
+            <pre class="mermaid">
+flowchart LR
+    subgraph Stage1["1. Ingestion Tier (Parallel)"]
+        T1["Task 1: bronze_adls_autoloader<br/>NB: 02_bronze_adls_ingestion<br/>Runtime: 57s"]
+        T2["Task 2: bronze_azure_sql<br/>NB: 01_jdbc_connection<br/>Runtime: 47s"]
+    end
+
+    subgraph Stage2["2. Automated Profiling"]
+        T3["Task 3: data_profile<br/>NB: 03_bronze_profiling<br/>Runtime: 31s"]
+    end
+
+    subgraph Stage3["3. Curated Silver Quality"]
+        T4["Task 4: silver_transform<br/>NB: 04_silver_layer_healthcare<br/>Runtime: 2m 26s"]
+    end
+
+    subgraph Stage4["4. Gold Modeling & Mart"]
+        T5["Task 5: gold_build<br/>NB: 05_gold_layer_healthcare<br/>Runtime: 1m 25s"]
+    end
+
+    subgraph Stage5["5. Automated Quality Gate"]
+        T6["Task 6: validation<br/>NB: 06_pipeline_validation_healthcare<br/>Runtime: 1m 29s"]
+    end
+
+    subgraph Stage6["6. Telemetry & Monitoring"]
+        T7["Task 7: refresh_dashboard<br/>NB: 07_monitoring_refresh_healthcare<br/>Runtime: 1m 03s"]
+    end
+
+    T1 --> T3
+    T2 --> T3
+    T3 --> T4
+    T4 --> T5
+    T5 --> T6
+    T6 --> T7
+            </pre>
+        </div>
+        <div class="description">
+            <strong>Job DAG Execution:</strong> Verified Lakeflow Job run (7m 55s total runtime) executing 478 queries across 7 sequential tasks, completing well within the 15-minute SLA.
+        </div>
+    </div>
+
+    <!-- 6. MLOps -->
+    <div id="tab-ml" class="diagram-card">
+        <div class="card-header">
+            <h2>MLOps & MLflow Long-Stay Risk Lifecycle</h2>
+            <span class="badge">Predictive AI</span>
+        </div>
+        <div class="diagram-container">
+            <pre class="mermaid">
+flowchart TD
+    subgraph Data_Prep["1. Feature Engineering & Anti-Leakage"]
+        F1["Input Data: fact_patient_encounter, dim_department, dim_patient"]
+        F2["Target Definition: label_long_stay = 1 if LOS exceeds 75th percentile<br/>(NULL for open encounters, reserved for scoring)"]
+        F3["Admission-Only Features (Zero Data Leakage):<br/>• triage_priority, admission_source, specialty, service_level<br/>• capacity_beds, age_band, sex, insurance_type, admission_hour, is_weekend"]
+        F4[("gold_schema.ml_encounter_features")]
+        F1 --> F2
+        F2 --> F3
+        F3 --> F4
+    end
+
+    subgraph Experimentation["2. MLflow Experimentation & Tracking"]
+        E1["Chronological Split: 70% Train / 30% Test"]
+        E2["Scikit-Learn Pipeline:<br/>• Numerics: SimpleImputer and StandardScaler<br/>• Categoricals: OneHotEncoder"]
+        E3["Candidate 1: Logistic Regression (balanced weights)"]
+        E4["Candidate 2: Random Forest (300 estimators, max depth 6)"]
+        E5["MLflow Experiment Tracking (capstone08_long_stay_risk):<br/>• Parameters, ROC-AUC, F1, Precision, Recall<br/>• Confusion Matrix Plot and Feature Importance Table"]
+        F4 --> E1
+        E1 --> E2
+        E2 --> E3
+        E2 --> E4
+        E3 --> E5
+        E4 --> E5
+    end
+
+    subgraph Governance["3. Unity Catalog Model Registry"]
+        G1["Evaluation: Best Model Selected by ROC-AUC and F1"]
+        G2["Register Model to Unity Catalog:<br/>capstone_8hospital.gold_schema.long_stay_risk_model"]
+        G3["Assign Active Deployment Alias: @champion"]
+        E5 --> G1
+        G1 --> G2
+        G2 --> G3
+    end
+
+    subgraph Inference["4. Batch Inference & Clinical Action"]
+        I1["Load Model: models:/.../long_stay_risk_model@champion"]
+        I2["Batch Score Open/Active Hospital Encounters"]
+        I3["Stratify Operational Risk Tiers:<br/>• HIGH: Risk Score 0.60 or higher<br/>• MEDIUM: Risk Score 0.30 to 0.59<br/>• LOW: Risk Score below 0.30"]
+        I4[("encounter_long_stay_risk (Delta Table)")]
+        I5["vw_encounter_long_stay_risk to AI/BI Dashboard (Page 7)"]
+        G3 --> I1
+        I1 --> I2
+        I2 --> I3
+        I3 --> I4
+        I4 --> I5
+    end
+            </pre>
+        </div>
+        <div class="description">
+            <strong>MLflow Lifecycle:</strong> End-to-end MLOps workflow predicting long-stay encounters at admission, tracked in MLflow and governed in Unity Catalog under the `@champion` model alias.
+        </div>
+    </div>
+
+    <!-- 7. Actual Screenshots -->
+    <div id="tab-img" class="diagram-card">
+        <div class="card-header">
+            <h2>Actual Pipeline Execution Screenshots</h2>
+            <span class="badge">Pipeline Evidence</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+            <div>
+                <h3 style="margin-bottom: 8px; color: var(--primary);">Pipeline Execution View 1</h3>
+                <img src="Pipeline (1).png" alt="Pipeline Run 1" class="pipeline-img">
+            </div>
+            <div>
+                <h3 style="margin-bottom: 8px; color: var(--primary);">Pipeline Execution View 2</h3>
+                <img src="Pipeline (2).png" alt="Pipeline Run 2" class="pipeline-img">
+            </div>
+            <div>
+                <h3 style="margin-bottom: 8px; color: var(--primary);">Pipeline Execution View 3</h3>
+                <img src="Pipeline (3).png" alt="Pipeline Run 3" class="pipeline-img">
+            </div>
+        </div>
+        <div class="description">
+            <strong>Live Platform Artifacts:</strong> Verified pipeline run evidence from the Databricks workspace showcasing task graphs, data lineages, and run execution status.
+        </div>
+    </div>
+
+    <!-- 8. Actual AI/BI Dashboard (DashBoard.pdf) -->
+    <div id="tab-dash" class="diagram-card">
+        <div class="card-header">
+            <h2>Actual AI/BI Dashboard Layout (from DashBoard.pdf)</h2>
+            <span class="badge">Hospital Patient Flow & Clinical Operations</span>
+        </div>
+        
+        <!-- Page 1 Overview -->
+        <div style="background: #0b1329; border: 1px solid #1e293b; border-radius: 10px; padding: 20px; margin-bottom: 24px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #334155; padding-bottom: 8px;">
+                <h3 style="color: #38bdf8; font-size: 18px;">Page 1: Overview (Hospital Patient Flow & Clinical Operations)</h3>
+                <span style="color: #94a3b8; font-size: 13px;">Filters: Date Range | Hospital Site (All) | Department (All)</span>
+            </div>
+            <p style="font-size: 13px; color: #94a3b8; margin-bottom: 16px;">
+                <em>Encounters, length of stay, lab turnaround and bed movement from the Gold star schema (capstone_8hospital.gold_schema). Filters apply to every chart on this page; dates use admission, lab order, or transfer date respectively. Aggregates only, no patient identifiers.</em>
+            </p>
+
+            <!-- 5 Headline Tiles -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 20px;">
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px; border-left: 4px solid #38bdf8;">
+                    <div style="font-size: 12px; color: #94a3b8;">Admitted encounters in period</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #f8fafc;">12,305</div>
+                    <div style="font-size: 11px; color: #38bdf8;">Encounters</div>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px; border-left: 4px solid #10b981;">
+                    <div style="font-size: 12px; color: #94a3b8;">Distinct patients with encounter</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #f8fafc;">183</div>
+                    <div style="font-size: 11px; color: #10b981;">Unique Patients</div>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px; border-left: 4px solid #fbbf24;">
+                    <div style="font-size: 12px; color: #94a3b8;">Order to result, mins & secs</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #f8fafc;">15m 0s</div>
+                    <div style="font-size: 11px; color: #fbbf24;">Median Lab TAT</div>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px; border-left: 4px solid #a855f7;">
+                    <div style="font-size: 12px; color: #94a3b8;">Transfer events in period</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #f8fafc;">392</div>
+                    <div style="font-size: 11px; color: #a855f7;">Bed Transfers</div>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px; border-left: 4px solid #f43f5e;">
+                    <div style="font-size: 12px; color: #94a3b8;">Lab tests ordered in period</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #f8fafc;">758</div>
+                    <div style="font-size: 11px; color: #f43f5e;">Lab Orders</div>
+                </div>
+            </div>
+
+            <!-- Page 1 Visual Widgets Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin-bottom: 20px;">
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px;">
+                    <h4 style="color: #38bdf8; font-size: 14px; margin-bottom: 6px;">Daily Admissions by Encounter Type</h4>
+                    <p style="font-size: 12px; color: #94a3b8;">Demand trend per admission date stacked by EMERGENCY, INPATIENT, OUTPATIENT.</p>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px;">
+                    <h4 style="color: #38bdf8; font-size: 14px; margin-bottom: 6px;">Case Mix by Diagnosis & Triage</h4>
+                    <p style="font-size: 12px; color: #94a3b8;">Encounter counts by diagnosis group stacked by triage priority (P1, P2, P3, P4).</p>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px;">
+                    <h4 style="color: #38bdf8; font-size: 14px; margin-bottom: 6px;">Admission Arrival Pattern</h4>
+                    <p style="font-size: 12px; color: #94a3b8;">Clock time of admission (0-23 hours) used for clinical and nursing shift staffing.</p>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px;">
+                    <h4 style="color: #38bdf8; font-size: 14px; margin-bottom: 6px;">Weekly Lab Orders by Status</h4>
+                    <p style="font-size: 12px; color: #94a3b8;">Weekly diagnostic orders stacked by RESULTED, COLLECTED, and ORDERED.</p>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px;">
+                    <h4 style="color: #38bdf8; font-size: 14px; margin-bottom: 6px;">Bed Transfer Flow: Reason to Status</h4>
+                    <p style="font-size: 12px; color: #94a3b8;">Movements by CAPACITY, CLINICAL, ISOLATION stacked by ACTIVE, INACTIVE, PENDING.</p>
+                </div>
+            </div>
+
+            <!-- Department Scorecard Table -->
+            <div style="background: #1e293b; padding: 16px; border-radius: 8px;">
+                <h4 style="color: #38bdf8; font-size: 15px; margin-bottom: 6px;">Department Scorecard (from DashBoard.pdf)</h4>
+                <p style="font-size: 12px; color: #94a3b8; margin-bottom: 12px;">Exact figures; click headers to sort, search by department or site. Missing LOS counted, never zero.</p>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; font-size: 12px; text-align: left; border-collapse: collapse;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #334155; color: #38bdf8;">
+                                <th style="padding: 8px;">Department</th>
+                                <th style="padding: 8px;">Site</th>
+                                <th style="padding: 8px;">Encounters</th>
+                                <th style="padding: 8px;">Unique Patients</th>
+                                <th style="padding: 8px;">Avg LOS (mins)</th>
+                                <th style="padding: 8px;">Missing LOS</th>
+                            </tr>
+                        </thead>
+                        <tbody style="color: #cbd5e1;">
+                            <tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 6px 8px;">Oncology</td><td style="padding: 6px 8px;">Mumbai Central Hospital</td><td style="padding: 6px 8px;">896</td><td style="padding: 6px 8px;">182</td><td style="padding: 6px 8px;">4.8</td><td style="padding: 6px 8px;">0</td></tr>
+                            <tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 6px 8px;">Pediatrics</td><td style="padding: 6px 8px;">Kolkata Medical Centre</td><td style="padding: 6px 8px;">856</td><td style="padding: 6px 8px;">181</td><td style="padding: 6px 8px;">4.8</td><td style="padding: 6px 8px;">0</td></tr>
+                            <tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 6px 8px;">Cardiology</td><td style="padding: 6px 8px;">Bengaluru City Medical Centre</td><td style="padding: 6px 8px;">770</td><td style="padding: 6px 8px;">182</td><td style="padding: 6px 8px;">4.8</td><td style="padding: 6px 8px;">0</td></tr>
+                            <tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 6px 8px;">Orthopedics</td><td style="padding: 6px 8px;">Delhi City Hospital</td><td style="padding: 6px 8px;">721</td><td style="padding: 6px 8px;">180</td><td style="padding: 6px 8px;">4.8</td><td style="padding: 6px 8px;">0</td></tr>
+                            <tr style="border-bottom: 1px solid #1e293b;"><td style="padding: 6px 8px;">General Medicine</td><td style="padding: 6px 8px;">Bengaluru City Medical Centre</td><td style="padding: 6px 8px;">688</td><td style="padding: 6px 8px;">179</td><td style="padding: 6px 8px;">4.8</td><td style="padding: 6px 8px;">0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page 2 Capacity & Mix -->
+        <div style="background: #0b1329; border: 1px solid #1e293b; border-radius: 10px; padding: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #334155; padding-bottom: 8px;">
+                <h3 style="color: #38bdf8; font-size: 18px;">Page 2: Capacity, Beds & Patient Mix</h3>
+                <span style="color: #94a3b8; font-size: 13px;">Gold Dimensions & Department-Day Mart</span>
+            </div>
+            <p style="font-size: 13px; color: #94a3b8; margin-bottom: 16px;">
+                <em>All identities and records are synthetic and only aggregated Gold data is shown. Very short stays (~5 min / 4.8 min), uniform ~15 min lab turnaround and 5 min transfer recording delay come from the source data itself, not from a transformation error.</em>
+            </p>
+
+            <!-- 4 Headline Tiles -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px;">
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px; border-left: 4px solid #38bdf8;">
+                    <div style="font-size: 12px; color: #94a3b8;">Departments in dimension</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #f8fafc;">192</div>
+                    <div style="font-size: 11px; color: #38bdf8;">Departments</div>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px; border-left: 4px solid #10b981;">
+                    <div style="font-size: 12px; color: #94a3b8;">Sum of planned capacity</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #f8fafc;">899</div>
+                    <div style="font-size: 11px; color: #10b981;">Total Capacity Beds</div>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px; border-left: 4px solid #fbbf24;">
+                    <div style="font-size: 12px; color: #94a3b8;">Physical beds in bed master</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #f8fafc;">201</div>
+                    <div style="font-size: 11px; color: #fbbf24;">Beds in Bed Master</div>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px; border-left: 4px solid #a855f7;">
+                    <div style="font-size: 12px; color: #94a3b8;">Share usable for isolation</div>
+                    <div style="font-size: 24px; font-weight: bold; color: #f8fafc;">51.7%</div>
+                    <div style="font-size: 11px; color: #a855f7;">Isolation-capable %</div>
+                </div>
+            </div>
+
+            <!-- Page 2 Visual Widgets Grid -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px;">
+                    <h4 style="color: #38bdf8; font-size: 14px; margin-bottom: 6px;">Encounters by Primary Language</h4>
+                    <p style="font-size: 12px; color: #94a3b8;">Bengali, English, Hindi, Kannada, Tamil, Telugu (used for interpreter & multilingual staffing).</p>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px;">
+                    <h4 style="color: #38bdf8; font-size: 14px; margin-bottom: 6px;">Capacity by Region & Service Level</h4>
+                    <p style="font-size: 12px; color: #94a3b8;">Total capacity beds per region from department dimension, stacked by EMERGENCY vs INPATIENT.</p>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px;">
+                    <h4 style="color: #38bdf8; font-size: 14px; margin-bottom: 6px;">Bed Type Share</h4>
+                    <p style="font-size: 12px; color: #94a3b8;">Share of physical beds in the bed master by type: STANDARD, ICU, and Isolation.</p>
+                </div>
+                <div style="background: #1e293b; padding: 14px; border-radius: 8px;">
+                    <h4 style="color: #38bdf8; font-size: 14px; margin-bottom: 6px;">Encounters by Patient Sex</h4>
+                    <p style="font-size: 12px; color: #94a3b8;">Demographic distribution across Female (F), Male (M), and Other.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="description" style="margin-top: 20px;">
+            <strong>Actual Dashboard Alignment:</strong> Faithfully reproduces all titles, KPIs, widgets, and notes from `DashBoard.pdf` ("Hospital Patient Flow & Clinical Operations").
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' },
+            er: { useMaxWidth: true }
+        });
+
+        function showTab(tabId) {
+            document.querySelectorAll('.diagram-card').forEach(card => card.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

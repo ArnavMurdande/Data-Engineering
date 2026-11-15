@@ -1,0 +1,47 @@
+flowchart TD
+    %% MLOps Lifecycle: Long-Stay Risk Prediction with MLflow & Unity Catalog
+    subgraph Data_Prep["1. Feature Engineering & Anti-Leakage"]
+        F1["Input Data: fact_patient_encounter, dim_department, dim_patient"]
+        F2["Target Definition: label_long_stay = 1 if LOS exceeds 75th percentile<br/>(NULL for open encounters, reserved for scoring)"]
+        F3["Admission-Only Features (Zero Data Leakage):<br/>• triage_priority, admission_source, specialty, service_level<br/>• capacity_beds, age_band, sex, insurance_type, admission_hour, is_weekend"]
+        F4[("gold_schema.ml_encounter_features")]
+        F1 --> F2
+        F2 --> F3
+        F3 --> F4
+    end
+
+    subgraph Experimentation["2. MLflow Experimentation & Tracking"]
+        E1["Chronological Split: 70% Train / 30% Test"]
+        E2["Scikit-Learn Pipeline:<br/>• Numerics: SimpleImputer and StandardScaler<br/>• Categoricals: OneHotEncoder"]
+        E3["Candidate 1: Logistic Regression (balanced weights)"]
+        E4["Candidate 2: Random Forest (300 estimators, max depth 6)"]
+        E5["MLflow Experiment Tracking (capstone08_long_stay_risk):<br/>• Parameters, ROC-AUC, F1, Precision, Recall<br/>• Confusion Matrix Plot and Feature Importance Table"]
+        F4 --> E1
+        E1 --> E2
+        E2 --> E3
+        E2 --> E4
+        E3 --> E5
+        E4 --> E5
+    end
+
+    subgraph Governance["3. Unity Catalog Model Registry"]
+        G1["Evaluation: Best Model Selected by ROC-AUC and F1"]
+        G2["Register Model to Unity Catalog:<br/>capstone_8hospital.gold_schema.long_stay_risk_model"]
+        G3["Assign Active Deployment Alias: @champion"]
+        E5 --> G1
+        G1 --> G2
+        G2 --> G3
+    end
+
+    subgraph Inference["4. Batch Inference & Clinical Action"]
+        I1["Load Model: models:/.../long_stay_risk_model@champion"]
+        I2["Batch Score Open/Active Hospital Encounters"]
+        I3["Stratify Operational Risk Tiers:<br/>• HIGH: Risk Score 0.60 or higher<br/>• MEDIUM: Risk Score 0.30 to 0.59<br/>• LOW: Risk Score below 0.30"]
+        I4[("encounter_long_stay_risk (Delta Table)")]
+        I5["vw_encounter_long_stay_risk to AI/BI Dashboard (Page 7)"]
+        G3 --> I1
+        I1 --> I2
+        I2 --> I3
+        I3 --> I4
+        I4 --> I5
+    end

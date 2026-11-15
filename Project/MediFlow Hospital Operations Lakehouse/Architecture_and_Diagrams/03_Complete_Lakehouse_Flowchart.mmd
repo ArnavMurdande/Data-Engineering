@@ -1,0 +1,85 @@
+flowchart TD
+  %% Complete End-to-End Lakehouse Flowchart - MediFlow Project
+  subgraph Ingestion["1. Hybrid Ingestion Zone"]
+    direction TB
+    SQL[("Azure SQL Database<br/>• dbo.patient_master<br/>• dbo.department_master<br/>• dbo.bed_master")]
+    ADLS[("ADLS Gen2 Volume (ext_capstone8_vol)<br/>• patient_encounters/*.csv (10 batches)<br/>• lab_test_events*.csv<br/>• bed_transfer_events*.csv")]
+  end
+
+  subgraph Bronze["2. Bronze Layer (Raw & Traceable)"]
+    direction TB
+    B1["bronze_patients (183 rows)"]
+    B2["bronze_departments (192 rows)"]
+    B3["bronze_beds (201 rows)"]
+    B4["bronze_patient_encounters (12,376 rows)"]
+    B5["bronze_lab_test_events (758 rows)"]
+    B6["bronze_bed_transfer_events (392 rows)"]
+    B_AUD["Lineage Audit: _source_file, _ingested_at, _rescued_data"]
+  end
+
+  subgraph Silver["3. Silver Layer (Curated & Audited)"]
+    direction TB
+    DQ{"Data Quality Engine<br/>DQ001: Required Fields<br/>DQ002: Type Casting<br/>DQ003: Clinical Categories<br/>DQ004: Numeric Bounds<br/>DQ005: Event Chronology"}
+    S_REJ[("silver_rejected_records<br/>24 rows: UNKNOWN_CODE triage")]
+    S_DUP[("silver_duplicate_audit<br/>47 exact duplicate rows")]
+    S_ENC["silver_patient_encounters (12,305 clean rows)"]
+    S_LAB["silver_lab_test_events (758 clean rows)"]
+    S_TRF["silver_bed_transfer_events (392 clean rows)"]
+    S_MAST["silver_patients (183) • departments (192) • beds (201)"]
+  end
+
+  subgraph Gold["4. Gold Layer (Star Schema & Mart)"]
+    direction TB
+    D_PAT["dim_patient (183 rows)<br/>patient_key = sha2(patient_id)"]
+    D_DEP["dim_department (192 rows)<br/>department_key = xxhash64"]
+    D_BED["dim_bed (201 rows)<br/>bed_key = xxhash64"]
+    D_DATE["dim_date (183 rows)<br/>date_key = yyyyMMdd"]
+    F_ENC["fact_patient_encounter (12,305 rows)<br/>measure: length_of_stay_hours"]
+    F_LAB["fact_lab_test_event (758 rows)<br/>measure: lab_turnaround_minutes"]
+    F_TRF["fact_bed_transfer_event (392 rows)<br/>measure: recording_delay_minutes"]
+    MART[("mart_department_daily (5,688 rows)<br/>Incremental Delta MERGE (<=>)")]
+  end
+
+  subgraph Analytics["5. Analytics, Dashboard & Genie"]
+    direction TB
+    VIEWS["8 Gold Presentation Views (vw_*)<br/>vw_kpi_headline • vw_daily_trend<br/>vw_department_summary • vw_site_summary<br/>vw_encounter_mix • vw_lab_turnaround<br/>vw_bed_movement • vw_data_quality"]
+    DASH["Databricks AI/BI Dashboard<br/>(7 Executive & Operational Pages)"]
+    GENIE["Databricks Genie Space<br/>(Conversational NLP + 3 Verified SQLs)"]
+  end
+
+  subgraph ML["6. MLOps & Long-Stay Risk Pilot"]
+    direction TB
+    FEAT["ml_encounter_features<br/>(Admission-Time Only, No Leakage)"]
+    TRAIN["Model Training (LR vs Random Forest)<br/>Evaluated in MLflow Experiment"]
+    REG[("UC Model Registry<br/>long_stay_risk_model @champion")]
+    SCORE["encounter_long_stay_risk<br/>vw_encounter_long_stay_risk (Risk Bands)"]
+  end
+
+  %% Ingestion Links
+  SQL -->|PySpark JDBC + Secrets| B1 & B2 & B3
+  ADLS -->|Auto Loader cloudFiles| B4 & B5 & B6
+  B4 & B5 & B6 --- B_AUD
+
+  %% Bronze to Silver
+  B1 & B2 & B3 & B4 & B5 & B6 --> DQ
+  DQ -->|Fails DQ003| S_REJ
+  DQ -->|Exact Duplicate| S_DUP
+  DQ -->|Passes Clean| S_ENC & S_LAB & S_TRF & S_MAST
+
+  %% Silver to Gold
+  S_MAST --> D_PAT & D_DEP & D_BED
+  S_ENC & S_LAB & S_TRF --> D_DATE
+  S_ENC --> F_ENC
+  S_LAB --> F_LAB
+  S_TRF --> F_TRF
+  F_ENC & F_LAB & F_TRF --> MART
+
+  %% Gold to Analytics
+  MART & F_ENC & F_LAB & F_TRF & D_DEP & D_DATE --> VIEWS
+  VIEWS --> DASH
+  VIEWS & MART --> GENIE
+
+  %% Gold to ML
+  F_ENC & D_DEP & D_PAT --> FEAT
+  FEAT --> TRAIN --> REG --> SCORE
+  SCORE --> DASH

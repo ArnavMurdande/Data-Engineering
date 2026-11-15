@@ -28,12 +28,19 @@ wheels/
 **/.venv/
 ENV/
 
+# Node / Frontend
+node_modules/
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
 # PySpark Setup Binaries & Local Config
-Milestone 2/PySpark Setup/.venv/
-Milestone 2/PySpark Setup/hadoop/
-Milestone 2/PySpark Setup/jars/
-Milestone 2/PySpark Setup/.env
-Milestone 2/PySpark Setup/pyrightconfig.json
+PySpark/Setup/.venv/
+PySpark/Setup/hadoop/
+PySpark/Setup/jars/
+PySpark/Setup/.env
+PySpark/Setup/pyrightconfig.json
 pyrightconfig.json
 
 # Testing & Logs
@@ -58,6 +65,10 @@ ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
+
+# GitHub Actions (requires PAT workflow scope to push)
+.github/
+**/.github/
 
 # Local Setup Scripts
 SQL Setup/

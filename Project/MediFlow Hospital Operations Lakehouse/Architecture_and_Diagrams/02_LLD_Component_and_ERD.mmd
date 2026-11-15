@@ -1,0 +1,137 @@
+erDiagram
+    %% Low-Level Design (LLD) - Entity-Relationship Diagram (ERD) of Gold Star Schema
+    %% Catalog: capstone_8hospital | Schema: gold_schema
+
+    dim_patient {
+        STRING patient_key PK "SHA-256 of patient_id (Pseudonymized)"
+        STRING age_band "Age Group (0-17, 18-35, 36-55, 56-75)"
+        STRING sex "Patient Biological Sex (F, M, OTHER)"
+        STRING city "Residential City"
+        STRING insurance_type "Insurance Tier (BASIC, STANDARD, PREMIUM)"
+        STRING patient_status "Status (ACTIVE, INACTIVE, PENDING)"
+        STRING primary_language "Language (Bengali, English, Hindi, etc.)"
+    }
+
+    dim_department {
+        LONG department_key PK "xxhash64(department_id)"
+        STRING department_id "Business Key (DEP_xxx)"
+        STRING department_name "Department Name (Oncology, Cardiology, etc.)"
+        STRING specialty "Medical Specialty"
+        STRING hospital_site "Facility (Mumbai Central, Bengaluru City, etc.)"
+        INT floor "Building Floor (Non-negative)"
+        STRING service_level "Service Tier (EMERGENCY, INPATIENT)"
+        STRING active_flag "Active Status (Y, N)"
+        INT capacity_beds "Planned Bed Capacity (>= 1)"
+        STRING region "Geographical Healthcare Region"
+    }
+
+    dim_bed {
+        LONG bed_key PK "xxhash64(bed_id)"
+        STRING bed_id "Business Key (BED_xxx)"
+        STRING department_id "Assigned Department ID"
+        STRING ward "Ward Classification (GENERAL, ICU, SURGICAL)"
+        STRING bed_type "Bed Specification (STANDARD, ICU)"
+        STRING isolation_capable "Isolation Flag (Y, N)"
+        STRING bed_status "Operational State (ACTIVE, INACTIVE, PENDING)"
+        INT floor "Physical Floor"
+        STRING hospital_site "Facility Location"
+        STRING active_flag "Active Flag (Y, N)"
+        DATE effective_date "Commissioning Date"
+    }
+
+    dim_date {
+        INT date_key PK "Calendar Integer (yyyyMMdd)"
+        DATE full_date "Calendar Date (2026-07-01 to 2026-08-30)"
+        INT year "Calendar Year (2026)"
+        INT month "Month of Year (1-12)"
+        INT day "Day of Month (1-31)"
+        STRING day_of_week "Weekday Name (Monday, Tuesday, etc.)"
+    }
+
+    fact_patient_encounter {
+        STRING encounter_key PK "sha2(encounter_id, 256)"
+        STRING encounter_id "Business Traceability Key"
+        STRING patient_key FK "References dim_patient"
+        LONG department_key FK "References dim_department"
+        LONG bed_key FK "References dim_bed"
+        INT admission_date_key FK "References dim_date (Admission)"
+        INT discharge_date_key FK "References dim_date (Discharge)"
+        TIMESTAMP admission_ts "Admission Timestamp"
+        TIMESTAMP discharge_ts "Discharge Timestamp (NULL if Active)"
+        STRING encounter_type "Type (EMERGENCY, INPATIENT, OUTPATIENT)"
+        STRING triage_priority "Priority (P1, P2, P3, P4)"
+        STRING encounter_status "Status (DISCHARGED, TRANSFERRED)"
+        STRING admission_source "Source (EMERGENCY, REFERRAL, WALK_IN)"
+        STRING diagnosis_group "Diagnosis Category (CARDIAC, GENERAL, etc.)"
+        DOUBLE length_of_stay_hours "Calculated Measure: (discharge - admission)/3600"
+    }
+
+    fact_lab_test_event {
+        STRING lab_event_key PK "sha2(lab_event_id, 256)"
+        STRING lab_event_id "Business Traceability Key"
+        STRING encounter_key FK "References fact_patient_encounter"
+        STRING patient_key FK "References dim_patient"
+        LONG department_key FK "References dim_department"
+        INT ordered_date_key FK "References dim_date (Order Date)"
+        STRING test_code "Test Type (CBC, GLUCOSE, KFT, LFT)"
+        STRING priority "Test Priority (ROUTINE, URGENT, STAT)"
+        STRING result_status "Status (ORDERED, COLLECTED, RESULTED)"
+        TIMESTAMP ordered_ts "Order Timestamp"
+        TIMESTAMP collected_ts "Specimen Collection Timestamp"
+        TIMESTAMP result_ts "Result Availability Timestamp"
+        DOUBLE lab_turnaround_minutes "Calculated Measure: (result - order)/60"
+    }
+
+    fact_bed_transfer_event {
+        STRING transfer_key PK "sha2(transfer_id, 256)"
+        STRING transfer_id "Business Traceability Key"
+        STRING encounter_key FK "References fact_patient_encounter"
+        STRING patient_key FK "References dim_patient"
+        LONG department_key FK "References dim_department"
+        LONG from_bed_key FK "References dim_bed (Origin Bed)"
+        LONG to_bed_key FK "References dim_bed (Destination Bed)"
+        INT transfer_date_key FK "References dim_date (Transfer Date)"
+        TIMESTAMP transfer_ts "Transfer Initiation Timestamp"
+        TIMESTAMP recorded_ts "System Logging Timestamp"
+        STRING transfer_reason "Reason (CAPACITY, CLINICAL, ISOLATION)"
+        STRING transfer_status "Status (ACTIVE, INACTIVE, PENDING)"
+        DOUBLE recording_delay_minutes "Calculated Measure: (recorded - transfer)/60"
+    }
+
+    mart_department_daily {
+        INT date_key PK,FK "References dim_date"
+        LONG department_key PK,FK "References dim_department"
+        DATE full_date "Calendar Date"
+        STRING department_name "Department Name"
+        STRING specialty "Medical Specialty"
+        STRING hospital_site "Hospital Site"
+        LONG encounters_admitted "Daily Admitted Encounters Count"
+        DOUBLE avg_length_of_stay_hours "Daily Average Length of Stay (Hours)"
+        LONG lab_orders "Daily Lab Orders Placed"
+        LONG lab_results "Daily Lab Results Completed"
+        DOUBLE avg_lab_turnaround_minutes "Daily Average Lab Turnaround (Minutes)"
+        LONG bed_transfers "Daily Bed Transfers Initiated"
+        TIMESTAMP updated_ts "Incremental MERGE Timestamp"
+    }
+
+    %% Relationships
+    dim_patient ||--o{ fact_patient_encounter : "has encounters"
+    dim_department ||--o{ fact_patient_encounter : "admits to"
+    dim_bed ||--o{ fact_patient_encounter : "assigns"
+    dim_date ||--o{ fact_patient_encounter : "admits on"
+    dim_date ||--o{ fact_patient_encounter : "discharges on"
+
+    fact_patient_encounter ||--o{ fact_lab_test_event : "orders diagnostic"
+    dim_patient ||--o{ fact_lab_test_event : "undergoes"
+    dim_department ||--o{ fact_lab_test_event : "orders from"
+    dim_date ||--o{ fact_lab_test_event : "ordered on"
+
+    fact_patient_encounter ||--o{ fact_bed_transfer_event : "transfers"
+    dim_patient ||--o{ fact_bed_transfer_event : "transferred"
+    dim_department ||--o{ fact_bed_transfer_event : "transferred within"
+    dim_bed ||--o{ fact_bed_transfer_event : "originates from"
+    dim_bed ||--o{ fact_bed_transfer_event : "moves to"
+    dim_date ||--o{ fact_bed_transfer_event : "transferred on"
+
+    dim_date ||--o{ mart_department_daily : "aggregates on"
+    dim_department ||--o{ mart_department_daily : "summarizes"

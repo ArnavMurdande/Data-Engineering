@@ -1,8 +1,8 @@
 // =========================================================================
-// SQL, DATA WAREHOUSING & DATABRICKS MASTER 200 MCQ BANK
-// Extracted from Mock_Client_Interview_SQL_DWH_Databricks & 200 MCQ Bank
+// COMPREHENSIVE DATA ENGINEERING, DATABRICKS, SQL, PYTHON, PYSPARK,
+// SCALA, JAVA, HADOOP & BIG DATA MASTER QUESTION BANK
 // Enriched with Beginner Concept Breakdowns, ASCII Architecture Diagrams,
-// Calibrated Difficulties (Easy, Medium, Hard), and Client Virtual Scenarios
+// Calibrated Difficulties (Easy, Medium, Hard), and Enterprise Scenarios
 // =========================================================================
 
 export const QUESTION_BANK = [
@@ -23,7 +23,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Think of Atomicity like an ATM cash dispenser: if the machine fails to dispense your money, it must cancel the deduction from your bank balance immediately. It is an all-or-nothing operation.",
-    "visualDiagram": "[ Client Transaction ]\n        │\n    ┌───┴───────────────────────────────┐\n    │ ATOMICITY: All or Nothing         │\n    │  Step 1: Debit Account A  [OK]    │\n    │  Step 2: Credit Account B [FAIL]  │\n    └───────────────┬───────────────────┘\n                    ▼\n           [ AUTOMATIC ROLLBACK ]\n    (Account A restored to original balance)",
+    "visualDiagram": "[ Client Transaction ]\n        \u2502\n    \u250c\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n    \u2502 ATOMICITY: All or Nothing         \u2502\n    \u2502  Step 1: Debit Account A  [OK]    \u2502\n    \u2502  Step 2: Credit Account B [FAIL]  \u2502\n    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                    \u25bc\n           [ AUTOMATIC ROLLBACK ]\n    (Account A restored to original balance)",
     "explanation": "Atomicity ensures the \"all-or-nothing\" rule for transactions; if any part fails, the entire transaction rolls back.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -44,7 +44,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Even though you write SELECT first in your SQL code, the database engine must first find the table (FROM), filter the rows (WHERE), and group them (GROUP BY) before it can pick which columns to display (SELECT).",
-    "visualDiagram": "1. FROM & JOIN     ──> Identify & load source tables\n2. WHERE           ──> Filter base rows\n3. GROUP BY        ──> Aggregate into summary buckets\n4. HAVING          ──> Filter aggregated groups\n5. SELECT          ──> Project requested columns & aliases\n6. DISTINCT        ──> Deduplicate resulting rows\n7. ORDER BY        ──> Sort the final output\n8. LIMIT / OFFSET  ──> Slice top N rows for client",
+    "visualDiagram": "1. FROM & JOIN     \u2500\u2500> Identify & load source tables\n2. WHERE           \u2500\u2500> Filter base rows\n3. GROUP BY        \u2500\u2500> Aggregate into summary buckets\n4. HAVING          \u2500\u2500> Filter aggregated groups\n5. SELECT          \u2500\u2500> Project requested columns & aliases\n6. DISTINCT        \u2500\u2500> Deduplicate resulting rows\n7. ORDER BY        \u2500\u2500> Sort the final output\n8. LIMIT / OFFSET  \u2500\u2500> Slice top N rows for client",
     "explanation": "The SQL engine first identifies tables (FROM/JOIN), filters rows (WHERE), aggregates (GROUP BY), filters groups (HAVING), projects columns/aliases (SELECT), and finally sorts (ORDER BY).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -65,7 +65,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Think of Atomicity like an ATM cash dispenser: if the machine fails to dispense your money, it must cancel the deduction from your bank balance immediately. It is an all-or-nothing operation.",
-    "visualDiagram": "[ Client Transaction ]\n        │\n    ┌───┴───────────────────────────────┐\n    │ ATOMICITY: All or Nothing         │\n    │  Step 1: Debit Account A  [OK]    │\n    │  Step 2: Credit Account B [FAIL]  │\n    └───────────────┬───────────────────┘\n                    ▼\n           [ AUTOMATIC ROLLBACK ]\n    (Account A restored to original balance)",
+    "visualDiagram": "[ Client Transaction ]\n        \u2502\n    \u250c\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n    \u2502 ATOMICITY: All or Nothing         \u2502\n    \u2502  Step 1: Debit Account A  [OK]    \u2502\n    \u2502  Step 2: Credit Account B [FAIL]  \u2502\n    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                    \u25bc\n           [ AUTOMATIC ROLLBACK ]\n    (Account A restored to original balance)",
     "explanation": "Because WHERE executes before SELECT, the database engine does not yet know the alias exists when evaluating WHERE (though some engines like Databricks/Snowflake allow referencing SELECT aliases in HAVING or QUALIFY).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -86,7 +86,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 2,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ 1NF: Atomic Values ]\n┌────┬──────────────────┐  ──>  ┌────┬─────────┐\n│ ID │ Skills           │       │ ID │ Skill   │\n│ 1  │ SQL, Spark, Java │       │ 1  │ SQL     │\n└────┴──────────────────┘       │ 1  │ Spark   │\n                                │ 1  │ Java    │\n[ 2NF: No Partial Dependencies ] ──> Dependent on WHOLE primary key\n[ 3NF: No Transitive Dependencies] ──> Non-keys must NOT depend on non-keys",
+    "visualDiagram": "[ 1NF: Atomic Values ]\n\u250c\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510  \u2500\u2500>  \u250c\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 ID \u2502 Skills           \u2502       \u2502 ID \u2502 Skill   \u2502\n\u2502 1  \u2502 SQL, Spark, Java \u2502       \u2502 1  \u2502 SQL     \u2502\n\u2514\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2502 1  \u2502 Spark   \u2502\n                                \u2502 1  \u2502 Java    \u2502\n[ 2NF: No Partial Dependencies ] \u2500\u2500> Dependent on WHOLE primary key\n[ 3NF: No Transitive Dependencies] \u2500\u2500> Non-keys must NOT depend on non-keys",
     "explanation": "1NF ensures atomic values, 2NF removes partial dependencies on composite keys, and 3NF removes transitive dependencies ().",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -107,7 +107,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 2,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "NULL represents an unknown state, so comparing two unknown values with = yields UNKNOWN. IS NULL or <=> (null-safe equality in Spark/Databricks) must be used.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -128,7 +128,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "COUNT(*) counts all rows regardless of NULL values, whereas COUNT(column_name) ignores NULL values in that specific column.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -149,7 +149,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 2,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "COALESCE(expr1, expr2, ..., exprN) evaluates arguments in order and returns the first non-null expression.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -170,7 +170,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 2,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "NULLIF returns NULL if both arguments are equal, making it the standard way to prevent divide-by-zero errors (amount / NULLIF(quantity, 0)).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -191,7 +191,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "WHERE restricts raw rows prior to grouping, reducing data volume early, while HAVING restricts groups based on aggregate results (SUM, COUNT, etc.).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -212,7 +212,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "UNION ALL concatenates results without deduplicating, making it much faster than UNION, which performs an expensive sort/hash deduplication pass.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -233,7 +233,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Read Committed ensures a query only sees data committed before the query/statement began, preventing Dirty Reads.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -254,7 +254,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Referential integrity prevents orphan records by enforcing valid relationships between foreign keys and primary/unique keys.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -275,7 +275,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "CHAR is fixed-length and right-padded, ideal for fixed codes (like ISO country codes), while VARCHAR stores only the actual characters plus a small length prefix.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -296,7 +296,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "In modern SQL engines like Databricks and Snowflake, GROUP BY ALL is a shorthand that infers all non-aggregate expressions from the SELECT clause.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -317,7 +317,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "SQL decouples what data is requested (logical) from how it is fetched (physical execution plan), allowing cost-based optimizers to tune performance while maintaining universal governance and skill portability.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -338,7 +338,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Imagine going to a library to look up only author birth years, but the librarian wheels out every book's full text, cover art, and appendix. SELECT * forces the computer to read gigabytes of unneeded data.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Modern analytical engines use columnar formats. SELECT * defeats Column Pruning, forcing high I/O and memory consumption across all columns.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -359,7 +359,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 2,
     "beginnerConcept": "Think of looking up a phone book. If you search for 'Smith', you flip directly to S. But if asked to find 'names where length is 5', you must read every single page from start to finish. Applying a function prevents direct index lookups.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Applying functions to a column in WHERE prevents index seeks, partition pruning, and Delta Lake data skipping because the engine must evaluate the function on every single row.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -380,7 +380,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Catalyst performs predicate pushdown, column pruning, constant folding, and join reordering to produce the most efficient physical plan.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -401,7 +401,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Predicate pushdown leverages file-level and row-group-level min/max statistics to skip reading irrelevant data blocks from cloud object storage.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -422,7 +422,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "CTEs improve readability and modularity within a single statement; unlike temp tables, they do not persist metadata or storage across separate queries.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -443,7 +443,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Recursive CTEs combine an anchor member with a recursive member joined to the CTE itself, making them ideal for variable-depth hierarchies.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -464,7 +464,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Skew occurs when a join or aggregation key has disproportionate volume, overloading a single executor core while the rest of the cluster sits idle.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -485,7 +485,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "AQE uses runtime statistics collected after shuffle stages to dynamically split skewed partitions, coalesce small partitions, and convert joins to Broadcast Hash Joins.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -506,7 +506,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Broadcasting the small dimension table eliminates shuffling the massive fact table across the network, drastically cutting I/O and execution time.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -527,7 +527,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Because the leaf nodes of a clustered index are the data pages, a table can have only one physical sort order (Clustered Index), whereas multiple Non-Clustered Indexes can point to those rows.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -548,7 +548,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "By adding non-key columns via INCLUDE, the engine performs an Index Seek without touching the base heap or clustered table pages.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -569,7 +569,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Z-Ordering and Liquid Clustering co-locate related information in the same set of files using space-filling curves (like Hilbert/Z-order curves), maximizing Delta Lake data skipping effectiveness.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -590,7 +590,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "Liquid Clustering dynamically adapts to data layout needs without rigid directory hierarchies, preventing partition skew and expensive full-table rewrites when query patterns change.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -611,7 +611,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Disk spill introduces expensive serialization, deserialization, and disk I/O overhead. It is fixed by reducing skew, filtering earlier, increasing shuffle partitions, or scaling cluster memory.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -632,7 +632,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "EXPLAIN outputs the parsed, analyzed, optimized logical, and physical plans so consultants can verify predicate pushdown and join strategies without executing the query.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -653,7 +653,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 2,
     "beginnerConcept": "If table A has 5 people named 'John' and table B has 4 addresses for 'John', joining on name matches every John with every address, creating 5 x 4 = 20 rows! This multiplication can easily crash database memory.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "Duplicate keys in both tables cause a local Cartesian product ( rows). This is one of the most frequent Big-4 technical interview questions.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -674,7 +674,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "Key 1 matches rows. Key 2 matches rows. NULL does not match NULL in standard = joins ( rows). Total rows.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -695,7 +695,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "The 4 matched rows from the INNER JOIN plus the 1 unmatched NULL row from the left table X (padded with NULL for Y), totaling rows.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -716,7 +716,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 2,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "4 matched rows (1 and 2), plus 1 unmatched NULL from X, plus 1 unmatched NULL from Y rows.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -737,7 +737,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "LEFT ANTI JOIN is an elegant, high-performance way to find unmatched records (equivalent to NOT EXISTS or LEFT JOIN ... WHERE right.id IS NULL) without duplicating left rows.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -758,7 +758,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "LEFT SEMI JOIN acts like an EXISTS filter: it checks for existence in the right table without causing row explosion from 1-to-many matches in the right table.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -779,7 +779,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "Because x <> NULL is UNKNOWN, the entire conjunction never evaluates to TRUE. Using NOT EXISTS or LEFT ANTI JOIN safely avoids this trap.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -800,7 +800,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "Both enforce uniqueness, but Primary Keys uniquely identify the entity with strict NOT NULL enforcement (1 per table), while multiple Unique constraints can exist.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -821,7 +821,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "Natural keys can change over time, be reused across merged companies, or be wide strings. Surrogate keys guarantee immutability, compact join performance, and historical versioning.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -842,7 +842,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "Because a correlated subquery depends on values from the outer query, naive execution is , though modern optimizers attempt to decorrelate it into a hash/semi join.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -863,7 +863,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "Filtering the right table of a LEFT JOIN in the WHERE clause removes the NULL-extended rows, silently converting the outer join into an inner join.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -884,7 +884,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "By aliasing a single table twice (e.g., FROM employees e LEFT JOIN employees m ON e.manager_id = m.emp_id), you can query hierarchical or sequential relationships within one table.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -905,7 +905,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Unlike NOT NULL and CHECK constraints (which are strictly enforced on Delta writes), PK/FK constraints in Unity Catalog are informational metadata; adding RELY tells the Photon/Catalyst optimizer it can trust uniqueness to eliminate redundant joins.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -926,7 +926,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "LATERAL (such as LATERAL VIEW EXPLODE(...) or JOIN LATERAL (SELECT ... LIMIT 3)) lets the right-hand table expression access columns from the left-hand table row-by-row.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -947,7 +947,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "When a single column cannot guarantee uniqueness on its own, combining multiple attributes forms a composite key.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -968,7 +968,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "DDL statements define and modify database schema structures and objects.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -989,7 +989,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "DML statements manipulate the actual data records stored inside database tables.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1010,7 +1010,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 2,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "SELECT retrieves and projects data without mutating the underlying schema or records.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1031,7 +1031,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "DCL manages access control, permissions, and security privileges across catalog objects.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1052,7 +1052,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "This classic interview triad tests understanding of row-level DML (DELETE), fast table-wide reset (TRUNCATE), and complete object removal (DROP).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1073,7 +1073,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "MERGE INTO handles Change Data Capture (CDC), deduplication, and SCD Type 1/Type 2 updates atomically on cloud object storage.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1094,7 +1094,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Unity Catalog manages the full lifecycle (metadata + storage) of Managed Tables, whereas External Tables manage only the metadata registration over an external path.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1115,7 +1115,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "CTAS infers schema from the SELECT query and writes the data immediately, while LIKE clones an empty table structure.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1136,7 +1136,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "SHALLOW CLONE is ideal for spinning up instant dev/QA environments without paying to duplicate terabytes of Parquet files; any subsequent edits to the shallow clone write new files only for the changes.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1157,7 +1157,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Old ETL was like cooking vegetables in a factory before shipping them to a store. Modern ELT dumps the fresh raw produce directly into a high-powered kitchen (the cloud data warehouse) and cooks on demand.",
-    "visualDiagram": "table_directory/\n├── _delta_log/\n│   ├── 000000.json  (Transaction 0: Table created)\n│   ├── 000001.json  (Transaction 1: Ingestion commit)\n│   └── 000002.json  (Transaction 2: Compaction / Delete)\n├── part-0000-active.parquet\n└── part-0001-tombstone.parquet  (Cleaned by VACUUM)",
+    "visualDiagram": "table_directory/\n\u251c\u2500\u2500 _delta_log/\n\u2502   \u251c\u2500\u2500 000000.json  (Transaction 0: Table created)\n\u2502   \u251c\u2500\u2500 000001.json  (Transaction 1: Ingestion commit)\n\u2502   \u2514\u2500\u2500 000002.json  (Transaction 2: Compaction / Delete)\n\u251c\u2500\u2500 part-0000-active.parquet\n\u2514\u2500\u2500 part-0001-tombstone.parquet  (Cleaned by VACUUM)",
     "explanation": "Cloud object storage (S3/ADLS/GCS) and Parquet are immutable; Delta implements copy-on-write (or merge-on-read when Deletion Vectors are enabled) coordinated by the transaction log.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1178,7 +1178,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Deletion Vectors eliminate write amplification during DML by marking deleted rows in a lightweight bitmap and deferring physical file compaction until OPTIMIZE or REORG runs.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1199,7 +1199,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "VACUUM removes data files no longer referenced by the current Delta table state and older than the retention period, saving storage costs (and limiting Time Travel prior to that window).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1220,7 +1220,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Materialized views trade storage and refresh compute for ultra-fast BI query latency by pre-aggregating data (and in Databricks, they leverage Enzyme for incremental updates).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1241,7 +1241,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "INSERT OVERWRITE is idempotent for pipeline reruns because re-running a batch replaces the target data/partition cleanly instead of creating duplicate rows.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1262,7 +1262,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Old ETL was like cooking vegetables in a factory before shipping them to a store. Modern ELT dumps the fresh raw produce directly into a high-powered kitchen (the cloud data warehouse) and cooks on demand.",
-    "visualDiagram": "table_directory/\n├── _delta_log/\n│   ├── 000000.json  (Transaction 0: Table created)\n│   ├── 000001.json  (Transaction 1: Ingestion commit)\n│   └── 000002.json  (Transaction 2: Compaction / Delete)\n├── part-0000-active.parquet\n└── part-0001-tombstone.parquet  (Cleaned by VACUUM)",
+    "visualDiagram": "table_directory/\n\u251c\u2500\u2500 _delta_log/\n\u2502   \u251c\u2500\u2500 000000.json  (Transaction 0: Table created)\n\u2502   \u251c\u2500\u2500 000001.json  (Transaction 1: Ingestion commit)\n\u2502   \u2514\u2500\u2500 000002.json  (Transaction 2: Compaction / Delete)\n\u251c\u2500\u2500 part-0000-active.parquet\n\u2514\u2500\u2500 part-0001-tombstone.parquet  (Cleaned by VACUUM)",
     "explanation": "COMMIT permanently saves transaction changes, ROLLBACK undoes uncommitted changes, and SAVEPOINT sets intermediate rollback points.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1283,7 +1283,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Regular GROUP BY combines all rows into a single summary row. A Window Function is like having a private assistant look at your peers to compute ranks or running totals, while keeping every original row visible.",
-    "visualDiagram": "Scores: [ 100,  100,   90,   80 ]\n─────────────────────────────────────────────\nROW_NUMBER() :   1      2     3     4   (Always strictly unique)\nRANK()       :   1      1     3     4   (Ties share rank, skips next)\nDENSE_RANK() :   1      1     2     3   (Ties share rank, NO skipping)",
+    "visualDiagram": "Scores: [ 100,  100,   90,   80 ]\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nROW_NUMBER() :   1      2     3     4   (Always strictly unique)\nRANK()       :   1      1     3     4   (Ties share rank, skips next)\nDENSE_RANK() :   1      1     2     3   (Ties share rank, NO skipping)",
     "explanation": "ROW_NUMBER() assigns unique sequential numbers (1,2,3,4). RANK() ties equal values and skips the next rank (1,1,3,4). DENSE_RANK() ties equal values without skipping any rank numbers (1,1,2,3).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1304,7 +1304,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "UNBOUNDED PRECEDING  ──────┐\nDay 1: $100  --> Running: $100 │\nDay 2: $200  --> Running: $300 │ Sliding Window Frame:\nDay 3: $150  --> Running: $450 │ ROWS BETWEEN UNBOUNDED PRECEDING\nDay 4: $300  --> Running: $750 │ AND CURRENT ROW\nCURRENT ROW ───────────────┘",
+    "visualDiagram": "UNBOUNDED PRECEDING  \u2500\u2500\u2500\u2500\u2500\u2500\u2510\nDay 1: $100  --> Running: $100 \u2502\nDay 2: $200  --> Running: $300 \u2502 Sliding Window Frame:\nDay 3: $150  --> Running: $450 \u2502 ROWS BETWEEN UNBOUNDED PRECEDING\nDay 4: $300  --> Running: $750 \u2502 AND CURRENT ROW\nCURRENT ROW \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "Window functions allow you to display both detail-level columns and group-level metrics (like department average salary) side-by-side on every row without a self-join.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1325,7 +1325,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 2,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Because window functions are evaluated after WHERE, GROUP BY, and HAVING, any filter in WHERE changes the rows entering the window frame.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1346,7 +1346,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "UNBOUNDED PRECEDING  ──────┐\nDay 1: $100  --> Running: $100 │\nDay 2: $200  --> Running: $300 │ Sliding Window Frame:\nDay 3: $150  --> Running: $450 │ ROWS BETWEEN UNBOUNDED PRECEDING\nDay 4: $300  --> Running: $750 │ AND CURRENT ROW\nCURRENT ROW ───────────────┘",
+    "visualDiagram": "UNBOUNDED PRECEDING  \u2500\u2500\u2500\u2500\u2500\u2500\u2510\nDay 1: $100  --> Running: $100 \u2502\nDay 2: $200  --> Running: $300 \u2502 Sliding Window Frame:\nDay 3: $150  --> Running: $450 \u2502 ROWS BETWEEN UNBOUNDED PRECEDING\nDay 4: $300  --> Running: $750 \u2502 AND CURRENT ROW\nCURRENT ROW \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "Instead of writing WITH cte AS (SELECT *, ROW_NUMBER() OVER(...) AS rn FROM t) SELECT * FROM cte WHERE rn = 1, you can simply write SELECT * FROM t QUALIFY ROW_NUMBER() OVER(...) = 1.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1367,8 +1367,8 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Regular GROUP BY combines all rows into a single summary row. A Window Function is like having a private assistant look at your peers to compute ranks or running totals, while keeping every original row visible.",
-    "visualDiagram": "Scores: [ 100,  100,   90,   80 ]\n─────────────────────────────────────────────\nROW_NUMBER() :   1      2     3     4   (Always strictly unique)\nRANK()       :   1      1     3     4   (Ties share rank, skips next)\nDENSE_RANK() :   1      1     2     3   (Ties share rank, NO skipping)",
-    "explanation": "LAG(col, offset, default) fetches a value from a preceding row in the ordered partition, while LEAD(col, offset, default) fetches from a subsequent row—essential for YoY/MoM growth and session delta calculations.",
+    "visualDiagram": "Scores: [ 100,  100,   90,   80 ]\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nROW_NUMBER() :   1      2     3     4   (Always strictly unique)\nRANK()       :   1      1     3     4   (Ties share rank, skips next)\nDENSE_RANK() :   1      1     2     3   (Ties share rank, NO skipping)",
+    "explanation": "LAG(col, offset, default) fetches a value from a preceding row in the ordered partition, while LEAD(col, offset, default) fetches from a subsequent row\u2014essential for YoY/MoM growth and session delta calculations.",
     "interviewTip": "Interview Tip: Interviewers love asking the exact difference between ROW_NUMBER, RANK, and DENSE_RANK with duplicate scores. Memorize the sequence (1,1,3 vs 1,1,2) cold!"
   },
   {
@@ -1388,7 +1388,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "When ORDER BY is present inside OVER(), the default frame becomes RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW (producing a running total), whereas omitting ORDER BY defaults to the entire partition.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1409,7 +1409,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "To get the true last value of the entire partition using LAST_VALUE, you must extend the frame to UNBOUNDED FOLLOWING.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1430,7 +1430,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "Regular GROUP BY combines all rows into a single summary row. A Window Function is like having a private assistant look at your peers to compute ranks or running totals, while keeping every original row visible.",
-    "visualDiagram": "Scores: [ 100,  100,   90,   80 ]\n─────────────────────────────────────────────\nROW_NUMBER() :   1      2     3     4   (Always strictly unique)\nRANK()       :   1      1     3     4   (Ties share rank, skips next)\nDENSE_RANK() :   1      1     2     3   (Ties share rank, NO skipping)",
+    "visualDiagram": "Scores: [ 100,  100,   90,   80 ]\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nROW_NUMBER() :   1      2     3     4   (Always strictly unique)\nRANK()       :   1      1     3     4   (Ties share rank, skips next)\nDENSE_RANK() :   1      1     2     3   (Ties share rank, NO skipping)",
     "explanation": "If two rows have the exact same date in ORDER BY order_date, RANGE treats them as peers and sums both together in the running total, whereas ROWS processes them strictly one physical row at a time.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1451,7 +1451,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "6 PRECEDING plus the CURRENT ROW equals 7 consecutive daily rows for the moving average.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1472,7 +1472,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "NTILE(n) is used for customer segmentation (e.g., quartiles or deciles) by distributing rows into buckets.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1493,7 +1493,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Consolidating multiple pass aggregations or self-joins (like finding top-N per group or previous transaction timestamp) into a single OVER (PARTITION BY ...) scan drastically cuts I/O.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1514,7 +1514,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Regular GROUP BY combines all rows into a single summary row. A Window Function is like having a private assistant look at your peers to compute ranks or running totals, while keeping every original row visible.",
-    "visualDiagram": "Scores: [ 100,  100,   90,   80 ]\n─────────────────────────────────────────────\nROW_NUMBER() :   1      2     3     4   (Always strictly unique)\nRANK()       :   1      1     3     4   (Ties share rank, skips next)\nDENSE_RANK() :   1      1     2     3   (Ties share rank, NO skipping)",
+    "visualDiagram": "Scores: [ 100,  100,   90,   80 ]\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nROW_NUMBER() :   1      2     3     4   (Always strictly unique)\nRANK()       :   1      1     3     4   (Ties share rank, skips next)\nDENSE_RANK() :   1      1     2     3   (Ties share rank, NO skipping)",
     "explanation": "ROW_NUMBER() guarantees exactly 1 survivor row per customer_id ordered by latest updated_at (whereas RANK() would keep duplicates if two rows shared the exact same updated_at timestamp).",
     "interviewTip": "Interview Tip: Interviewers love asking the exact difference between ROW_NUMBER, RANK, and DENSE_RANK with duplicate scores. Memorize the sequence (1,1,3 vs 1,1,2) cold!"
   },
@@ -1535,7 +1535,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Omitting PARTITION BY forces a global single-partition shuffle (WindowExec with single partition warning). Always partition by a business key whenever possible.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1556,7 +1556,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "ROLLUP creates hierarchical subtotals, CUBE creates all possible dimensional combinations, and GROUPING SETS lets you specify exact subtotal combinations without multiple UNION ALL scans.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1577,7 +1577,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Regular GROUP BY combines all rows into a single summary row. A Window Function is like having a private assistant look at your peers to compute ranks or running totals, while keeping every original row visible.",
-    "visualDiagram": "Scores: [ 100,  100,   90,   80 ]\n─────────────────────────────────────────────\nROW_NUMBER() :   1      2     3     4   (Always strictly unique)\nRANK()       :   1      1     3     4   (Ties share rank, skips next)\nDENSE_RANK() :   1      1     2     3   (Ties share rank, NO skipping)",
+    "visualDiagram": "Scores: [ 100,  100,   90,   80 ]\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\nROW_NUMBER() :   1      2     3     4   (Always strictly unique)\nRANK()       :   1      1     3     4   (Ties share rank, skips next)\nDENSE_RANK() :   1      1     2     3   (Ties share rank, NO skipping)",
     "explanation": "GROUPING(col) returns 1 if the NULL in that column is an aggregated subtotal placeholder, and 0 if it is an actual underlying data value.",
     "interviewTip": "Interview Tip: Interviewers love asking the exact difference between ROW_NUMBER, RANK, and DENSE_RANK with duplicate scores. Memorize the sequence (1,1,3 vs 1,1,2) cold!"
   },
@@ -1598,7 +1598,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Bill Inmon (\"Father of Data Warehousing\") coined the classic four-pillar definition of an Enterprise Data Warehouse (EDW).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1619,7 +1619,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Think of water purification: Bronze is raw river water straight from the pipe. Silver is filtered and disinfected clean water. Gold is bottled mineral water enriched and ready for premium consumption.",
-    "visualDiagram": "[ Raw Sources: APIs, DBs, IoT ]\n                │\n                ▼\n      ┌───────────────────┐\n      │  BRONZE (Raw)     │ ──> Append-only, Raw Ingestion (Auto Loader)\n      └─────────┬─────────┘\n                │\n                ▼\n      ┌───────────────────┐\n      │  SILVER (Cleaned) │ ──> Conformed, Deduplicated, SCD2, Enriched\n      └─────────┬─────────┘\n                │\n                ▼\n      ┌───────────────────┐\n      │  GOLD (Business)  │ ──> Star Schema, Aggregated Marts, BI PowerBI\n      └───────────────────┘",
+    "visualDiagram": "[ Raw Sources: APIs, DBs, IoT ]\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  BRONZE (Raw)     \u2502 \u2500\u2500> Append-only, Raw Ingestion (Auto Loader)\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  SILVER (Cleaned) \u2502 \u2500\u2500> Conformed, Deduplicated, SCD2, Enriched\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  GOLD (Business)  \u2502 \u2500\u2500> Star Schema, Aggregated Marts, BI PowerBI\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "Unlike OLTP systems that overwrite records with current state, a Data Warehouse tracks historical trends across time keys.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1640,7 +1640,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Non-volatility ensures historical reporting stability and auditability.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1661,7 +1661,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Sources: APIs, DBs, IoT ]\n                │\n                ▼\n      ┌───────────────────┐\n      │  BRONZE (Raw)     │ ──> Append-only, Raw Ingestion (Auto Loader)\n      └─────────┬─────────┘\n                │\n                ▼\n      ┌───────────────────┐\n      │  SILVER (Cleaned) │ ──> Conformed, Deduplicated, SCD2, Enriched\n      └─────────┬─────────┘\n                │\n                ▼\n      ┌───────────────────┐\n      │  GOLD (Business)  │ ──> Star Schema, Aggregated Marts, BI PowerBI\n      └───────────────────┘",
+    "visualDiagram": "[ Raw Sources: APIs, DBs, IoT ]\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  BRONZE (Raw)     \u2502 \u2500\u2500> Append-only, Raw Ingestion (Auto Loader)\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  SILVER (Cleaned) \u2502 \u2500\u2500> Conformed, Deduplicated, SCD2, Enriched\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  GOLD (Business)  \u2502 \u2500\u2500> Star Schema, Aggregated Marts, BI PowerBI\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "Inmon emphasizes enterprise-wide normalized integration first (Top-Down), whereas Kimball emphasizes business-process dimensional models linked via an Enterprise Data Warehouse Bus Matrix (Bottom-Up).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1682,7 +1682,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "The Lakehouse eliminates the need to maintain separate systems (Data Lake for ML + proprietary Data Warehouse for BI) by bringing warehouse reliability and performance directly to open cloud storage.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1703,7 +1703,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "The Medallion Architecture progressively refines data quality and structure as data flows from Bronze (Raw) Silver (Cleansed/Validated) Gold (Business Consumption).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1724,7 +1724,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "The Bronze layer acts as an immutable historical landing zone, enabling full pipeline replayability without burdening source OLTP systems.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1745,7 +1745,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Data Marts provide focused, high-performance dimensional models (typically in the Gold layer) for specific departmental domains.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1766,7 +1766,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Coined by Zhamak Dehghani, Data Mesh shifts ownership from a central bottleneck data team to domain teams who publish governed, interoperable \"Data Products.\"",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1787,7 +1787,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Designed by Dan Linstedt, Data Vault excels in large enterprise Silver/EDW layers requiring full auditability, agile schema evolution, and parallel loading using deterministic hash keys.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1808,7 +1808,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "In legacy on-prem appliances (Teradata, Netezza), scaling storage required buying expensive coupled compute nodes. Decoupling allows independent cost optimization and workload isolation (no resource contention between ETL and BI).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1829,7 +1829,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "An ODS sits between OLTP systems and the EDW, holding current or very recent integrated state for operational lookup.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1850,7 +1850,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Rich metadata (centralized in catalogs like Databricks Unity Catalog) powers data discovery, governance, cost optimization, and automated lineage.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1871,7 +1871,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Because previous data files are retained until VACUUM runs, Delta reconstructs the exact snapshot of any prior version using the transaction log.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1892,7 +1892,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Sources: APIs, DBs, IoT ]\n                │\n                ▼\n      ┌───────────────────┐\n      │  BRONZE (Raw)     │ ──> Append-only, Raw Ingestion (Auto Loader)\n      └─────────┬─────────┘\n                │\n                ▼\n      ┌───────────────────┐\n      │  SILVER (Cleaned) │ ──> Conformed, Deduplicated, SCD2, Enriched\n      └─────────┬─────────┘\n                │\n                ▼\n      ┌───────────────────┐\n      │  GOLD (Business)  │ ──> Star Schema, Aggregated Marts, BI PowerBI\n      └───────────────────┘",
+    "visualDiagram": "[ Raw Sources: APIs, DBs, IoT ]\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  BRONZE (Raw)     \u2502 \u2500\u2500> Append-only, Raw Ingestion (Auto Loader)\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  SILVER (Cleaned) \u2502 \u2500\u2500> Conformed, Deduplicated, SCD2, Enriched\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  GOLD (Business)  \u2502 \u2500\u2500> Star Schema, Aggregated Marts, BI PowerBI\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "Without a governed semantic layer (such as Databricks Unity Catalog Metric Views or BI semantic models), different teams write slightly different SQL formulas for the same KPI, causing \"multiple versions of the truth.\"",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1955,7 +1955,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Storage layout dictates I/O efficiency: row-oriented engines excel at point lookups and single-row writes, whereas columnar engines read only the required columns and achieve high compression ratios.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1976,7 +1976,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "When a column like country_code ('IN', 'IN', 'IN', 'US') is stored contiguously, Dictionary and Run-Length Encoding compress millions of repeated values into tiny byte sequences.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -1997,7 +1997,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ 1NF: Atomic Values ]\n┌────┬──────────────────┐  ──>  ┌────┬─────────┐\n│ ID │ Skills           │       │ ID │ Skill   │\n│ 1  │ SQL, Spark, Java │       │ 1  │ SQL     │\n└────┴──────────────────┘       │ 1  │ Spark   │\n                                │ 1  │ Java    │\n[ 2NF: No Partial Dependencies ] ──> Dependent on WHOLE primary key\n[ 3NF: No Transitive Dependencies] ──> Non-keys must NOT depend on non-keys",
+    "visualDiagram": "[ 1NF: Atomic Values ]\n\u250c\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510  \u2500\u2500>  \u250c\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 ID \u2502 Skills           \u2502       \u2502 ID \u2502 Skill   \u2502\n\u2502 1  \u2502 SQL, Spark, Java \u2502       \u2502 1  \u2502 SQL     \u2502\n\u2514\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2502 1  \u2502 Spark   \u2502\n                                \u2502 1  \u2502 Java    \u2502\n[ 2NF: No Partial Dependencies ] \u2500\u2500> Dependent on WHOLE primary key\n[ 3NF: No Transitive Dependencies] \u2500\u2500> Non-keys must NOT depend on non-keys",
     "explanation": "Normalization optimizes OLTP write consistency, while denormalization optimizes OLAP read and aggregation performance.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2018,7 +2018,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Separating OLTP and OLAP workloads prevents heavy analytical scans from starving mission-critical operational transactions.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2039,7 +2039,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Modern architectures pair low-latency operational stores with real-time Lakehouse analytics so analytical insights and operational apps share fresh state.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2060,7 +2060,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Point lookup by indexed primary key (order_id = 98412) is classic OLTP; multi-table aggregation across dimensions is classic OLAP.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2081,7 +2081,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "OLTP is tuned for high concurrency of micro-operations, whereas OLAP allocates substantial parallel compute per query across distributed nodes.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2102,7 +2102,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Think of Atomicity like an ATM cash dispenser: if the machine fails to dispense your money, it must cancel the deduction from your bank balance immediately. It is an all-or-nothing operation.",
-    "visualDiagram": "[ Client Transaction ]\n        │\n    ┌───┴───────────────────────────────┐\n    │ ATOMICITY: All or Nothing         │\n    │  Step 1: Debit Account A  [OK]    │\n    │  Step 2: Credit Account B [FAIL]  │\n    └───────────────┬───────────────────┘\n                    ▼\n           [ AUTOMATIC ROLLBACK ]\n    (Account A restored to original balance)",
+    "visualDiagram": "[ Client Transaction ]\n        \u2502\n    \u250c\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n    \u2502 ATOMICITY: All or Nothing         \u2502\n    \u2502  Step 1: Debit Account A  [OK]    \u2502\n    \u2502  Step 2: Credit Account B [FAIL]  \u2502\n    \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                    \u25bc\n           [ AUTOMATIC ROLLBACK ]\n    (Account A restored to original balance)",
     "explanation": "Photon replaces JVM-based row-by-row processing with native C++ vectorized execution on batches of columnar data, dramatically speeding up OLAP scans, joins, and aggregations.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2123,7 +2123,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Vectorized execution operates on columnar arrays in CPU L1/L2 cache, delivering massive throughput gains over traditional tuple-at-a-time Volcano iterators.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2144,7 +2144,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Zone maps (min/max statistics per file/row-group) combined with clustering give OLAP engines coarse-grained skipping with near-zero storage and write overhead.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2165,7 +2165,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Min/max statistics work poorly on random UUIDs or hashes because every file spans the full alphabetical range. A Bloom filter is a space-efficient probabilistic data structure that tells the engine with 100% certainty when a value is absent from a file.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2186,7 +2186,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Serverless SQL Warehouses dynamically scale compute clusters horizontally based on queue pressure and shut them down automatically when load subsides.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2207,7 +2207,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "OLTP optimizes sub-second response times and TPS; OLAP optimizes scan throughput, concurrency scaling, and cost per analytical query.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2228,7 +2228,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Old ETL was like cooking vegetables in a factory before shipping them to a store. Modern ELT dumps the fresh raw produce directly into a high-powered kitchen (the cloud data warehouse) and cooks on demand.",
-    "visualDiagram": "ETL (Legacy On-Premise):\n[ Source ] ──> [ External ETL Server ] ──> [ Data Warehouse ]\n                (Extract -> Transform)       (Load Clean Data)\n\nELT (Modern Cloud Lakehouse):\n[ Source ] ──> [ Cloud Storage ] ──> [ Databricks Distributed Engine ]\n                (Extract -> Load)      (Transform in-place using MPP)",
+    "visualDiagram": "ETL (Legacy On-Premise):\n[ Source ] \u2500\u2500> [ External ETL Server ] \u2500\u2500> [ Data Warehouse ]\n                (Extract -> Transform)       (Load Clean Data)\n\nELT (Modern Cloud Lakehouse):\n[ Source ] \u2500\u2500> [ Cloud Storage ] \u2500\u2500> [ Databricks Distributed Engine ]\n                (Extract -> Load)      (Transform in-place using MPP)",
     "explanation": "ELT leverages the elastic storage and distributed MPP compute of modern cloud platforms (like Databricks) to transform data in place across Bronze Silver Gold.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2249,7 +2249,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "ELT removes the middle-tier ETL hardware bottleneck, lowers ingestion latency (dump raw first, transform later), and keeps raw history accessible for new use cases.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2270,7 +2270,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Strict sovereignty or security policies (e.g., HIPAA/PCI/GDPR residency rules) may require redacting or hashing sensitive fields at the edge prior to cloud landing.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2291,7 +2291,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Standard file listing degrades when cloud buckets contain millions of files. Auto Loader tracks processed files efficiently and handles schema drift (addNewColumns, rescue) out of the box.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2312,7 +2312,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "_rescued_data guarantees zero data loss during Bronze ELT ingestion even when upstream APIs or schemas change unexpectedly.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2333,7 +2333,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "COPY INTO is ideal for simpler SQL-scheduled batch ingestion jobs (thousands of files), whereas Auto Loader is recommended for large-scale or streaming file ingestion (millions+ of files).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2354,7 +2354,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Old ETL was like cooking vegetables in a factory before shipping them to a store. Modern ELT dumps the fresh raw produce directly into a high-powered kitchen (the cloud data warehouse) and cooks on demand.",
-    "visualDiagram": "        [ UNITY CATALOG METASTORE ]\n                     │\n         ┌───────────┴───────────┐\n         ▼                       ▼\n  catalog_prod              catalog_dev\n         │\n    schema_finance\n         │\n   ┌─────┴────────────────┐\n   ▼                      ▼\ntable_transactions     view_masked_pii\n(Row Filter UDF)       (Column Mask UDF)",
+    "visualDiagram": "        [ UNITY CATALOG METASTORE ]\n                     \u2502\n         \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n         \u25bc                       \u25bc\n  catalog_prod              catalog_dev\n         \u2502\n    schema_finance\n         \u2502\n   \u250c\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n   \u25bc                      \u25bc\ntable_transactions     view_masked_pii\n(Row Filter UDF)       (Column Mask UDF)",
     "explanation": "Log-based CDC avoids heavy full-table extracts on production OLTP databases and delivers low-latency incremental change feeds (INSERT, UPDATE, DELETE operations).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2375,7 +2375,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Old ETL was like cooking vegetables in a factory before shipping them to a store. Modern ELT dumps the fresh raw produce directly into a high-powered kitchen (the cloud data warehouse) and cooks on demand.",
-    "visualDiagram": "table_directory/\n├── _delta_log/\n│   ├── 000000.json  (Transaction 0: Table created)\n│   ├── 000001.json  (Transaction 1: Ingestion commit)\n│   └── 000002.json  (Transaction 2: Compaction / Delete)\n├── part-0000-active.parquet\n└── part-0001-tombstone.parquet  (Cleaned by VACUUM)",
+    "visualDiagram": "table_directory/\n\u251c\u2500\u2500 _delta_log/\n\u2502   \u251c\u2500\u2500 000000.json  (Transaction 0: Table created)\n\u2502   \u251c\u2500\u2500 000001.json  (Transaction 1: Ingestion commit)\n\u2502   \u2514\u2500\u2500 000002.json  (Transaction 2: Compaction / Delete)\n\u251c\u2500\u2500 part-0000-active.parquet\n\u2514\u2500\u2500 part-0001-tombstone.parquet  (Cleaned by VACUUM)",
     "explanation": "Enabling CDF allows Silver and Gold tables to incrementally process only row-level deltas instead of reading entire multi-terabyte upstream tables.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2396,7 +2396,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Declarative pipelines shift focus from imperative orchestration boilerplate (managing checkpoints, retries, and DAG dependencies manually) to declarative SQL/Python transformations.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2417,7 +2417,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "APPLY CHANGES INTO handles out-of-order CDC events cleanly using the SEQUENCE BY column and maintains SCD Type 1 or Type 2 tables declaratively without complex manual MERGE boilerplate.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2438,7 +2438,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Production jobs inevitably fail and retry due to network blips or spot instance preemption; idempotent design (using MERGE, INSERT OVERWRITE by partition/replaceWhere, or structured streaming checkpoints) prevents duplicate data on retry.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2459,7 +2459,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "ETL (Legacy On-Premise):\n[ Source ] ──> [ External ETL Server ] ──> [ Data Warehouse ]\n                (Extract -> Transform)       (Load Clean Data)\n\nELT (Modern Cloud Lakehouse):\n[ Source ] ──> [ Cloud Storage ] ──> [ Databricks Distributed Engine ]\n                (Extract -> Load)      (Transform in-place using MPP)",
+    "visualDiagram": "ETL (Legacy On-Premise):\n[ Source ] \u2500\u2500> [ External ETL Server ] \u2500\u2500> [ Data Warehouse ]\n                (Extract -> Transform)       (Load Clean Data)\n\nELT (Modern Cloud Lakehouse):\n[ Source ] \u2500\u2500> [ Cloud Storage ] \u2500\u2500> [ Databricks Distributed Engine ]\n                (Extract -> Load)      (Transform in-place using MPP)",
     "explanation": "dbt brings software engineering best practices (Git version control, CI/CD, modular macros, automated data tests) to SQL transformations inside the Lakehouse.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2480,7 +2480,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Old ETL was like cooking vegetables in a factory before shipping them to a store. Modern ELT dumps the fresh raw produce directly into a high-powered kitchen (the cloud data warehouse) and cooks on demand.",
-    "visualDiagram": "ETL (Legacy On-Premise):\n[ Source ] ──> [ External ETL Server ] ──> [ Data Warehouse ]\n                (Extract -> Transform)       (Load Clean Data)\n\nELT (Modern Cloud Lakehouse):\n[ Source ] ──> [ Cloud Storage ] ──> [ Databricks Distributed Engine ]\n                (Extract -> Load)      (Transform in-place using MPP)",
+    "visualDiagram": "ETL (Legacy On-Premise):\n[ Source ] \u2500\u2500> [ External ETL Server ] \u2500\u2500> [ Data Warehouse ]\n                (Extract -> Transform)       (Load Clean Data)\n\nELT (Modern Cloud Lakehouse):\n[ Source ] \u2500\u2500> [ Cloud Storage ] \u2500\u2500> [ Databricks Distributed Engine ]\n                (Extract -> Load)      (Transform in-place using MPP)",
     "explanation": "Trigger.AvailableNow is the gold standard for cost-effective incremental batch ELT: you get incremental streaming state tracking without paying for an always-on 24/7 cluster.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2501,7 +2501,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "By default, Delta enforces schema strictly to prevent \"data swamp\" corruption, while allowing opt-in schema evolution when upstream sources legitimately add new attributes.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2522,7 +2522,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Old ETL was like cooking vegetables in a factory before shipping them to a store. Modern ELT dumps the fresh raw produce directly into a high-powered kitchen (the cloud data warehouse) and cooks on demand.",
-    "visualDiagram": "ETL (Legacy On-Premise):\n[ Source ] ──> [ External ETL Server ] ──> [ Data Warehouse ]\n                (Extract -> Transform)       (Load Clean Data)\n\nELT (Modern Cloud Lakehouse):\n[ Source ] ──> [ Cloud Storage ] ──> [ Databricks Distributed Engine ]\n                (Extract -> Load)      (Transform in-place using MPP)",
+    "visualDiagram": "ETL (Legacy On-Premise):\n[ Source ] \u2500\u2500> [ External ETL Server ] \u2500\u2500> [ Data Warehouse ]\n                (Extract -> Transform)       (Load Clean Data)\n\nELT (Modern Cloud Lakehouse):\n[ Source ] \u2500\u2500> [ Cloud Storage ] \u2500\u2500> [ Databricks Distributed Engine ]\n                (Extract -> Load)      (Transform in-place using MPP)",
     "explanation": "Without a watermark (withWatermark(\"event_time\", \"2 hours\")), a streaming aggregation or stream-stream join must keep state in memory indefinitely for potential late data, eventually causing an OOM crash.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2543,7 +2543,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Kimball mandates choosing the business process first, declaring the exact atomic grain second (before picking dimensions or facts!), and then defining dimensions and facts that strictly match that grain.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2564,7 +2564,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Every foreign key and numeric measure in a fact table must strictly conform to the declared grain; mixing grains leads to incorrect SUM() aggregations.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2585,7 +2585,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Transaction facts record discrete events; Periodic Snapshots capture status at regular intervals (e.g., end-of-month account balance); Accumulating Snapshots track workflows with a fixed pipeline of milestones (e.g., Order Shipped Delivered).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2606,7 +2606,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 2,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Accumulating Snapshot Fact tables contain one row per order/application lifecycle and are updated as each milestone occurs to measure velocity and lag times between stages.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2627,7 +2627,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Summing account_balance across Monday, Tuesday, and Wednesday triples the person's actual money! Balances and inventory levels are Semi-Additive (sum across products/stores, average or take last value across time).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2648,7 +2648,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Factless fact tables capture many-to-many relationships between dimensions at a point in time, where simply counting rows (COUNT(*)) answers the business question.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2669,7 +2669,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Conformed dimensions are the architectural glue of Kimball's Enterprise Bus Architecture, ensuring consistent filtering and grouping across Finance, Sales, and Inventory facts.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2690,7 +2690,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Instead of maintaining three redundant physical Calendar tables, one physical dim_date plays multiple roles via role-playing views or aliases (JOIN dim_date AS ship_date).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2711,7 +2711,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Operational transaction numbers (invoice_id, pos_receipt_num) are retained right on the fact table as Degenerate Dimensions to group line items together and link back to operational systems.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2732,7 +2732,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Combining 5 binary/low-cardinality flags into a single Junk Dimension (dim_order_flags) keeps the Fact table narrow and clean.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2753,7 +2753,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Kimball explicitly makes an exception for dim_date, recommending YYYYMMDD integer keys for partition pruning and readability, while keeping dummy rows (-1 or 19000101) for unknown/future dates.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2774,7 +2774,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Storing NULL in a fact foreign key causes INNER JOIN queries by business users to silently drop revenue rows! Mapping unknown keys to -1 (\"Unknown\") ensures referential integrity and accurate fact totals.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2795,7 +2795,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "When a single fact row maps to multiple dimension members (e.g., 2 sales reps sharing credit for 1 deal), a Bridge Table with a weight_factor () preserves correct additive totals.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2816,7 +2816,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "When comparing metrics from two different Fact tables (e.g., fact_sales and fact_returns), you must aggregate each fact table separately by the conformed dimension first (in CTEs) and then join the aggregated results (\"Drill Across\") to avoid a Chasm Trap.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2837,7 +2837,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Creating an inferred dimension member with a real surrogate key and default \"Pending/Inferred\" attributes lets the fact load immediately without losing revenue visibility.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2858,7 +2858,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Think of a bicycle wheel: the center hub is your Fact table (recording every sale), and the spokes lead outward to Dimension tables (Customer, Store, Product). This simple structure makes reports extremely fast.",
-    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                ┌────────────────┐\n                │  dim_customer  │\n                └───────┬────────┘\n                        │\n┌──────────────┐        │        ┌──────────────┐\n│  dim_product │───[ FACT_SALES ]───│   dim_date   │\n└──────────────┘        │        └──────────────┘\n                        │\n                ┌───────┴────────┐\n                │   dim_store    │\n                └────────────────┘",
+    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502  dim_customer  \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  dim_product \u2502\u2500\u2500\u2500[ FACT_SALES ]\u2500\u2500\u2500\u2502   dim_date   \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518        \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502   dim_store    \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "In a Star Schema, dimensions are intentionally denormalized into flat, wide tables (e.g., dim_product contains product_name, subcategory_name, category_name, and department_name in one table).",
     "interviewTip": "Interview Tip: When asked 'Star vs Snowflake', state that Star Schema is the gold standard for cloud analytical engines because columnar storage compresses denormalized data with zero disk penalty while avoiding multi-table join latency."
   },
@@ -2879,7 +2879,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In a Snowflake schema, the dimension tables have their own sub-tables (like Product pointing to Sub-Category, which points to Category). While it saves a tiny bit of disk space, joining so many tables slows down queries.",
-    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                ┌────────────────┐\n                │  dim_customer  │\n                └───────┬────────┘\n                        │\n┌──────────────┐        │        ┌──────────────┐\n│  dim_product │───[ FACT_SALES ]───│   dim_date   │\n└──────────────┘        │        └──────────────┘\n                        │\n                ┌───────┴────────┐\n                │   dim_store    │\n                └────────────────┘",
+    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502  dim_customer  \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  dim_product \u2502\u2500\u2500\u2500[ FACT_SALES ]\u2500\u2500\u2500\u2502   dim_date   \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518        \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502   dim_store    \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "Normalizing hierarchical attributes out of the main dimension creates a multi-tiered branching diagram that resembles a snowflake.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2900,8 +2900,8 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Think of a bicycle wheel: the center hub is your Fact table (recording every sale), and the spokes lead outward to Dimension tables (Customer, Store, Product). This simple structure makes reports extremely fast.",
-    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                ┌────────────────┐\n                │  dim_customer  │\n                └───────┬────────┘\n                        │\n┌──────────────┐        │        ┌──────────────┐\n│  dim_product │───[ FACT_SALES ]───│   dim_date   │\n└──────────────┘        │        └──────────────┘\n                        │\n                ┌───────┴────────┐\n                │   dim_store    │\n                └────────────────┘",
-    "explanation": "A dimension table is tiny compared to a multi-billion-row fact table, and columnar Dictionary Encoding already compresses repeated category strings in a Star Schema to almost nothing—so normalizing a dimension saves almost no disk space while adding expensive joins.",
+    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502  dim_customer  \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  dim_product \u2502\u2500\u2500\u2500[ FACT_SALES ]\u2500\u2500\u2500\u2502   dim_date   \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518        \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502   dim_store    \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "A dimension table is tiny compared to a multi-billion-row fact table, and columnar Dictionary Encoding already compresses repeated category strings in a Star Schema to almost nothing\u2014so normalizing a dimension saves almost no disk space while adding expensive joins.",
     "interviewTip": "Interview Tip: When asked 'Star vs Snowflake', state that Star Schema is the gold standard for cloud analytical engines because columnar storage compresses denormalized data with zero disk penalty while avoiding multi-table join latency."
   },
   {
@@ -2921,7 +2921,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In a Snowflake schema, the dimension tables have their own sub-tables (like Product pointing to Sub-Category, which points to Category). While it saves a tiny bit of disk space, joining so many tables slows down queries.",
-    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                ┌────────────────┐\n                │  dim_customer  │\n                └───────┬────────┘\n                        │\n┌──────────────┐        │        ┌──────────────┐\n│  dim_product │───[ FACT_SALES ]───│   dim_date   │\n└──────────────┘        │        └──────────────┘\n                        │\n                ┌───────┴────────┐\n                │   dim_store    │\n                └────────────────┘",
+    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502  dim_customer  \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  dim_product \u2502\u2500\u2500\u2500[ FACT_SALES ]\u2500\u2500\u2500\u2502   dim_date   \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518        \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502   dim_store    \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "Columnar dictionary compression makes the classic \"Snowflake Schema saves disk space\" argument obsolete in modern cloud data platforms.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2942,7 +2942,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Think of a bicycle wheel: the center hub is your Fact table (recording every sale), and the spokes lead outward to Dimension tables (Customer, Store, Product). This simple structure makes reports extremely fast.",
-    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                ┌────────────────┐\n                │  dim_customer  │\n                └───────┬────────┘\n                        │\n┌──────────────┐        │        ┌──────────────┐\n│  dim_product │───[ FACT_SALES ]───│   dim_date   │\n└──────────────┘        │        └──────────────┘\n                        │\n                ┌───────┴────────┐\n                │   dim_store    │\n                └────────────────┘",
+    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502  dim_customer  \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  dim_product \u2502\u2500\u2500\u2500[ FACT_SALES ]\u2500\u2500\u2500\u2502   dim_date   \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518        \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502   dim_store    \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "Kimball permits sparing use of Outrigger dimensions when a secondary entity is large and independently maintained, though a pure Star Schema remains the default target.",
     "interviewTip": "Interview Tip: When asked 'Star vs Snowflake', state that Star Schema is the gold standard for cloud analytical engines because columnar storage compresses denormalized data with zero disk penalty while avoiding multi-table join latency."
   },
@@ -2963,7 +2963,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In a Snowflake schema, the dimension tables have their own sub-tables (like Product pointing to Sub-Category, which points to Category). While it saves a tiny bit of disk space, joining so many tables slows down queries.",
-    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                ┌────────────────┐\n                │  dim_customer  │\n                └───────┬────────┘\n                        │\n┌──────────────┐        │        ┌──────────────┐\n│  dim_product │───[ FACT_SALES ]───│   dim_date   │\n└──────────────┘        │        └──────────────┘\n                        │\n                ┌───────┴────────┐\n                │   dim_store    │\n                └────────────────┘",
+    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502  dim_customer  \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  dim_product \u2502\u2500\u2500\u2500[ FACT_SALES ]\u2500\u2500\u2500\u2502   dim_date   \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518        \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502   dim_store    \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "Most real-world enterprise Gold layers are Galaxy Schemas (Fact Constellations), where multiple business processes share conformed dimensions.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -2984,7 +2984,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In a Snowflake schema, the dimension tables have their own sub-tables (like Product pointing to Sub-Category, which points to Category). While it saves a tiny bit of disk space, joining so many tables slows down queries.",
-    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                ┌────────────────┐\n                │  dim_customer  │\n                └───────┬────────┘\n                        │\n┌──────────────┐        │        ┌──────────────┐\n│  dim_product │───[ FACT_SALES ]───│   dim_date   │\n└──────────────┘        │        └──────────────┘\n                        │\n                ┌───────┴────────┐\n                │   dim_store    │\n                └────────────────┘",
+    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502  dim_customer  \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  dim_product \u2502\u2500\u2500\u2500[ FACT_SALES ]\u2500\u2500\u2500\u2502   dim_date   \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518        \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502   dim_store    \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "Client interviews frequently ask about Star Schema vs. OBT. Star Schema remains superior for governance, multi-fact drill-across, and BI semantic models (like Power BI VertiPaq, which is built specifically for Star Schemas), while OBT is sometimes used for specific high-speed ML feature tables or single-grain flat exports.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -3005,7 +3005,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In a Snowflake schema, the dimension tables have their own sub-tables (like Product pointing to Sub-Category, which points to Category). While it saves a tiny bit of disk space, joining so many tables slows down queries.",
-    "visualDiagram": "[ 1NF: Atomic Values ]\n┌────┬──────────────────┐  ──>  ┌────┬─────────┐\n│ ID │ Skills           │       │ ID │ Skill   │\n│ 1  │ SQL, Spark, Java │       │ 1  │ SQL     │\n└────┴──────────────────┘       │ 1  │ Spark   │\n                                │ 1  │ Java    │\n[ 2NF: No Partial Dependencies ] ──> Dependent on WHOLE primary key\n[ 3NF: No Transitive Dependencies] ──> Non-keys must NOT depend on non-keys",
+    "visualDiagram": "[ 1NF: Atomic Values ]\n\u250c\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510  \u2500\u2500>  \u250c\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 ID \u2502 Skills           \u2502       \u2502 ID \u2502 Skill   \u2502\n\u2502 1  \u2502 SQL, Spark, Java \u2502       \u2502 1  \u2502 SQL     \u2502\n\u2514\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2502 1  \u2502 Spark   \u2502\n                                \u2502 1  \u2502 Java    \u2502\n[ 2NF: No Partial Dependencies ] \u2500\u2500> Dependent on WHOLE primary key\n[ 3NF: No Transitive Dependencies] \u2500\u2500> Non-keys must NOT depend on non-keys",
     "explanation": "In OBT, slicing and filtering across columns in the same table can trigger DAX Auto-Exist behaviors and bloated column dictionaries; Star Schema provides clean filter propagation.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3026,7 +3026,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Declaring RELY constraints in Unity Catalog enables the optimizer to perform Join Pruning / Join Elimination on Star Schema semantic views!",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3047,7 +3047,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Maintaining a Snowflake Schema requires dependency ordering across every tier of the normalized dimension hierarchy during ELT loads.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3068,8 +3068,8 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Think of a bicycle wheel: the center hub is your Fact table (recording every sale), and the spokes lead outward to Dimension tables (Customer, Store, Product). This simple structure makes reports extremely fast.",
-    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                ┌────────────────┐\n                │  dim_customer  │\n                └───────┬────────┘\n                        │\n┌──────────────┐        │        ┌──────────────┐\n│  dim_product │───[ FACT_SALES ]───│   dim_date   │\n└──────────────┘        │        └──────────────┘\n                        │\n                ┌───────┴────────┐\n                │   dim_store    │\n                └────────────────┘",
-    "explanation": "While Star Schema wins on query speed and simplicity, a normalized Snowflake dimension has less update redundancy for hierarchy-level Type 1 changes—though in modern Delta Lake with Deletion Vectors, updating a few thousand rows in a Star dimension takes less than a second anyway.",
+    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502  dim_customer  \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  dim_product \u2502\u2500\u2500\u2500[ FACT_SALES ]\u2500\u2500\u2500\u2502   dim_date   \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518        \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502   dim_store    \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "While Star Schema wins on query speed and simplicity, a normalized Snowflake dimension has less update redundancy for hierarchy-level Type 1 changes\u2014though in modern Delta Lake with Deletion Vectors, updating a few thousand rows in a Star dimension takes less than a second anyway.",
     "interviewTip": "Interview Tip: When asked 'Star vs Snowflake', state that Star Schema is the gold standard for cloud analytical engines because columnar storage compresses denormalized data with zero disk penalty while avoiding multi-table join latency."
   },
   {
@@ -3089,7 +3089,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Star Schemas shine in Databricks because small dimensions are broadcast (BroadcastExchange), allowing the massive Fact table to stream through memory without a single shuffle!",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3110,7 +3110,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Kimball coined \"Centipede Schema\" to warn against splitting natural hierarchies (like Date or Geography) into dozens of separate foreign keys on the Fact table.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3131,7 +3131,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Because Fact tables represent 95%+ of total rows in a warehouse, keeping them strictly composed of compact integers/decimals maximizes scan speed.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3152,7 +3152,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Interviewers often check that junior consultants do not confuse the dimensional modeling pattern (\"Snowflake Schema\") with the cloud vendor (\"Snowflake\").",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3173,7 +3173,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "SCD techniques define how the Data Warehouse manages historical truthfulness when master data attributes evolve over time.",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
@@ -3194,7 +3194,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "SCD Type 0 (\"Retain Original\") applies to immutable attributes that should never be altered after initial creation.",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
@@ -3215,7 +3215,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "If a salesperson moves from Region East to Region West and you apply SCD Type 1, all of their past 5 years of East Coast sales suddenly appear under Region West in historical reports!",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
@@ -3236,7 +3236,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "Because each historical version of the customer gets its own unique Surrogate Key, historical Fact rows automatically stay linked to the exact version of the dimension that was active when the transaction occurred.",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
@@ -3257,7 +3257,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "SCD Type 3 keeps the same surrogate key and row count by storing \"Current\" and \"Prior\" values in side-by-side columns, allowing instant switching between old and new territory views without adding rows.",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
@@ -3278,7 +3278,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "When a 50-million-row dim_customer has rapidly changing volatile attributes (like age_band, credit_score_band, income_tier), SCD Type 2 would bloat the table into billions of rows. Splitting volatile bands into a compact SCD Type 4 Mini-Dimension avoids row explosion.",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
@@ -3299,7 +3299,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "SCD Type 6 lets analysts easily group facts by either the as-was historical attribute (historical_region) or the as-is current attribute (current_region) using a single join!",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
@@ -3320,7 +3320,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "In SCD Type 2, one customer_id has rows over time. The customer_sk uniquely identifies each historical version row.",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
@@ -3341,7 +3341,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "For historical loads or late-arriving facts, a point-in-time range join (transaction_date between effective_start_date and effective_end_date) ensures the fact links to the exact dimension version active at the moment of the event.",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
@@ -3362,7 +3362,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "Functions like COALESCE or OR col IS NULL in join conditions can degrade join optimization; a high sentinel date keeps the predicate simple and SARGable.",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
@@ -3383,7 +3383,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "Computing a deterministic row_hash over all tracked Type 2 attributes turns a complex 40-column null-safe comparison into a single fast source.row_hash <> target.row_hash check.",
     "interviewTip": "Interview Tip: Always highlight the threshold for Broadcast Joins (<10MB default) and explain how broadcast hash joins completely eliminate the costly network shuffle phase."
   },
@@ -3404,7 +3404,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "This is a classic Senior Databricks Consultant interview question! In custom Delta MERGE for SCD2, staging changed records twice (once with mergeKey = id to close the old record, and once with mergeKey = NULL to insert the new record via WHEN NOT MATCHED) performs the entire SCD2 upsert in a single atomic pass.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3425,7 +3425,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
     "explanation": "Declarative APPLY CHANGES INTO ... STORED AS SCD TYPE 2 eliminates complex manual MERGE staging logic and handles out-of-order CDC timestamps automatically.",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
@@ -3446,7 +3446,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Old ETL was like cooking vegetables in a factory before shipping them to a store. Modern ELT dumps the fresh raw produce directly into a high-powered kitchen (the cloud data warehouse) and cooks on demand.",
-    "visualDiagram": "table_directory/\n├── _delta_log/\n│   ├── 000000.json  (Transaction 0: Table created)\n│   ├── 000001.json  (Transaction 1: Ingestion commit)\n│   └── 000002.json  (Transaction 2: Compaction / Delete)\n├── part-0000-active.parquet\n└── part-0001-tombstone.parquet  (Cleaned by VACUUM)",
+    "visualDiagram": "table_directory/\n\u251c\u2500\u2500 _delta_log/\n\u2502   \u251c\u2500\u2500 000000.json  (Transaction 0: Table created)\n\u2502   \u251c\u2500\u2500 000001.json  (Transaction 1: Ingestion commit)\n\u2502   \u2514\u2500\u2500 000002.json  (Transaction 2: Compaction / Delete)\n\u251c\u2500\u2500 part-0000-active.parquet\n\u2514\u2500\u2500 part-0001-tombstone.parquet  (Cleaned by VACUUM)",
     "explanation": "Joining on a non-unique Natural Key against an SCD Type 2 table causes a 1-to-many fan-out explosion. You must either join on customer_sk (for historical as-was reporting) or join on customer_id AND d.is_current = TRUE (for current as-is reporting).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3461,14 +3461,14 @@ export const QUESTION_BANK = [
     "question": "Can Delta Lake Time Travel (VERSION AS OF) completely replace SCD Type 2 Dimension tables for enterprise BI reporting?",
     "options": [
       "Yes, Time Travel is 100% identical to SCD Type 2",
-      "No; Delta Time Travel is designed for point-in-time table snapshots, auditing, and rollback (typically retained for 7–30 days), whereas SCD Type 2 allows a single query to join multi-year historical facts across thousands of different timestamps simultaneously in a Star Schema",
+      "No; Delta Time Travel is designed for point-in-time table snapshots, auditing, and rollback (typically retained for 7\u201330 days), whereas SCD Type 2 allows a single query to join multi-year historical facts across thousands of different timestamps simultaneously in a Star Schema",
       "Time Travel stores data for 100 years with zero cost",
       "SCD Type 2 cannot be queried with SQL"
     ],
     "correct": 1,
     "beginnerConcept": "When a customer moves from New York to California, what happens to their old sales? SCD Type 1 overwrites New York (losing history). SCD Type 2 creates a new row with dates, preserving the historical truth of both cities.",
-    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  ──>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
-    "explanation": "Another top Databricks client interview question! Time Travel queries the state of an entire table at one single timestamp (AS OF), whereas an analytical query across 5 years of orders needs to resolve each order against the dimension state at that specific order's timestamp—which requires SCD Type 2.",
+    "visualDiagram": "SCD Type 1 (Overwrite):\nOld: [ID: 101, City: \"Chicago\"]  \u2500\u2500>  New: [ID: 101, City: \"New York\"]\n\nSCD Type 2 (Historical Tracking):\nRow 1: [SurrogateKey: 1, CustID: 101, City: \"Chicago\",  IsCurrent: FALSE, End: '2024-05']\nRow 2: [SurrogateKey: 2, CustID: 101, City: \"New York\", IsCurrent: TRUE,  End: NULL]",
+    "explanation": "Another top Databricks client interview question! Time Travel queries the state of an entire table at one single timestamp (AS OF), whereas an analytical query across 5 years of orders needs to resolve each order against the dimension state at that specific order's timestamp\u2014which requires SCD Type 2.",
     "interviewTip": "Interview Tip: For SCD Type 2, always mention the key metadata columns: surrogate_key, natural_key, effective_start_date, effective_end_date, and is_current_flag."
   },
   {
@@ -3488,7 +3488,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Enterprise DQ frameworks measure whether data is Accurate (reflects reality), Complete (no missing required values), Consistent (matches across systems), Timely (meets SLA freshness), Valid (conforms to format/domain rules), and Unique (no duplicates).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3509,7 +3509,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Old ETL was like cooking vegetables in a factory before shipping them to a store. Modern ELT dumps the fresh raw produce directly into a high-powered kitchen (the cloud data warehouse) and cooks on demand.",
-    "visualDiagram": "table_directory/\n├── _delta_log/\n│   ├── 000000.json  (Transaction 0: Table created)\n│   ├── 000001.json  (Transaction 1: Ingestion commit)\n│   └── 000002.json  (Transaction 2: Compaction / Delete)\n├── part-0000-active.parquet\n└── part-0001-tombstone.parquet  (Cleaned by VACUUM)",
+    "visualDiagram": "table_directory/\n\u251c\u2500\u2500 _delta_log/\n\u2502   \u251c\u2500\u2500 000000.json  (Transaction 0: Table created)\n\u2502   \u251c\u2500\u2500 000001.json  (Transaction 1: Ingestion commit)\n\u2502   \u2514\u2500\u2500 000002.json  (Transaction 2: Compaction / Delete)\n\u251c\u2500\u2500 part-0000-active.parquet\n\u2514\u2500\u2500 part-0001-tombstone.parquet  (Cleaned by VACUUM)",
     "explanation": "Unity Catalog centralizes access control, auditing, lineage, and discovery across workspaces using catalog.schema.table (for example, prod_catalog.sales_gold.fact_orders).",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3530,7 +3530,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Expectations let you declaratively enforce data quality contracts and track pass/fail metrics in the pipeline event log.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3551,7 +3551,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Think of Unity Catalog as the universal security pass for your company's data. Instead of setting passwords on individual files, you define permissions once at the catalog level, and it protects tables everywhere.",
-    "visualDiagram": "        [ UNITY CATALOG METASTORE ]\n                     │\n         ┌───────────┴───────────┐\n         ▼                       ▼\n  catalog_prod              catalog_dev\n         │\n    schema_finance\n         │\n   ┌─────┴────────────────┐\n   ▼                      ▼\ntable_transactions     view_masked_pii\n(Row Filter UDF)       (Column Mask UDF)",
+    "visualDiagram": "        [ UNITY CATALOG METASTORE ]\n                     \u2502\n         \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n         \u25bc                       \u25bc\n  catalog_prod              catalog_dev\n         \u2502\n    schema_finance\n         \u2502\n   \u250c\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n   \u25bc                      \u25bc\ntable_transactions     view_masked_pii\n(Row Filter UDF)       (Column Mask UDF)",
     "explanation": "Quarantining invalid records prevents a single malformed upstream record from breaking mission-critical SLAs while ensuring zero silent data loss.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3572,7 +3572,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Think of Unity Catalog as the universal security pass for your company's data. Instead of setting passwords on individual files, you define permissions once at the catalog level, and it protects tables everywhere.",
-    "visualDiagram": "        [ UNITY CATALOG METASTORE ]\n                     │\n         ┌───────────┴───────────┐\n         ▼                       ▼\n  catalog_prod              catalog_dev\n         │\n    schema_finance\n         │\n   ┌─────┴────────────────┐\n   ▼                      ▼\ntable_transactions     view_masked_pii\n(Row Filter UDF)       (Column Mask UDF)",
+    "visualDiagram": "        [ UNITY CATALOG METASTORE ]\n                     \u2502\n         \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n         \u25bc                       \u25bc\n  catalog_prod              catalog_dev\n         \u2502\n    schema_finance\n         \u2502\n   \u250c\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n   \u25bc                      \u25bc\ntable_transactions     view_masked_pii\n(Row Filter UDF)       (Column Mask UDF)",
     "explanation": "Native ALTER TABLE ... SET ROW FILTER and ALTER COLUMN ... SET MASK enforce fine-grained security dynamically at query time on a single physical table.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3593,7 +3593,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Governed Tags and ABAC policies in Unity Catalog allow security teams to define tag-based policies once and have them automatically enforced across all matching tables and columns.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3614,7 +3614,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Column-level automated lineage enables instant Impact Analysis (knowing exactly which Gold tables and executive dashboards will break before you alter or drop a Bronze/Silver column) and regulatory audit compliance.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3635,7 +3635,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "System tables provide full operational, security, and financial observability over the entire Databricks account using standard SQL.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3656,7 +3656,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Delta Lake's ACID DML combined with REORG ... APPLY (PURGE) and VACUUM enables compliant physical removal of individual customer data on cloud object storage.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3677,7 +3677,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Delta Sharing eliminates brittle S3 FTP drops and data replication by granting governed, revocable read access directly to live Lakehouse tables.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3698,7 +3698,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Lakehouse Federation enables unified querying and governance across hybrid multi-database estates before or without physical ETL migration.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3719,7 +3719,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Both NOT NULL and CHECK constraints are strictly enforced on every write to a Delta table, rolling back transactions that attempt to insert violating rows.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3740,7 +3740,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Even if every row passes amount > 0, if daily order volume suddenly drops by 85% or the mean order value shifts by , Data Observability / Lakehouse Monitoring detects the anomaly.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3761,7 +3761,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Clear RACI separation between business accountability (Data Owner) and operational quality/metadata management (Data Steward) is foundational in Big-4 governance frameworks.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3782,7 +3782,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 0,
     "beginnerConcept": "This question tests a core enterprise standard. Understanding the foundational mechanism allows you to confidently defend technical trade-offs during client design rounds.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Understanding when to use salted cryptographic hashes (SHA-256 with salt for blind joins) versus reversible encryption/tokenization (when authorized downstream systems must recover the original PII) is a staple governance interview question.",
     "interviewTip": "Consultant Pro-Tip: Be ready to explain not just what the command or concept does, but why it was designed that way and what architectural trade-off it optimizes for in distributed cloud environments."
   },
@@ -3797,13 +3797,13 @@ export const QUESTION_BANK = [
     "question": "Client Scenario: A retail client says their daily Databricks job takes 4 hours to write and reading from the resulting Silver table takes 45 minutes. You inspect the storage path and find 2.5 million tiny 15 KB Parquet files. What is this issue called, and what is your immediate remediation plan?",
     "options": [
       "Data Skew; fix by dropping the table",
-      "The \"Small File Problem\" (caused by over-partitioning or uncompacted high-frequency micro-batches); fix by running OPTIMIZE to compact small files into target ~128MB–1GB files, enabling Auto-Compaction / Optimized Writes, and replacing high-cardinality PARTITION BY with Liquid Clustering (CLUSTER BY)",
+      "The \"Small File Problem\" (caused by over-partitioning or uncompacted high-frequency micro-batches); fix by running OPTIMIZE to compact small files into target ~128MB\u20131GB files, enabling Auto-Compaction / Optimized Writes, and replacing high-cardinality PARTITION BY with Liquid Clustering (CLUSTER BY)",
       "Network outage; fix by changing cloud providers",
       "Missing primary key; fix by converting to CSV"
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Cloud object stores have high per-file HTTP metadata listing and open overhead. Millions of tiny files cripple read performance; OPTIMIZE and Liquid Clustering resolve this permanently.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
@@ -3824,7 +3824,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Whenever a Gold table inflates metrics compared to Silver, 99% of the time a dimension join key was not unique, causing row multiplication.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
@@ -3845,7 +3845,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n┌───────────┐ ┌───────────┐       ┌───────────┐   ┌───────────┐\n│ LargePart │ │ LargePart │       │ Part A-M  │   │ Part N-Z  │\n│ + BcastMap│ │ + BcastMap│       │ Sort+Merge│   │ Sort+Merge│\n└───────────┘ └───────────┘       └───────────┘   └───────────┘\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
+    "visualDiagram": "[ BROADCAST HASH JOIN ]         [ SHUFFLE SORT-MERGE JOIN ]\nDriver broadcasts Small Table   Both large tables hash-shuffled\nto ALL worker executors         across the entire network\n                                \n  Worker 1      Worker 2             Worker 1        Worker 2\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510 \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510       \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 LargePart \u2502 \u2502 LargePart \u2502       \u2502 Part A-M  \u2502   \u2502 Part N-Z  \u2502\n\u2502 + BcastMap\u2502 \u2502 + BcastMap\u2502       \u2502 Sort+Merge\u2502   \u2502 Sort+Merge\u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518 \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518       \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n (ZERO network shuffle)             (Heavy Network I/O Shuffle)",
     "explanation": "Delta Lake's RESTORE TABLE ... TO VERSION AS OF <n> atomically resets the table state to the prior version in seconds by updating the transaction log metadata.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
@@ -3866,7 +3866,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Distributed streams never guarantee event-time order equals arrival-time order; state updates must always guard on source.event_timestamp > target.event_timestamp.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
@@ -3887,7 +3887,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Filtering out NULL or known default skew keys before the shuffle join eliminates 65% of the shuffle data volume immediately and prevents the single executor straggler bottleneck.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
@@ -3908,7 +3908,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Legacy RDBMS stored procedures often use row-by-row cursors (WHILE @@FETCH_STATUS = 0), which are an anti-pattern on distributed MPP engines; converting cursors to set-based window functions/merges unlocks massive parallel scalability.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
@@ -3929,7 +3929,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Running scheduled ETL jobs on All-Purpose clusters (instead of Job Compute) and leaving clusters idle without auto-termination are the #1 drivers of unnecessary cloud spend.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
@@ -3941,7 +3941,7 @@ export const QUESTION_BANK = [
     "difficulty": "Hard",
     "isScenario": true,
     "scenarioTitle": "Virtual Client Scenario: Multi-Region Enterprise Governance",
-    "question": "Client Scenario: A global healthcare client requires that US analysts see all patient records with full names, EU analysts see only EU records with masked names, and Marketing analysts see aggregated counts only—all from the same single source of truth without duplicating tables. What architecture do you implement?",
+    "question": "Client Scenario: A global healthcare client requires that US analysts see all patient records with full names, EU analysts see only EU records with masked names, and Marketing analysts see aggregated counts only\u2014all from the same single source of truth without duplicating tables. What architecture do you implement?",
     "options": [
       "Build 3 separate Databricks workspaces and copy the data 3 times",
       "Implement a single Delta table in Unity Catalog governed with a ROW FILTER function (checking user group region attributes for US vs. EU) and a COLUMN MASK function on patient_name, alongside a governed Gold Materialized View / Metric View for Marketing",
@@ -3950,7 +3950,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "        [ UNITY CATALOG METASTORE ]\n                     │\n         ┌───────────┴───────────┐\n         ▼                       ▼\n  catalog_prod              catalog_dev\n         │\n    schema_finance\n         │\n   ┌─────┴────────────────┐\n   ▼                      ▼\ntable_transactions     view_masked_pii\n(Row Filter UDF)       (Column Mask UDF)",
+    "visualDiagram": "        [ UNITY CATALOG METASTORE ]\n                     \u2502\n         \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n         \u25bc                       \u25bc\n  catalog_prod              catalog_dev\n         \u2502\n    schema_finance\n         \u2502\n   \u250c\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n   \u25bc                      \u25bc\ntable_transactions     view_masked_pii\n(Row Filter UDF)       (Column Mask UDF)",
     "explanation": "Unity Catalog's fine-grained Row Filters and Column Masks enforce zero-copy regional sovereignty and PII masking dynamically per query principal.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
@@ -3971,7 +3971,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Serving BI dashboards directly off raw/normalized multi-billion-row Silver tables violates Medallion best practices; curated Gold Star Schemas + Materialized Views + Photon caching deliver sub-second BI interactivity.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
@@ -3992,7 +3992,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "Combining organizational Data Contracts with technical resilience (_rescued_data in Bronze + strict Expectations at Silver) decouples ingestion reliability from downstream schema integrity.",
     "interviewTip": "Big-4 Client Round Strategy: When asked client scenario questions, always structure your answer using STAR: Situation, Technical Bottleneck, Databricks Solution, and Measurable Business Impact (e.g. 70% cost reduction, zero data loss)."
   },
@@ -4013,7 +4013,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In a Snowflake schema, the dimension tables have their own sub-tables (like Product pointing to Sub-Category, which points to Category). While it saves a tiny bit of disk space, joining so many tables slows down queries.",
-    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                ┌────────────────┐\n                │  dim_customer  │\n                └───────┬────────┘\n                        │\n┌──────────────┐        │        ┌──────────────┐\n│  dim_product │───[ FACT_SALES ]───│   dim_date   │\n└──────────────┘        │        └──────────────┘\n                        │\n                ┌───────┴────────┐\n                │   dim_store    │\n                └────────────────┘",
+    "visualDiagram": "       [ STAR SCHEMA: Denormalized & Fast ]\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502  dim_customer  \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510        \u2502        \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  dim_product \u2502\u2500\u2500\u2500[ FACT_SALES ]\u2500\u2500\u2500\u2502   dim_date   \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518        \u2502        \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                        \u2502\n                \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2534\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n                \u2502   dim_store    \u2502\n                \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "In client interviews, highlight how both decouple storage and compute and use vectorized execution, while Databricks differentiates on open storage formats (Delta/Iceberg via UniForm), unified Data + AI/ML/Streaming on one platform, and fine-grained workload tuning.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
@@ -4034,7 +4034,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "UniForm eliminates the format wars between Delta Lake and Apache Iceberg by writing lightweight metadata for both formats over one single physical set of Parquet files.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
@@ -4046,7 +4046,7 @@ export const QUESTION_BANK = [
     "difficulty": "Hard",
     "isScenario": true,
     "scenarioTitle": "Performance Engineering: Liquid Clustering vs Z-ORDER",
-    "question": "PDF FAQ: \"What are the most common SQL performance anti-patterns in enterprise platforms?\" — Which of the following combines FOUR major SQL anti-patterns in a single query?",
+    "question": "PDF FAQ: \"What are the most common SQL performance anti-patterns in enterprise platforms?\" \u2014 Which of the following combines FOUR major SQL anti-patterns in a single query?",
     "options": [
       "Using SELECT col1, col2, SARGable date ranges, UNION ALL, and EXISTS",
       "Using SELECT *, wrapping partition columns in functions in WHERE (YEAR(dt) = 2026), using UNION instead of UNION ALL when duplicates are impossible, and using NOT IN on nullable subqueries",
@@ -4055,7 +4055,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "This summarizes the top four SQL anti-patterns tested in technical rounds: SELECT * (no column pruning), non-SARGable predicates (no partition/data skipping), unnecessary UNION (redundant sort/dedup), and NOT IN with NULLs.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
@@ -4076,7 +4076,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "LLMs in enterprise data platforms rely heavily on rich Unity Catalog metadata and column/table descriptions; well-documented schemas and Star Schemas dramatically improve Text-to-SQL accuracy in AI/BI Genie.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
@@ -4097,7 +4097,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Think of looking up a phone book. If you search for 'Smith', you flip directly to S. But if asked to find 'names where length is 5', you must read every single page from start to finish. Applying a function prevents direct index lookups.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "AI Functions bring GenAI directly into ELT pipelines and SQL queries (e.g., SELECT review_id, ai_analyze_sentiment(review_text) FROM customer_reviews).",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
@@ -4118,7 +4118,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "DENSE_RANK() handles duplicate salary ties properly so the 3rd distinct highest salary value is never skipped (unlike RANK() or ROW_NUMBER()).",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
@@ -4139,8 +4139,8 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
-    "explanation": "The difference between an incrementing sequential date and an incrementing ROW_NUMBER() remains constant for contiguous dates and jumps whenever a gap occurs—the classic analytical SQL trick for streak detection.",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "explanation": "The difference between an incrementing sequential date and an incrementing ROW_NUMBER() remains constant for contiguous dates and jumps whenever a gap occurs\u2014the classic analytical SQL trick for streak detection.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
   {
@@ -4160,7 +4160,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "Old ETL was like cooking vegetables in a factory before shipping them to a store. Modern ELT dumps the fresh raw produce directly into a high-powered kitchen (the cloud data warehouse) and cooks on demand.",
-    "visualDiagram": "table_directory/\n├── _delta_log/\n│   ├── 000000.json  (Transaction 0: Table created)\n│   ├── 000001.json  (Transaction 1: Ingestion commit)\n│   └── 000002.json  (Transaction 2: Compaction / Delete)\n├── part-0000-active.parquet\n└── part-0001-tombstone.parquet  (Cleaned by VACUUM)",
+    "visualDiagram": "table_directory/\n\u251c\u2500\u2500 _delta_log/\n\u2502   \u251c\u2500\u2500 000000.json  (Transaction 0: Table created)\n\u2502   \u251c\u2500\u2500 000001.json  (Transaction 1: Ingestion commit)\n\u2502   \u2514\u2500\u2500 000002.json  (Transaction 2: Compaction / Delete)\n\u251c\u2500\u2500 part-0000-active.parquet\n\u2514\u2500\u2500 part-0001-tombstone.parquet  (Cleaned by VACUUM)",
     "explanation": "Both conditional aggregation (SUM(CASE WHEN ...)) and native PIVOT / UNPIVOT are frequently tested in live SQL coding screens.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
@@ -4181,7 +4181,7 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Source Input ] ──> [ Distributed Validation ] ──> [ Target Analytics ]\n         │                               │                               │\n         ▼                               ▼                               ▼\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
+    "visualDiagram": "[ Raw Source Input ] \u2500\u2500> [ Distributed Validation ] \u2500\u2500> [ Target Analytics ]\n         \u2502                               \u2502                               \u2502\n         \u25bc                               \u25bc                               \u25bc\n    Bronze Ingest                  Silver Cleansing                 Gold Delivery",
     "explanation": "This mirrors the exact rubric inside your uploaded PDF: always anchor technical explanations in a crisp business definition followed by Performance, Scalability, and Governance trade-offs.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
   },
@@ -4202,8 +4202,2927 @@ export const QUESTION_BANK = [
     ],
     "correct": 1,
     "beginnerConcept": "In real enterprise consulting, clients experience real bottlenecks: queries running out of memory, jobs taking hours due to tiny files, or audit failures. Diagnosing the root cause separates junior coders from senior architects.",
-    "visualDiagram": "[ Raw Sources: APIs, DBs, IoT ]\n                │\n                ▼\n      ┌───────────────────┐\n      │  BRONZE (Raw)     │ ──> Append-only, Raw Ingestion (Auto Loader)\n      └─────────┬─────────┘\n                │\n                ▼\n      ┌───────────────────┐\n      │  SILVER (Cleaned) │ ──> Conformed, Deduplicated, SCD2, Enriched\n      └─────────┬─────────┘\n                │\n                ▼\n      ┌───────────────────┐\n      │  GOLD (Business)  │ ──> Star Schema, Aggregated Marts, BI PowerBI\n      └───────────────────┘",
+    "visualDiagram": "[ Raw Sources: APIs, DBs, IoT ]\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  BRONZE (Raw)     \u2502 \u2500\u2500> Append-only, Raw Ingestion (Auto Loader)\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  SILVER (Cleaned) \u2502 \u2500\u2500> Conformed, Deduplicated, SCD2, Enriched\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u252c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                \u2502\n                \u25bc\n      \u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n      \u2502  GOLD (Business)  \u2502 \u2500\u2500> Star Schema, Aggregated Marts, BI PowerBI\n      \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
     "explanation": "Option B synthesizes all 14 domains of your interview preparation guide into the reference modern Databricks Lakehouse architecture expected in Senior Consultant and Architect interviews.",
     "interviewTip": "Executive Interview Tip: Senior Architect rounds test your knowledge of modern cloud standards. Clearly articulate why Lakehouse (open Delta Lake/Parquet) delivers superior governance and cost-efficiency compared to closed proprietary data warehouses."
+  },
+  {
+    "id": "PY-001",
+    "num": 201,
+    "category": "Python & Pandas for Data Engineering",
+    "topic": "NumPy Vectorization vs Loops",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Why is vectorized computation in NumPy significantly faster than using standard Python for-loops over arrays?",
+    "options": [
+      "NumPy compiles Python code into Java bytecode on the JVM",
+      "NumPy executes inner loops in pre-compiled C/Fortran code with contiguous memory layouts",
+      "NumPy skips type-checking and ignores floating-point precision",
+      "NumPy automatically offloads every calculation to cloud GPUs"
+    ],
+    "correct": 1,
+    "beginnerConcept": "A standard Python loop checks data types and memory pointers on every single iteration. NumPy operates on contiguous blocks of raw C memory, applying CPU SIMD instructions to process multiple numbers simultaneously.",
+    "visualDiagram": "Python List: [ Pointer ] \u2500\u2500> Object (overhead per element)\nNumPy Array: [ Value | Value | Value | Value ] (Contiguous C Memory, SIMD fast)",
+    "explanation": "NumPy arrays store elements contiguously in memory and execute element-wise operations in compiled C/Fortran code, eliminating the per-iteration Python interpreter overhead.",
+    "interviewTip": "Consultant Pro-Tip: In data pipelines, always eliminate native Python iteration over large datasets in favor of NumPy or Pandas vectorized primitives."
+  },
+  {
+    "id": "PY-002",
+    "num": 202,
+    "category": "Python & Pandas for Data Engineering",
+    "topic": "Pandas Indexing: .loc vs .iloc",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "What is the primary difference between `.loc[]` and `.iloc[]` in Pandas?",
+    "options": [
+      ".loc is label-based indexing, whereas .iloc is integer position-based indexing",
+      ".loc is used only for series, while .iloc is used only for DataFrames",
+      ".loc performs parallel lookups across threads, while .iloc is single-threaded",
+      ".loc operates on columns only, while .iloc operates on rows only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Remember: 'loc' = Location by Label (row index name or column name); 'iloc' = Integer Location (0-indexed position like regular Python list slicing).",
+    "visualDiagram": "df.loc['2026-01-01', 'Revenue']  \u2500\u2500> Label-based\ndf.iloc[0, 2]                     \u2500\u2500> 0-based integer index",
+    "explanation": ".loc selects data using explicit row/column labels or boolean conditions, including both endpoints in slice syntax. .iloc selects data strictly by 0-based integer positions and excludes the stop boundary.",
+    "interviewTip": "Watch out in interviews: df.loc[1:3] includes index label 3! df.iloc[1:3] returns positions 1 and 2, stopping before 3."
+  },
+  {
+    "id": "PY-003",
+    "num": 203,
+    "category": "Python & Pandas for Data Engineering",
+    "topic": "Pandas Handling Missing Values",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "ETL Ingestion Data Quality Check",
+    "question": "During a daily batch ingestion, an incoming customer dataset contains null values in the 'income' column. You want to fill missing values with the median of each customer's specific 'region'. What is the idiomatic Pandas approach?",
+    "options": [
+      "df['income'] = df.groupby('region')['income'].transform(lambda x: x.fillna(x.median()))",
+      "df['income'] = df['income'].fillna(df['income'].mean())",
+      "df['income'] = df.apply(lambda row: row['region'].median() if pd.isna(row['income']) else row['income'])",
+      "df.dropna(subset=['income'], inplace=True)"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Grouping by 'region' and using transform() returns a series with the exact same length as the original DataFrame, allowing seamless imputation of group-specific medians.",
+    "visualDiagram": "Raw Data: (Region A, NaN) \u2500\u2500> Group A Median ($50k) \u2500\u2500> Output: $50k\nRaw Data: (Region B, NaN) \u2500\u2500> Group B Median ($75k) \u2500\u2500> Output: $75k",
+    "explanation": "groupby().transform() aligns the aggregated result back to the original index of the DataFrame, making it the standard vectorized method for group-level imputation without explicit joins.",
+    "interviewTip": "Consultant Pro-Tip: Explain why median is preferred over mean for financial or income metrics\u2014median is resistant to extreme outliers and skewed distributions."
+  },
+  {
+    "id": "PY-004",
+    "num": 204,
+    "category": "Python & Pandas for Data Engineering",
+    "topic": "Python Generators and Memory Management",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "When reading a multi-gigabyte log file on a resource-constrained server, why should a data engineer use a Python generator function (`yield`) instead of returning a list of lines?",
+    "options": [
+      "Generators automatically encrypt data in transit",
+      "Generators produce items lazily on demand without loading the entire dataset into memory at once",
+      "Generators bypass the Python Global Interpreter Lock (GIL) and run on all CPU cores",
+      "Generators automatically convert log strings into PySpark RDDs"
+    ],
+    "correct": 1,
+    "beginnerConcept": "A list creates every item upfront and stores it all in RAM. A generator is like a conveyor belt: it gives you one item at a time, processes it, and throws it away before grabbing the next one.",
+    "visualDiagram": "List:      [ Line 1, Line 2, Line 3, ... Line 10,000,000 ] \u2500\u2500> Huge RAM Spike!\nGenerator: File \u2500\u2500> yield Line 1 \u2500\u2500> yield Line 2 \u2500\u2500> Low Constant RAM (O(1))",
+    "explanation": "Generator functions utilize lazy evaluation. State is suspended with yield, producing one value per iteration and maintaining O(1) auxiliary memory consumption regardless of input file size.",
+    "interviewTip": "In interview rounds, highlight that generators are fundamental to building streaming consumers, custom batch readers, and memory-safe ETL pipelines."
+  },
+  {
+    "id": "HADOOP-001",
+    "num": 205,
+    "category": "Hadoop, HDFS & Hive Ecosystem",
+    "topic": "HDFS High Availability & NameNode Metadata",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "In Apache Hadoop HDFS architecture, what is the role of the Active and Standby NameNodes in a High Availability (HA) cluster setup?",
+    "options": [
+      "Active NameNode stores raw data blocks, while Standby NameNode stores metadata",
+      "Active NameNode manages cluster namespace and block mappings; Standby keeps synchronized metadata state via Quorum Journal Manager (QJM) to enable fast failover",
+      "Standby NameNode compiles MapReduce jobs into native machine code",
+      "Active NameNode processes client requests only on weekends, while Standby runs on weekdays"
+    ],
+    "correct": 1,
+    "beginnerConcept": "The NameNode is the master index of a giant library. If it catches fire, nobody knows where any book is. An HA setup keeps a live twin (Standby) with identical up-to-the-second index records ready to take over instantly.",
+    "visualDiagram": "Client \u2500\u2500> [ Active NameNode ] \u2500\u2500EditLog\u2500\u2500> [ QJM / JournalNodes ]\n                                                    \u2502\nClient <\u2500\u2500 [ Standby NameNode ] <\u2500\u2500Sync\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n                   \u25b2\n         [ ZooKeeper Failover Controller (ZKFC) ]",
+    "explanation": "In an HDFS HA cluster, the Active NameNode serves client RPCs while logging transactions to JournalNodes (QJM). The Standby NameNode tails these edits continuously, maintaining an in-memory replica of the metadata to enable automatic zero-downtime failover.",
+    "interviewTip": "Consultant Pro-Tip: Be clear that DataNodes send block reports and heartbeats to BOTH Active and Standby NameNodes so failover takes seconds, not hours."
+  },
+  {
+    "id": "HADOOP-002",
+    "num": 206,
+    "category": "Hadoop, HDFS & Hive Ecosystem",
+    "topic": "Hive Internal vs External Tables",
+    "difficulty": "Easy",
+    "isScenario": true,
+    "scenarioTitle": "Multi-Team Shared Enterprise Lake",
+    "question": "A data platform team creates a Hive table pointing to an existing data path on Cloud Object Storage shared across multiple downstream consumers. When the table is dropped, the underlying data files must NOT be deleted. What table type should be created?",
+    "options": [
+      "MANAGED Table (Internal)",
+      "EXTERNAL Table",
+      "TEMPORARY Table",
+      "INDEXED Table"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Managed (Internal) Table: Hive owns both the metadata and the data files (DROP deletes both). External Table: Hive only owns the metadata pointer (DROP deletes only the metadata, keeping the actual raw files 100% safe).",
+    "visualDiagram": "DROP TABLE managed_tbl  \u2500\u2500> Deletes Metastore Entry AND Underlying Files in HDFS/S3\nDROP TABLE external_tbl \u2500\u2500> Deletes Metastore Entry ONLY; Underlying Files Stay Safe!",
+    "explanation": "Dropping a Hive Managed table deletes both metadata from the Metastore and data from the warehouse directory. Dropping an External table removes only the catalog metadata, leaving storage data untouched.",
+    "interviewTip": "Consultant Pro-Tip: In modern cloud data lakes and Medallion architectures, virtually all raw and stage ingestion tables are declared as EXTERNAL to prevent accidental data loss."
+  },
+  {
+    "id": "HADOOP-003",
+    "num": 207,
+    "category": "Hadoop, HDFS & Hive Ecosystem",
+    "topic": "Hive Partitioning vs Bucketing",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "What is the structural difference between Partitioning and Bucketing in Apache Hive?",
+    "options": [
+      "Partitioning creates physical subdirectories based on column values; Bucketing splits data into a fixed number of hash-based files within directories",
+      "Partitioning applies only to numeric columns, while Bucketing applies to string columns",
+      "Partitioning is done in memory during execution, while Bucketing is done on disk",
+      "Partitioning requires MapReduce, whereas Bucketing requires Spark"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Think of Partitioning as sorting documents into different physical folders by Year/Month. Bucketing is taking the files inside each folder and hashing them into 10 evenly-sized numbered binders.",
+    "visualDiagram": "table_root/\n   \u251c\u2500\u2500 year=2026/          <\u2500\u2500 Partition (Directory)\n   \u2502    \u251c\u2500\u2500 part-00000.orc <\u2500\u2500 Bucket 1 (Hash file)\n   \u2502    \u2514\u2500\u2500 part-00001.orc <\u2500\u2500 Bucket 2 (Hash file)\n   \u2514\u2500\u2500 year=2025/          <\u2500\u2500 Partition (Directory)",
+    "explanation": "Partitioning divides data into distinct directory paths based on partition column values (preventing full directory scans). Bucketing hashes a column modulo N buckets into fixed files, optimizing Map-Side Joins and sampling.",
+    "interviewTip": "Interview Trap: Avoid high-cardinality columns (like user_id or timestamp) for partitioning\u2014that causes the 'small files problem' in HDFS and object stores. Use bucketing for high-cardinality columns!"
+  },
+  {
+    "id": "SPARK-001",
+    "num": 208,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Catalyst Optimizer Phases",
+    "difficulty": "Hard",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "In what order does Apache Spark's Catalyst Optimizer transform a DataFrame query into executable physical RDD code?",
+    "options": [
+      "Unresolved Logical Plan -> Analyzed Logical Plan -> Optimized Logical Plan -> Physical Plans -> Cost Model Selection -> RDD Code Generation",
+      "Physical Plan -> Logical Plan -> Catalyst Tree -> Bytecode Generation",
+      "AST Parser -> Bytecode Compiler -> DAG Scheduler -> Task Set",
+      "DataFrame API -> Tungsten Unsafe Memory -> Shuffle Exchange -> JVM Heap"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Think of Catalyst like a compiler: 1. It reads your SQL/DataFrame code (Unresolved). 2. Checks table/column names in catalog (Analyzed). 3. Re-orders filters and joins for speed (Optimized). 4. Creates physical execution blueprints. 5. Generates optimized Java bytecode via Tungsten.",
+    "visualDiagram": "SQL / DataFrame Query\n         \u2502\n         \u25bc\n[ Unresolved Logical Plan ] \u2500\u2500(Catalog Lookup)\u2500\u2500>\n[ Analyzed Logical Plan ]   \u2500\u2500(Logical Optimization Rules: Predicate Pushdown)\u2500\u2500>\n[ Optimized Logical Plan ]  \u2500\u2500(Physical Planning & Cost Model)\u2500\u2500>\n[ Selected Physical Plan ]  \u2500\u2500(Tungsten Whole-Stage CodeGen)\u2500\u2500> Executable RDD Bytecode",
+    "explanation": "Spark's Catalyst optimizer parses input into an Unresolved Logical Plan, resolves symbols against the Catalog to produce an Analyzed Plan, applies transformation rules (e.g., constant folding, filter pushdown) to produce an Optimized Logical Plan, generates multiple Physical Plans, picks the lowest cost, and generates Java bytecode.",
+    "interviewTip": "Senior Level Tip: Mention 'Whole-Stage Code Generation' where Spark collapses multiple physical operations into a single tight Java bytecode loop to maximize CPU cache locality."
+  },
+  {
+    "id": "SPARK-002",
+    "num": 209,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Broadcast Hash Join (BHJ) vs Shuffle Hash Join",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Optimizing Slow Join in Production",
+    "question": "A PySpark job joins a 500GB transaction table with a 15MB department lookup table. The job is suffering from massive network shuffle latency. How should you optimize this join?",
+    "options": [
+      "Use broadcast(department_df) to broadcast the small table to all executor nodes, avoiding any network shuffle of the large table",
+      "Increase spark.sql.shuffle.partitions from 200 to 20,000",
+      "Convert both DataFrames to Python lists and use a list comprehension",
+      "Repartition the 500GB table into 1 partition"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Instead of shuffling both tables across the network so matching keys meet on the same worker, copy the tiny lookup table to every worker node. Each worker can then join locally with zero network movement for the giant table.",
+    "visualDiagram": "Standard Shuffle Join: Both 500GB Table and 15MB Table Shuffle across Network (SLOW)\nBroadcast Hash Join:   Driver copies 15MB table to Executor 1, 2, 3.\n                       500GB Table stays local! Zero shuffle of 500GB!",
+    "explanation": "A Broadcast Hash Join broadcasts the small table (default threshold 10MB, configurable via spark.sql.autoBroadcastJoinThreshold) to all executors, completely avoiding the expensive network shuffle of the large dataset.",
+    "interviewTip": "Consultant Pro-Tip: Explicitly broadcast using from pyspark.sql.functions import broadcast; df_large.join(broadcast(df_small), 'dept_id'). Mention OOM risk if the broadcasted table exceeds driver memory!"
+  },
+  {
+    "id": "ASSESS-Q9",
+    "num": 210,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Java OOPs & Concurrency",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q9)",
+    "question": "A payment system has several unrelated classes that must all guarantee they provide the same set of operations, while each class can implement those operations differently. What is the main purpose of a Java interface in this design?",
+    "options": [
+      "Guarantee exactly one concrete implementation exists",
+      "Define a contract implementing classes must provide",
+      "Store every created object on heap memory",
+      "Replace all exception handling in an application"
+    ],
+    "correct": 1,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java OOPs & Multithreading. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q9 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java OOPs & Concurrency                      \u2502\n\u2502 Target: Define a contract impleme... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Define a contract implementing classes must provide. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q19",
+    "num": 211,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Schema Definition & DataFrames",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q19)",
+    "question": "Two regional teams deliver CSV files for the same sales dataset, but schema inference reads one numeric column differently in the two files. Before the files are combined, what should the team do?",
+    "options": [
+      "Apply the same explicit schema when reading both files",
+      "Convert every column in both files to String regardless of meaning",
+      "Infer each file independently and union them without checking types",
+      "Union first and resolve incompatible column types only after failure"
+    ],
+    "correct": 0,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Scala RDDs, DataFrames & Transformations. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q19 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Schema Definition & DataFrames                      \u2502\n\u2502 Target: Apply the same explicit s... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Apply the same explicit schema when reading both files. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q27",
+    "num": 212,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Java OOPs & Concurrency",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q27)",
+    "question": "A multi-threaded Java service stores session information in a shared map that is updated by several threads at the same time. At a conceptual level, why might `ConcurrentHashMap` be chosen over `HashMap`?",
+    "options": [
+      "It automatically opens and manages database connections",
+      "It prevents every possible application concurrency bug",
+      "It supports safer access from multiple concurrent threads",
+      "It guarantees all keys remain sorted automatically"
+    ],
+    "correct": 2,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java OOPs & Multithreading. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q27 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java OOPs & Concurrency                      \u2502\n\u2502 Target: It supports safer access ... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: It supports safer access from multiple concurrent threads. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q26",
+    "num": 213,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "Structured Streaming & Triggers",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q26)",
+    "question": "A partner system drops new CSV files into a landing directory throughout the business day. The data engineering team wants Spark to continuously process newly arriving files as streaming input. What can Structured Streaming do?",
+    "options": [
+      "Require a socket source before any file can be processed",
+      "Support only Parquet files and not CSV file streams",
+      "Read the directory only once and ignore files that arrive later",
+      "Treat newly arriving files as incremental streaming input"
+    ],
+    "correct": 3,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Spark Streaming & Fault Tolerance. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q26 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Structured Streaming & Triggers                      \u2502\n\u2502 Target: Treat newly arriving file... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Treat newly arriving files as incremental streaming input. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q1",
+    "num": 214,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Java Runtime & Memory Model",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q1)",
+    "question": "A developer compiles a Java application on a Windows laptop, then the deployment team copies only the compiled `.class` file to a Linux server. Which component allows the same bytecode to execute on both operating systems?",
+    "options": [
+      "The JVM available on each system",
+      "The JAR filename on each system",
+      "The package statement on each system",
+      "The source editor on each system"
+    ],
+    "correct": 0,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java Fundamentals & Core Collections. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q1 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java Runtime & Memory Model                      \u2502\n\u2502 Target: The JVM available on each... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: The JVM available on each system. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q7",
+    "num": 215,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Java Runtime & Memory Model",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q7)",
+    "question": "A document service must copy customer PDF files without changing any bytes in the file. Which Java I/O family is appropriate for this binary-copy requirement?",
+    "options": [
+      "`BufferedReader` and `PrintWriter` text streams",
+      "`FileInputStream` and `FileOutputStream` byte streams",
+      "`Scanner` and `Formatter` token/text utilities",
+      "`FileReader` and `FileWriter` character streams"
+    ],
+    "correct": 1,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java Fundamentals & Core Collections. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q7 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java Runtime & Memory Model                      \u2502\n\u2502 Target: `FileInputStream` and `Fi... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: `FileInputStream` and `FileOutputStream` byte streams. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q12",
+    "num": 216,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Java Runtime & Memory Model",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q12)",
+    "question": "An e-commerce application has a stream of product prices. It must keep only prices above 500 and then double each remaining value for a simulation. Which Java stream expression performs the requirement?",
+    "options": [
+      "`prices.stream().map(p -> p * 2).filter(p -> p > 500)`",
+      "`prices.stream().collect(p -> p > 500).map(p -> p * 2)`",
+      "`prices.stream().filter(p -> p > 500).collect().map(p -> p * 2)`",
+      "`prices.stream().filter(p -> p > 500).map(p -> p * 2)`"
+    ],
+    "correct": 3,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java Fundamentals & Core Collections. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q12 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java Runtime & Memory Model                      \u2502\n\u2502 Target: `prices.stream().filter(p... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: `prices.stream().filter(p -> p > 500).map(p -> p * 2)`. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q17",
+    "num": 217,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Schema Definition & DataFrames",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q17)",
+    "question": "A data engineer notices that a Spark DataFrame query is taking longer than expected. Before changing the code, the engineer wants to inspect how Spark plans to execute the query. Which tool is the best first check?",
+    "options": [
+      "Call `df.cache()` to mark the DataFrame for reuse",
+      "Call `df.show()` to display sample rows",
+      "Call `df.explain()` to inspect the plan",
+      "Call `df.printSchema()` to inspect column types"
+    ],
+    "correct": 2,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Scala RDDs, DataFrames & Transformations. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q17 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Schema Definition & DataFrames                      \u2502\n\u2502 Target: Call `df.explain()` to in... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Call `df.explain()` to inspect the plan. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q5",
+    "num": 218,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Distributed Processing & Architecture",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q5)",
+    "question": "In a payroll application, the `Manager` constructor must send the employee ID to the `Employee` parent constructor before initializing manager-specific fields. Which call should the child constructor use?",
+    "options": [
+      "`super()` calls only the parent no-argument constructor",
+      "`this(value)` calls another constructor in the same class",
+      "`this()` calls the current class no-argument constructor",
+      "`super(value)` passes the value to a parent constructor"
+    ],
+    "correct": 3,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under PySpark & Spark Architecture. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q5 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Distributed Processing & Architecture                      \u2502\n\u2502 Target: `super(value)` passes the... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: `super(value)` passes the value to a parent constructor. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q11",
+    "num": 219,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Distributed Processing & Architecture",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q11)",
+    "question": "A file-processing service opens a report file, reads its contents, and may throw an exception while processing. The developer wants the file resource to be closed reliably without writing repetitive cleanup code. Why is try-with-resources useful?",
+    "options": [
+      "It converts files into memory objects",
+      "It removes checked file exceptions automatically",
+      "It closes eligible file resources automatically",
+      "It guarantees faster file access automatically"
+    ],
+    "correct": 2,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under PySpark & Spark Architecture. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q11 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Distributed Processing & Architecture                      \u2502\n\u2502 Target: It closes eligible file r... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: It closes eligible file resources automatically. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q24",
+    "num": 220,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Distributed Processing & Architecture",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q24)",
+    "question": "A banking program updates both an accounts table and an audit table as one business operation. If either update fails, neither table should retain the change. Which JDBC approach is appropriate?",
+    "options": [
+      "Skip exception handling and commit each statement separately",
+      "Commit after updating the first table, then continue",
+      "Use separate connections with auto-commit enabled for each",
+      "Disable auto-commit, run both updates, then commit or rollback"
+    ],
+    "correct": 3,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under PySpark & Spark Architecture. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q24 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Distributed Processing & Architecture                      \u2502\n\u2502 Target: Disable auto-commit, run ... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Disable auto-commit, run both updates, then commit or rollback. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q6",
+    "num": 221,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Distributed Processing & Architecture",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q6)",
+    "question": "A developer is modelling a `Car` that uses an `Engine` object as one of its internal parts rather than making `Car` a subtype of `Engine`. Which code design most clearly represents composition?",
+    "options": [
+      "`Order` contains a `Payment` object as a field",
+      "`Payment` extends `Order` to reuse order behavior",
+      "`Order` implements a `Payable` interface",
+      "`Order` extends `Payment` to inherit its behavior"
+    ],
+    "correct": 0,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under PySpark & Spark Architecture. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q6 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Distributed Processing & Architecture                      \u2502\n\u2502 Target: `Order` contains a `Payme... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: `Order` contains a `Payment` object as a field. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q4",
+    "num": 222,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Java Runtime & Memory Model",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q4)",
+    "question": "A transport application declares a `Vehicle` reference, but at runtime it points to a `Car` object. The `Car` class overrides `move()`. When the application calls `move()` through the `Vehicle` reference, which method runs?",
+    "options": [
+      "No implementation runs through the reference",
+      "The inherited `Vehicle` implementation runs",
+      "The overridden `Car` implementation runs",
+      "Both implementations run automatically together"
+    ],
+    "correct": 2,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java Fundamentals & Core Collections. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q4 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java Runtime & Memory Model                      \u2502\n\u2502 Target: The overridden `Car` impl... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: The overridden `Car` implementation runs. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q20",
+    "num": 223,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Schema Definition & DataFrames",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q20)",
+    "question": "A data engineer is processing structured order data and needs named columns, SQL expressions, schema awareness, and Spark optimizer support. Which Spark abstraction is more suitable?",
+    "options": [
+      "A DataFrame with a defined schema and SQL expressions",
+      "A text-file iterator with no structured column metadata",
+      "A local Scala collection processed only on the driver",
+      "An RDD using low-level functions on unstructured objects"
+    ],
+    "correct": 0,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Scala RDDs, DataFrames & Transformations. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q20 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Schema Definition & DataFrames                      \u2502\n\u2502 Target: A DataFrame with a define... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: A DataFrame with a defined schema and SQL expressions. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q13",
+    "num": 224,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Java Runtime & Memory Model",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q13)",
+    "question": "A Scala service classifies transaction-risk scores. A score of 5 is evaluated using `5 match { case x if x > 3 => \"high\"; case _ => \"low\" }`. What result should the service produce?",
+    "options": [
+      "It causes a compilation failure",
+      "It returns the value `high`",
+      "It returns the value `low`",
+      "It returns the number `5`"
+    ],
+    "correct": 1,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java Fundamentals & Core Collections. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q13 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java Runtime & Memory Model                      \u2502\n\u2502 Target: It returns the value `hig... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: It returns the value `high`. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q10",
+    "num": 225,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Java Runtime & Memory Model",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q10)",
+    "question": "A banking application must prevent other classes from directly changing an account balance and should expose controlled methods for updates. Which class design best demonstrates encapsulation?",
+    "options": [
+      "Store unrelated data inside global variables directly",
+      "Keep fields private and expose controlled methods",
+      "Allow callers to modify internal arrays directly",
+      "Expose every field publicly to all callers"
+    ],
+    "correct": 1,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java Fundamentals & Core Collections. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q10 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java Runtime & Memory Model                      \u2502\n\u2502 Target: Keep fields private and e... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Keep fields private and expose controlled methods. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q3",
+    "num": 226,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Distributed Processing & Architecture",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q3)",
+    "question": "A trainee is building a score-processing program and wants the compiler to prevent non-integer values from being inserted into the score collection. Why is `List<Integer>` safer than using a raw `List`?",
+    "options": [
+      "It provides compile-time element type checking",
+      "It makes stored list elements immutable",
+      "It prevents duplicate scores automatically",
+      "It sorts stored scores automatically"
+    ],
+    "correct": 0,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under PySpark & Spark Architecture. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q3 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Distributed Processing & Architecture                      \u2502\n\u2502 Target: It provides compile-time ... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: It provides compile-time element type checking. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q29",
+    "num": 227,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Java OOPs & Concurrency",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q29)",
+    "question": "Two threads in an order service both increment the same shared counter. After heavy concurrent activity, the final count is lower than expected because some updates were overwritten. Which concept best explains the problem?",
+    "options": [
+      "A livelock where threads keep reacting without making progress",
+      "A race condition caused by unsynchronized shared updates",
+      "A deadlock between two locks",
+      "Thread starvation caused by scheduling priority"
+    ],
+    "correct": 1,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java OOPs & Multithreading. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q29 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java OOPs & Concurrency                      \u2502\n\u2502 Target: A race condition caused b... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: A race condition caused by unsynchronized shared updates. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q14",
+    "num": 228,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Distributed Processing & Architecture",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q14)",
+    "question": "A Spark job has an RDD of sales records and the developer wants to define another RDD by changing each record, without immediately producing a final result. Which Spark RDD operation is a transformation?",
+    "options": [
+      "`first()`",
+      "`filter()`",
+      "`count()`",
+      "`collect()`"
+    ],
+    "correct": 1,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under PySpark & Spark Architecture. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q14 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Distributed Processing & Architecture                      \u2502\n\u2502 Target: `filter()`... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: `filter()`. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q16",
+    "num": 229,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Distributed Processing & Architecture",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q16)",
+    "question": "A retail Spark application has a pair RDD containing `(region, amount)` for every sale. The requirement is to calculate the total sales amount for each region. Which operation is suitable?",
+    "options": [
+      "`mapPartitions` without a key",
+      "`repartition(1)` only",
+      "`collect()` before grouping",
+      "`reduceByKey(_ + _)`"
+    ],
+    "correct": 3,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under PySpark & Spark Architecture. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q16 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Distributed Processing & Architecture                      \u2502\n\u2502 Target: `reduceByKey(_ + _)`... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: `reduceByKey(_ + _)`. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q23",
+    "num": 230,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Java OOPs & Concurrency",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q23)",
+    "question": "Two worker threads process inventory updates. Thread A already holds Lock 1 and is waiting for Lock 2, while Thread B holds Lock 2 and is waiting for Lock 1. Neither thread can proceed. What concurrency problem has occurred?",
+    "options": [
+      "A deadlock",
+      "A livelock",
+      "Thread starvation",
+      "A race condition"
+    ],
+    "correct": 0,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java OOPs & Multithreading. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q23 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java OOPs & Concurrency                      \u2502\n\u2502 Target: A deadlock... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: A deadlock. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q8",
+    "num": 231,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Java Runtime & Memory Model",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q8)",
+    "question": "A customer-registration system creates two `Customer` objects with the same customer ID. The class correctly overrides `equals()` and `hashCode()`, and both objects are added to a `HashSet`. What should the set normally do?",
+    "options": [
+      "Treat them as the same logical element when equality and hash code match",
+      "Keep both because equal hash codes always mean different objects",
+      "Sort both automatically before checking equality",
+      "Keep both because `HashSet` always compares object references only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java Fundamentals & Core Collections. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q8 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java Runtime & Memory Model                      \u2502\n\u2502 Target: Treat them as the same lo... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Treat them as the same logical element when equality and hash code match. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q28",
+    "num": 232,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Java Runtime & Memory Model",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q28)",
+    "question": "A Java application starts a time-consuming remote calculation but should continue doing other work and process the result later when it becomes available. What does `CompletableFuture` help represent?",
+    "options": [
+      "It represents an asynchronous result completed later",
+      "It represents the JVM garbage collection process",
+      "It represents a database table schema definition",
+      "It represents a file lock held permanently"
+    ],
+    "correct": 0,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java Fundamentals & Core Collections. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q28 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java Runtime & Memory Model                      \u2502\n\u2502 Target: It represents an asynchro... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: It represents an asynchronous result completed later. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q25",
+    "num": 233,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "Structured Streaming & Triggers",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q25)",
+    "question": "A team is starting a new Spark real-time project and must choose between the older DStream API and the newer Structured Streaming model. Which statement is most appropriate for the new implementation?",
+    "options": [
+      "Structured Streaming cannot support event-time operations",
+      "DStreams are the newer DataFrame-based streaming model",
+      "DStreams and Structured Streaming expose exactly the same programming model",
+      "Structured Streaming is the newer DataFrame-based streaming model"
+    ],
+    "correct": 3,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Spark Streaming & Fault Tolerance. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q25 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Structured Streaming & Triggers                      \u2502\n\u2502 Target: Structured Streaming is t... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Structured Streaming is the newer DataFrame-based streaming model. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q22",
+    "num": 234,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Distributed Processing & Architecture",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q22)",
+    "question": "A live delivery dashboard calculates metrics in 10-minute windows. Business users still want events accepted when they arrive up to 2 minutes late because of network delay. Which combination expresses this requirement?",
+    "options": [
+      "Use only a processing-time window with no event-time handling",
+      "Use event-time windows with a suitable watermark",
+      "Use an event-time window but no watermark for late-data control",
+      "Use a watermark without defining the required time window"
+    ],
+    "correct": 1,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under PySpark & Spark Architecture. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q22 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Distributed Processing & Architecture                      \u2502\n\u2502 Target: Use event-time windows wi... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Use event-time windows with a suitable watermark. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q30",
+    "num": 235,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Distributed Processing & Architecture",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q30)",
+    "question": "A JDBC money-transfer operation successfully debits the source account, but the subsequent credit to the destination account fails. The business rule requires the transfer to be all-or-nothing. What should the program do?",
+    "options": [
+      "Enable auto-commit and continue with the partial update",
+      "Roll back the entire database transaction",
+      "Ignore the failed transaction and retry only the credit separately",
+      "Commit the debit even though the credit failed"
+    ],
+    "correct": 1,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under PySpark & Spark Architecture. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q30 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Distributed Processing & Architecture                      \u2502\n\u2502 Target: Roll back the entire data... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Roll back the entire database transaction. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q2",
+    "num": 236,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Java OOPs & Concurrency",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q2)",
+    "question": "An HR application stores employee IDs in the exact order they were entered, and the same ID may appear more than once during testing. Which Java collection interface is the best starting choice?",
+    "options": [
+      "Set",
+      "Queue only",
+      "List",
+      "Map"
+    ],
+    "correct": 2,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Java OOPs & Multithreading. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q2 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Java OOPs & Concurrency                      \u2502\n\u2502 Target: List... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: List. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q15",
+    "num": 237,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Distributed Processing & Architecture",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q15)",
+    "question": "During a Spark job, one executor loses an RDD partition. Spark needs to recreate that partition instead of recomputing the entire application manually. Which information helps Spark rebuild it?",
+    "options": [
+      "Only the notebook cell that first displayed the RDD",
+      "Only the name of a temporary SQL view",
+      "Only the executor memory that previously held the partition",
+      "The RDD lineage of transformations"
+    ],
+    "correct": 3,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under PySpark & Spark Architecture. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q15 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Distributed Processing & Architecture                      \u2502\n\u2502 Target: The RDD lineage of transf... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: The RDD lineage of transformations. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q18",
+    "num": 238,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Scala Language & Immutability",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q18)",
+    "question": "A Spark transformation can be implemented either with an existing built-in string function or with a newly written Python/Scala UDF. The team wants the option that Spark can optimize more effectively. Why is the built-in function usually preferred?",
+    "options": [
+      "A built-in function automatically removes all null values",
+      "Spark can understand and optimize built-in expressions more easily",
+      "A built-in function guarantees that no shuffle can occur",
+      "A built-in function always executes only once per job"
+    ],
+    "correct": 1,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Scala Basics & Functional Programming. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q18 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Scala Language & Immutability                      \u2502\n\u2502 Target: Spark can understand and ... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Spark can understand and optimize built-in expressions more easily. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "ASSESS-Q21",
+    "num": 239,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "Structured Streaming & Triggers",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Assessment Scenario (Q21)",
+    "question": "A stateful Structured Streaming application processes account events. After a driver failure, the application must restart and continue using the previously stored progress and state instead of starting from the beginning. What should be configured?",
+    "options": [
+      "Cache the query result only in executor memory",
+      "Create a temporary SQL view for the stream",
+      "Configure a durable checkpoint location",
+      "Repartition the streaming DataFrame on every trigger"
+    ],
+    "correct": 2,
+    "beginnerConcept": "This assessment question evaluates real-world problem solving under Spark Streaming & Fault Tolerance. Focus on how production systems isolate faults and maintain consistency.",
+    "visualDiagram": "[ Assessment Checkpoint: Q21 ]\n            \u2502\n            \u25bc\n\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502 Structured Streaming & Triggers                      \u2502\n\u2502 Target: Configure a durable check... \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    "explanation": "Correct Answer: Configure a durable checkpoint location. This verifies real-world production-grade data engineering principles.",
+    "interviewTip": "Assessment Tip: When answering multi-tenant or streaming questions, always prioritize explicit schemas, idempotent operations, and thread-safe data structures."
+  },
+  {
+    "id": "XLSX-P001",
+    "num": 240,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "JDK, JRE and JVM",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A trainee installs Java to compile and run a program. Which component contains the Java compiler (javac)?",
+    "options": [
+      "JDK",
+      "JRE",
+      "JVM only",
+      "Garbage Collector"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - Fundamentals, Core, Collections: JDK, JRE and JVM. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ JDK, JRE and JVM ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "The JDK includes development tools such as javac, while the JRE provides the runtime environment.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about JDK, JRE and JVM, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P002",
+    "num": 241,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Bytecode and JVM",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "After a Java source file is compiled successfully, what does the compiler normally produce for the JVM to execute?",
+    "options": [
+      "A native .exe file",
+      "Java bytecode in a .class file",
+      "A SQL script",
+      "A compressed JAR only"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - Fundamentals, Core, Collections: Bytecode and JVM. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Bytecode and JVM ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Java compilation normally produces bytecode in .class files, which the JVM executes.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Bytecode and JVM, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P003",
+    "num": 242,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "List, Set and Map",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A training app must store unique course codes and should automatically prevent duplicates. Which collection type best matches this requirement?",
+    "options": [
+      "List",
+      "Set",
+      "Queue",
+      "Array"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - Fundamentals, Core, Collections: List, Set and Map. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ List, Set and Map ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "A Set stores unique elements and is the natural choice when duplicates must be prevented.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about List, Set and Map, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P004",
+    "num": 243,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Stack and Heap",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Stack and Heap",
+    "question": "A Java method creates a local int variable and also creates a new Customer object. In the usual memory model, where is the object primarily allocated?",
+    "options": [
+      "Stack only",
+      "Heap",
+      "CPU register only",
+      "Source-code area"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - Fundamentals, Core, Collections: Stack and Heap. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Stack and Heap ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Objects are generally allocated on the heap; local variables and references are associated with method stack frames.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Stack and Heap, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P005",
+    "num": 244,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Generics",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Generics",
+    "question": "A method should accept a List of String values and prevent callers from accidentally adding Integer values at compile time. Which declaration is most suitable?",
+    "options": [
+      "List values",
+      "List<Object> values",
+      "List<String> values",
+      "Object values"
+    ],
+    "correct": 2,
+    "beginnerConcept": "Core concept in Java - Fundamentals, Core, Collections: Generics. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Generics ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Generics provide compile-time type safety. List<String> restricts elements to strings.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Generics, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P006",
+    "num": 245,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Wrapper Classes and Autoboxing",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Wrapper Classes and Autoboxing",
+    "question": "A List<Integer> receives the primitive value 25 using list.add(25). Why is this allowed?",
+    "options": [
+      "Java converts the List into an int array",
+      "Autoboxing converts int to Integer",
+      "The compiler ignores the type",
+      "Integer is a primitive type"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - Fundamentals, Core, Collections: Wrapper Classes and Autoboxing. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Wrapper Classes and Autoboxing ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Autoboxing automatically converts a primitive int to its corresponding Integer wrapper when required.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Wrapper Classes and Autoboxing, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P007",
+    "num": 246,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "HashMap Key Semantics",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: HashMap Key Semantics",
+    "question": "A HashMap stores employee details using employeeId as the key. What happens when put() is called again with the same key and a new value?",
+    "options": [
+      "A duplicate key is stored",
+      "The existing value for that key is replaced",
+      "The map becomes a Set",
+      "The key is automatically deleted"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - Fundamentals, Core, Collections: HashMap Key Semantics. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ HashMap Key Semantics ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "A Map keeps one value per key. Putting the same key again replaces the mapped value.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about HashMap Key Semantics, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P008",
+    "num": 247,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Iterator Removal",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Iterator Removal",
+    "question": "A trainee must remove selected elements while iterating through an ArrayList and wants to avoid unsafe structural modification. Which approach is appropriate?",
+    "options": [
+      "Call list.remove() from every foreach iteration",
+      "Use Iterator and its remove() method after next()",
+      "Convert the list to a String first",
+      "Change the list reference to null"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - Fundamentals, Core, Collections: Iterator Removal. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Iterator Removal ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Iterator.remove() is designed for safe removal of the current element during iterator-based traversal.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Iterator Removal, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P009",
+    "num": 248,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Short-Circuit Operators",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A condition is written as user != null && user.isActive(). If user is null, why does the expression avoid a NullPointerException from isActive()?",
+    "options": [
+      "&& evaluates the right side first",
+      "&& skips the right side when the left side is false",
+      "isActive() is converted to static",
+      "null is treated as an active user"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - Fundamentals, Core, Collections: Short-Circuit Operators. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Short-Circuit Operators ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "The && operator short-circuits. If the left operand is false, Java does not evaluate the right operand.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Short-Circuit Operators, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P010",
+    "num": 249,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Encapsulation",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A BankAccount class keeps balance private and exposes deposit() and withdraw() methods. Which OOP principle is being applied?",
+    "options": [
+      "Encapsulation",
+      "Inheritance",
+      "Method overloading",
+      "Serialization"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs: Encapsulation. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Encapsulation ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Encapsulation hides internal state and provides controlled access through methods.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Encapsulation, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P011",
+    "num": 250,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Inheritance",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Car extends Vehicle. What relationship does this represent?",
+    "options": [
+      "Car has-a Vehicle",
+      "Car is-a Vehicle",
+      "Vehicle is a method of Car",
+      "Car and Vehicle are unrelated"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - OOPs: Inheritance. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Inheritance ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Inheritance models an is-a relationship: a Car is a specialized Vehicle.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Inheritance, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P012",
+    "num": 251,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Method Overloading",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A class contains print(int value) and print(String value). What concept does this demonstrate?",
+    "options": [
+      "Overriding",
+      "Overloading",
+      "Abstraction only",
+      "Constructor chaining"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - OOPs: Method Overloading. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Method Overloading ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Overloading uses the same method name with different parameter lists in the same class hierarchy.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Method Overloading, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P013",
+    "num": 252,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Method Overriding",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Method Overriding",
+    "question": "A parent class defines calculateFee(), and a child class provides its own implementation with the same signature. Which concept is used?",
+    "options": [
+      "Method overriding",
+      "Method overloading",
+      "Autoboxing",
+      "Serialization"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs: Method Overriding. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Method Overriding ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "A subclass can override an inherited method to provide specialized runtime behavior.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Method Overriding, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P014",
+    "num": 253,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Constructors and super",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Constructors and super",
+    "question": "A child constructor must initialize fields defined by its parent class using the parent constructor. Which keyword is normally used?",
+    "options": [
+      "this",
+      "super",
+      "final",
+      "static"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - OOPs: Constructors and super. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Constructors and super ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "super(...) invokes a parent-class constructor.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Constructors and super, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P015",
+    "num": 254,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Interfaces",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Interfaces",
+    "question": "Several unrelated classes must guarantee that they provide a process() method, while each class can implement it differently. Which Java construct best expresses this contract?",
+    "options": [
+      "Interface",
+      "Private constructor",
+      "Array",
+      "Package only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs: Interfaces. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Interfaces ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "An interface defines a common contract that multiple unrelated classes can implement.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Interfaces, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P016",
+    "num": 255,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Composition vs Inheritance",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Composition vs Inheritance",
+    "question": "An OrderService uses a PaymentGateway object to process payments, but OrderService is not a type of PaymentGateway. Which design relationship is most appropriate?",
+    "options": [
+      "Inheritance",
+      "Composition",
+      "Overloading",
+      "Casting"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - OOPs: Composition vs Inheritance. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Composition vs Inheritance ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Composition models a has-a/uses-a relationship and avoids forcing an incorrect is-a hierarchy.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Composition vs Inheritance, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P017",
+    "num": 256,
+    "category": "Java OOPs & Multithreading",
+    "topic": "this and super",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: this and super",
+    "question": "Inside a subclass, which expression refers to the current object, and which refers to the parent-class implementation?",
+    "options": [
+      "this and super",
+      "super and this",
+      "static and final",
+      "new and class"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs: this and super. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ this and super ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "this refers to the current object; super refers to the parent-class portion or implementation.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about this and super, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P018",
+    "num": 257,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Runtime Polymorphism",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Vehicle v = new Car(); is followed by v.move(), and Car overrides move(). Which implementation executes?",
+    "options": [
+      "Vehicle.move() always",
+      "Car.move() because overridden instance methods use runtime dispatch",
+      "Both methods execute automatically",
+      "The code cannot compile"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - OOPs: Runtime Polymorphism. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Runtime Polymorphism ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "For overridden instance methods, Java chooses the implementation based on the runtime object type, here Car.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Runtime Polymorphism, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P019",
+    "num": 258,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Byte vs Character Streams",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A program must read a plain text file containing customer names. Which type of stream is generally more suitable for text?",
+    "options": [
+      "Character stream",
+      "Byte stream only",
+      "Object lock",
+      "Thread pool"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - File I/O, APIs: Byte vs Character Streams. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Byte vs Character Streams ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Character-oriented readers are designed for text and character decoding.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Byte vs Character Streams, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P020",
+    "num": 259,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Try-with-Resources",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "What is the main benefit of try-with-resources when working with files or JDBC resources?",
+    "options": [
+      "It automatically closes eligible resources",
+      "It makes every exception checked",
+      "It stores files in memory",
+      "It prevents all runtime errors"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - File I/O, APIs: Try-with-Resources. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Try-with-Resources ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Resources implementing AutoCloseable are closed automatically when the try block finishes.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Try-with-Resources, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P021",
+    "num": 260,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Date and Time API",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Which Java class is appropriate for representing a calendar date without a time-of-day or timezone?",
+    "options": [
+      "LocalDate",
+      "LocalTimeZone",
+      "FileDate",
+      "ThreadDate"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - File I/O, APIs: Date and Time API. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Date and Time API ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "LocalDate represents a date such as 2026-10-01 without time or timezone information.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Date and Time API, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P022",
+    "num": 261,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "PrintWriter",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: PrintWriter",
+    "question": "A program generates a simple text report containing formatted lines. Which class is convenient for writing textual output with print/println methods?",
+    "options": [
+      "PrintWriter",
+      "FileInputStream",
+      "ObjectInputStream",
+      "HashMap"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - File I/O, APIs: PrintWriter. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ PrintWriter ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "PrintWriter is convenient for formatted character/text output.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about PrintWriter, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P023",
+    "num": 262,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Regular Expressions",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Regular Expressions",
+    "question": "A trainee wants to check whether a product code follows a known text pattern. Which Java API is intended for regular-expression matching?",
+    "options": [
+      "Pattern and Matcher",
+      "LocalDate and Period",
+      "List and Set",
+      "Thread and Runnable only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - File I/O, APIs: Regular Expressions. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Regular Expressions ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "java.util.regex.Pattern and Matcher provide regular-expression support.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Regular Expressions, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P024",
+    "num": 263,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Streams API",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Streams API",
+    "question": "A List<Integer> should produce a new list containing only values greater than 100. Which Streams API operation performs the selection?",
+    "options": [
+      "filter",
+      "map only",
+      "reduce only",
+      "sorted only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - File I/O, APIs: Streams API. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Streams API ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "filter keeps stream elements that satisfy a predicate.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Streams API, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P025",
+    "num": 264,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Directory Traversal",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Directory Traversal",
+    "question": "A program needs to visit files inside a directory tree using modern Java NIO APIs. Which operation is designed to stream paths recursively?",
+    "options": [
+      "Files.walk(...)",
+      "System.gc()",
+      "Math.round(...)",
+      "Thread.sleep(...)"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - File I/O, APIs: Directory Traversal. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Directory Traversal ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Files.walk creates a stream of paths for recursive directory traversal.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Directory Traversal, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P026",
+    "num": 265,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "transient Fields",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: transient Fields",
+    "question": "A Serializable User object contains a temporary sessionToken that should not be written during default Java serialization. Which keyword can mark that field?",
+    "options": [
+      "transient",
+      "volatile",
+      "abstract",
+      "extends"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - File I/O, APIs: transient Fields. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ transient Fields ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "transient fields are skipped by default Java object serialization.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about transient Fields, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P027",
+    "num": 266,
+    "category": "Java Fundamentals & Core Collections",
+    "topic": "Regex matches vs find",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A log line is \"ERROR: payment failed\". The regex \"payment\" should detect that word anywhere inside the line. Which Matcher method is the better fit?",
+    "options": [
+      "matches(), because it requires the whole line to match",
+      "find(), because it searches for a matching subsequence",
+      "replaceAll(), because it returns Boolean",
+      "group(), before any match attempt"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Java - File I/O, APIs: Regex matches vs find. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Regex matches vs find ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "find() searches for a matching subsequence, whereas matches() attempts to match the entire input.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Regex matches vs find, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P028",
+    "num": 267,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "val and var",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Which Scala keyword creates a reference that cannot be reassigned after initialization?",
+    "options": [
+      "val",
+      "var",
+      "def",
+      "new"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala Basics [Data Structures]: val and var. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ val and var ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "val creates an immutable binding; var creates a reassignable variable.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about val and var, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P029",
+    "num": 268,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Immutable Lists",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "What is the typical behavior of Scala immutable List operations such as map?",
+    "options": [
+      "They modify the original list in place",
+      "They return a new collection value",
+      "They always return Unit",
+      "They require a database"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Scala Basics [Data Structures]: Immutable Lists. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Immutable Lists ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Immutable collection operations derive new values instead of mutating the original list.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Immutable Lists, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P030",
+    "num": 269,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Tuples",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A Scala program needs to return a customer ID and customer name together without defining a new class. Which simple structure can hold both values?",
+    "options": [
+      "Tuple",
+      "Thread",
+      "Exception",
+      "RDD action"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala Basics [Data Structures]: Tuples. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Tuples ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "A tuple groups a fixed number of values, potentially of different types.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Tuples, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P031",
+    "num": 270,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Type Inference",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Type Inference",
+    "question": "Scala sees val total = 125.50. What does type inference mean in this statement?",
+    "options": [
+      "The programmer must write the type later",
+      "Scala determines an appropriate type from the assigned value",
+      "The value has no type",
+      "The variable becomes a String automatically"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Scala Basics [Data Structures]: Type Inference. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Type Inference ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Scala can infer the static type from the expression assigned to the val.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Type Inference, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P032",
+    "num": 271,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Pattern Matching",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Pattern Matching",
+    "question": "A status code can be NEW, PAID, or CANCELLED and each value needs a different result. Which Scala feature provides clear case-based branching?",
+    "options": [
+      "match with case clauses",
+      "Only while loops",
+      "JDBC commit",
+      "RDD cache"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala Basics [Data Structures]: Pattern Matching. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Pattern Matching ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Pattern matching with match/case is well suited to branching based on values or shapes.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Pattern Matching, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P033",
+    "num": 272,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "map Transformation",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: map Transformation",
+    "question": "A List(2,4,6) should become List(4,8,12) without changing the original list. Which operation is most suitable?",
+    "options": [
+      "map",
+      "filter",
+      "foreach only",
+      "dropWhile only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala Basics [Data Structures]: map Transformation. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ map Transformation ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "map transforms each element and returns a new collection.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about map Transformation, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P034",
+    "num": 273,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Arrays",
+    "question": "A Scala program needs an indexed collection whose elements can be updated by position. Which basic collection is appropriate?",
+    "options": [
+      "Array",
+      "Immutable Tuple only",
+      "Option",
+      "Try"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala Basics [Data Structures]: Arrays. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Arrays ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Scala Array supports indexed access and mutable element updates.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Arrays, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P035",
+    "num": 274,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Lambda Expressions",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Lambda Expressions",
+    "question": "Which expression is a valid simple Scala lambda that doubles an integer x?",
+    "options": [
+      "x => x * 2",
+      "x = x * 2 only",
+      "double(x) class",
+      "case object x * 2"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala Basics [Data Structures]: Lambda Expressions. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Lambda Expressions ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "x => x * 2 is an anonymous function taking x and returning x*2.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Lambda Expressions, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P036",
+    "num": 275,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Pattern Matching with Guards",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A match case should classify only positive amounts above 1000 as \"High\". Which form best expresses this additional condition?",
+    "options": [
+      "case x if x > 1000 => \"High\"",
+      "case x = 1000 => \"High\"",
+      "if case x then 1000",
+      "case => x > 1000 only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala Basics [Data Structures]: Pattern Matching with Guards. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Pattern Matching with Guards ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "A guard adds an if condition to a case pattern and is evaluated when the pattern matches.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Pattern Matching with Guards, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P037",
+    "num": 276,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "RDD Transformations",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Which of the following is an RDD transformation that returns a new RDD?",
+    "options": [
+      "map",
+      "count",
+      "collect",
+      "first"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - RDDs: RDD Transformations. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ RDD Transformations ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "map is a lazy transformation that returns another RDD.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about RDD Transformations, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P038",
+    "num": 277,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "RDD Actions",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Which RDD operation is an action that returns the number of elements?",
+    "options": [
+      "count",
+      "filter",
+      "map",
+      "flatMap"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - RDDs: RDD Actions. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ RDD Actions ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "count triggers computation and returns a value to the driver.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about RDD Actions, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P039",
+    "num": 278,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Lazy Evaluation",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "What does lazy evaluation mean for Spark RDD transformations?",
+    "options": [
+      "They run immediately when written",
+      "Spark records transformations and executes them when an action requires results",
+      "They never execute",
+      "Only the driver can use them"
+    ],
+    "correct": 1,
+    "beginnerConcept": "Core concept in Scala - RDDs: Lazy Evaluation. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Lazy Evaluation ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Transformations build a lineage plan and are evaluated when an action is invoked.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Lazy Evaluation, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P040",
+    "num": 279,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "RDD Lineage",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: RDD Lineage",
+    "question": "An RDD partition is lost after an executor failure. How can Spark often rebuild it?",
+    "options": [
+      "Using the recorded lineage of transformations",
+      "Only from a manual backup file",
+      "By restarting the operating system",
+      "By converting it to a Java List"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - RDDs: RDD Lineage. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ RDD Lineage ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "RDD lineage records how partitions were derived, enabling recomputation when needed.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about RDD Lineage, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P041",
+    "num": 280,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Pair RDD Aggregations",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Pair RDD Aggregations",
+    "question": "A pair RDD contains (product, amount) records. Which operation is commonly used to combine amounts for the same product efficiently?",
+    "options": [
+      "reduceByKey",
+      "collect before aggregation",
+      "mapPartitions only",
+      "repartition to one partition first"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - RDDs: Pair RDD Aggregations. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Pair RDD Aggregations ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "reduceByKey combines values by key in distributed processing.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Pair RDD Aggregations, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P042",
+    "num": 281,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Creating RDDs",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Creating RDDs",
+    "question": "A small Scala collection already exists on the driver for a training example. Which Spark method can distribute it as an RDD?",
+    "options": [
+      "sc.parallelize(collection)",
+      "sc.collect(collection)",
+      "df.show(collection)",
+      "spark.stop(collection)"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - RDDs: Creating RDDs. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Creating RDDs ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "SparkContext.parallelize distributes an existing local collection into an RDD.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Creating RDDs, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P043",
+    "num": 282,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "RDD Persistence",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: RDD Persistence",
+    "question": "The same expensive RDD is reused in several actions during one application. Which Spark feature can avoid recomputing it each time?",
+    "options": [
+      "persist/cache",
+      "collect then delete the RDD",
+      "Rename the RDD",
+      "Convert every element to String"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - RDDs: RDD Persistence. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ RDD Persistence ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Caching or persistence stores computed partitions for reuse.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about RDD Persistence, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P044",
+    "num": 283,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Narrow Transformations",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Narrow Transformations",
+    "question": "Why is map usually described as a narrow transformation?",
+    "options": [
+      "Each output partition can be computed from a limited input partition without a full data shuffle",
+      "It always reduces partitions to one",
+      "It broadcasts every record",
+      "It runs only on the driver"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - RDDs: Narrow Transformations. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Narrow Transformations ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "map has a narrow dependency because each output partition depends on a small number, usually one, of input partitions.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Narrow Transformations, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P045",
+    "num": 284,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "collect()",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A 500 GB RDD is processed successfully, but the driver fails when collect() is called. What is the main reason?",
+    "options": [
+      "collect() attempts to bring all elements to the driver",
+      "collect() deletes executor memory",
+      "collect() disables Spark",
+      "collect() changes every value to null"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - RDDs: collect(). Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ collect() ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "collect() transfers the full result to the driver, which can exceed driver memory for large datasets.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about collect(), emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P046",
+    "num": 285,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "scala.io.Source",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Which Scala utility is commonly used in simple examples to read text from a file?",
+    "options": [
+      "scala.io.Source",
+      "scala.collection.Set",
+      "SparkSession.stop",
+      "ThreadLocal"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - File I/O: scala.io.Source. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ scala.io.Source ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "scala.io.Source provides simple methods for reading text input.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about scala.io.Source, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P047",
+    "num": 286,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Option",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "What does Option help represent in Scala?",
+    "options": [
+      "A value that may be present or absent",
+      "Only a mutable list",
+      "A network socket",
+      "A thread lock"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - File I/O: Option. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Option ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Option models optional values as Some(value) or None.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Option, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P048",
+    "num": 287,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Try, Success and Failure",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A file-reading operation may throw an exception. Which Scala type can capture success or failure as a value?",
+    "options": [
+      "Try",
+      "Tuple2 only",
+      "Array",
+      "RDD partition"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - File I/O: Try, Success and Failure. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Try, Success and Failure ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Try represents a computation that may result in Success or Failure.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Try, Success and Failure, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P049",
+    "num": 288,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Resource Management",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Resource Management",
+    "question": "A Source is opened to read a text file. What should the program ensure after reading is complete?",
+    "options": [
+      "The Source is closed",
+      "The JVM is always restarted",
+      "The file is converted into an RDD",
+      "The path is stored in a Set"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - File I/O: Resource Management. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Resource Management ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Closing the Source releases the underlying file resource.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Resource Management, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P050",
+    "num": 289,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Either",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Either",
+    "question": "A validation function should return either an error message or a valid Order. Which Scala type naturally models two alternative result types?",
+    "options": [
+      "Either",
+      "Array only",
+      "Unit",
+      "Thread"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - File I/O: Either. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Either ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Either represents one of two alternatives, commonly Left(error) or Right(value).",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Either, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P051",
+    "num": 290,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Reading Lines",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Reading Lines",
+    "question": "A trainee opens Source.fromFile(path). Which method is commonly used to iterate through file lines?",
+    "options": [
+      "getLines()",
+      "collect()",
+      "reduceByKey()",
+      "commit()"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - File I/O: Reading Lines. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Reading Lines ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "getLines() returns an iterator over the text lines from the Source.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Reading Lines, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P052",
+    "num": 291,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Try Recovery",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Try Recovery",
+    "question": "A Try[Int] should return 0 when parsing fails. Which concept is designed to provide a fallback for a failed Try?",
+    "options": [
+      "recover or getOrElse",
+      "RDD checkpoint only",
+      "Thread interrupt",
+      "Pattern.compile only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - File I/O: Try Recovery. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Try Recovery ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Try supports recovery/fallback operations such as recover and getOrElse.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Try Recovery, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P053",
+    "num": 292,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Option Safe Access",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Option Safe Access",
+    "question": "A Map lookup returns Option[String]. Which approach safely provides \"Unknown\" when no value exists?",
+    "options": [
+      "option.getOrElse(\"Unknown\")",
+      "option.get always",
+      "option.close()",
+      "option.collectAsMap()"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - File I/O: Option Safe Access. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Option Safe Access ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "getOrElse returns the contained value for Some or the supplied default for None.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Option Safe Access, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P054",
+    "num": 293,
+    "category": "Scala Basics & Functional Programming",
+    "topic": "Try Composition",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A program must open a file path and then parse an integer from its contents, and either step may fail. Why can wrapping the operations in Try be useful?",
+    "options": [
+      "It lets success/failure flow through composable operations instead of requiring unchecked assumptions",
+      "It guarantees the file exists",
+      "It converts every exception to null",
+      "It makes all I/O asynchronous"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - File I/O: Try Composition. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Try Composition ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Try makes failure explicit as a value and can be composed with map/flatMap while preserving failure information.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Try Composition, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P055",
+    "num": 294,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Execution Plans",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Which DataFrame method is commonly used to inspect how Spark plans to execute a query?",
+    "options": [
+      "explain()",
+      "showSchemaOnly()",
+      "collectPlan()",
+      "savePlan()"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Advanced Spark (Execution Plans / UDFs / External Sources): Execution Plans. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Execution Plans ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "DataFrame.explain() displays logical/physical planning information at an appropriate level of detail.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Execution Plans, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P056",
+    "num": 295,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Custom UDFs",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "When a transformation can be expressed using built-in Spark SQL functions, which approach is generally preferred?",
+    "options": [
+      "Use built-in functions",
+      "Always write a custom UDF",
+      "Collect data to the driver",
+      "Convert everything to text files first"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Advanced Spark (Execution Plans / UDFs / External Sources): Custom UDFs. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Custom UDFs ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Built-in functions are visible to Spark optimization and generally avoid unnecessary opaque UDF logic.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Custom UDFs, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P057",
+    "num": 296,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Parquet Integration",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Why is Parquet often efficient for analytical queries that select only a few columns?",
+    "options": [
+      "It is columnar and can avoid reading unnecessary columns",
+      "It stores every row as an image",
+      "It requires collect() first",
+      "It runs only in memory"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Advanced Spark (Execution Plans / UDFs / External Sources): Parquet Integration. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Parquet Integration ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Parquet is a columnar format, enabling column pruning for analytical workloads.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Parquet Integration, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P058",
+    "num": 297,
+    "category": "PySpark & Spark Architecture",
+    "topic": "JDBC Integration",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: JDBC Integration",
+    "question": "A Spark job needs to read a table from a relational database. Which Spark data source is appropriate?",
+    "options": [
+      "JDBC",
+      "Socket text only",
+      "RDD checkpoint",
+      "LocalDate"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Advanced Spark (Execution Plans / UDFs / External Sources): JDBC Integration. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ JDBC Integration ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Spark JDBC connectivity is intended for reading from and writing to relational databases.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about JDBC Integration, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P059",
+    "num": 298,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Physical Execution Plans",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Physical Execution Plans",
+    "question": "A trainee wants to know which join operator Spark actually selected after planning. Which plan is most relevant?",
+    "options": [
+      "Physical plan",
+      "Only the source file name",
+      "DataFrame schema only",
+      "Java heap dump"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Advanced Spark (Execution Plans / UDFs / External Sources): Physical Execution Plans. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Physical Execution Plans ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "The physical plan shows the concrete physical operators selected for execution.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Physical Execution Plans, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P060",
+    "num": 299,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Partition Pruning",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Partition Pruning",
+    "question": "A Parquet dataset is partitioned by event_date. A query filters event_date to one day. What optimization can avoid scanning unrelated date folders?",
+    "options": [
+      "Partition pruning",
+      "Autoboxing",
+      "Thread synchronization",
+      "Object serialization"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Advanced Spark (Execution Plans / UDFs / External Sources): Partition Pruning. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Partition Pruning ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Partition pruning uses partition filters to skip irrelevant partitions.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Partition Pruning, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P061",
+    "num": 300,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Column Pruning",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Column Pruning",
+    "question": "A Parquet table has 150 columns, but a report selects only 5. Which optimization reduces unnecessary column I/O?",
+    "options": [
+      "Column pruning",
+      "Deadlock detection",
+      "JDBC rollback",
+      "Scala pattern guards"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Advanced Spark (Execution Plans / UDFs / External Sources): Column Pruning. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Column Pruning ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Column pruning lets Spark read only required columns from columnar storage when possible.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Column Pruning, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P062",
+    "num": 301,
+    "category": "PySpark & Spark Architecture",
+    "topic": "JDBC Parallel Read Concept",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: JDBC Parallel Read Concept",
+    "question": "A very large JDBC table is currently read through a single input partition. At a conceptual level, what can improve source-side parallel reading when a suitable numeric key exists?",
+    "options": [
+      "Configure partitioned JDBC reading using a partition column and multiple partitions",
+      "Call collect() immediately",
+      "Increase only the number of DataFrame columns",
+      "Write the table to a Java array first"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Advanced Spark (Execution Plans / UDFs / External Sources): JDBC Parallel Read Concept. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ JDBC Parallel Read Concept ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Partitioned JDBC reads can issue multiple range queries when an appropriate partitioning column and bounds are provided.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about JDBC Parallel Read Concept, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P063",
+    "num": 302,
+    "category": "PySpark & Spark Architecture",
+    "topic": "Built-ins vs UDF",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Two implementations return the same cleaned customer name. One uses built-in trim/upper functions; the other uses a custom UDF. Why is the built-in expression usually easier for Spark to optimize?",
+    "options": [
+      "Its transformation semantics are visible to Spark SQL planning",
+      "It always uses one partition",
+      "It automatically caches all results",
+      "It executes only on the driver"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Advanced Spark (Execution Plans / UDFs / External Sources): Built-ins vs UDF. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Built-ins vs UDF ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Built-in expressions expose structured semantics to Spark, whereas custom UDF logic is more opaque to the optimizer.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Built-ins vs UDF, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P064",
+    "num": 303,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "map",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Which collection operation transforms every element and returns a new collection?",
+    "options": [
+      "map",
+      "filter",
+      "exists",
+      "foreach only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - transformations: map. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ map ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "map applies a function to each element and returns transformed results.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about map, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P065",
+    "num": 304,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "filter",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Which Scala collection operation keeps only elements that satisfy a Boolean condition?",
+    "options": [
+      "filter",
+      "map",
+      "flatten only",
+      "zip only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - transformations: filter. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ filter ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "filter retains elements for which the predicate returns true.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about filter, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P066",
+    "num": 305,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "flatMap",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "When each input element can produce zero or more output elements and the final result should be flat, which operation is especially useful?",
+    "options": [
+      "flatMap",
+      "head",
+      "size",
+      "reverse only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - transformations: flatMap. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ flatMap ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "flatMap maps each element to a collection-like result and flattens the outputs.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about flatMap, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P067",
+    "num": 306,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Transformation Chaining",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Transformation Chaining",
+    "question": "A list of transactions must first remove invalid records and then normalize the remaining records. Which chain best matches the required order?",
+    "options": [
+      "transactions.filter(valid).map(normalize)",
+      "transactions.map(normalize).foreach(valid)",
+      "transactions.foreach(valid).filter(normalize)",
+      "transactions.reduce(valid).map(normalize)"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - transformations: Transformation Chaining. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Transformation Chaining ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "filter first ensures normalize runs only for records that pass validation.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Transformation Chaining, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P068",
+    "num": 307,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Higher-Order Functions",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Higher-Order Functions",
+    "question": "A reusable select function should accept the rule to apply from the caller. Which parameter type represents a predicate for elements of type A?",
+    "options": [
+      "A => Boolean",
+      "String only",
+      "Boolean => A always",
+      "Unit => Unit only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - transformations: Higher-Order Functions. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Higher-Order Functions ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "A => Boolean is a function type that accepts an A and returns a Boolean decision.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Higher-Order Functions, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P069",
+    "num": 308,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Pure Functions",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Pure Functions",
+    "question": "A tax function should return the same result for the same transaction and tax rate every time. Which design best supports this?",
+    "options": [
+      "Pass required values as parameters and return the result without changing shared state",
+      "Read a changing global tax rate",
+      "Update a shared mutable variable during calculation",
+      "Write to a global buffer before returning"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - transformations: Pure Functions. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Pure Functions ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Pure-style functions avoid hidden mutable state and base results on explicit inputs.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Pure Functions, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P070",
+    "num": 309,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Immutability",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Immutability",
+    "question": "A method receives an immutable List and must remove invalid values. What should it do?",
+    "options": [
+      "Return a new filtered list",
+      "Cast and mutate the original list",
+      "Store it globally and modify it later",
+      "Return Unit and change external state"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - transformations: Immutability. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Immutability ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Immutable collection operations derive a new collection and leave the original unchanged.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Immutability, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P071",
+    "num": 310,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "filter and flatMap",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: filter and flatMap",
+    "question": "Only active customers should contribute their verified contacts, and each customer can have many contacts. Which chain best fits?",
+    "options": [
+      "customers.filter(_.active).flatMap(_.contacts).filter(_.verified)",
+      "customers.map(_.contacts) only",
+      "customers.foreach(_.contacts).map(_.verified)",
+      "customers.head.contacts only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - transformations: filter and flatMap. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ filter and flatMap ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "filter selects active customers, flatMap flattens their contact lists, and the final filter keeps verified contacts.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about filter and flatMap, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P072",
+    "num": 311,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Functional Pipeline",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A pipeline must validate records, convert valid ones into objects, and emit zero or more results per object without mutable buffers. Which sequence best expresses the flow?",
+    "options": [
+      "filter followed by map followed by flatMap",
+      "foreach followed by global ArrayBuffer updates",
+      "collect everything first, then mutate a shared list",
+      "Use only while loops with shared state"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - transformations: Functional Pipeline. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Functional Pipeline ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "filter/map/flatMap compose naturally while returning new values and avoiding shared mutable accumulation.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Functional Pipeline, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P073",
+    "num": 312,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Schema Handling",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A CSV contract already defines exact column names and types. What should Spark use when creating the DataFrame for consistent interpretation?",
+    "options": [
+      "An explicit schema",
+      "A random schema each run",
+      "Only a local List",
+      "No column names"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - dataframes: Schema Handling. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Schema Handling ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "An explicit schema enforces the intended structure consistently across files.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Schema Handling, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P074",
+    "num": 313,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "RDD vs DataFrame",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "For structured rows with named columns, filters, joins, and aggregations, which Spark abstraction is usually more suitable?",
+    "options": [
+      "DataFrame",
+      "Plain local Array only",
+      "Driver-side HashMap only",
+      "Thread"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - dataframes: RDD vs DataFrame. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ RDD vs DataFrame ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "DataFrames provide named columns and structured relational expressions optimized by Spark SQL.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about RDD vs DataFrame, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P075",
+    "num": 314,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Schema Inference",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "What does inferSchema do when reading supported data such as CSV?",
+    "options": [
+      "Spark examines data to guess column data types",
+      "It encrypts the file",
+      "It caches all rows permanently",
+      "It creates a JDBC connection"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - dataframes: Schema Inference. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Schema Inference ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Schema inference samples/examines data to infer likely types rather than requiring every type to be supplied explicitly.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Schema Inference, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P076",
+    "num": 315,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "unionByName",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: unionByName",
+    "question": "Two DataFrames contain the same fields in different column orders. Which operation can append rows by matching column names rather than positions?",
+    "options": [
+      "unionByName",
+      "join only",
+      "collect",
+      "groupByKey on an RDD"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - dataframes: unionByName. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ unionByName ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "unionByName aligns columns by name, avoiding position-based mismatches.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about unionByName, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P077",
+    "num": 316,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Missing Columns in Union",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Missing Columns in Union",
+    "question": "df2 is missing one column that exists in df1. Which option allows unionByName to fill the missing column with null?",
+    "options": [
+      "allowMissingColumns = true",
+      "inferSchema = false",
+      "header = true",
+      "cache = true"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - dataframes: Missing Columns in Union. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Missing Columns in Union ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "unionByName(..., allowMissingColumns=true) permits missing fields and fills them with null.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Missing Columns in Union, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P078",
+    "num": 317,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Structured Expressions",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Structured Expressions",
+    "question": "Two versions produce the same output. One uses DataFrame column expressions; the other converts rows to arbitrary objects and opaque functions. Which version exposes more relational information to Spark?",
+    "options": [
+      "The DataFrame expression version",
+      "The local object version",
+      "Both always expose identical semantics",
+      "The version that calls collect() first"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - dataframes: Structured Expressions. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Structured Expressions ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Structured DataFrame expressions expose column and relational semantics to Spark SQL planning.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Structured Expressions, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P079",
+    "num": 318,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Batch Output",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Batch Output",
+    "question": "A large DataFrame result must remain distributed and be written to shared storage. Which approach is appropriate?",
+    "options": [
+      "Use DataFrameWriter to write the distributed result",
+      "collect() everything and use one local file writer",
+      "Convert it to one Scala List first",
+      "Print every row on the driver"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - dataframes: Batch Output. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Batch Output ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Distributed DataFrame writes avoid bringing the entire result to the driver.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Batch Output, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P080",
+    "num": 319,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "Schema vs Data Validity",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Schema vs Data Validity",
+    "question": "A schema declares amount as Decimal, but a source record contains invalid text. Which statement is most accurate?",
+    "options": [
+      "The schema states the intended type, but malformed input still depends on parsing and validation behavior",
+      "The schema guarantees all business values are valid",
+      "Spark always repairs every malformed value",
+      "Invalid text automatically becomes a valid decimal"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - dataframes: Schema vs Data Validity. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Schema vs Data Validity ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Schema declaration defines expected structure; it does not guarantee that all incoming source values are valid business data.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Schema vs Data Validity, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P081",
+    "num": 320,
+    "category": "Scala RDDs, DataFrames & Transformations",
+    "topic": "RDD vs DataFrame Choice",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A workload mainly performs projections, filters, joins, and aggregations on structured order records. The team wants Spark to inspect these operations for optimization. Why is a DataFrame a stronger fit than an RDD of opaque domain objects?",
+    "options": [
+      "DataFrames express named-column relational operations that Spark SQL can analyze",
+      "RDDs cannot be distributed",
+      "DataFrames always avoid shuffles",
+      "RDDs execute only on the driver"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Scala - dataframes: RDD vs DataFrame Choice. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ RDD vs DataFrame Choice ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "DataFrame expressions expose structured semantics to Spark SQL/Catalyst, while arbitrary RDD functions are more opaque.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about RDD vs DataFrame Choice, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P082",
+    "num": 321,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "Structured Streaming",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Which Spark API provides DataFrame/Dataset-style processing for streaming data?",
+    "options": [
+      "Structured Streaming",
+      "Java Serialization",
+      "RDD collect",
+      "JDBC only"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Spark Streaming, Fault Tolerance, Data Processing: Structured Streaming. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Structured Streaming ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Structured Streaming uses the structured DataFrame/Dataset model for streaming computations.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Structured Streaming, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P083",
+    "num": 322,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "DStreams vs Structured Streaming",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Which statement best describes DStreams in modern Spark training?",
+    "options": [
+      "They are the older RDD-based streaming abstraction",
+      "They are Parquet files",
+      "They are Java interfaces",
+      "They are database indexes"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Spark Streaming, Fault Tolerance, Data Processing: DStreams vs Structured Streaming. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ DStreams vs Structured Streaming ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "DStreams are the older Spark Streaming abstraction built around sequences of RDDs.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about DStreams vs Structured Streaming, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P084",
+    "num": 323,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "Checkpointing",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "What is the basic purpose of a checkpoint location in a streaming query?",
+    "options": [
+      "Persist recovery/progress information on durable storage",
+      "Increase the number of Java constructors",
+      "Convert JSON to XML",
+      "Replace every source with a socket"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Spark Streaming, Fault Tolerance, Data Processing: Checkpointing. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Checkpointing ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Checkpointing stores streaming metadata/progress and, where needed, state for recovery.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Checkpointing, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P085",
+    "num": 324,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "Socket Streaming",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Socket Streaming",
+    "question": "A trainer wants a simple live demo where trainees type text into a TCP socket and see Spark process it. Is a socket source reasonable for this purpose?",
+    "options": [
+      "Yes, for demonstration/testing",
+      "No, sockets cannot carry text",
+      "Only if the data is first written to JDBC",
+      "Only for batch jobs"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Spark Streaming, Fault Tolerance, Data Processing: Socket Streaming. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Socket Streaming ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Socket sources are convenient for demonstrations, but they are not durable production sources.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Socket Streaming, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P086",
+    "num": 325,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "Streaming from Files",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Streaming from Files",
+    "question": "New CSV files are dropped into a watched folder after they are completely written. Which Structured Streaming source can process newly arriving files?",
+    "options": [
+      "File source with readStream and a defined schema",
+      "collect() on a static List",
+      "Java FileOutputStream only",
+      "LocalDate API"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Spark Streaming, Fault Tolerance, Data Processing: Streaming from Files. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Streaming from Files ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Structured Streaming can monitor directories and incrementally process newly arriving files.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Streaming from Files, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P087",
+    "num": 326,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "Windowed Operations",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Windowed Operations",
+    "question": "A business wants sales totals for each 10-minute interval based on event timestamps. Which concept is appropriate?",
+    "options": [
+      "Event-time window aggregation",
+      "JVM heap only",
+      "Method overloading",
+      "Object serialization"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Spark Streaming, Fault Tolerance, Data Processing: Windowed Operations. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Windowed Operations ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Windowed aggregation groups events into time ranges such as 10-minute windows.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Windowed Operations, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P088",
+    "num": 327,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "Watermarks",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Watermarks",
+    "question": "Events may arrive several minutes late, but Spark should eventually stop retaining old event-time state. Which feature addresses accepted lateness and state cleanup?",
+    "options": [
+      "Watermark",
+      "Autoboxing",
+      "JDBC commit",
+      "RDD parallelize"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Spark Streaming, Fault Tolerance, Data Processing: Watermarks. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Watermarks ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Watermarks define a threshold for late event-time data and help bound state for supported stateful operations.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Watermarks, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P089",
+    "num": 328,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "Fault Tolerance",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Fault Tolerance",
+    "question": "A streaming query restarts after a driver failure. Which design is important if it should continue using previously recorded progress?",
+    "options": [
+      "Restart with the same durable checkpoint location when the query is compatible",
+      "Use only executor cache",
+      "Always create a brand-new checkpoint",
+      "Store offsets only in a local mutable variable"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Spark Streaming, Fault Tolerance, Data Processing: Fault Tolerance. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Fault Tolerance ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "A durable checkpoint can preserve progress and state needed for compatible query recovery.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Fault Tolerance, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P090",
+    "num": 329,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "File Completeness",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: File Completeness",
+    "question": "An upstream process writes large files slowly. How can it reduce the chance that Spark sees partially written input files in a watched folder?",
+    "options": [
+      "Write elsewhere and atomically move/rename completed files into the watched location",
+      "Let Spark read while files are still being written",
+      "Delete files before they finish",
+      "Store filenames only in driver memory"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Spark Streaming, Fault Tolerance, Data Processing: File Completeness. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ File Completeness ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Publishing only completed files into the watched directory is a common safe pattern for file-stream ingestion.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about File Completeness, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P091",
+    "num": 330,
+    "category": "Spark Streaming & Fault Tolerance",
+    "topic": "Watermark vs Trigger",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "A query uses event-time windows and allows events up to 10 minutes late. Why is a 5-minute processing trigger not a replacement for a 10-minute watermark?",
+    "options": [
+      "The trigger controls how often processing runs, while the watermark relates to event-time lateness/state",
+      "The trigger changes event timestamps",
+      "The watermark only controls executor count",
+      "They are identical settings"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Spark Streaming, Fault Tolerance, Data Processing: Watermark vs Trigger. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Watermark vs Trigger ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Trigger cadence and event-time lateness are different concepts: trigger controls processing frequency; watermark controls late-data/state semantics.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Watermark vs Trigger, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P092",
+    "num": 331,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Race Conditions",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Two threads update the same shared counter and some increments are lost. Which concurrency problem is this?",
+    "options": [
+      "Race condition",
+      "Method overloading",
+      "Schema inference",
+      "RDD lineage"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs/APIs/Collections: Race Conditions. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Race Conditions ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "A race condition occurs when concurrent operations on shared state produce results that depend on timing/interleaving.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Race Conditions, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P093",
+    "num": 332,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Deadlocks",
+    "difficulty": "Easy",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Thread A holds Lock1 and waits for Lock2 while Thread B holds Lock2 and waits for Lock1 indefinitely. What problem is illustrated?",
+    "options": [
+      "Deadlock",
+      "Autoboxing",
+      "Serialization",
+      "Column pruning"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs/APIs/Collections: Deadlocks. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Deadlocks ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "The threads are in a circular wait, which is the classic deadlock pattern.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Deadlocks, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P094",
+    "num": 333,
+    "category": "Java OOPs & Multithreading",
+    "topic": "JDBC Transactions",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: JDBC Transactions",
+    "question": "Creating an order and reducing inventory must either both succeed or both fail. Which JDBC transaction approach is appropriate?",
+    "options": [
+      "Disable auto-commit, commit after both succeed, rollback on failure",
+      "Commit after the first statement regardless of later errors",
+      "Use a different connection for each statement with no coordination",
+      "Call collect() after each SQL statement"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs/APIs/Collections: JDBC Transactions. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ JDBC Transactions ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "A single transaction with commit/rollback keeps related database changes atomic.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about JDBC Transactions, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P095",
+    "num": 334,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Synchronization",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Synchronization",
+    "question": "Two fields must be updated together so readers never observe a half-updated state. What concept can protect the compound operation?",
+    "options": [
+      "Use the same shared lock/synchronization around related updates and reads",
+      "Use two unrelated local locks created per call",
+      "Mark only one field static",
+      "Use HashSet instead of synchronization"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs/APIs/Collections: Synchronization. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Synchronization ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Compound invariants require coordinated synchronization, not merely separate operations on each field.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Synchronization, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P096",
+    "num": 335,
+    "category": "Java OOPs & Multithreading",
+    "topic": "ConcurrentHashMap Concept",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: ConcurrentHashMap Concept",
+    "question": "Many threads need to read and update a shared map. Which Java collection is designed for concurrent access better than a plain HashMap without external synchronization?",
+    "options": [
+      "ConcurrentHashMap",
+      "ArrayList",
+      "TreeSet only",
+      "StringBuilder"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs/APIs/Collections: ConcurrentHashMap Concept. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ ConcurrentHashMap Concept ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "ConcurrentHashMap is a concurrent map implementation designed for multi-threaded access.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about ConcurrentHashMap Concept, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P097",
+    "num": 336,
+    "category": "Java OOPs & Multithreading",
+    "topic": "CompletableFuture Concept",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: CompletableFuture Concept",
+    "question": "A service wants to represent a result that will be completed asynchronously and then apply another non-blocking step. Which Java API is designed for this style?",
+    "options": [
+      "CompletableFuture",
+      "FileInputStream",
+      "LocalDate",
+      "HashSet"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs/APIs/Collections: CompletableFuture Concept. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ CompletableFuture Concept ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "CompletableFuture models asynchronous computations and supports chaining stages.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about CompletableFuture Concept, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P098",
+    "num": 337,
+    "category": "Java OOPs & Multithreading",
+    "topic": "CopyOnWriteArrayList Concept",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: CopyOnWriteArrayList Concept",
+    "question": "A listener list is read very frequently and modified only occasionally. Which concurrent list is known for snapshot-style iteration with relatively expensive writes?",
+    "options": [
+      "CopyOnWriteArrayList",
+      "LinkedHashMap",
+      "ArrayDeque",
+      "String[]"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs/APIs/Collections: CopyOnWriteArrayList Concept. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ CopyOnWriteArrayList Concept ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "CopyOnWriteArrayList is suitable for read-heavy scenarios where writes are rare and snapshot iteration is useful.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about CopyOnWriteArrayList Concept, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P099",
+    "num": 338,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Connection Pooling Concept",
+    "difficulty": "Medium",
+    "isScenario": true,
+    "scenarioTitle": "Enterprise Scenario: Connection Pooling Concept",
+    "question": "Why do server applications commonly use a JDBC connection pool?",
+    "options": [
+      "To reuse a limited set of database connections instead of opening a new physical connection for every request",
+      "To convert SQL into Scala",
+      "To guarantee every query is fast",
+      "To replace database transactions"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs/APIs/Collections: Connection Pooling Concept. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Connection Pooling Concept ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "Connection pooling reduces connection-creation overhead and manages a reusable pool of connections.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Connection Pooling Concept, emphasize memory safety, distributed scaling, and practical execution characteristics."
+  },
+  {
+    "id": "XLSX-P100",
+    "num": 339,
+    "category": "Java OOPs & Multithreading",
+    "topic": "Deadlock Prevention",
+    "difficulty": "Medium",
+    "isScenario": false,
+    "scenarioTitle": null,
+    "question": "Transfers can lock two Account objects. One thread locks account 10 then 20, while another may lock 20 then 10. Which simple design reduces deadlock risk while keeping per-account locks?",
+    "options": [
+      "Acquire required account locks in a consistent deterministic order such as ascending account ID",
+      "Always lock the source first regardless of ID",
+      "Create a brand-new lock object for each transfer",
+      "Hold the first lock while repeatedly sleeping forever"
+    ],
+    "correct": 0,
+    "beginnerConcept": "Core concept in Java - OOPs/APIs/Collections: Deadlock Prevention. Master this for enterprise production data pipelines.",
+    "visualDiagram": "[ Deadlock Prevention ]\n       \u2502\n       \u25bc\n[ Execution Engine / Runtime ]\n       \u2502\n       \u25bc\n[ Verified Output ]",
+    "explanation": "A consistent lock ordering removes the circular-wait pattern that can cause deadlock.",
+    "interviewTip": "Enterprise Interview Pro-Tip: When asked about Deadlock Prevention, emphasize memory safety, distributed scaling, and practical execution characteristics."
   }
 ];

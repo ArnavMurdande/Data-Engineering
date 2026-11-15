@@ -1,0 +1,35 @@
+flowchart LR
+    %% Lakeflow Job DAG cap8_PIPE (Job ID: 784129931086509)
+    %% Total Execution Time: 7m 55s | 478 Queries Executed | 765K Rows Read
+
+    subgraph Stage1["1. Ingestion Tier (Parallel)"]
+        T1["Task 1: bronze_adls_autoloader<br/>NB: 02_bronze_adls_ingestion<br/>Runtime: 57s"]
+        T2["Task 2: bronze_azure_sql<br/>NB: 01_jdbc_connection<br/>Runtime: 47s"]
+    end
+
+    subgraph Stage2["2. Automated Profiling"]
+        T3["Task 3: data_profile<br/>NB: 03_bronze_profiling<br/>Runtime: 31s"]
+    end
+
+    subgraph Stage3["3. Curated Silver Quality"]
+        T4["Task 4: silver_transform<br/>NB: 04_silver_layer_healthcare<br/>Runtime: 2m 26s"]
+    end
+
+    subgraph Stage4["4. Gold Modeling & Mart"]
+        T5["Task 5: gold_build<br/>NB: 05_gold_layer_healthcare<br/>Runtime: 1m 25s"]
+    end
+
+    subgraph Stage5["5. Automated Quality Gate"]
+        T6["Task 6: validation<br/>NB: 06_pipeline_validation_healthcare<br/>Runtime: 1m 29s"]
+    end
+
+    subgraph Stage6["6. Telemetry & Monitoring"]
+        T7["Task 7: refresh_dashboard<br/>NB: 07_monitoring_refresh_healthcare<br/>Runtime: 1m 03s"]
+    end
+
+    T1 --> T3
+    T2 --> T3
+    T3 --> T4
+    T4 --> T5
+    T5 --> T6
+    T6 --> T7

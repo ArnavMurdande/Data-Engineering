@@ -1,0 +1,82 @@
+flowchart TB
+    %% High-Level Design (HLD) Architecture Diagram - MediFlow Lakehouse
+    subgraph Sources["1. Ingestion Sources (Azure)"]
+        direction TB
+        ASQL["Azure SQL Database<br/>• dbo.patient_master (183 rows)<br/>• dbo.department_master (192 rows)<br/>• dbo.bed_master (201 rows)"]
+        ADLS["ADLS Gen2 Volume (ext_capstone8_vol)<br/>• patient_encounters/*.csv (10 batches, 12,376 rows)<br/>• event_data/lab_test_events*.csv (758 rows)<br/>• event_data/bed_transfer_events*.csv (392 rows)"]
+    end
+
+    subgraph Security["Security & Access Boundary"]
+        SECRETS["Databricks Secret Scope<br/>(azure-sql-scope: sql-user, sql-pwd)"]
+        VOLUMES["Unity Catalog External Volume<br/>(/Volumes/capstone_8hospital/bronze_schema/ext_capstone8_vol)"]
+    end
+
+    subgraph Platform["2. Databricks Lakehouse Engine (Unity Catalog: capstone_8hospital)"]
+        direction TB
+
+        subgraph Bronze["Bronze Layer (bronze_schema) - Raw & Append-Only"]
+            B_PAT["bronze_patients (183)"]
+            B_DEP["bronze_departments (192)"]
+            B_BED["bronze_beds (201)"]
+            B_ENC["bronze_patient_encounters (12,376)"]
+            B_LAB["bronze_lab_test_events (758)"]
+            B_TRF["bronze_bed_transfer_events (392)"]
+            B_AUD["Lineage Metadata: _source_file, _ingested_at, _rescued_data"]
+        end
+
+        subgraph Silver["Silver Layer (silver_schema) - Curated & Audited"]
+            DQ["Data Quality Engine (DQ001-DQ008)<br/>Type Casting, Domain Validation, Chronology Sanity"]
+            S_REJ[("silver_rejected_records<br/>24 rows: UNKNOWN_CODE triage")]
+            S_DUP[("silver_duplicate_audit<br/>47 exact duplicate rows")]
+            S_CLEAN["Curated Silver Delta Tables<br/>• silver_patient_encounters (12,305)<br/>• silver_lab_test_events (758)<br/>• silver_bed_transfer_events (392)<br/>• silver_patients (183)<br/>• silver_departments (192)<br/>• silver_beds (201)"]
+        end
+
+        subgraph Gold["Gold Layer (gold_schema) - Star Schema & KPI Mart"]
+            G_DIMS["Dimensions<br/>• dim_patient (183, SHA-256 patient_key)<br/>• dim_department (192, xxhash64)<br/>• dim_bed (201, xxhash64)<br/>• dim_date (183, yyyyMMdd)"]
+            G_FACTS["Fact Tables<br/>• fact_patient_encounter (12,305)<br/>• fact_lab_test_event (758)<br/>• fact_bed_transfer_event (392)"]
+            G_MART[("mart_department_daily<br/>5,688 rows<br/>Incremental Delta MERGE (<=>)")]
+            G_VIEWS["Live Presentation Views (vw_*)<br/>vw_kpi_headline • vw_daily_trend • vw_department_summary<br/>vw_site_summary • vw_encounter_mix • vw_lab_turnaround<br/>vw_bed_movement • vw_data_quality"]
+        end
+
+        subgraph Ops["Ops & Governance (ops_schema)"]
+            O_VAL[("pipeline_validation_results<br/>Automated Quality Gates")]
+            O_FRESH[("monitor_table_freshness<br/>Row counts & write timestamps")]
+            O_RUNS[("monitor_pipeline_runs<br/>Run history & PASS/WARN/FAIL status")]
+        end
+
+        subgraph MLOps["Machine Learning & MLOps"]
+            ML_FEAT["ml_encounter_features<br/>(Admission-only features, zero leakage)"]
+            ML_REG[("UC Model Registry<br/>long_stay_risk_model @champion")]
+            ML_RISK[("encounter_long_stay_risk<br/>vw_encounter_long_stay_risk")]
+        end
+    end
+
+    subgraph Consumption["3. Analytics & End-User Consumption"]
+        direction TB
+        DASH["Databricks AI/BI Dashboard<br/>(7 Executive & Operational Pages)"]
+        GENIE["Databricks Genie Space<br/>(Conversational NLP + 3 Trusted SQL Queries)"]
+        BED_MGR["Bed Management & Operations<br/>(HIGH / MEDIUM / LOW Risk Stratification)"]
+    end
+
+    %% Connections
+    ASQL --> SECRETS -->|PySpark JDBC| B_PAT & B_DEP & B_BED
+    ADLS --> VOLUMES -->|Auto Loader cloudFiles| B_ENC & B_LAB & B_TRF
+    B_ENC & B_LAB & B_TRF --- B_AUD
+
+    Bronze --> DQ
+    DQ -->|Fails DQ003| S_REJ
+    DQ -->|Exact Duplicate| S_DUP
+    DQ -->|Passes Clean| S_CLEAN
+
+    S_CLEAN --> G_DIMS & G_FACTS
+    G_FACTS --> G_MART
+    G_DIMS & G_FACTS & G_MART --> G_VIEWS
+
+    G_FACTS & G_DIMS --> ML_FEAT --> ML_REG --> ML_RISK
+
+    Gold --> O_VAL & O_FRESH
+    Silver --> O_VAL & O_FRESH
+
+    G_VIEWS --> DASH
+    G_VIEWS & G_MART --> GENIE
+    ML_RISK --> DASH & BED_MGR
