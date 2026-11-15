@@ -70,6 +70,19 @@ $RECYCLE.BIN/
 .github/
 **/.github/
 
+# User-Excluded Sensitive / Planning & Large Archives
+Planner & Syllabus/
+**/Planner & Syllabus/
+Planner/
+Syllabus/
+Databricks/Assignments/
+**/Assignments/
+**/Capstone_Prep/
+**/Presentation_and_Speaker_Notes/
+*.zip
+*.pptx
+*.odt
+
 # Local Setup Scripts
 SQL Setup/
 **/SQL Setup/
